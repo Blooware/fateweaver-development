@@ -15,7 +15,7 @@
     <p>Please check your Email for the verification code,<br />It could take a few minutes to arrive.</p>
     <div class="form-group"><input class="form-control" type="email" id="userEmail" name="email" required placeholder="Email" style="margin-top: 10px;" /></div>
     <div class="form-group"><input class="form-control" type="password" id="userCode" name="Verification Code" required placeholder="Verification Code" /></div>
-    <div class="form-group"><button class="btn btn-primary btn-block d-block" onclick="verifyMe();" style="margin-top: 10px;">Verify(Fateweaver Admin)</button></div><a href="/Portal/signIn" class="text-center d-block">Already Verified Account?</a><a href="/Portal/signUp" class="text-center d-block">Not Yet created an account?</a>
+    <div class="form-group"><button class="btn btn-primary btn-block d-block" onclick="verifyMe();" style="margin-top: 10px;">Verify(Fateweaver Admin)</button></div><a href="/portal/signIn" class="text-center d-block">Already Verified Account?</a><a href="/portal/signUp" class="text-center d-block">Not Yet created an account?</a>
     <a
         class="d-block justify-content-center forgot" href="#" style="margin-top: 15px;">Terms &amp; Conditions</a><a class="d-block justify-content-center forgot" href="#">Privacy Policy</a></div>
     <script src="assets/js/jquery.min.js"></script>
@@ -37,7 +37,7 @@
             signedIn(function (response) {
                 if (response.success) {
                     console.log("Already Signed In");
-                    window.location.href = '/Portal';
+                    window.location.href = '/portal';
                 }
             });
         });
@@ -45,7 +45,7 @@
 
     function verifyMe() {
         verify($('#userEmail').val(), $('#userCode').val(), function () {
-            window.location.href = '/Portal/signIn';
+            window.location.href = '/portal/signIn';
         }, function (err) {
             $('#err').html(err);
         });
