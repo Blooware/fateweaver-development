@@ -52,45 +52,33 @@ exports.handler = (event, context, callback) => {
 
         //return console.log("Console: " , fileStuff.uploadFile.name);
 
-        /*
-        var AWS = require('aws-sdk');
-        var s3 = new AWS.S3();
-
-        exports.handler = function(event, context, callback) {
-
-        // Retrieve the bucket & key for the uploaded S3 object that
-        // caused this Lambda function to be triggered
-        var src_bkt = event.Records[0].s3.bucket.name;
-        var src_key = event.Records[0].s3.object.key;
-
-            // Retrieve the object
-            s3.getObject({
-                Bucket: src_bkt,
-                Key: src_key
-            }, function(err, data) {
-                if (err) {  
-                    console.log(err, err.stack);
-                    callback(err);
-                } else {
-                    console.log("Raw text:\n" + data.Body.toString('ascii'));
-                    callback(null, null);
-                }   
-            });
-        };
-        */
-        
         s3.getObject({
-                Bucket: "fateweaver-files",
-                Key: file.fileFullName
-            }, function(err, data) {
-                if (err) {  
-                    console.log(err, err.stack);
-                    callback(err);
-                } else {
-                    console.log("Raw text:\n" + data.Body.toString('ascii'));
-                    callback(null, "Raw text:\n" + data.Body.toString('ascii'));
-                }   
-            });
+            Bucket: "fateweaver-files",
+            Key: file.fileFullName
+        }, function (err, data) {
+            if (err) {
+                console.log(err, err.stack);
+                callback(err);
+            } else {
+                console.log("Raw text:\n" + data.Body.toString('ascii'));
+
+                const csv = require('csvtojson')
+                csv({
+                    noheader: true,
+                    output: "csv"
+                }).fromString(csvStr).then((jsonObj)=>{
+                        console.log(jsonObj);
+                        callback(null, {
+                            RawText: "Raw text:\n" + data.Body.toString('ascii'),
+                            jsonobjectstuff: jsonObj
+                        });
+
+                });
+
+                
+
+            }
+        });
         /*
         callback(null, {
             statusCode: 200,
@@ -127,6 +115,6 @@ let getFile = function (fileMime, buffer) {
     return {
         'params': params,
         'uploadFile': uploadFile,
-        'fileFullName' : fileFullName
+        'fileFullName': fileFullName
     };
 }
