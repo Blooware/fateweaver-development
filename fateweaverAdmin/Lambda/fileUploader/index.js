@@ -22,7 +22,7 @@ exports.handler = (event, context, callback) => {
     let base64String = event.base64String;
     let buffer = new Buffer(base64String, 'base64');
     let fileMime = fileType(buffer);
-    
+
     //This is where the File should be checked if its a csv
     //if (fileMime === null) {
     //    return context.fail('The string suppplied is not a file type');
@@ -48,41 +48,56 @@ exports.handler = (event, context, callback) => {
 
         }
         console.log(inserted)
-                //console.log('File Name:', fileStuff.uploadFile.name);
-                
-                //return console.log("Console: " , fileStuff.uploadFile.name);
-                
-                /*
-                var AWS = require('aws-sdk');
-                var s3 = new AWS.S3();
+        //console.log('File Name:', fileStuff.uploadFile.name);
 
-                exports.handler = function(event, context, callback) {
+        //return console.log("Console: " , fileStuff.uploadFile.name);
 
-                // Retrieve the bucket & key for the uploaded S3 object that
-                // caused this Lambda function to be triggered
-                var src_bkt = event.Records[0].s3.bucket.name;
-                var src_key = event.Records[0].s3.object.key;
+        /*
+        var AWS = require('aws-sdk');
+        var s3 = new AWS.S3();
 
-                    // Retrieve the object
-                    s3.getObject({
-                        Bucket: src_bkt,
-                        Key: src_key
-                    }, function(err, data) {
-                        if (err) {  
-                            console.log(err, err.stack);
-                            callback(err);
-                        } else {
-                            console.log("Raw text:\n" + data.Body.toString('ascii'));
-                            callback(null, null);
-                        }   
-                    });
-                };
-                */
-                callback(null, {
-                    statusCode: 200,
-                    status: true,
-                    
-                });
+        exports.handler = function(event, context, callback) {
+
+        // Retrieve the bucket & key for the uploaded S3 object that
+        // caused this Lambda function to be triggered
+        var src_bkt = event.Records[0].s3.bucket.name;
+        var src_key = event.Records[0].s3.object.key;
+
+            // Retrieve the object
+            s3.getObject({
+                Bucket: src_bkt,
+                Key: src_key
+            }, function(err, data) {
+                if (err) {  
+                    console.log(err, err.stack);
+                    callback(err);
+                } else {
+                    console.log("Raw text:\n" + data.Body.toString('ascii'));
+                    callback(null, null);
+                }   
+            });
+        };
+        */
+        
+        s3.getObject({
+                Bucket: "fateweaver-files",
+                Key: file.fileFullName
+            }, function(err, data) {
+                if (err) {  
+                    console.log(err, err.stack);
+                    callback(err);
+                } else {
+                    console.log("Raw text:\n" + data.Body.toString('ascii'));
+                    callback(null, "Raw text:\n" + data.Body.toString('ascii'));
+                }   
+            });
+        /*
+        callback(null, {
+            statusCode: 200,
+            status: true,
+
+        });
+        */
     });
 
 
@@ -111,6 +126,7 @@ let getFile = function (fileMime, buffer) {
 
     return {
         'params': params,
-        'uploadFile': uploadFile
+        'uploadFile': uploadFile,
+        'fileFullName' : fileFullName
     };
 }
