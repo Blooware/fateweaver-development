@@ -84,9 +84,9 @@ exports.handler = (event, context, callback) => {
                         });
                     } else {
                         // if the data fields are not in the list then return the name of the feild that is incorrect
-                        
-                        for (var i = 1; i < fields.length; i++) {
-                            if (Data[0][fields[i]] != null ) {
+
+                        for (var i = 0; i < fields.length; i++) {
+                            if (Data[0][fields[i]] != null) {
                                 console.log(fields[i])
                                 /*
                                 callback(null, {
@@ -103,7 +103,7 @@ exports.handler = (event, context, callback) => {
                                 });
                             }
                         }
-                        
+
 
                         for (var i = 1; i < Data.length; i++) {
                             console.log(Data[i].Name);
@@ -120,11 +120,11 @@ exports.handler = (event, context, callback) => {
                             DataZeroName: Data[0].Name,
                             DataZeroZero: Data[0][0],
                             DataZeroOne: Data[0][1],
-                            TheData : TheData,
-                            TheDataZero : TheData[0],
-                            TheDataName : TheData.Name,
-                            TheDataDotName : TheData["Name"],
-                            DataName : Data[0]["Name"],
+                            TheData: TheData,
+                            TheDataZero: TheData[0],
+                            TheDataName: TheData.Name,
+                            TheDataDotName: TheData["Name"],
+                            DataName: Data[0]["Name"],
                         });
                     }
 
