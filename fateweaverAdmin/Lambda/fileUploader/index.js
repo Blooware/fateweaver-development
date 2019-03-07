@@ -19,7 +19,7 @@ var connection = mysql.createConnection({
 
 exports.handler = (event, context, callback) => {
     //callback(null,event);
-    var fields = ["Name", "Information", "More Stuff"];
+    var fields = ["Name", "Info", "Age", "TutorGroup"];
 
 
 
@@ -108,12 +108,12 @@ exports.handler = (event, context, callback) => {
                         for (var i = 0; i < Data.length; i++) {
                             //console.log(Data[i].Name);
                             var set = {
-                                name : Data[i].Name,
-                                info : Data[i].info,
-                                age : Data[i].age,
-                                tutor_group_id : Data[i].tutor_group_id,
-                                added : new Date(Date.now()),
-                                added_id : "3001",
+                                name: Data[i].Name,
+                                info: Data[i].Info,
+                                age: Data[i].Age,
+                                tutor_group_id: Data[i].TutorGroup,
+                                added: new Date(Date.now()),
+                                added_id: "3001",
                             }
                             connection.query("insert into fateweaver.students set ?", [set], function (error, results, fields) {
                                 connection.end(function (err) {
@@ -142,10 +142,10 @@ exports.handler = (event, context, callback) => {
                             });
 
                             callback(null, {
-                                    statusCode: 200,
-                                    status: false,
-                                    Success: Data[i].Name,
-                                });
+                                statusCode: 200,
+                                status: false,
+                                Success: Data[i].Name,
+                            });
                         }
 
                         /*
