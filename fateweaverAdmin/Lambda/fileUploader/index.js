@@ -104,12 +104,51 @@ exports.handler = (event, context, callback) => {
                             }
                         }
 
+                        // For Each Row 
+                        for (var i = 0; i < Data.length; i++) {
+                            //console.log(Data[i].Name);
+                            var set = {
+                                name : Data[i].Name,
+                                info : Data[i].info,
+                                age : Data[i].age,
+                                tutor_group_id : Data[i].tutor_group_id,
+                                added : new Date(Date.now()),
+                                added_id : "3001",
+                            }
+                            connection.query("insert into fateweaver.students set ?", [set], function (error, results, fields) {
+                                connection.end(function (err) {
+                                    if (err) { console.log("Error ending the connection:", err); }
+                                    //  reconnect in order to prevent the"Cannot enqueue Handshake after invoking quit"
+                                    connection = mysql.createConnection({
+                                        host: 'blootest.c2qh4vkdvsoy.eu-west-2.rds.amazonaws.com',
+                                        user: 'blooware',
+                                        password: 'blooware18',
+                                        port: 3306
+                                    });
+                                    if (results.length == 0) {
+                                        callback(null, {
+                                            statusCode: 200,
+                                            status: false,
+                                            errMsg: "Couldn't find that combination "
+                                        });
+                                    } else {
+                                        callback(null, {
+                                            statusCode: 200,
+                                            status: true,
+                                            body: results
+                                        });
+                                    }
+                                });
+                            });
 
-                        for (var i = 1; i < Data.length; i++) {
-                            console.log(Data[i].Name);
+                            callback(null, {
+                                    statusCode: 200,
+                                    status: false,
+                                    Success: Data[i].Name,
+                                });
                         }
 
-
+                        /*
                         var TheData = Data[0];
 
                         callback(null, {
@@ -126,6 +165,7 @@ exports.handler = (event, context, callback) => {
                             TheDataDotName: TheData["Name"],
                             DataName: Data[0]["Name"],
                         });
+                        */
                     }
 
 
