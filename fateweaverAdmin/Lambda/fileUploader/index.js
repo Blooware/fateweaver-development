@@ -19,6 +19,11 @@ var connection = mysql.createConnection({
 
 exports.handler = (event, context, callback) => {
     //callback(null,event);
+    var fields = ["Name", "Information", "More Stuff"];
+
+
+
+
 
     let base64String = event.base64String;
     let buffer = new Buffer(base64String, 'base64');
@@ -61,14 +66,72 @@ exports.handler = (event, context, callback) => {
                 console.log(err, err.stack);
                 callback(err);
             } else {
-                console.log("Raw text:\n" + data.Body.toString('ascii'));
-                //csvTojs(data.Body.toString('ascii'));
+                if (data.Body.toString('ascii') == null) {
+                    callback(null, {
+                        statusCode: 200,
+                        status: false,
+                        errMsg: "Couldn't Detect CSV file"
+                    });
+                } else {
+                    console.log("Raw text:\n" + data.Body.toString('ascii'));
 
-                callback(null, {
-                    "Raw text": "Raw text:\n" + data.Body.toString('ascii') + "*",
-                    databody: data.body,
-                    jsonmaybe: csvTojs(data.Body.toString('ascii').replace("\r", "") + "*")
-                });
+                    var Data = csvTojs(data.Body.toString('ascii').replace("\r", "") + "*")
+                    if (Data.length <= 1) {
+                        callback(null, {
+                            statusCode: 200,
+                            status: false,
+                            errMsg: "Couldn't find any data in the CSV file"
+                        });
+                    } else {
+                        // if the data fields are not in the list then return the name of the feild that is incorrect
+                        
+                        for (var i = 1; i < fields.length; i++) {
+                            if (Data[0][fields[i]] != null ) {
+                                console.log(fields[i])
+                                /*
+                                callback(null, {
+                                    statusCode: 200,
+                                    status: true,
+                                    errMsg: "could find the field named " + fields[i],
+                                });
+                                */
+                            } else {
+                                callback(null, {
+                                    statusCode: 200,
+                                    status: false,
+                                    errMsg: "couldn't find the field named " + fields[i],
+                                });
+                            }
+                        }
+                        
+
+                        for (var i = 1; i < Data.length; i++) {
+                            console.log(Data[i].Name);
+                        }
+
+
+                        var TheData = Data[0];
+
+                        callback(null, {
+                            "Raw text": "Raw text:\n" + data.Body.toString('ascii') + "*",
+                            databody: data.body,
+                            jsonmaybe: Data,
+                            DataZero: Data[0],
+                            DataZeroName: Data[0].Name,
+                            DataZeroZero: Data[0][0],
+                            DataZeroOne: Data[0][1],
+                            TheData : TheData,
+                            TheDataZero : TheData[0],
+                            TheDataName : TheData.Name,
+                            TheDataDotName : TheData["Name"],
+                            DataName : Data[0]["Name"],
+                        });
+                    }
+
+
+                }
+
+
 
             }
         });
