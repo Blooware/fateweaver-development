@@ -45,6 +45,7 @@ var connection = mysql.createConnection({
 
 async function insertData(NewData, file) {
     var x = await insertTutorGroup(NewData, file);
+    //x = results.insertId
     console.log("Completed creation of students and Tutor Groups (If needed)");
 }
 
@@ -104,14 +105,13 @@ exports.handler = (event, context, callback) => {
 
                         // For Each Row 
                         for (var i = 0; i < Data.length; i++) {
-                            insertData(Data[i], file);
-                                                 
+                            insertData(Data[i], file);                                                 
                         }
 
                         callback(null, {
                             statusCode: 200,
                             status: false,
-                            Success: Data[i].Name,
+                            //Success: Data[i].Name,
                             Counted : "the number of students added",
                             specialties : "the number of duplicates"
                         });      
