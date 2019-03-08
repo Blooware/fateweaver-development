@@ -1,239 +1,5 @@
 'use strict'
 
-let csvToJson = require('convert-csv-to-json');
-
-const AWS = require('aws-sdk');
-const s3 = new AWS.S3();
-const moment = require('moment');
-const fileType = require('file-type');
-const sha1 = require('sha1');
-
-var mysql = require('mysql');
-
-var connection = mysql.createConnection({
-    host: 'blootest.c2qh4vkdvsoy.eu-west-2.rds.amazonaws.com',
-    user: 'blooware',
-    password: 'blooware18',
-    port: 3306
-});
-
-exports.handler = (event, context, callback) => {
-    //callback(null,event);
-    var fields = ["Name", "Info", "Age", "TutorGroup"];
-
-
-
-
-
-    let base64String = event.base64String;
-    let buffer = new Buffer(base64String, 'base64');
-    let fileMime = fileType(buffer);
-
-    //This is where the File should be checked if its a csv
-    //if (fileMime === null) {
-    //    return context.fail('The string suppplied is not a file type');
-    //}
-
-    let file = getFile(fileMime, buffer);
-    let params = file.params;
-
-    s3.putObject(params, function (err, data) {
-        if (err) {
-            console.log(params);
-            return console.log(err);
-        }
-        // store to sql database
-        // check they have access to the event
-        var inserted = {
-            event_id: "3001",
-            name: "event.form.name",
-            //path: fileStuff.uploadFile.name,
-            //file_ext: fileStuff.uploadFile.type,
-            added: new Date(Date.now()),
-            added_sub: "event.account.sub"
-
-        }
-        console.log(inserted)
-        //console.log('File Name:', fileStuff.uploadFile.name);
-
-        //return console.log("Console: " , fileStuff.uploadFile.name);
-
-        s3.getObject({
-            Bucket: "fateweaver-files",
-            Key: file.fileFullName
-        }, function (err, data) {
-            if (err) {
-                console.log(err, err.stack);
-                callback(err);
-            } else {
-                if (data.Body.toString('ascii') == null) {
-                    callback(null, {
-                        statusCode: 200,
-                        status: false,
-                        errMsg: "Couldn't Detect CSV file"
-                    });
-                } else {
-                    console.log("Raw text:\n" + data.Body.toString('ascii'));
-
-                    var Data = csvTojs(data.Body.toString('ascii').replace("\r", "") + "*")
-                    if (Data.length <= 1) {
-                        callback(null, {
-                            statusCode: 200,
-                            status: false,
-                            errMsg: "Couldn't find any data in the CSV file"
-                        });
-                    } else {
-                        // if the data fields are not in the list then return the name of the feild that is incorrect
-
-                        for (var i = 0; i < fields.length; i++) {
-                            if (Data[0][fields[i]] != null) {
-                                console.log(fields[i])
-                                /*
-                                callback(null, {
-                                    statusCode: 200,
-                                    status: true,
-                                    errMsg: "could find the field named " + fields[i],
-                                });
-                                */
-                            } else {
-                                callback(null, {
-                                    statusCode: 200,
-                                    status: false,
-                                    errMsg: "couldn't find the field named " + fields[i],
-                                });
-                            }
-                        }
-
-                        // For Each Row 
-
-                        for (var i = 0; i < Data.length; i++) {
-                            //console.log(Data[i].Name);
-                            // group number first
-
-                            connection.query("select * from fateweaver.tutor_groups where name = ?", [Data[i].TutorGroup], function (error, results, fields) {
-                                connection.end(function (err) {
-                                    if (err) { console.log("Error ending the connection:", err); }
-                                    //  reconnect in order to prevent the"Cannot enqueue Handshake after invoking quit"
-                                    connection = mysql.createConnection({
-                                        host: 'blootest.c2qh4vkdvsoy.eu-west-2.rds.amazonaws.com',
-                                        user: 'blooware',
-                                        password: 'blooware18',
-                                        port: 3306
-                                    });
-                                    if (results.length == 0) {
-                                        var dataGroup = {
-                                            name: Data[i].TutorGroup,
-                                            description: "Auto Generated By Upload",
-                                            added: new Date(Date.now()),
-                                            added_id: "3001",
-                                            csv: file.fileFullName
-                                        }
-                                        connection.query("insert into fateweaver set ? ", [dataGroup], function (error, results, fields) {
-                                            connection.end(function (err) {
-                                                if (err) { console.log("Error ending the connection:", err); }
-                                                //  reconnect in order to prevent the"Cannot enqueue Handshake after invoking quit"
-                                                connection = mysql.createConnection({
-                                                    host: 'blootest.c2qh4vkdvsoy.eu-west-2.rds.amazonaws.com',
-                                                    user: 'blooware',
-                                                    password: 'blooware18',
-                                                    port: 3306
-                                                });
-                                                //created group now create the student
-                                                CreateStudent(results.insertId, Data[i], file.fileFullName)
-
-                                            });
-                                        });
-
-
-                                        //create group with the name and return the id 
-                                    } else {
-                                        CreateStudent(results[0].id, Data[i], file.fileFullName)
-                                        //Insert into mysql with id
-                                    }
-                                });
-                            });
-
-
-
-
-
-
-                            callback(null, {
-                                statusCode: 200,
-                                status: false,
-                                Success: Data[i].Name,
-                                Counted : "the number of students added",
-                                specialties : "the number of duplicates"
-                            });
-                        }
-
-                        /*
-                        var TheData = Data[0];
-
-                        callback(null, {
-                            "Raw text": "Raw text:\n" + data.Body.toString('ascii') + "*",
-                            databody: data.body,
-                            jsonmaybe: Data,
-                            DataZero: Data[0],
-                            DataZeroName: Data[0].Name,
-                            DataZeroZero: Data[0][0],
-                            DataZeroOne: Data[0][1],
-                            TheData: TheData,
-                            TheDataZero: TheData[0],
-                            TheDataName: TheData.Name,
-                            TheDataDotName: TheData["Name"],
-                            DataName: Data[0]["Name"],
-                        });
-                        */
-                    }
-
-
-                }
-
-
-
-            }
-        });
-    });
-    function CreateStudent(Group_id, Data, fileFullName) {
-        var set = {
-            name: Data.Name,
-            info: Data.Info,
-            age: Data.Age,
-            tutor_group_id: Group_id,
-            added: new Date(Date.now()),
-            added_id: "3001",
-            csv: fileFullName
-        }
-        connection.query("insert into fateweaver.students set ?", [set], function (error, results, fields) {
-            connection.end(function (err) {
-                if (err) { console.log("Error ending the connection:", err); }
-                //  reconnect in order to prevent the"Cannot enqueue Handshake after invoking quit"
-                connection = mysql.createConnection({
-                    host: 'blootest.c2qh4vkdvsoy.eu-west-2.rds.amazonaws.com',
-                    user: 'blooware',
-                    password: 'blooware18',
-                    port: 3306
-                });
-                if (results.length == 0) {
-                    callback(null, {
-                        statusCode: 200,
-                        status: false,
-                        errMsg: "Couldn't find that combination "
-                    });
-                } else {
-                    callback(null, {
-                        statusCode: 200,
-                        status: true,
-                        body: results
-                    });
-                }
-            });
-        });
-    }
-
-}
-
 let getFile = function (fileMime, buffer) {
     let hash = sha1(new Buffer(new Date().toString()));
     let now = moment().format('YYY - MM - DD HH: mm: ss');
@@ -263,8 +29,99 @@ let getFile = function (fileMime, buffer) {
 
 }
 
+const AWS = require('aws-sdk');
+const s3 = new AWS.S3();
+const moment = require('moment');
+const fileType = require('file-type');
+const sha1 = require('sha1');
 
+var mysql = require('mysql');
+var connection = mysql.createConnection({
+    host: 'blootest.c2qh4vkdvsoy.eu-west-2.rds.amazonaws.com',
+    user: 'blooware',
+    password: 'blooware18',
+    port: 3306
+});
 
+async function insertData(NewData, file) {
+    var x = await insertTutorGroup(NewData, file);
+    console.log("Completed creation of students and Tutor Groups (If needed)");
+}
+
+exports.handler = (event, context, callback) => {
+    //callback(null,event);
+    var fields = ["Name", "Info", "Age", "TutorGroup"];
+
+    let base64String = event.base64String;
+    let buffer = new Buffer(base64String, 'base64');
+    let fileMime = fileType(buffer);
+    let file = getFile(fileMime, buffer);
+    let params = file.params;
+
+    s3.putObject(params, function (err, data) {
+        if (err) {
+            console.log(params);
+            return console.log(err);
+        }
+
+        s3.getObject({
+            Bucket: "fateweaver-files",
+            Key: file.fileFullName
+        }, function (err, data) {
+            if (err) {
+                console.log(err, err.stack);
+                callback(err);
+            } else {
+                if (data.Body.toString('ascii') == null) {
+                    callback(null, {
+                        statusCode: 200,
+                        status: false,
+                        errMsg: "Couldn't Detect CSV file"
+                    });
+                } else {
+                    console.log("Raw text:\n" + data.Body.toString('ascii'));
+                    var Data = csvTojs(data.Body.toString('ascii').replace("\r", "") + "*")
+                    if (Data.length <= 1) {
+                        callback(null, {
+                            statusCode: 200,
+                            status: false,
+                            errMsg: "Couldn't find any data in the CSV file"
+                        });
+                    } else {
+
+                        // if the data fields are not in the list then return the name of the feild that is incorrect
+                        for (var i = 0; i < fields.length; i++) {
+                            if (Data[0][fields[i]] != null) {
+                                console.log(fields[i]);
+                            } else {
+                                callback(null, {
+                                    statusCode: 200,
+                                    status: false,
+                                    errMsg: "couldn't find the field named " + fields[i],
+                                });
+                            }
+                        }
+
+                        // For Each Row 
+                        for (var i = 0; i < Data.length; i++) {
+                            insertData(Data[i], file);
+                                                 
+                        }
+
+                        callback(null, {
+                            statusCode: 200,
+                            status: false,
+                            Success: Data[i].Name,
+                            Counted : "the number of students added",
+                            specialties : "the number of duplicates"
+                        });      
+                    }
+                }
+            }
+        });
+    });
+
+}
 
 function csvTojs(csv) {
     var lines = csv.split("\n");
@@ -311,4 +168,51 @@ function csvTojs(csv) {
         result.push(obj);
     }
     return result;
+}
+function insertTutorGroup(NewData, file) {
+    return new Promise(resolve => {
+        var x = NewData.TutorGroup;
+        connection.query("select * from fateweaver.tutor_groups where name = ?", [x], function (err, results, fields) {
+            if (err) { console.log("Error ending the connection:", err); }
+
+            if (results.length == 0) {
+                var dataGroup = {
+                    name: x,
+                    description: "Auto Generated By Upload",
+                    added: new Date(Date.now()),
+                    added_id: "3001",
+                    csv: file.fileFullName
+                }
+                connection.query("insert into fateweaver.tutor_groups set ? ", dataGroup, function (error, results, fields) {
+                    if (err) { 
+                        console.log("Error ending the connection:", err); 
+                    }
+
+                    CreateStudent(results.insertId, NewData, file.fileFullName);
+                    resolve(results.insertId);
+                });
+            } else {
+                CreateStudent(results[0].id, NewData, file.fileFullName);
+                resolve(results[0].id);
+            }
+        });
+    });
+}
+function CreateStudent(Group_id, Data, fileFullName) {
+    var set = {
+        name: Data.Name,
+        info: Data.Info,
+        age: Data.Age,
+        tutor_group_id: Group_id,
+        added: new Date(Date.now()),
+        added_id: "3001",
+        csv: fileFullName
+    }
+    connection.query("insert into fateweaver.students set ?", [set], function (error, results, fields) {
+        connection.end(function (err) {
+            if (err) { 
+                console.log("Error ending the connection:", err); 
+            }
+        });
+    });
 }
