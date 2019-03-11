@@ -25,15 +25,34 @@ exports.handler = (event, context, callback) => {
     async function delayedLog(item) {
         // notice that we can await a function
         // that returns a promise
-        if(item === 1){
+        if(item === 2){
             notDone += item;
-            
-            
+            var dset = {
+                name : item,
+                info : "Not Done"
+            }
+            /*
+            connection.query("insert into fateweaver.students set ?", [dset], async function (error, results, fields) {
+                console.log("added Not done item");
+                console.log(results);
+            });
+            */
+
         } else {
             Done += item;
+            var dset = {
+                name : item,
+                info : "Done"
+            }
+            console.log("added Done Item");
+            connection.query("insert into fateweaver.students set ?", [dset], async function (error, results, fields) {
+                console.log("added Not done item");
+                console.log(results);
+            });
+            
         }
         
-        //await delay();
+        await delay();
         console.log(item);
     }
     async function processArray(array) {
@@ -41,6 +60,8 @@ exports.handler = (event, context, callback) => {
           await delayedLog(item);
         }
         console.log("Finished Itterating");
+        context.succeed({Done : Done,
+             NotDone : notDone});
          callback(null, {
              Done : Done,
              NotDone : notDone,
