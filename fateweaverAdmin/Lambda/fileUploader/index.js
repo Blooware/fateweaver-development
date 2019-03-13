@@ -1,5 +1,10 @@
 'use strict'
 
+//TODO : add school_id to students 
+//TODO : add school_id to tutor_groups
+//TODO : Added_id
+
+
 let getFile = function (fileMime, buffer) {
     let hash = sha1(new Buffer(new Date().toString()));
     let now = moment().format('YYY - MM - DD HH: mm: ss');
@@ -183,12 +188,7 @@ exports.handler = (event, context, callback) => {
     }
 
     async function createStudent(Group_id, StudentInfo, file) {
-        var jsonStudent = {
-            Name: StudentInfo.Name,
-            Info: StudentInfo.Info,
-            Age: StudentInfo.Age,
-            TutorGroup: StudentInfo.TutorGroup,
-        }
+        
 
         var dset = {
             name: StudentInfo.Name,
@@ -209,6 +209,7 @@ exports.handler = (event, context, callback) => {
                     Age: StudentInfo.Age,
                     TutorGroup: StudentInfo.TutorGroup,
                     Duplicate: results[0].id,
+                    TutorGroupId : Group_id,
                 }
                 notAdded.push({ jsonStudent });
             } else {
@@ -218,6 +219,7 @@ exports.handler = (event, context, callback) => {
                         Info: StudentInfo.Info,
                         Age: StudentInfo.Age,
                         TutorGroup: StudentInfo.TutorGroup,
+                        TutorGroupId : Group_id,
                     }
                     Added.push({ jsonStudent });
                     console.log(results);

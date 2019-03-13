@@ -34,11 +34,10 @@
     <body>
 
         <form method="post" class="save">
-    
+
             <input type="file" id="files" name="files" />
-    
+
             <button type="submit">Upload</button>
-    
         </form>
     </body>
 
@@ -108,6 +107,8 @@
 
         postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postCSV", {base64String : base64File, name : fileName}, function (reply) {
             console.log(reply);
+            //if there are items in the not done results then display them
+            
             //refresh();
         });
     });
