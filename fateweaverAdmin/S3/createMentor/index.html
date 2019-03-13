@@ -35,7 +35,11 @@
 
         <form method="post" class="save">
 
-            <input type="file" id="files" name="files" />
+            <input type="text" id="firstName" name="firstName" placeholder = "First name"/> <br>
+            <input type="text" id="lastName" name="lastName" placeholder = "Last Name"/><br>
+            <input type="text" id="role" name="role" placeholder = "Role" /><br>
+            <input type="text" id="linkedin" name="linkedin" placeholder = "Linkedin data"/><br>
+
 
             <button type="submit">Upload</button>
         </form>
@@ -49,8 +53,8 @@
 <script src="https://www.blooware.co.uk/blooAuth/blooAuth.js"></script>
 
 <script>
-//TODO Add Authentification
-//TODO add popup for students taht are duplicates
+    //TODO Add Authentification
+    //TODO add popup for students taht are duplicates
 
 
 
@@ -85,8 +89,6 @@
     }
     */
 
-
-
     function postToLambda(url, data, callback) {
         //console.log(token);
         $.ajax({
@@ -105,47 +107,15 @@
 
     $(".save").submit(function (e) {
         e.preventDefault();
-        console.log(base64File);
-
-        postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postCSV", {base64String : base64File, name : fileName}, function (reply) {
-            console.log(reply);
-            //if there are items in the not done results then display them
-            
-            //refresh();
-        });
-    });
-
-    var base64File;
-    var fileName;
-    if (window.File && window.FileReader && window.FileList && window.Blob) {
-        document.getElementById('files').addEventListener('change', handleFileSelect, false);
-    } else {
-        alert('The File APIs are not fully supported in this browser.');
-    }
-
-    function handleFileSelect(evt) {
-        fileName = $('#files').val().split('\\').pop();
+        console.log(objectifyForm(this));
         
-        var f = evt.target.files[0]; // FileList object
-        var reader = new FileReader();
-        // Closure to capture the file information.
-        reader.onload = (function (theFile) {
-            return function (e) {
-                var binaryData = e.target.result;
-                //Converting Binary Data to base 64
-                var base64String = window.btoa(binaryData);
-                //showing file converted to base64
-                //document.getElementById('base64').value = base64String;
-                console.log(base64String);
-                base64File = base64String;
-            };
-        })(f);
-        // Read in the image file as a data URL.
-        reader.readAsBinaryString(f);
-    }
+        postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaver-postCreateMentor", objectifyForm(this) , function (reply) {
+            console.log(reply);
 
-
-
+        });
+        
+        
+    });
 
     //get url parameter
     /*
@@ -156,6 +126,26 @@
         return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     };
     */
+
+    function objectifyForm(formArray) {//serialize data function
+
+        var returnArray = {};
+        for (var i = 0; i < formArray.length; i++) {
+            if (formArray[i]['type'] == "checkbox") {
+                //console.log("checkbox");
+                returnArray[formArray[i]['name']] = formArray[i]['checked'];
+            } else {
+                if (formArray[i]['type'] == "radio") {
+                    //console.log("RadioBox");
+                    returnArray[formArray[i]['name']] = formArray[i]['checked'];
+                } else {
+                    //console.log("Not A checkbox");
+                    returnArray[formArray[i]['name']] = formArray[i]['value'];
+                }
+            }
+        }
+        return returnArray;
+    }
 
 
 </script>
