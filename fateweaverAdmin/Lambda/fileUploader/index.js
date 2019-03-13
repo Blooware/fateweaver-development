@@ -50,7 +50,7 @@ var connection = mysql.createConnection({
 
 exports.handler = (event, context, callback) => {
     //callback(null,event);
-    var fields = ["Name", "Info", "Age", "TutorGroup"];
+    var fields = ["GivenName", "FamilyName", "DOB" , "Postcode", "UPN", "ULN", "TutorGroup"];
 
     let base64String = event.base64String;
     let buffer = new Buffer(base64String, 'base64');
@@ -191,23 +191,30 @@ exports.handler = (event, context, callback) => {
         
 
         var dset = {
-            name: StudentInfo.Name,
-            info: StudentInfo.Info,
-            age: StudentInfo.Age,
+            given_name : StudentInfo.GivenName,
+            family_name : StudentInfo.FamilyName,
+            dob : StudentInfo.DOB,
+            postcode : StudentInfo.Postcode,
+            upn : StudentInfo.UPN,
+            uln : StudentInfo.ULN,
             tutor_group_id: Group_id,
+
             added: new Date(Date.now()),
             added_id: "3001",
             csv: file.fileFullName
         }
 
-        connection.query("select * from fateweaver.students where name = ? and info = ? and age = ?  ", [StudentInfo.Name, StudentInfo.Info, StudentInfo.Age], function (error, results, fields) {
+        connection.query("select * from fateweaver.students where given_name = ? and postcode = ? and upn = ?  ", [StudentInfo.GivenName, StudentInfo.Postcode, StudentInfo.UPN], function (error, results, fields) {
             if (results.length > 0) {
                 //append to Not added
                 var jsonStudent = {
-                    Name: StudentInfo.Name,
-                    Info: StudentInfo.Info,
-                    Age: StudentInfo.Age,
-                    TutorGroup: StudentInfo.TutorGroup,
+                    given_name : StudentInfo.GivenName,
+                    family_name : StudentInfo.FamilyName,
+                    dob : StudentInfo.DOB,
+                    postcode : StudentInfo.Postcode,
+                    upn : StudentInfo.UPN,
+                    uln : StudentInfo.ULN,
+                    tutor_group_id: Group_id,
                     Duplicate: results[0].id,
                     TutorGroupId : Group_id,
                 }
@@ -215,11 +222,13 @@ exports.handler = (event, context, callback) => {
             } else {
                 connection.query("insert into fateweaver.students set ?", [dset], function (error, results, fields) {
                     var jsonStudent = {
-                        Name: StudentInfo.Name,
-                        Info: StudentInfo.Info,
-                        Age: StudentInfo.Age,
-                        TutorGroup: StudentInfo.TutorGroup,
-                        TutorGroupId : Group_id,
+                        given_name : StudentInfo.GivenName,
+                        family_name : StudentInfo.FamilyName,
+                        dob : StudentInfo.DOB,
+                        postcode : StudentInfo.Postcode,
+                        upn : StudentInfo.UPN,
+                        uln : StudentInfo.ULN,
+                        tutor_group_id: Group_id,
                     }
                     Added.push({ jsonStudent });
                     console.log(results);
