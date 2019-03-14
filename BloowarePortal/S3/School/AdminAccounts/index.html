@@ -31,7 +31,12 @@
 
 <body style="display:none">
 
+
     <form method="post" class="save">
+
+        <div class="form-group"><input class="form-control" type="email" name="email" id="newEmail" required="" placeholder="Email" style="margin-top: 10px;"></div>
+        <div class="form-group"><input class="form-control" type="password" name="password" id="newPassword" required="" placeholder="Password"></div>
+
 
         <input name="name" id="name" placeholder="Name"><br>
         <input name="description" id="details" placeholder="Details"><br>
@@ -69,6 +74,8 @@
     });
 
     function refresh() {
+
+        // get all of the admin accounts from a different userpool
         postToLambda('https://mwujmaqyr3.execute-api.eu-west-2.amazonaws.com/Prod/BloowareFateweaver-postGrabSchool', { school_id: school_id }, function (reply) {
             console.log(reply);
             console.log(reply.status);
@@ -182,6 +189,15 @@
         var results = regex.exec(location.search);
         return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     };
+
+    function signMeUp() {
+        
+        signUp($('#newEmail').val(), $('#newPassword').val(), function () { //  signUp($('#newEmail').val(), $('#newPassword').val(), { "company": "null" }, function () {
+            window.location.href = '/BloowarePortal/verify';
+        }, function (err) {
+            console.log(err);
+        });
+    }
 
 
 </script>
