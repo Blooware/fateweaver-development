@@ -1,0 +1,58 @@
+body {
+  background-color: #ccd2de!important;
+}
+
+.col.d-inline-flex {
+  background-color: #ffffff!important;
+}
+
+#menu-toggle {
+  background-color: transparent!important;
+}
+
+#sidebar-wrapper {
+  background-color: #35435f!important;
+}
+
+.d-inline-flex {
+  background-color: #ffffff!important;
+  /*box-shadow: none!important;*/
+}
+
+a {
+  color: #e4f0fb!important;
+}
+
+.btn.btn-primary.dropdown-toggle.float-right.d-inline-flex {
+  color: #e4f0fb!important;
+}
+
+.fa.fa-bars {
+  /*color: #e4f0fb!important;*/
+}
+
+#menu-toggle {
+  color: #e4f0fb!important;
+}
+
+.get-bigger {
+  transition: all ease 0.3s;
+}
+
+.get-bigger:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+@keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+

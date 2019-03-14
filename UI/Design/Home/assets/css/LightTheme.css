@@ -1,0 +1,33 @@
+#sidebar-wrapper {
+  background-color: #ffffff!important;
+}
+
+.col.d-inline-flex {
+  background-color: #fffff!important;
+}
+
+body {
+  background-color: #efefef!important;
+}
+
+#menu-toggle {
+  background-color: transparent!important;
+}
+
+.d-inline-flex {
+  background-color: #ffffff!important;
+  /*box-shadow: none!important;*/
+}
+
+.fa.fa-bars {
+  /*color: #0078db!important;*/
+}
+
+.btn.btn-primary.dropdown-toggle.float-right.d-inline-flex {
+  color: #0078db!important;
+}
+
+a {
+  color: #0078db!important;
+}
+

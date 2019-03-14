@@ -1,0 +1,54 @@
+<html>
+<h1>Welcome to the Admin Portal</h1>
+<p id="company"></p>
+<p id="email"></p>
+<button onclick="signMeOut()">Sign Out</button><br>
+<a href="/manageArticles">Manage Articles</a><br>
+<a href="/manageSchools">Manage Schools</a><br>
+<a href="/manageStudents">Manage Students</a><br>
+
+</html>
+
+
+<script src="https://www.blooware.co.uk/blooAuth/vendor/jquery-3.1.0.js"></script>
+<script src="https://www.blooware.co.uk/blooAuth/vendor/aws-cognito-sdk.min.js"></script>
+<script src="https://www.blooware.co.uk/blooAuth/vendor/amazon-cognito-identity.min.js"></script>
+<script src="https://www.blooware.co.uk/blooAuth/blooAuth.js"></script>
+<script>
+
+    $(document).ready(function () {
+        connectToPool('eu-west-2_9yPc9js2X', '4atq7kp8m6ibv56d3cgjbudhim', function () {
+            checkAuth();
+            getUserId(3, function(id){
+                $('#company').html(id);
+            });
+
+             getUserId(2, function(id){
+                $('#email').html(id);
+            });
+        });
+    });
+
+    function checkAuth() {
+        signedIn(function (response) {
+            if (response.success) {
+                console.log("Already Signed In");
+            } else {
+                window.location.href = '/adminSignIn'
+            }
+        });
+    }
+
+    function signMeOut() {
+        signOut(function () {
+            checkAuth();
+        });
+    }
+
+    function getUserId(index, callback) {
+        getUser(function (user) {
+            return callback(user[index].Value);
+        });
+    }
+
+</script>
