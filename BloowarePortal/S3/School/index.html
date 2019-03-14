@@ -1,0 +1,195 @@
+<html>
+<p>Negotium Event Page</p>
+<!--
+<p id="Name">Name : </p>
+<p id="Details">Details : </p>
+-->
+<p id="public">Public : </p>
+<p id="published">Published : </p>
+
+
+
+<form class="save">
+    <input name="name" id="Name" placeholder="Name of your event"><br>
+    <input name="details" id="Details" placeholder="Details of your event"><br>
+
+    <button type="submit">Update</button>
+
+</form>
+
+
+<a id="addAdmin">Add / change Admins</a>
+<br>
+<!--
+<a id="addInvite">Add / manage Invitations</a>
+<br>
+<a id="addSchedule">Add / manage schedule</a>
+<br>
+-->
+<br>
+<a href="/BloowarePortal">Home</a>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Negotium Event Page</title>
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f8f8;
+        }
+    </style>
+</head>
+
+
+</html>
+
+<script src="https://www.blooware.co.uk/blooAuth/vendor/jquery-3.1.0.js"></script>
+<script src="https://www.blooware.co.uk/blooAuth/vendor/aws-cognito-sdk.min.js"></script>
+<script src="https://www.blooware.co.uk/blooAuth/vendor/amazon-cognito-identity.min.js"></script>
+<script src="https://www.blooware.co.uk/blooAuth/blooAuth.js"></script>
+<script>
+    var school_id;
+    var token;
+    $(document).ready(function () {
+        connectToPool('eu-west-2_cZsv6n6t5', 'hrhsuoq7nrbt7ksucab050bpr', function () {
+            checkAuth(function (result) {
+                if (result == true) {
+                    $('html').show();
+                    school_id = getUrlParameter('id').replace("-", " ");
+                    $('#addAdmin').attr('href', '/BloowarePortal/School/AdminAccounts/?id=' + school_id);
+                    //$('#addInvite').attr('href', '/portal/event/invitations/?id=' + school_id);
+                    //$('#addSchedule').attr('href', '/portal/event/schedule/?id=' + school_id);
+
+                    getJwtToken(function (x) {
+                        token = x.token;
+                        refresh();
+                    });
+
+                    //refresh();
+
+                }
+            });
+        });
+    });
+    function refresh() {
+        postToLambda('https://mwujmaqyr3.execute-api.eu-west-2.amazonaws.com/Prod/BloowareFateweaver-postGrabSchool', { school_id: school_id }, function (reply) {
+            console.log(reply);
+            console.log(reply.status);
+            if (reply.status == false) {
+                console.log("Failed");
+                console.log(reply.errMsg);
+
+                $('#Name').val(reply.body[0].name);
+                $('#Details').val(reply.body[0].description);
+            } else if (reply.status == true) {
+
+                $('#Name').val(reply.body[0].name);
+                $('#Details').val(reply.body[0].description);
+
+            } else {
+                console.log("couldn't connect to the server");
+                $('#Name').val("error");
+                $('#Details').val("error");
+            }
+        });
+    }
+
+    function checkAuth(callback) {
+        signedIn(function (response) {
+            if (response.success) {
+                console.log("Already Signed In");
+                callback(true);
+            } else {
+                window.location.href = '/BloowarePortal/signIn'
+            }
+        });
+    }
+
+    //Load Existing Customers
+
+    function postToLambda(url, data, callback) {
+        $.ajax({
+            url,
+            type: 'POST',
+            crossDomain: true,
+            data: JSON.stringify(data),
+            headers: { "Authorization": "Bearer " + token },
+            dataType: 'json',
+            contentType: "application/json",
+            success: function (reply) {
+                callback(reply);
+            }
+        });
+    }
+
+    function signMeOut() {
+        signOut(function () {
+            checkAuth();
+        });
+    }
+
+    function getUserId(index, callback) {
+        getUser(function (user) {
+            return callback(user[index].Value);
+        });
+    }
+
+    //get url parameter
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
+
+
+    $(".save").submit(function (e) {
+        e.preventDefault();
+        y = objectifyForm(this);
+        y.school_id = school_id;
+        console.log(y);
+        postToLambda("https://7d07lpvx72.execute-api.eu-west-2.amazonaws.com/Prod/negotium-postUpdateEvent", [y], function (reply) {
+            console.log(reply);
+            //refresh();
+        });
+        
+    });
+
+    function objectifyForm(formArray) {//serialize data function
+
+        var returnArray = {};
+        for (var i = 0; i < formArray.length; i++) {
+            if(formArray[i]['type'] == "checkbox"){
+                console.log("checkbox");
+                returnArray[formArray[i]['name']] = formArray[i]['checked'];
+            } else {
+                console.log("Not A checkbox");
+                returnArray[formArray[i]['name']] = formArray[i]['value'];
+            }
+            /*
+            console.log(formArray[i]['checked']);
+            returnArray[formArray[i]['name']] = formArray[i]['value'];
+            */
+        }
+        return returnArray;
+    }
+
+
+
+</script>
