@@ -1,0 +1,12 @@
+{
+    "name": "Lari",
+    "version": "0.1.5",
+    "private": true,
+    "scripts": {
+        "start": "node app.js"
+    },
+    "dependencies": {
+        "mysql": "2.2.0",
+        "bcryptjs": "*"
+    }
+}

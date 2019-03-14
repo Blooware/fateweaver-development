@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Portal | Fateweaver</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/fonts/line-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="../assets/css/DarkTheme.css">
+    <link rel="stylesheet" href="../assets/css/LightTheme.css">
+    <link rel="stylesheet" href="../assets/css/Sidebar-Menu-1.css">
+    <link rel="stylesheet" href="../assets/css/Sidebar-Menu.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/Team-Clean.css">
+    <script src="../alloy-editor/alloy-editor-all-min.js"></script>
+    <link href="../alloy-editor/assets/alloy-editor-ocean-min.css" rel="stylesheet"></link>
+</head>
+
+<body style="width: 100%;height: 100%;background-color: #ffffff;">
+
+
+
+    <div id="wrapper">
+        <div id="sidebar-wrapper" style="background: #8E2DE2;background: -webkit-linear-gradient(to right, #4A00E0, #8E2DE2);background: linear-gradient(to right, #4A00E0, #8E2DE2);">
+            <div style="width: 100%;height: 75px;/*background: rgba(0,0,0,0.2);*//*background: #fff;*/"></div>
+            <ul class="d-block sidebar-nav" style="padding-top: 80px;height: 100%;overflow: hidden;">
+                <li style="padding-top: 50px;height: 100%;">
+                    <a href="/portal/" style="color: #fff!important;padding-bottom: 5px;padding-top: 5px;">
+                        <i class="fa fa-home" style="padding-right: 10px;width: 60px;"></i>Home</a>
+                    <!-- <a href="/portal/schools" style="color: #fff!important;padding-bottom: 5px;padding-top: 5px;">
+                        <i class="fas fa-book-open" style="padding-right: 10px;width: 60px;"></i>SCHOOLS</a>
+                    <a href="#" style="color: #fff!important;padding-bottom: 5px;padding-top: 5px;">
+                        <i class="fa fa-users" style="padding-right: 10px;width: 60px;"></i>STUDENTS</a>-->
+                   
+                    <a href="#" style="color: rgba(250,250,250,0.4)!important;padding-bottom: 5px;padding-top: 5px;">
+                        <i class="fas fa-users" style="padding-right: 10px;width: 60px;"></i>Bulk Add
+                        <span style="font-size: 12px;padding-left: 5px;">
+                            <strong>Coming Soon</strong>
+                        </span>
+                        <br>
+                    </a>
+                    <a href="#" style="color: rgba(250,250,250,0.4)!important;padding-bottom: 5px;padding-top: 5px;">
+                        <i class="fa fa-bar-chart" style="padding-right: 10px;width: 60px;"></i>Data
+                        <span style="font-size: 12px;padding-left: 5px;">
+                            <strong>Coming Soon</strong>
+                        </span>
+                        <br>
+                    </a>
+                    <a href="#" id="email" style="color: #fff!important;padding-bottom: 5px;padding-top: 5px;position: absolute;bottom: 60px;width: 100%;padding-left: 19px;">huw@blooware.co.uk</a>
+                    <a onclick="signMeOut()" class="text-uppercase" href="#" style="color: #fff!important;padding-bottom: 5px;padding-top: 5px;position: absolute;bottom: 10px;width: 100%;">
+                        <i class="fa fa-sign-out" style="padding-right: 10px;width: 60px;"></i>
+                        <strong>LOG OUT</strong>
+                    </a>
+                </li>
+                <li> </li>
+            </ul>
+        </div>
+        <div class="page-content-wrapper">
+            <div class="container-fluid" style="padding: 0px;margin-left: 0px;margin-right: 0px;">
+                <div class="row" style="margin: 0px;width: 100%;padding: 0px;">
+                    <div class="col d-inline-flex" style="margin-bottom: 50px;height: 75px;">
+                        <a class="btn btn-link float-left d-inline-flex" role="button" href="#menu-toggle" id="menu-toggle" style="padding-left: 0;">
+                            <i class="la la-bars get-bigger" style="font-size: 32px;color: rgb(11,11,11);padding: 14px;padding-left: 0;text-decoration: none!important;"></i>
+                        </a>
+                        <h1 style="line-height: 75PX;margin: 0PX;font-size: 20PX;letter-spacing: 11px;color: rgb(139,139,139);/*background: -webkit-linear-gradient(#eee, #333);*/background: #8E2DE2;background: -webkit-linear-gradient(to right, #4A00E0, #8E2DE2);background: linear-gradient(to right, #4A00E0, #8E2DE2);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">FATEWEAVER</h1>
+                    </div>
+                </div>
+                <section style="padding-left: 75px;">
+                    <h1>Let's write an
+                        <strong>article</strong>
+                    </h1>
+                    <section>
+                            <div style="background-color: #fff;width: 80%;min-height: 40px;margin-top: 50px;border-radius: 15px;box-shadow: 0 0 15px rgba(0,0,0,0.2);min-height: 600px; pad: 30px;">
+
+                        
+                        <form method="post" class="save" style="margin-left: 30px;">
+
+                           
+                            <input name="student_id" id="student_id" hidden placeholder="Student ID">
+
+
+                            <input type="text" id="title" name="title" value="" placeholder="Title" style="font-size:40px;padding-left:0;margin-right:0;margin-left:0;margin-top:100px;margin-bottom:0px; width:100%; border: 0px;outline: none;">
+
+                            <p id="test">Type your article here. Start with a sentance.</p>
+                            <button class="btn btn-primary" type="submit" style="margin:50px;background:#0078db; margin-left:0;border-radius: 300px;">Save and Publish</button>
+                        </form>
+                    </div>
+
+            </div>
+            </form>
+
+            </section>
+            </section>
+        </div>
+    </div>
+    </div>
+
+</body>
+
+<script src="https://www.blooware.co.uk/blooAuth/vendor/jquery-3.1.0.js"></script>
+<script src="https://www.blooware.co.uk/blooAuth/vendor/aws-cognito-sdk.min.js"></script>
+<script src="https://www.blooware.co.uk/blooAuth/vendor/amazon-cognito-identity.min.js"></script>
+<script src="https://www.blooware.co.uk/blooAuth/blooAuth.js"></script>
+<script>
+
+    var student_id;
+    $(document).ready(function () {
+        connectToPool('eu-west-2_zCGk0oMUc', '55vtr45kfg7ogrg06b46fg242g', function () {
+            checkAuth(function (result) {
+                if (result == true) {
+                    $('body').show();
+                    $('#student_id').val(getUrlParameter('student'));
+                    student_id = getUrlParameter('student');
+                    refresh();
+                }
+            });
+        });
+    });
+
+    function checkAuth(callback) {
+        signedIn(function (response) {
+            if (response.success) {
+                console.log("Already Signed In");
+                callback(true);
+            } else {
+                window.location.href = '/signIn'
+            }
+        });
+    }
+
+    //refresh();
+    //Load Existing Articles
+    function refresh() {
+        postToLambda('https://hvbk9q6ua3.execute-api.eu-west-2.amazonaws.com/Prod/fateweaver-getFateweaverArticle', { student: student_id }, function (reply) {
+            //console.log(reply);
+            //$('#createdArticle').html(reply.body.insertId);
+            console.log(reply)
+            $('#results').html("<tr><th>Title</th><th>Thumbnail</th><th>Body</th><th>Student ID</th><th>Article ID</th></tr>");
+            for (var i = 0; i < reply.body.length; i++) {
+                $('#results').append('<tr><td>' + reply.body[i].title + '</td><td>' + reply.body[i].thumbnail + '</td><td>' + reply.body[i].body + '</td><td>' + reply.body[i].student_id + '</td><td><button onclick="postToLambda(`https://hvbk9q6ua3.execute-api.eu-west-2.amazonaws.com/Prod/fateweaver-deleteFateweaverArticle`, {id:' + reply.body[i].id + '}, function(){window.location.reload();});">Delete</button></td></tr>');
+            }
+        });
+    }
+
+
+    function postToLambda(url, data, callback) {
+        $.ajax({
+            url,
+            type: 'POST',
+            crossDomain: true,
+            data: JSON.stringify(data),
+            headers: {},
+            dataType: 'json',
+            contentType: "application/json",
+            success: function (reply) {
+                callback(reply);
+            }
+        });
+    }
+
+    function getFromLambda(url, callback) {
+        //console.log(url);
+        $.get(url, function (data, status) {
+            callback(data);
+        });
+    }
+
+    $(".save").submit(function (e) {
+        e.preventDefault();
+        var value = $("#test").html();
+
+
+        var input = $("<input />", {
+            name: "body",
+            value: value,
+            type: "hidden"
+        });
+
+        $(this).append(input);
+
+  var input2 = $("<input />", {
+            name: "thumbnail",
+            value: "value",
+            type: "hidden"
+        });
+
+        $(this).append(input2);
+
+        postFormToLambda(this, "https://hvbk9q6ua3.execute-api.eu-west-2.amazonaws.com/Prod/fateweaver-createFateweaverArticle", function () {
+            refresh();
+        });
+    });
+
+    $(".delete").submit(function (e) {
+        e.preventDefault();
+        postFormToLambda(this, "https://hvbk9q6ua3.execute-api.eu-west-2.amazonaws.com/Prod/fateweaver-deleteFateweaverArticle", function () {
+            refresh();
+        });
+    });
+
+
+
+    function postFormToLambda(form, url, callback) {
+        //console.log(objectifyForm(form));
+        function objectifyForm(formArray) {//serialize data function
+
+
+            var returnArray = {};
+            for (var i = 0; i < formArray.length; i++) {
+                returnArray[formArray[i]['name']] = formArray[i]['value'];
+            }
+            return returnArray;
+        }
+        
+console.log(objectifyForm(form));
+        postToLambda(url, objectifyForm(form), function (reply) {
+            //console.log(reply);
+            history.back()
+            //console.log(reply);
+            callback();
+        });
+    }
+
+    function objectifyForm(formArray) {//serialize data function
+
+        var returnArray = {};
+        for (var i = 0; i < formArray.length; i++) {
+            returnArray[formArray[i]['name']] = formArray[i]['value'];
+        }
+        return returnArray;
+    }
+
+    //get url parameter
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
+
+</script>
+
+<script>AlloyEditor.editable('test');</script>
+
+</html>

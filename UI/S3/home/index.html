@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Leigh UTC | Fateweaver</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/fonts/line-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link rel="stylesheet" href="../assets/css/DarkTheme.css">
+    <link rel="stylesheet" href="../assets/css/Header-Blue.css">
+    <link rel="stylesheet" href="../assets/css/LightTheme.css">
+    <link rel="stylesheet" href="../assets/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="../assets/css/Sidebar-Menu-1.css">
+    <link rel="stylesheet" href="../assets/css/Sidebar-Menu.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/Team-Clean.css">
+</head>
+
+<body style="background-color: #fff;overflow-y: scroll;">
+    <div>
+        <div class="header-blue animateSmaller" style="min-height: 400px; transition: all ease 0.5s;">
+            <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
+                <div class="container">
+                    <a class="navbar-brand" href="#" style="color: #fff!important;font-weight: normal;"><strong>Leigh UTC</strong> | Fateweaver</a>
+                   
+                </div>
+            </nav>
+            <div class="container hero">
+                <h1 class="text-center" style="margin-top: 50px;padding-bottom: 60px;">What our past students are doing <strong>now</strong>.</h1>
+                <input type="text" onkeyup="search($(this).val())" class="search" placeholder="Search for a student..." style="padding: 10px;border-radius: 15px;border: 0px;width: 60%;margin: auto;display: block;font-size: 18px;text-indent: 5%;outline: none;">
+                <div class="row justify-content-center hideMe" style="padding-top: 100px;">
+                    <div class="col-4" style="min-width: 300px;">
+                        <button class="btn btn-primary" type="button" style="border: 2px solid #fff;color: #fff;width: 150px;height: 150px;display: block;margin: auto;font-size: 35px;border-radius: 50%;background: transparent;">56%</button>
+                        <p class="text-center" style="padding-top: 50px;color: #fff;">
+                            <strong>Of our students are Female</strong>
+                        </p>
+                    </div>
+                    <div class="col-4" style="min-width: 300px;">
+                        <button class="btn btn-primary" type="button" style="border: 2px solid #fff;color: #fff;width: 150px;height: 150px;display: block;margin: auto;font-size: 35px;border-radius: 50%;background: transparent;">60%</button>
+                        <p class="text-center" style="padding-top: 50px;color: #fff;">
+                            <strong>Studied Engineering</strong>
+                        </p>
+                    </div>
+                    <div class="col-4" style="min-width: 300px;">
+                        <button class="btn btn-primary" type="button" style="border: 2px solid #fff;color: #fff;width: 150px;height: 150px;display: block;margin: auto;font-size: 35px;border-radius: 50%;background: transparent;">38%</button>
+                        <p class="text-center" style="padding-top: 50px;color: #fff;">
+                            <strong>Work for the top 500 companies worldwide</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid d-block m-auto results" style="padding-left: 5%;padding-right: 5%;padding-top: 100px;background-color: #fff;padding-bottom: 100px;">
+        <div class="row text-left justify-content-center people" id="results">
+
+        </div>
+    </div>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/js/Sidebar-Menu.js"></script>
+</body>
+
+</html>
+
+
+<script>
+
+    /*animateion on search*/
+    var heightOG;
+    $('.search').focus(function () {
+      
+        $('.animateSmaller').animate({ height: 400 }, 50);
+    });
+    $('.search').blur(function () {
+        $('.animateSmaller').animate({ height: heightOG + 30 }, 50);
+    });
+
+    function search(x) {
+        console.log(x);
+        if (x.length >= 1) {
+            $('.searchable').each(function () {
+                var prod = $(this);
+                if (prod.attr('search').toLowerCase().indexOf(x.toLowerCase()) > 0) {
+
+                    prod.fadeIn('slow');
+                } else {
+                    prod.hide();
+                }
+            });
+        } else {
+            //$('.product').show();
+        }
+    }
+    var school_id;
+    $(document).ready(function () {
+        heightOG = $('.animateSmaller').height();
+        $('#school_id').val(getUrlParameter('s').replace("-", " "));
+        school_id = getUrlParameter('s').replace("-", " ");
+        refresh();
+
+    });
+
+    function goHome() {
+        window.location.href = '/home/?s=' + getUrlParameter('s');
+    }
+
+    //refresh();
+    //Load Existing Articles
+    function refresh() {
+        postToLambda('https://hvbk9q6ua3.execute-api.eu-west-2.amazonaws.com/Prod/fateweaver-FateweaverHome', { school: school_id }, function (reply) {
+            //console.log(reply);
+            //$('#createdArticle').html(reply.body.insertId);
+            console.log(reply)
+
+            for (var i = 0; i < reply.body.length; i++) {
+                //' + reply.body[i].image + '' + reply.body[i].image + '
+                $('#results').append('<div class="col-3 col-md-6 col-lg-4 item get-bigger searchable" search="searchable ' + reply.body[i].name + '" style="padding-top: 20px;max-width: 300px;padding-left: 0;padding-right: 0;min-width:300px;"> <a id="' + i + '" href="/article/?s=' + reply.body[i].id + '" style="color:rgb(0,0,0)!important;text-decoration:none!important"><img class="rounded-circle d-block d-xl-flex m-auto justify-content-xl-center" src="https://randomuser.me/api/portraits/men/' + reply.body[i].id + '.jpg" style="width: 180px;"> <h3 class="text-center name" style="padding-top: 20px;">' + reply.body[i].name + '</h3> <p class="text-center title" class="margin-bottom:0px;padding-bottom:0px;">' + reply.body[i].destination + '</p><p id="article' + i + '" class="text-center title" style="color:#0078db; font-weight:bold;"></p></a></div>');
+                if (reply.body[i].hasArticle) {
+                    if (reply.body[i].hasArticle.length < 1) {
+                        $('#' + i).attr("href", "#");
+                        
+                    } else {
+                        $('#article' + i).html("Read The Article");
+                    }
+                } else {
+                    $('#' + i).attr("href", "#");
+                }
+            }
+        });
+    }
+
+
+    function postToLambda(url, data, callback) {
+        $.ajax({
+            url,
+            type: 'POST',
+            crossDomain: true,
+            data: JSON.stringify(data),
+            headers: {},
+            dataType: 'json',
+            contentType: "application/json",
+            success: function (reply) {
+                callback(reply);
+            }
+        });
+    }
+
+    function getFromLambda(url, callback) {
+        //console.log(url);
+        $.get(url, function (data, status) {
+            callback(data);
+        });
+    }
+
+
+    function postFormToLambda(form, url, callback) {
+        console.log(objectifyForm(form));
+        function objectifyForm(formArray) {//serialize data function
+
+
+            var returnArray = {};
+            for (var i = 0; i < formArray.length; i++) {
+                returnArray[formArray[i]['name']] = formArray[i]['value'];
+            }
+            return returnArray;
+        }
+        postToLambda(url, objectifyForm(form), function (reply) {
+            //console.log(reply);
+            $('#createdArticle').html(reply.body.insertId);
+            console.log(reply);
+            callback();
+        });
+    }
+
+    function objectifyForm(formArray) {//serialize data function
+
+        var returnArray = {};
+        for (var i = 0; i < formArray.length; i++) {
+            returnArray[formArray[i]['name']] = formArray[i]['value'];
+        }
+        return returnArray;
+    }
+
+
+    //get url parameter
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
+
+
+
+</script>

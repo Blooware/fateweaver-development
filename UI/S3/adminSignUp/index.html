@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Fateweaver</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="assets/css/best-carousel-slide.css">
+    <link rel="stylesheet" href="assets/css/Features-Boxed.css">
+    <link rel="stylesheet" href="assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+    <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">
+    <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="assets/css/Navigation-with-Search.css">
+    <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <div>
+        <nav class="navbar navbar-light navbar-expand-md navigation-clean-search" style="background-color:#ffffff;">
+            <div class="container"><a class="navbar-brand" href="index.html" style="font-family:ABeeZee, sans-serif;padding:0px;color:rgba(0,0,0,0.9);"><img class="img-fluid" src="assets/img/Fateweaver%2019.png" style="height:50px;">&nbsp; FATEWEAVER</a><button class="navbar-toggler" data-toggle="collapse"
+                    data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse d-table-row" id="navcol-1" style="background-color:transparent;flex-direction:row;"></div>
+            </div>
+        </nav>
+    </div>
+    <div class="register-photo" style="background-color:rgb(238,238,238);background-image:url(&quot;assets/img/Fateweaver%2049.jpg&quot;);background-size:cover;">
+        <div class="form-container" style="border-radius:20px;">
+            <div class="image-holder" style="border-top-left-radius:20px;border-bottom-left-radius:20px;background-image:url(&quot;assets/img/Fateweaver%2048.jpg&quot;);"></div>
+            <form method="post" style="border-top-right-radius:20px;border-bottom-right-radius:20px;">
+                <h2 class="text-center" style="font-family:ABeeZee, sans-serif;font-weight:bold;"><strong>Create</strong> an account.</h2>
+                <div class="form-group"><input class="form-control" type="email" name="company" placeholder="Company Name" style="background-color:rgb(238,238,238);" id="newCompany"></div>
+                <div class="form-group"><input class="form-control" type="password" name="email" placeholder="Email" autocomplete="off" style="background-color:rgb(238,238,238);" id="newEmail"></div>
+                <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password" autocomplete="off" style="background-color:rgb(238,238,238);" id="newPassword"></div>
+                <div class="form-group"><a class="btn btn-primary btn-block" role="button" onclick="signMeUp();" style="color:#ffffff">Sign Up</a></div><a href="/signIn" class="already">Already have an account?</a></form>
+        </div>
+    </div>
+    <div class="footer-basic">
+        <footer>
+            <div class="social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">About</a></li>
+                <li class="list-inline-item"><a href="#">Terms</a></li>
+                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+            </ul>
+            <p class="copyright">© 2018 Fateweaver</p>
+        </footer>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/tiles2.js"></script>
+</body>
+
+</html>
+
+<script src="https://www.blooware.co.uk/blooAuth/vendor/jquery-3.1.0.js"></script>
+<script src="https://www.blooware.co.uk/blooAuth/vendor/aws-cognito-sdk.min.js"></script>
+<script src="https://www.blooware.co.uk/blooAuth/vendor/amazon-cognito-identity.min.js"></script>
+<script src="https://www.blooware.co.uk/blooAuth/blooAuth.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        connectToPool('eu-west-2_9yPc9js2X', '4atq7kp8m6ibv56d3cgjbudhim', function () {
+            console.log("Connected to AWS");
+            signedIn(function (response) {
+                if (response.success) {
+                    console.log("Already Signed In");
+                    window.location.href = '/portal';
+                }
+            });
+        });
+    });
+
+    function signMeUp() {
+        signUp($('#newEmail').val(), $('#newPassword').val(), {"company" : $('#newCompany').val()}, function () {
+            window.location.href = '/verify';
+        }, function (err) {
+            console.log(err);
+        });
+    }
+
+</script>

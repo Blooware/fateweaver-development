@@ -1,0 +1,177 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manage Fateweaver Article Page</title>
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f8f8;
+        }
+    </style>
+</head>
+
+<body style="display:none;">
+
+    <p>Create Fateweaver Article Page</p>
+    <table id="results">
+        <tr>
+            <th>Title</th>
+            <th>Thumbnail</th>
+            <th>Body</th>
+            <th>Student ID</th>
+            <th>Article ID</th>
+        </tr>
+    </table>
+
+    <form method="post" class="save">
+
+        <input name="title" id="title" placeholder="Title"><br>
+        <input name="thumbnail" id="thumbnail" placeholder="Thumbnail"><br>
+        <input name="body" id="body" placeholder="Body"><br>
+        <input name="student_id" id="student_id" placeholder="Student ID"><br>
+        <button type="submit">Create Article</button><br><br>
+        <a href="/portal">Home</a>
+    </form>
+
+</body>
+
+<script src="https://www.blooware.co.uk/blooAuth/vendor/jquery-3.1.0.js"></script>
+<script src="https://www.blooware.co.uk/blooAuth/vendor/aws-cognito-sdk.min.js"></script>
+<script src="https://www.blooware.co.uk/blooAuth/vendor/amazon-cognito-identity.min.js"></script>
+<script src="https://www.blooware.co.uk/blooAuth/blooAuth.js"></script>
+<script>
+
+    var student_id;
+    $(document).ready(function () {
+        connectToPool('eu-west-2_zCGk0oMUc', '55vtr45kfg7ogrg06b46fg242g', function () {
+            checkAuth(function (result) {
+                if (result == true) {
+                    $('body').show();
+                    $('#student_id').val(getUrlParameter('student'));
+                    student_id = getUrlParameter('student');
+                    refresh();
+                }
+            });
+        });
+    });
+
+    function checkAuth(callback) {
+        signedIn(function (response) {
+            if (response.success) {
+                console.log("Already Signed In");
+                callback(true);
+            } else {
+                window.location.href = '/adminSignIn'
+            }
+        });
+    }
+
+    //refresh();
+    //Load Existing Articles
+    function refresh() {
+        postToLambda('https://hvbk9q6ua3.execute-api.eu-west-2.amazonaws.com/Prod/fateweaver-manageFateweaverArticles', { student: student_id }, function (reply) {
+            //console.log(reply);
+            //$('#createdArticle').html(reply.body.insertId);
+            console.log(reply)
+            $('#results').html("<tr><th>Title</th><th>Thumbnail</th><th>Body</th><th>Student ID</th><th>Article ID</th></tr>");
+            for (var i = 0; i < reply.body.length; i++) {
+                $('#results').append('<tr><td>' + reply.body[i].title + '</td><td>' + reply.body[i].thumbnail + '</td><td>' + reply.body[i].body + '</td><td>' + reply.body[i].student_id + '</td><td><button onclick="postToLambda(`https://hvbk9q6ua3.execute-api.eu-west-2.amazonaws.com/Prod/fateweaver-deleteFateweaverArticle`, {id:' + reply.body[i].id + '}, function(){window.location.reload();});">Delete</button></td></tr>');
+            }
+        });
+    }
+
+
+    function postToLambda(url, data, callback) {
+        $.ajax({
+            url,
+            type: 'POST',
+            crossDomain: true,
+            data: JSON.stringify(data),
+            headers: {},
+            dataType: 'json',
+            contentType: "application/json",
+            success: function (reply) {
+                callback(reply);
+            }
+        });
+    }
+
+    function getFromLambda(url, callback) {
+        //console.log(url);
+        $.get(url, function (data, status) {
+            callback(data);
+        });
+    }
+
+    $(".save").submit(function (e) {
+        e.preventDefault();
+        postFormToLambda(this, "https://hvbk9q6ua3.execute-api.eu-west-2.amazonaws.com/Prod/fateweaver-createFateweaverArticle", function () {
+            refresh();
+        });
+    });
+
+    $(".delete").submit(function (e) {
+        e.preventDefault();
+        postFormToLambda(this, "https://hvbk9q6ua3.execute-api.eu-west-2.amazonaws.com/Prod/fateweaver-deleteFateweaverArticle", function () {
+            refresh();
+        });
+    });
+
+
+
+    function postFormToLambda(form, url, callback) {
+        //console.log(objectifyForm(form));
+        function objectifyForm(formArray) {//serialize data function
+
+
+            var returnArray = {};
+            for (var i = 0; i < formArray.length; i++) {
+                returnArray[formArray[i]['name']] = formArray[i]['value'];
+            }
+            return returnArray;
+        }
+        postToLambda(url, objectifyForm(form), function (reply) {
+            //console.log(reply);
+            $('#createdArticle').html(reply.body.insertId);
+            //console.log(reply);
+            callback();
+        });
+    }
+
+    function objectifyForm(formArray) {//serialize data function
+
+        var returnArray = {};
+        for (var i = 0; i < formArray.length; i++) {
+            returnArray[formArray[i]['name']] = formArray[i]['value'];
+        }
+        return returnArray;
+    }
+
+    //get url parameter
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
+
+</script>
+
+</html>
