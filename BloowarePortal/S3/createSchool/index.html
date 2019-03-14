@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<p>Create negotium Event Page</p>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create negotium Event Page</title>
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f8f8;
+        }
+    </style>
+</head>
+
+<body style="display:none">
+
+    <form method="post" class="save">
+
+        <input name="name" id="name" placeholder="Name"><br>
+        <input name="description" id="details" placeholder="Details"><br>
+
+        <button type="submit">Create School</button>
+    </form>
+
+</body>
+
+<script src="https://www.blooware.co.uk/blooAuth/vendor/jquery-3.1.0.js"></script>
+<script src="https://www.blooware.co.uk/blooAuth/vendor/aws-cognito-sdk.min.js"></script>
+<script src="https://www.blooware.co.uk/blooAuth/vendor/amazon-cognito-identity.min.js"></script>
+<script src="https://www.blooware.co.uk/blooAuth/blooAuth.js"></script>
+
+<script>
+
+
+
+
+    var token;
+
+    $(document).ready(function () {
+        connectToPool('eu-west-2_cZsv6n6t5', 'hrhsuoq7nrbt7ksucab050bpr', function () {
+            checkAuth(function (result) {
+                if (result == true) {
+                    $('body').show();
+                    getJwtToken(function (x) {
+                        token = x.token;
+                    });
+                }
+            });
+        });
+    });
+
+    function checkAuth(callback) {
+        signedIn(function (response) {
+            if (response.success) {
+                console.log("Already Signed In");
+                callback(true);
+            } else {
+                window.location.href = '/BloowarePortal/signIn'
+            }
+        });
+    }
+
+    function postToLambda(url, data, callback) {
+        console.log(token);
+        $.ajax({
+            url,
+            type: 'POST',
+            crossDomain: true,
+            data: JSON.stringify(data),
+            headers: { "Authorization": "Bearer " + token },//token},
+            dataType: 'json',
+            contentType: "application/json",
+            success: function (reply) {
+                callback(reply);
+            }
+        });
+    }
+
+    function getFromLambda(url, callback) {
+        //console.log(url);
+        $.get(url, function (data, status) {
+            callback(data);
+        });
+    }
+
+    $(".save").submit(function (e) {
+        e.preventDefault();
+        console.log(objectifyForm(this));
+        
+        postToLambda("https://mwujmaqyr3.execute-api.eu-west-2.amazonaws.com/Prod/BloowareFateweaver-postCreateSchool", [objectifyForm(this)], function (reply) {
+            console.log(reply);
+            //$('#createdCustomer').html(reply.body.insertId);
+            //console.log("Created an Event");
+            //refresh();
+        });
+        
+    });
+
+
+    function objectifyForm(formArray) {//serialize data function
+
+        var returnArray = {};
+        for (var i = 0; i < formArray.length; i++) {
+            if (formArray[i]['type'] == "checkbox") {
+                //console.log("checkbox");
+                returnArray[formArray[i]['name']] = formArray[i]['checked'];
+            } else {
+                if (formArray[i]['type'] == "radio") {
+                    //console.log("RadioBox");
+                    returnArray[formArray[i]['name']] = formArray[i]['checked'];
+                } else {
+                    //console.log("Not A checkbox");
+                    returnArray[formArray[i]['name']] = formArray[i]['value'];
+                }
+            }
+        }
+        return returnArray;
+    }
+
+
+    function signMeOut() {
+        signOut(function () {
+            checkAuth();
+        });
+    }
+
+    function getUserId(index, callback) {
+        getUser(function (user) {
+            return callback(user[index].Value);
+        });
+    }
+
+    //get url parameter
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
+
+
+</script>
+
+</html>

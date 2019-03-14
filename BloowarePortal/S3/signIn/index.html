@@ -14,7 +14,7 @@
         <h2 class="sr-only">Login Form</h2><img class="d-block justify-content-center m-auto" src="assets/img/Netmix2.png" width="70%" style="width: 70%;margin-bottom: 10px;">
         <div class="form-group"><input class="form-control" type="email" name="email" required="" placeholder="Email" id="userEmail" style="margin-top: 10px;"></div>
         <div class="form-group"><input class="form-control" type="password" name="password" required="" id="userPassword" placeholder="Password"></div>
-        <div class="form-group"><button onclick="signMeIn();" class="btn btn-primary btn-block d-block" style="margin-top: 10px;">Log In(Fateweaver Admin)</button></div><a class="text-center d-block" href="/portal/signUp">No Account?</a><a class="d-block justify-content-center forgot" href="#" style="margin-top: 15px;">Terms &amp; Conditions</a>
+        <div class="form-group"><button onclick="signMeIn();" class="btn btn-primary btn-block d-block" style="margin-top: 10px;">Log In(Blooware Fateweaver Admin)</button></div><a class="text-center d-block" href="/portal/signUp">No Account?</a><a class="d-block justify-content-center forgot" href="#" style="margin-top: 15px;">Terms &amp; Conditions</a>
         <a
             class="d-block justify-content-center forgot" href="#">Privacy Policy</a>
     </div>
@@ -32,12 +32,12 @@
 <script>
 
     $(document).ready(function () {
-        connectToPool('eu-west-2_9yPc9js2X', '4atq7kp8m6ibv56d3cgjbudhim', function () {
+        connectToPool('eu-west-2_cZsv6n6t5', 'hrhsuoq7nrbt7ksucab050bpr', function () {
             console.log("Connected to AWS");
             signedIn(function (response) {
                 if (response.success) {
                     console.log("Already Signed In");
-                    window.location.href = '/portal';
+                    window.location.href = '/BloowarePortal';
                 }
             });
         });
@@ -45,7 +45,7 @@
 
     function signMeIn() {
         signIn($('#userEmail').val(), $('#userPassword').val(), function () {
-            window.location.href = '/portal';
+            window.location.href = '/BloowarePortal';
         }, function (err) {
             console.log(err);
         });

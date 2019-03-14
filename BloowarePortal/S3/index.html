@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html style="display:none">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>AdminConsoleTemplate</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="assets/css/styles.min.css">
+
+
+    <script src="https://www.blooware.co.uk/blooAuth/vendor/jquery-3.1.0.js"></script>
+</head>
+
+<body style="width: 100%;height: 100%;background-color: #ffffff;">
+    <div id="wrapper">
+        <div id="sidebar-wrapper" style="background: #fc4949;/*background: -webkit-linear-gradient(to right, #EA384D, #D31027);*//*background: linear-gradient(to right, #EA384D, #D31027);*/background: #4991fc;background: -webkit-linear-gradient(to right, #389fea, #105ed3);background: linear-gradient(to right, #389fea, #106ad3);">
+            <div style="width: 100%;height: 75px;background: rgba(0,0,0,0.2);/*background: #fff;*/"></div>
+            <ul class="d-block sidebar-nav" style="margin-top: 80px;">
+                <li style="padding-top: 50px;">
+                    <a href="#" style="color: #fff!important;padding: 10px;">
+                        <i class="fa fa-home" style="padding-right: 10px;width: 60px;"></i>HOME</a>
+                    <a class="text-uppercase" href="/portal" style="color: #fff!important;padding: 10px;">
+                        <i class="fa fa-user" style="padding-right: 10px;width: 60px;"></i>Account</a>
+                    <a class="text-uppercase" onclick="signMeOut()" style="color: #fff!important;padding: 10px;">
+                        <i class="fa fa-sign-out" style="padding-right: 10px;width: 60px;"></i>Sign Out</a>
+                </li>
+                <li>
+                </li>
+            </ul>
+        </div>
+        <div class="page-content-wrapper">
+            <div class="container-fluid" style="padding: 0px;margin-left: 0px;margin-right: 0px;">
+                <div class="row" style="margin: 0px;width: 100%;padding: 0px;">
+                    <div class="col d-inline-flex" style="margin-bottom: 50px;height: 75px;">
+                        <a class="btn btn-link float-left d-inline-flex" role="button" href="#menu-toggle" id="menu-toggle"
+                            style="padding-left: 0;">
+                            <i class="la la-bars" style="font-size: 32px;color: rgb(11,11,11);padding: 14px;padding-left: 0;text-decoration: none!important;"></i>
+                        </a>
+                        <img class="d-block float-right" src="assets/img/Netmix2.png" style="height: 31px;margin-top: 21px;">
+                        <div class="dropdown float-right ml-auto">
+                            <button class="btn btn-dark dropdown-toggle float-right d-inline-flex" data-toggle="dropdown"
+                                aria-expanded="false" type="button" style="padding: 0px;background-color: rgba(0,0,0,0);color: rgb(0,0,0);border: 0px!important;height: 100%;width: 116px;">
+                                <i class="fa fa-user" style="margin-top: 3px;"></i>&nbsp;John Smith</button>
+                            <div class="dropdown-menu" role="menu">
+                                <a class="dropdown-item" role="presentation" href="#">First Item</a>
+                                <a class="dropdown-item" role="presentation" href="#">Second Item</a>
+                                <a class="dropdown-item" role="presentation" href="#">Third Item</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <section style="padding-left: 75px;">
+                    <h1 id="welcomeName">Welcome Dan,</h1>
+                    <section>
+                        <h1 style="font-size: 20px;padding-top: 32px;">Your events.</h1>
+                        <input type="text" placeholder="Search for an event..." style="margin-top: 47px;padding: 10px;border: 0px;border-radius: 300px;width: 300px;box-shadow: 0 0 15px rgba(0,0,0,0.1);text-indent: 10%;outline: none!important;margin-bottom: 45px;">
+                        <div class="row" style="margin: 0px;padding-top: 10px;padding-bottom: 10px;">
+
+                            <div id="results">
+
+                            </div>
+
+                            <a href="/BloowarePortal/createSchool">
+                                <div class="d-inline-flex hover-grow" style="height: 250px;border-radius: 10px;box-shadow: 1px 3px 5px #aaa;background-size: cover;margin-right: 10px;box-shadow: 0 0 13px rgba(0,0,0,0.2);margin-top: 1%;min-width: 350px;background-color: rgb(201,201,201);background: #4991fc;background: -webkit-linear-gradient(to right, #389fea, #105ed3);background: linear-gradient(to right, #389fea, #106ad3);cursor: pointer;">
+                                    <h1 style="color: #fff;padding: 23px;height: 200px;/*text-shadow: 0 0 5px rgba(0,0,0, 0.5);*/font-size: 30px;font-family: 'Open Sans', sans-serif;">
+                                        <i class="la la-plus" style="padding: 20px;padding-left: 0px;"></i>
+                                        <br>
+                                        <br>Create a new School</h1>
+                                </div>
+                            </a>
+                        </div>
+                    </section>
+                </section>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/script.min.js"></script>
+    <script src="https://www.blooware.co.uk/blooAuth/vendor/aws-cognito-sdk.min.js"></script>
+    <script src="https://www.blooware.co.uk/blooAuth/vendor/amazon-cognito-identity.min.js"></script>
+    <script src="https://www.blooware.co.uk/blooAuth/blooAuth.js"></script>
+    <script>
+        var added_sub = "Not set yet";
+        var token;
+        $(document).ready(function () {
+            connectToPool('eu-west-2_cZsv6n6t5', 'hrhsuoq7nrbt7ksucab050bpr', function () {
+                checkAuth(function (result) {
+                    if (result == true) {
+                        $('html').show();
+                        getJwtToken(function (x) {
+                            token = x.token;
+                            refresh();
+                        });
+                    }
+                });
+            });
+        });
+
+        function checkAuth(callback) {
+            signedIn(function (response) {
+                if (response.success) {
+                    callback(true);
+                } else {
+                    window.location.href = '/BloowarePortal/signIn'
+                }
+            });
+        }
+
+        //Load Existing Customers
+        function refresh() {
+            //console.log("it's working")
+            console.log(token);
+
+            postToLambda('https://mwujmaqyr3.execute-api.eu-west-2.amazonaws.com/Prod/BloowareFateweaver-postGetSchools', [], function (reply) {
+
+                console.log(reply);
+                /*
+                for (var i = 0; i < reply.body.length; i++) {
+
+                    $('#results').append('<a href="/portal/event/?id=' + reply.body[i].id + '"><div class="d-inline-flex hover-grow" style="height: 250px;border-radius: 10px;box-shadow: 1px 3px 5px #aaa;background-size: cover;margin-left: 0%;margin-right: 10px;background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url(&quot;assets/img/nastuh-abootalebi-284877-unsplash.jpg&quot;);box-shadow: 0 0 13px rgba(0,0,0,0.2);margin-top: 1%;min-width: 350px;cursor: pointer;"> <h1 style="color: #fff;padding: 23px;height: 200px;text-shadow: 0 0 5px rgba(0,0,0, 0.5);font-size: 30px;">' + reply.body[i].name + '</h1> </div></a>');
+                }
+                */
+            });
+
+        }
+
+        function postToLambda(url, data, callback) {
+            $.ajax({
+                url,
+                type: 'POST',
+                crossDomain: true,
+                data: JSON.stringify(data),
+                headers: { "Authorization": "Bearer " + token },
+                dataType: 'json',
+                contentType: "application/json",
+                success: function (reply) {
+                    callback(reply);
+                }
+            });
+        }
+
+        function signMeOut() {
+            signOut(function () {
+                checkAuth();
+            });
+        }
+
+        function getUserId(index, callback) {
+            getUser(function (user) {
+                return callback(user[index].Value);
+            });
+        }
+
+    </script>
+</body>
