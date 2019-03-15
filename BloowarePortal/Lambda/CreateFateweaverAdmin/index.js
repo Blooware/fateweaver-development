@@ -72,11 +72,40 @@ exports.handler = (event, context, callback) => {
         }
         cognitoUser = result.user;
         //console.log('user name is ' + cognitoUser.getUsername());
-        
+        var data = {
+            email : event.email,
+            cognito_id : "3001",
+            added : new Date(Date.now()),
+            school_id : event.school_id
+        }
+        connection.query("insert into fateweaver.admins set ?", [data], function (err, results, fields) {
+            if (err) {
+                console.log("Error getting tutor groups:", err);
+                context.succeed({
+                    statusCode: 200,
+                    status: false,
+                    errMsg: "error adding that mentor err :" + err
+                });
+            }
+            if(results.length > 0){
+
+                // do the stuff
+            } else {
+                context.succeed({
+                    statusCode: 200,
+                    status: false,
+                    errMsg: "you dont have access to add an account"
+                });
+            }
+        });
+
+
+        /*
         callback(null, {
            //username: cognitoUser.getUsername(),
            event : event
         });
+        */
         
     });
     
