@@ -1,5 +1,5 @@
 //TODO check the current sub against the subs in the database for blooware admins
-
+//TODO send an email with the temporary password
 var mysql = require('mysql');
 var AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 var AWS = require("aws-sdk");
@@ -52,7 +52,7 @@ exports.handler = (event, context, callback) => {
     
     var dataEmail = {
         Name : 'email',
-        Value : 'email@mydomain.com'
+        Value : event.email
     };
     var dataPhoneNumber = {
         Name : 'phone_number',
@@ -63,8 +63,9 @@ exports.handler = (event, context, callback) => {
 
     attributeList.push(attributeEmail);
     attributeList.push(attributePhoneNumber);
+    //TODO this should be a temport password
 
-    userPool.signUp('john@blooware.co.uk', 'Password2!', attributeList, null, function(err, result){
+    userPool.signUp(event.email, 'Password2!', attributeList, null, function(err, result){
         if (err) {
             alert(err);
             return;
