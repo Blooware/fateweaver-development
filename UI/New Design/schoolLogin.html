@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Student Path | Portal</title>
+    <title>AdminConsoleTemplate</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -22,9 +22,9 @@
         <form method="post" style="background-color: #234e67!important;">
             <h2 class="sr-only">Login Form</h2>
             <div class="illustration"></div>
-            <div class="form-group"><input class="form-control" type="email" name="email" required="" placeholder="Email" id="userEmail" ></div>
-            <div class="form-group"><input class="form-control" type="password" name="password" required="" id="userPassword" placeholder="Password"></div>
-            <div class="form-group"><button class="btn btn-primary btn-block" type="button" onclick="signMeIn()" style="background-color: #3c92da;">Log In</button></div><a href="#" class="forgot" style="color: #fff!important;">Forgot your email or password?</a></form>
+            <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
+            <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
+            <div class="form-group"><button class="btn btn-primary btn-block" type="submit" style="background-color: #3c92da;">Log In</button></div><a href="#" class="forgot" style="color: #fff!important;">Forgot your email or password?</a></form>
     </div>
     <div class="footer-basic" style="position: absolute;width: 100%;bottom: 0;background-color: rgba(255,255,255,0);">
         <footer>
@@ -41,34 +41,4 @@
     <script src="assets/js/script.min.js"></script>
 </body>
 
-
 </html>
-
-<script src="https://www.blooware.co.uk/blooAuth/vendor/jquery-3.1.0.js"></script>
-<script src="https://www.blooware.co.uk/blooAuth/vendor/aws-cognito-sdk.min.js"></script>
-<script src="https://www.blooware.co.uk/blooAuth/vendor/amazon-cognito-identity.min.js"></script>
-<script src="https://www.blooware.co.uk/blooAuth/blooAuth0.3.js"></script>
-
-<script>
-
-    $(document).ready(function () {
-        connectToPool('eu-west-2_9yPc9js2X', '4atq7kp8m6ibv56d3cgjbudhim', function () {
-            console.log("Connected to AWS");
-            signedIn(function (response) {
-                if (response.success) {
-                    console.log("Already Signed In");
-                    window.location.href = '/portal';
-                }
-            });
-        });
-    });
-
-    function signMeIn() {
-        signIn($('#userEmail').val(), $('#userPassword').val(), function () {
-            window.location.href = '/portal';
-        }, function (err) {
-            console.log(err);
-        });
-    }
-
-</script>
