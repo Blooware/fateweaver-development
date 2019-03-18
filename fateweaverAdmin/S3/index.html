@@ -18,20 +18,25 @@
     <div id="wrapper">
         <div id="sidebar-wrapper" style="background-color: #234e67!important;">
             <ul class="d-block sidebar-nav" style="height: 100%;overflow: hidden;">
-                <li style="padding-top: 150px;"> <a href="#" style="color: #fff!important;padding-bottom: 10px;"><i
-                            class="fa fa-users" style="padding-right: 10px;width: 60px;"></i>STUDENTS</a><a
-                        class="text-uppercase" href="#" style="color: #fff!important;padding-bottom: 10px;"><i
-                            class="fas fa-user-lock" style="padding-right: 10px;width: 60px;"></i>MENTORS</a>
-                    <a class="text-uppercase" href="#" style="color: #fff!important;padding-bottom: 10px;"><i
-                            class="fa fa-bar-chart" style="padding-right: 10px;width: 60px;"></i>INSIGHTS</a><a
-                        class="text-uppercase" href="#" style="color: #fff!important;padding-bottom: 10px;"><i
-                            class="fa fa-user" style="padding-right: 10px;width: 60px;"></i>Account</a>
-                    <div style="position: absolute;bottom: 0px;width: 100%;padding-bottom: 25px;"><a href="#"
-                            style="color: #fff!important;width: 100%;padding-left: 19px;">huw@blooware.co.uk</a><a
-                            class="text-uppercase" href="#" style="color: #fff!important;width: 100%;"
-                            onclick="signMeOut()"><i class="fa fa-sign-out"
-                                style="padding-right: 10px;width: 60px;"></i><strong>LOG
-                                OUT</strong></a></div>
+                <li style="padding-top: 150px;">
+                    <a href="/portal/students" style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fa fa-home" style="padding-right: 10px;width: 60px;"></i>HOME</a>
+                    <a href="/portal/students" style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fa fa-users" style="padding-right: 10px;width: 60px;"></i>STUDENTS</a>
+                    <a class="text-uppercase" href="#" style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fas fa-user-lock" style="padding-right: 10px;width: 60px;"></i>MENTORS</a>
+                
+                    <a class="text-uppercase" href="#" style="color: #fff!important;padding-bottom: 10px;"><i class="fa fa-bar-chart"
+                            style="padding-right: 10px;width: 60px;"></i>INSIGHTS</a>
+                
+                    <a class="text-uppercase" href="#" style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fa fa-user" style="padding-right: 10px;width: 60px;"></i>Account</a>
+                    <div style="position: absolute;bottom: 0px;width: 100%;padding-bottom: 25px;">
+                        <a href="#" style="color: #fff!important;width: 100%;padding-left: 19px;">huw@blooware.co.uk</a>
+                
+                        <a class="text-uppercase" href="#" style="color: #fff!important;width: 100%;"><i class="fa fa-sign-out"
+                                style="padding-right: 10px;width: 60px;"></i><strong>LOG OUT</strong></a>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -216,7 +221,7 @@
                         $('html').show();
                         getJwtToken(function (x) {
                             token = x.token;
-                            refresh();
+                            //refresh();
                         });
                     }
                 });
@@ -233,22 +238,7 @@
             });
         }
 
-        //Load Existing Customers
-        function refresh() {
-            //console.log("it's working")
-            console.log(token);
-
-            postToLambda('https://mwujmaqyr3.execute-api.eu-west-2.amazonaws.com/Prod/BloowareFateweaver-postGetSchools', [], function (reply) {
-
-                console.log(reply);
-
-                for (var i = 0; i < reply.body.length; i++) {
-                    $('#results').append('<a href="/BloowarePortal/School/?id=' + reply.body[i].id + '"><div class="d-inline-flex hover-grow" style="height: 250px;border-radius: 10px;box-shadow: 1px 3px 5px #aaa;background-size: cover;margin-left: 0%;margin-right: 10px;background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url(&quot;assets/img/nastuh-abootalebi-284877-unsplash.jpg&quot;);box-shadow: 0 0 13px rgba(0,0,0,0.2);margin-top: 1%;min-width: 350px;cursor: pointer;"> <h1 style="color: #fff;padding: 23px;height: 200px;text-shadow: 0 0 5px rgba(0,0,0, 0.5);font-size: 30px;">' + reply.body[i].name + '</h1> </div></a>');
-                }
-
-            });
-
-        }
+       
 
         function postToLambda(url, data, callback) {
             $.ajax({
