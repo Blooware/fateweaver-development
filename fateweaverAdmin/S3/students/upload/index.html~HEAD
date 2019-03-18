@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<p>upload students</p>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>upload students</title>
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f8f8;
+        }
+    </style>
+</head>
+
+<body style="display:none">
+
+    <body>
+
+        <form method="post" class="save">
+
+            <input type="file" id="files" name="files" />
+
+            <button type="submit">Upload</button>
+        </form>
+    </body>
+
+</body>
+
+<script src="https://www.blooware.co.uk/blooAuth/vendor/jquery-3.1.0.js"></script>
+<script src="https://www.blooware.co.uk/blooAuth/vendor/aws-cognito-sdk.min.js"></script>
+<script src="https://www.blooware.co.uk/blooAuth/vendor/amazon-cognito-identity.min.js"></script>
+<script src="https://www.blooware.co.uk/blooAuth/blooAuth.js"></script>
+
+<script>
+//TODO Add Authentification
+//TODO add popup for students taht are duplicates
+
+
+
+
+    var token;
+
+    $(document).ready(function () {
+        $('body').show();
+        /*
+        connectToPool('eu-west-2_7CQAar6tE', '325d4ppt1tekhm6s68jr768th9', function () {
+            checkAuth(function (result) {
+                if (result == true) {
+                    $('body').show();
+                    getJwtToken(function (x) {
+                        token = x.token;
+                    });
+                }
+            });
+        });
+        */
+    });
+    /*
+    function checkAuth(callback) {
+        signedIn(function (response) {
+            if (response.success) {
+                console.log("Already Signed In");
+                callback(true);
+            } else {
+                window.location.href = '/portal/signIn'
+            }
+        });
+    }
+    */
+
+
+
+    function postToLambda(url, data, callback) {
+        //console.log(token);
+        $.ajax({
+            url,
+            type: 'POST',
+            crossDomain: true,
+            data: JSON.stringify(data),
+            //headers: { "Authorization": "Bearer " + token },//token},
+            dataType: 'json',
+            contentType: "application/json",
+            success: function (reply) {
+                callback(reply);
+            }
+        });
+    }
+
+    $(".save").submit(function (e) {
+        e.preventDefault();
+        console.log(base64File);
+
+        postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postCSV", {base64String : base64File, name : fileName}, function (reply) {
+            console.log(reply);
+            //if there are items in the not done results then display them
+            
+            //refresh();
+        });
+    });
+
+    var base64File;
+    var fileName;
+    if (window.File && window.FileReader && window.FileList && window.Blob) {
+        document.getElementById('files').addEventListener('change', handleFileSelect, false);
+    } else {
+        alert('The File APIs are not fully supported in this browser.');
+    }
+
+    function handleFileSelect(evt) {
+        fileName = $('#files').val().split('\\').pop();
+        
+        var f = evt.target.files[0]; // FileList object
+        var reader = new FileReader();
+        // Closure to capture the file information.
+        reader.onload = (function (theFile) {
+            return function (e) {
+                var binaryData = e.target.result;
+                //Converting Binary Data to base 64
+                var base64String = window.btoa(binaryData);
+                //showing file converted to base64
+                //document.getElementById('base64').value = base64String;
+                console.log(base64String);
+                base64File = base64String;
+            };
+        })(f);
+        // Read in the image file as a data URL.
+        reader.readAsBinaryString(f);
+    }
+
+
+
+
+    //get url parameter
+    /*
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
+    */
+
+
+</script>
+
+</html>
