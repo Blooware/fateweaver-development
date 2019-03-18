@@ -14,6 +14,8 @@ var connection = mysql.createConnection({
 
 exports.handler = (event, context, callback) => {
     console.log(event);
+    //callback(null, event);
+    
     
     /*
     connection.query("select * from fateweaver.schools", [data], function (err, results, fields) {
@@ -37,7 +39,7 @@ exports.handler = (event, context, callback) => {
     });
     */
 
-
+    
     var poolData = {
         UserPoolId: 'eu-west-2_9yPc9js2X',
         ClientId: '4atq7kp8m6ibv56d3cgjbudhim'
@@ -64,7 +66,7 @@ exports.handler = (event, context, callback) => {
     attributeList.push(attributePhoneNumber);
     //TODO this should be a temport password
 
-    userPool.signUp(event.email, event.password, attributeList, null, function (err, result) {
+    userPool.signUp(event.form.email, event.form.password, attributeList, null, function (err, result) {
         if (err) {
             alert(err);
             return;
@@ -89,8 +91,8 @@ exports.handler = (event, context, callback) => {
             
             context.succeed({
                 statusCode: 200,
-                status: false,
-                errMsg: "you dont have access to add an account"
+                status: true,
+                body : results
             });
         });
 
@@ -101,8 +103,10 @@ exports.handler = (event, context, callback) => {
            event : event
         });
         */
+        
 
     });
+    
 
 
 }
