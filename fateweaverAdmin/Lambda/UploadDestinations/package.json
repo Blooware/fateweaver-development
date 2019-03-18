@@ -7,9 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "base64json": "1.0.3",
-    "convert-csv-to-json": "0.0.14",
-    "csvtojson": "^2.0.8",
     "file-base64": "1.0.0",
     "file-type": "10.8.0",
     "moment": "2.24.0",

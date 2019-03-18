@@ -50,7 +50,7 @@ var connection = mysql.createConnection({
 
 exports.handler = (event, context, callback) => {
     //callback(null,event);
-    var fields = ["Given Name", "Family Name", "DOB", "Gender", "Postcode", "UPN", "ULN", "Tutor Group", "PP", "SEN"];
+    var fields = ["UPN", "Aspiration", "Destination", "Industry", "Plan A", "Plan B", "Confirmed Place", "Notes"];
 
     //callback(null, fields[0]);
 
@@ -108,8 +108,53 @@ exports.handler = (event, context, callback) => {
 
     async function delayedJsonData(item) {
         // This is where i would add them to mysql
+        var dset = {
+            UPN : item["UPN"],
+            aspiration : item["Aspiration"],
+            destination : item["Destination"],
+            industry : item["Industry"],
+            plan_a : item["Plan A"],
+            plan_b : item["Plan B"],
+            confirmed_place : item["Confirmed Place"],
+            notes : item["Notes"],
 
+            added: new Date(Date.now()),
+            added_id: "3001",
+            csv: file.fileFullName
+        };
+        console.log("Now adding a Destination for a student???");
 
+        connection.query("select * from fateweaver.students where upn = ?", [item["UPN"]], function (err, results, fields) {
+            if (err) {
+                console.log("Error getting tutor groups:", err);
+            }
+            if(results.length > 0){
+                var jsonDestination = {
+                    student_id : results[0].id,
+                    aspiration : item["Aspiration"],
+                    destination : item["Destination"],
+                    industry : item["Industry"],
+                    plan_a : item["Plan A"],
+                    plan_b : item["Plan B"],
+                    confirmed_place : item["Confirmed Place"],
+                    notes : item["Notes"],
+                    added: new Date(Date.now()),
+                    added_id: "3001",
+                    csv: file.fileFullName
+                }
+                connection.query("insert into fateweaver.destination_sessions set ?", [jsonDestination], function (err, results, fields) {
+                    if (err) {
+                        console.log("Error getting tutor groups:", err);
+                        notAdded.push({dset});
+                    }
+
+                    Added.push({dset});
+                });
+            } else {
+                notAdded.push({dset});
+            }
+        });
+        /*
         connection.query("select * from fateweaver.tutor_groups where name = ?", [item["Tutor Group"]], function (err, results, fields) {
             if (err) {
                 console.log("Error getting tutor groups:", err);
@@ -140,6 +185,7 @@ exports.handler = (event, context, callback) => {
 
             }
         });
+        */
 
         await delay();
 
@@ -154,7 +200,6 @@ exports.handler = (event, context, callback) => {
         context.succeed({
             Done: Added,
             NotDone: notAdded,
-            TutorGroupsAdded: TutorGroupsAdded
 
         });
     }
