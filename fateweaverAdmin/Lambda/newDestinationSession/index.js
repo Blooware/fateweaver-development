@@ -13,16 +13,20 @@ var connection = mysql.createConnection({
 
 exports.handler = (event, context, callback) => {
     var data = {
-        first_name: event.firstName,
-        last_name: event.lastName,
-        school_id: "3005",
-        role: event.role,
-        linkedin: event.linkedin,
+        student_id: event.student_id,
+        aspiration: event.aspiration,
+        destination: event.destination,
+        industry: event.industry,
+        plan_a: event.plan_a,
+        plan_b: event.plan_b,
+        confirmed_place: event.confirmed_place,
+        notes: event.notes,
         added: new Date(Date.now()),
         added_id: "3001",
+        csv: "Wizard",
     }
 
-    connection.query("insert into fateweaver.mentors set ? ", [data], function (err, results, fields) {
+    connection.query("insert into fateweaver.destination_sessions set ? ", [data], function (err, results, fields) {
         if (err) {
             console.log("Error getting tutor groups:", err);
             context.succeed({
@@ -35,7 +39,7 @@ exports.handler = (event, context, callback) => {
         context.succeed({
             statusCode: 200,
             status: true,
-            body: "successfully added mentor"
+            body: "successfully added session"
         });
     });
 }
