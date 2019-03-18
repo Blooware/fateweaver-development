@@ -50,12 +50,37 @@ var connection = mysql.createConnection({
 
 exports.handler = (event, context, callback) => {
     //callback(null,event);
+    //get the school_id from the user account.
+    connection.query("select * from fateweaver.admins where cognito_id = ?", [event.account.sub], function (error, results, fields) {
+        if (error){
+            callback(null, {
+                statusCode: 200,
+                status: false,
+                errMsg: "Error finding admin accounts: " + error
+            });
+        }
+        if (results.length > 0) {
+            callback(null, {
+                statusCode: 200,
+                status: false,
+                errMsg: "Found Admin account Gj"
+            });
+        } else {
+            callback(null, {
+                statusCode: 200,
+                status: false,
+                errMsg: "Couldn't find admin account"
+            });
+        }
+    });
+
+    
     var fields = ["Given Name", "Family Name", "DOB", "Gender", "Postcode", "UPN", "ULN", "Tutor Group", "PP", "SEN"];
 
     //callback(null, fields[0]);
 
 
-    let base64String = event.base64String;
+    let base64String = event.form.base64String;
     let buffer = new Buffer(base64String, 'base64');
     let fileMime = fileType(buffer);
     let file = getFile(fileMime, buffer);
@@ -257,7 +282,7 @@ exports.handler = (event, context, callback) => {
         console.log(Group_id);
         console.log(StudentInfo);
     }
-
+    
 
 }
 
