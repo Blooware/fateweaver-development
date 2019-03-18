@@ -31,18 +31,10 @@
 
 <body style="display:none">
 
-
-    <form method="post" class="save">
-
         <div class="form-group"><input class="form-control" type="email" name="email" id="newEmail" required="" placeholder="Email" style="margin-top: 10px;"></div>
         <div class="form-group"><input class="form-control" type="password" name="password" id="newPassword" required="" placeholder="Password"></div>
+        <div class="form-group"><button class="btn btn-primary btn-block d-block" onclick="signMeUp();" style="margin-top: 10px;">Create(Fateweaver Admin)</button></div>
 
-
-        <input name="name" id="name" placeholder="Name"><br>
-        <input name="description" id="details" placeholder="Details"><br>
-
-        <button type="submit">Create School</button>
-    </form>
 
 </body>
 
@@ -52,9 +44,6 @@
 <script src="https://www.blooware.co.uk/blooAuth/blooAuth.js"></script>
 
 <script>
-
-
-
     var school_id;
     var token;
 
@@ -76,10 +65,11 @@
     function refresh() {
 
         // get all of the admin accounts from a different userpool
+        /*
         postToLambda('https://mwujmaqyr3.execute-api.eu-west-2.amazonaws.com/Prod/BloowareFateweaver-postGrabSchool', { school_id: school_id }, function (reply) {
             console.log(reply);
             console.log(reply.status);
-            /*
+            
             if (reply.status == false) {
                 console.log("Failed");
                 console.log(reply.errMsg);
@@ -96,8 +86,9 @@
                 $('#Name').val("error");
                 $('#Details').val("error");
             }
-            */
+            
         });
+        */
     }
 
 
@@ -134,19 +125,6 @@
             callback(data);
         });
     }
-
-    $(".save").submit(function (e) {
-        e.preventDefault();
-        console.log(objectifyForm(this));
-        
-        postToLambda("https://mwujmaqyr3.execute-api.eu-west-2.amazonaws.com/Prod/BloowareFateweaver-postCreateSchool", [objectifyForm(this)], function (reply) {
-            console.log(reply);
-            //$('#createdCustomer').html(reply.body.insertId);
-            //console.log("Created an Event");
-            //refresh();
-        });
-        
-    });
 
 
     function objectifyForm(formArray) {//serialize data function
@@ -191,12 +169,45 @@
     };
 
     function signMeUp() {
+        console.log("school_id :" + school_id, "email :" +  $('#newEmail').val(), "password :" + $('#newPassword').val());
         
+        
+        postToLambda("https://mwujmaqyr3.execute-api.eu-west-2.amazonaws.com/Prod/BloowareFateweaver-postCreateFateweaverAdmin", {school_id : school_id, email : $('#newEmail').val(), password : $('#newPassword').val() }, function (reply) {
+            console.log(reply);
+            //$('#createdCustomer').html(reply.body.insertId);
+            //console.log("Created an Event");
+            //refresh();
+        });
+        
+
+
+        /*
+        console.log($('#newEmail').val(), $('#newPassword').val());
+
+        var data = { 
+            UserPoolId : 'eu-west-2_9yPc9js2X',
+            ClientId : '4atq7kp8m6ibv56d3cgjbudhim'
+        }; // The FateweaverAdminUserpool
+            console.log(data);
+
+
+            var userPool = new AmazonCognitoIdentity.CognitoUserPool(data);
+            userPool.signUp($('#newEmail').val(), $('#newPassword').val(), null, function(err, result) {
+                if (err) {
+                    alert(err);
+                    return;
+                }
+                cognitoUser = result.user;
+                console.log(cognitoUser);
+                console.log("Stuff");
+            });
+        /*
         signUp($('#newEmail').val(), $('#newPassword').val(), function () { //  signUp($('#newEmail').val(), $('#newPassword').val(), { "company": "null" }, function () {
             window.location.href = '/BloowarePortal/verify';
         }, function (err) {
             console.log(err);
         });
+        */
     }
 
 
