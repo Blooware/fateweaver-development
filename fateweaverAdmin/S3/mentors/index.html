@@ -66,20 +66,19 @@
                         <i class="fa fa-home" style="padding-right: 10px;width: 60px;"></i>HOME</a>
                     <a href="/portal/students" style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fa fa-users" style="padding-right: 10px;width: 60px;"></i>STUDENTS</a>
-                    <a class="text-uppercase" href="#" style="color: #fff!important;padding-bottom: 10px;">
+                    <a class="text-uppercase" href="/portal/mentors" style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fas fa-user-lock" style="padding-right: 10px;width: 60px;"></i>MENTORS</a>
-
-                    <a class="text-uppercase" href="#" style="color: #fff!important;padding-bottom: 10px;"><i
-                            class="fa fa-bar-chart" style="padding-right: 10px;width: 60px;"></i>INSIGHTS</a>
-
+                
+                    <a class="text-uppercase" href="#" style="color: #fff!important;padding-bottom: 10px;"><i class="fa fa-bar-chart"
+                            style="padding-right: 10px;width: 60px;"></i>INSIGHTS</a>
+                
                     <a class="text-uppercase" href="#" style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fa fa-user" style="padding-right: 10px;width: 60px;"></i>Account</a>
                     <div style="position: absolute;bottom: 0px;width: 100%;padding-bottom: 25px;">
                         <a href="#" style="color: #fff!important;width: 100%;padding-left: 19px;">huw@blooware.co.uk</a>
-
-                        <a class="text-uppercase" href="#" style="color: #fff!important;width: 100%;"><i
-                                class="fa fa-sign-out" style="padding-right: 10px;width: 60px;"></i><strong>LOG
-                                OUT</strong></a>
+                
+                        <a class="text-uppercase" href="#" style="color: #fff!important;width: 100%;"><i class="fa fa-sign-out"
+                                style="padding-right: 10px;width: 60px;"></i><strong>LOG OUT</strong></a>
                     </div>
                 </li>
             </ul>
@@ -114,7 +113,7 @@
                         <div class="float-left"
                             style="height: 60px;background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 15px;overflow: hidden;">
                             <input type="search" placeholder="Search by name..."
-                                style="height: 60px;border: 0px;outline: none;width: 350px;text-indent: 24px;"></div>
+                            onkeyup="search(this.value)" style="height: 60px;border: 0px;outline: none;width: 350px;text-indent: 24px;"></div>
                     </div>
                 </div>
             </div>
@@ -149,6 +148,27 @@
             });
         });
 
+          function search(x) {
+            console.log(x)
+            if (x.length > 1) {
+                $('#results > .item').each(function () {
+                    var prod = $(this);
+                    if (prod.attr('search').toLowerCase().indexOf(x.toLowerCase()) > 0) {
+
+                        prod.show();
+                    } else {
+                        prod.hide();
+                    }
+                });
+            } else {
+                $('#results > .item').each(function () {
+                    var prod = $(this);
+                    prod.show();
+                });
+            }
+        }
+
+
         function checkAuth(callback) {
             signedIn(function (response) {
                 if (response.success) {
@@ -169,7 +189,7 @@
                 console.log(reply);
                 $('#results').html('<tr style="font-weight: normal!important;"> <th style="width: 120px;"></th> <th style="font-weight: normal;">Name</th> <th style="font-weight: normal;">Role</th></tr>');
                 for (var i = 0; i < reply.body.length; i++) {
-                    $('#results').append('<a href="/BloowarePortal/School/?id=' + reply.body[i].id + '"><tr style="font-weight: bold;"> <td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="assets/img/16.jpg" style="width: 100%;min-height: 100%;"></div> </td> <td style="font-size: 15px;">' + reply.body[i].first_name + ' ' + reply.body[i].last_name + '</td> <td style="font-size: 15px;">' + reply.body[i].role + '</td> </a>');
+                    $('#results').append('<a href="/BloowarePortal/School/?id=' + reply.body[i].id + '"><tr class="item" search="search ' + reply.body[i].first_name + ' ' + reply.body[i].last_name + ' ' + reply.body[i].role + ' search"  style="font-weight: bold;"> <td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="assets/img/placeholder.png" style="width: 100%;min-height: 100%;"></div> </td> <td style="font-size: 15px;">' + reply.body[i].first_name + ' ' + reply.body[i].last_name + '</td> <td style="font-size: 15px;">' + reply.body[i].role + '</td> </a>');
                 }
 
             });

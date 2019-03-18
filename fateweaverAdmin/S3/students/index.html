@@ -83,7 +83,7 @@
                         <i class="fa fa-home" style="padding-right: 10px;width: 60px;"></i>HOME</a>
                     <a href="/portal/students" style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fa fa-users" style="padding-right: 10px;width: 60px;"></i>STUDENTS</a>
-                    <a class="text-uppercase" href="#" style="color: #fff!important;padding-bottom: 10px;">
+                    <a class="text-uppercase" href="/portal/mentors" style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fas fa-user-lock" style="padding-right: 10px;width: 60px;"></i>MENTORS</a>
                 
                     <a class="text-uppercase" href="#" style="color: #fff!important;padding-bottom: 10px;"><i class="fa fa-bar-chart"
@@ -137,7 +137,7 @@
                     <div class="row" style="padding-bottom: 30px;">
                         <div class="float-left"
                             style="height: 60px;background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 15px;overflow: hidden;">
-                            <input type="search" placeholder="Search by name or UPN..."
+                            <input type="search" onkeyup="search(this.value)" placeholder="Search by name or UPN..."
                                 style="height: 60px;border: 0px;outline: none;width: 350px;text-indent: 24px;"></div>
                     </div>
                 </div>
@@ -173,6 +173,26 @@
             });
         });
 
+        function search(x) {
+            console.log(x)
+            if (x.length > 1) {
+                $('#results > .item').each(function () {
+                    var prod = $(this);
+                    if (prod.attr('search').toLowerCase().indexOf(x.toLowerCase()) > 0) {
+
+                        prod.show();
+                    } else {
+                        prod.hide();
+                    }
+                });
+            } else {
+                $('#results > .item').each(function () {
+                    var prod = $(this);
+                    prod.show();
+                });
+            }
+        }
+
         function checkAuth(callback) {
             signedIn(function (response) {
                 if (response.success) {
@@ -193,7 +213,7 @@
                 console.log(reply);
                 $('#results').html('<tr style="font-weight: normal!important;"> <th style="width: 120px;"></th> <th style="font-weight: normal;">Name</th> <th style="font-weight: normal;">Tutor Group</th> <th style="font-weight: normal;">UPN</th> <th style="font-weight: normal;">Aspiration</th> </tr>');
                 for (var i = 0; i < reply.body.length; i++) {
-                    $('#results').append('<a href="/BloowarePortal/School/?id=' + reply.body[i].id + '"><tr style="font-weight: bold;"> <td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="assets/img/16.jpg" style="width: 100%;min-height: 100%;"></div> </td> <td style="font-size: 15px;">' + reply.body[i].given_name + ' ' + reply.body[i].family_name + '</td> <td style="font-size: 15px;">' + reply.body[i].tutor_group_id + '</td> <td style="font-size: 15px;">' + reply.body[i].upn + '</td> <td style="font-size: 15px;">' + reply.body[i].aspiration + '</td> </tr> </a>');
+                    $('#results').append('<a  href="/BloowarePortal/School/?id=' + reply.body[i].id + '"><tr class="item" search="search ' + reply.body[i].given_name + ' ' + reply.body[i].family_name + ' ' + reply.body[i].upn + ' search" style="font-weight: bold;"> <td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="assets/img/placeholder.png" style="width: 100%;min-height: 100%;"></div> </td> <td style="font-size: 15px;">' + reply.body[i].given_name + ' ' + reply.body[i].family_name + '</td> <td style="font-size: 15px;">' + reply.body[i].tutor_group_id + '</td> <td style="font-size: 15px;">' + reply.body[i].upn + '</td> <td style="font-size: 15px;">' + reply.body[i].aspiration + '</td> </tr> </a>');
                 }
 
             });
@@ -256,7 +276,7 @@
 
                 for (var i = 0; i < reply.NotDone.length; i++) {
                     studentsToEdit.push(reply.NotDone[i].jsonStudent);
-                    $('#NotDone-results').append('<a href="/BloowarePortal/School/?id=' + reply.NotDone[i].jsonStudent.id + '"><tr style="font-weight: bold;"> <td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="assets/img/16.jpg" style="width: 100%;min-height: 100%;"></div> </td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.given_name + ' ' + reply.NotDone[i].jsonStudent.family_name + '</td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.tutor_group_id + '</td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.upn + '</td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.aspiration + '</td> <td style="font-size: 15px;"><button onclick="replaceStudent(' + i + ')">Replace</button></td> <td style="font-size: 15px;"><button onclick="ignoreStudent(' + i + ')">Ignore</button></td></tr> </a>');
+                    $('#NotDone-results').append('<a href="/BloowarePortal/School/?id=' + reply.NotDone[i].jsonStudent.id + '"><tr style="font-weight: bold;"> <td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="assets/img/placeholder.png" style="width: 100%;min-height: 100%;"></div> </td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.given_name + ' ' + reply.NotDone[i].jsonStudent.family_name + '</td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.tutor_group_id + '</td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.upn + '</td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.aspiration + '</td> <td style="font-size: 15px;"><button onclick="replaceStudent(' + i + ')">Replace</button></td> <td style="font-size: 15px;"><button onclick="ignoreStudent(' + i + ')">Ignore</button></td></tr> </a>');
                 }
             });
         });
