@@ -19,7 +19,7 @@
         <div id="sidebar-wrapper" style="background-color: #234e67!important;">
             <ul class="d-block sidebar-nav" style="height: 100%;overflow: hidden;">
                 <li style="padding-top: 150px;">
-                    <a href="/portal/students" style="color: #fff!important;padding-bottom: 10px;">
+                    <a href="/portal" style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fa fa-home" style="padding-right: 10px;width: 60px;"></i>HOME</a>
                     <a href="/portal/students" style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fa fa-users" style="padding-right: 10px;width: 60px;"></i>STUDENTS</a>
@@ -83,51 +83,8 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr style="background-color: #ffffff;font-weight: normal!important;">
-                            <th style="width: 120px;"></th>
-                            <th style="font-weight: normal;">Name</th>
-                            <th style="font-weight: normal;">Tutor Group</th>
-                            <th style="font-weight: normal;">UPN</th>
-                            <th style="font-weight: normal;">Aspiration</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="background-color: #e6e6e6;font-weight: bold;">
-                            <td>
-                                <div class="border rounded-circle d-block m-auto"
-                                    style="width: 60px;height: 60px;overflow: hidden;"><img src="assets/img/16.jpg"
-                                        style="width: 100%;min-height: 100%;"></div>
-                            </td>
-                            <td style="line-height: 70px;font-size: 15px;">Cell 2</td>
-                            <td style="line-height: 70px;font-size: 15px;">Cell 2</td>
-                            <td style="line-height: 70px;font-size: 15px;">Cell 2</td>
-                            <td style="line-height: 70px;font-size: 15px;">Cell 2</td>
-                        </tr>
-                        <tr style="background-color: #ffffff;font-weight: bold;">
-                            <td>
-                                <div class="border rounded-circle d-block m-auto"
-                                    style="width: 60px;height: 60px;overflow: hidden;"><img src="assets/img/16.jpg"
-                                        style="width: 100%;min-height: 100%;"></div>
-                            </td>
-                            <td style="line-height: 70px;font-size: 15px;">Cell 2</td>
-                            <td style="line-height: 70px;font-size: 15px;">Cell 2</td>
-                            <td style="line-height: 70px;font-size: 15px;">Cell 2</td>
-                            <td style="line-height: 70px;font-size: 15px;">Cell 2</td>
-                        </tr>
-                        <tr style="background-color: #e6e6e6;font-weight: bold;">
-                            <td>
-                                <div class="border rounded-circle d-block m-auto"
-                                    style="width: 60px;height: 60px;overflow: hidden;"><img src="assets/img/16.jpg"
-                                        style="width: 100%;min-height: 100%;"></div>
-                            </td>
-                            <td style="line-height: 70px;font-size: 15px;">Cell 2</td>
-                            <td style="line-height: 70px;font-size: 15px;">Cell 2</td>
-                            <td style="line-height: 70px;font-size: 15px;">Cell 2</td>
-                            <td style="line-height: 70px;font-size: 15px;">Cell 2</td>
-                        </tr>
-                    </tbody>
+                <table class="table" id="results">
+                  
                 </table>
             </div>
         </div>
@@ -171,12 +128,12 @@
             //console.log("it's working")
             console.log(token);
 
-            postToLambda('https://mwujmaqyr3.execute-api.eu-west-2.amazonaws.com/Prod/BloowareFateweaver-postGetSchools', [], function (reply) {
+            postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaver-getStudents', [], function (reply) {
 
                 console.log(reply);
-
+                $('#results').html('<tr style="background-color: #ffffff;font-weight: normal!important;"> <th style="width: 120px;"></th> <th style="font-weight: normal;">Name</th> <th style="font-weight: normal;">Tutor Group</th> <th style="font-weight: normal;">UPN</th> <th style="font-weight: normal;">Aspiration</th> </tr>');
                 for (var i = 0; i < reply.body.length; i++) {
-                    $('#results').append('<a href="/BloowarePortal/School/?id=' + reply.body[i].id + '"><div class="d-inline-flex hover-grow" style="height: 250px;border-radius: 10px;box-shadow: 1px 3px 5px #aaa;background-size: cover;margin-left: 0%;margin-right: 10px;background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url(&quot;assets/img/nastuh-abootalebi-284877-unsplash.jpg&quot;);box-shadow: 0 0 13px rgba(0,0,0,0.2);margin-top: 1%;min-width: 350px;cursor: pointer;"> <h1 style="color: #fff;padding: 23px;height: 200px;text-shadow: 0 0 5px rgba(0,0,0, 0.5);font-size: 30px;">' + reply.body[i].name + '</h1> </div></a>');
+                    $('#results').append('<a href="/BloowarePortal/School/?id=' + reply.body[i].id + '"><tr style="background-color: #e6e6e6;font-weight: bold;"> <td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="assets/img/16.jpg" style="width: 100%;min-height: 100%;"></div> </td> <td style="font-size: 15px;">' + reply.body[i].given_name + ' ' + reply.body[i].family_name + '</td> <td style="font-size: 15px;">' + reply.body[i].tutor_group_id + '</td> <td style="font-size: 15px;">' + reply.body[i].upn + '</td> <td style="font-size: 15px;">' + reply.body[i].aspiration + '</td> </tr> </a>');
                 }
 
             });
