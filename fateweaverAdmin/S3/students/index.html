@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html style="display:none">
+<html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Admin Home</title>
+    <title>Students</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -18,19 +18,25 @@
     <div id="wrapper">
         <div id="sidebar-wrapper" style="background-color: #234e67!important;">
             <ul class="d-block sidebar-nav" style="height: 100%;overflow: hidden;">
-                <li style="padding-top: 150px;"> <a href="#" style="color: #fff!important;padding-bottom: 10px;"><i
-                            class="fa fa-users" style="padding-right: 10px;width: 60px;"></i>STUDENTS</a><a
-                        class="text-uppercase" href="#" style="color: #fff!important;padding-bottom: 10px;"><i
-                            class="fas fa-user-lock" style="padding-right: 10px;width: 60px;"></i>MENTORS</a>
-                    <a class="text-uppercase" href="#" style="color: #fff!important;padding-bottom: 10px;"><i
-                            class="fa fa-bar-chart" style="padding-right: 10px;width: 60px;"></i>INSIGHTS</a><a
-                        class="text-uppercase" href="#" style="color: #fff!important;padding-bottom: 10px;"><i
-                            class="fa fa-user" style="padding-right: 10px;width: 60px;"></i>Account</a>
-                    <div style="position: absolute;bottom: 0px;width: 100%;padding-bottom: 25px;"><a href="#"
-                            style="color: #fff!important;width: 100%;padding-left: 19px;">huw@blooware.co.uk</a><a
-                            class="text-uppercase" href="#" style="color: #fff!important;width: 100%;"
-                            onclick="signMeOut()"><i class="fa fa-sign-out"
-                                style="padding-right: 10px;width: 60px;"></i><strong>LOG OUT</strong></a></div>
+                <li style="padding-top: 150px;">
+                    <a href="/portal/students" style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fa fa-home" style="padding-right: 10px;width: 60px;"></i>HOME</a>
+                    <a href="/portal/students" style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fa fa-users" style="padding-right: 10px;width: 60px;"></i>STUDENTS</a>
+                    <a class="text-uppercase" href="#" style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fas fa-user-lock" style="padding-right: 10px;width: 60px;"></i>MENTORS</a>
+                
+                    <a class="text-uppercase" href="#" style="color: #fff!important;padding-bottom: 10px;"><i class="fa fa-bar-chart"
+                            style="padding-right: 10px;width: 60px;"></i>INSIGHTS</a>
+                
+                    <a class="text-uppercase" href="#" style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fa fa-user" style="padding-right: 10px;width: 60px;"></i>Account</a>
+                    <div style="position: absolute;bottom: 0px;width: 100%;padding-bottom: 25px;">
+                        <a href="#" style="color: #fff!important;width: 100%;padding-left: 19px;">huw@blooware.co.uk</a>
+                
+                        <a class="text-uppercase" href="#" style="color: #fff!important;width: 100%;"><i class="fa fa-sign-out"
+                                style="padding-right: 10px;width: 60px;"></i><strong>LOG OUT</strong></a>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -48,21 +54,19 @@
                             style="height: 100%;line-height: 100px;font-size: 40px;font-family: Roboto, sans-serif;font-weight: 300;color: #666;">
                             <span
                                 style="background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);-webkit-background-clip: text;-webkit-text-fill-color: transparent;background-size: 150%;"><strong>student</strong></span>path
-                            | Admin</h1>
+                        </h1>
                     </div>
                 </div>
             </div>
             <div class="container-fluid" style="padding-top: 100px;padding-left: 125px;">
                 <div>
                     <div class="row">
-
-
                         <div class="float-left"
                             style="height: 60px;background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 15px;">
-                            <a href="/BloowarePortal/createSchool">
-                                <button class="btn btn-primary" type="button"
-                                    style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 20px;">Create
-                                    School &nbsp;<i class="fa fa-cloud-upload"></i></button></a>
+                            <a href="/portal/students/upload"><button class="btn btn-primary" type="button"
+                                    style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 20px;">Upload
+                                    Students &nbsp;<i class="fa fa-cloud-upload"></i></button>
+                            </a>
                             <button class="btn btn-primary" type="button"
                                 style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 20px;">Download
                                 Student Template &nbsp;<i class="fa fa-cloud-download"></i></button><button
@@ -70,16 +74,65 @@
                                 style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 20px;">Generate
                                 Report &nbsp;<i class="fa fa-paste"></i></button></div>
                     </div>
+                    <div class="row" style="padding-bottom: 30px;">
+                        <div class="float-left"
+                            style="height: 60px;background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 15px;overflow: hidden;">
+                            <input type="search" placeholder="Search by name or UPN..."
+                                style="height: 60px;border: 0px;outline: none;width: 350px;text-indent: 24px;"></div>
+                    </div>
                 </div>
             </div>
-            <div class="container-fluid" style="padding-top: 100px;padding-left: 125px;">
-                <div id="results">
-
-                </div>
-
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr style="background-color: #ffffff;font-weight: normal!important;">
+                            <th style="width: 120px;"></th>
+                            <th style="font-weight: normal;">Name</th>
+                            <th style="font-weight: normal;">Tutor Group</th>
+                            <th style="font-weight: normal;">UPN</th>
+                            <th style="font-weight: normal;">Aspiration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background-color: #e6e6e6;font-weight: bold;">
+                            <td>
+                                <div class="border rounded-circle d-block m-auto"
+                                    style="width: 60px;height: 60px;overflow: hidden;"><img src="assets/img/16.jpg"
+                                        style="width: 100%;min-height: 100%;"></div>
+                            </td>
+                            <td style="line-height: 70px;font-size: 15px;">Cell 2</td>
+                            <td style="line-height: 70px;font-size: 15px;">Cell 2</td>
+                            <td style="line-height: 70px;font-size: 15px;">Cell 2</td>
+                            <td style="line-height: 70px;font-size: 15px;">Cell 2</td>
+                        </tr>
+                        <tr style="background-color: #ffffff;font-weight: bold;">
+                            <td>
+                                <div class="border rounded-circle d-block m-auto"
+                                    style="width: 60px;height: 60px;overflow: hidden;"><img src="assets/img/16.jpg"
+                                        style="width: 100%;min-height: 100%;"></div>
+                            </td>
+                            <td style="line-height: 70px;font-size: 15px;">Cell 2</td>
+                            <td style="line-height: 70px;font-size: 15px;">Cell 2</td>
+                            <td style="line-height: 70px;font-size: 15px;">Cell 2</td>
+                            <td style="line-height: 70px;font-size: 15px;">Cell 2</td>
+                        </tr>
+                        <tr style="background-color: #e6e6e6;font-weight: bold;">
+                            <td>
+                                <div class="border rounded-circle d-block m-auto"
+                                    style="width: 60px;height: 60px;overflow: hidden;"><img src="assets/img/16.jpg"
+                                        style="width: 100%;min-height: 100%;"></div>
+                            </td>
+                            <td style="line-height: 70px;font-size: 15px;">Cell 2</td>
+                            <td style="line-height: 70px;font-size: 15px;">Cell 2</td>
+                            <td style="line-height: 70px;font-size: 15px;">Cell 2</td>
+                            <td style="line-height: 70px;font-size: 15px;">Cell 2</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/script.min.js"></script>
@@ -90,7 +143,7 @@
         var added_sub = "Not set yet";
         var token;
         $(document).ready(function () {
-            connectToPool('eu-west-2_cZsv6n6t5', 'hrhsuoq7nrbt7ksucab050bpr', function () {
+            connectToPool('eu-west-2_9yPc9js2X', '4atq7kp8m6ibv56d3cgjbudhim', function () {
                 checkAuth(function (result) {
                     if (result == true) {
                         $('html').show();
@@ -108,7 +161,7 @@
                 if (response.success) {
                     callback(true);
                 } else {
-                    window.location.href = '/BloowarePortal/signIn'
+                    window.location.href = '/portal/signIn'
                 }
             });
         }
@@ -159,3 +212,5 @@
 
     </script>
 </body>
+
+</html>
