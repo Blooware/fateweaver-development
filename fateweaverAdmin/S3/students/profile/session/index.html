@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>AdminConsoleTemplate</title>
+    <title>New Session</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -60,10 +60,7 @@
                     <div class="row">
                         <div class="col-9" style="margin-top: 50px;">
                             <div class="row" style="margin-bottom: 20px;">
-                                <div class="col-3" style="min-width: 200px;">
-                                    <div class="border rounded-circle" style="width: 150px;height: 150px;overflow: hidden;box-shadow: 0 0 15px rgba(0,0,0,0.2);"><img
-                                            src="../../../assets/img/placeholder.png" style="width: 100%;"></div>
-                                </div>
+                                
                                 <div class="col" style="min-width: 500px;">
                                     <h1 style="font-weight: 300;"><strong>Jamal Eyre</strong></h1>
                                     <h1 style="font-weight: 300;font-size: 20px;color: rgb(142,142,142);"><strong>New
@@ -103,15 +100,27 @@
                                     alt="Slide Image" style="display: none!important;">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <form style="padding-top: 64px;width: 300px;">
+                                        <form class="save" style="padding-top: 64px;width: 300px;">
+                                            <input type="text" hidden name="student_id" value="">
                                             <h1 style="font-size: 30px;padding: 21px;padding-left: 0px;"><strong>This
                                                     time,</strong></h1>
                                             <div class="form-group">
                                                 <p style="font-size: 18px;">What's their aspiration?<br></p><textarea
-                                                    class="form-control" placeholder="Aspiration..."></textarea>
+                                                    class="form-control" name="aspiration" placeholder="Aspiration..."></textarea>
                                             </div>
                                             <div class="form-group" style="margin-top: 50px;">
-                                                <p style="font-size: 18px;">Destination Type<br></p><select class="form-control">
+                                                <p style="font-size: 18px;">Destination Type<br></p>
+                                                <select class="form-control" name="destination">
+                                                    <optgroup  label="This is a group">
+                                                        <option value="12" selected="">This is item 1</option>
+                                                        <option value="13">This is item 2</option>
+                                                        <option value="14">This is item 3</option>
+                                                    </optgroup>
+                                                </select>
+                                            </div>
+                                            <div class="form-group" style="margin-top: 50px;">
+                                                <p style="font-size: 18px;">Industry<br></p>
+                                                <select class="form-control" name="industry">
                                                     <optgroup label="This is a group">
                                                         <option value="12" selected="">This is item 1</option>
                                                         <option value="13">This is item 2</option>
@@ -120,26 +129,26 @@
                                                 </select>
                                             </div>
                                             <div class="form-group" style="margin-top: 50px;">
-                                                <p style="font-size: 18px;">Industry<br></p><select class="form-control">
-                                                    <optgroup label="This is a group">
-                                                        <option value="12" selected="">This is item 1</option>
-                                                        <option value="13">This is item 2</option>
-                                                        <option value="14">This is item 3</option>
-                                                    </optgroup>
-                                                </select>
-                                            </div>
-                                            <div class="form-group" style="margin-top: 50px;">
-                                                <p style="font-size: 18px;">Plan A</p><textarea class="form-control"
+                                                <p style="font-size: 18px;">Plan A</p>
+                                                <textarea class="form-control" name="plan_a"
                                                     placeholder="Plan A"></textarea>
                                             </div>
                                             <div class="form-group" style="margin-top: 50px;">
-                                                <p style="font-size: 18px;">Plan B</p><textarea class="form-control"
+                                                <p style="font-size: 18px;">Plan B</p>
+                                                <textarea class="form-control" name="plan_b"
                                                     placeholder="Plan B"></textarea>
                                             </div>
                                             <div class="form-group" style="margin-top: 50px;">
-                                                <p style="font-size: 18px;">Confirmed Destination</p><textarea class="form-control"
+                                                <p style="font-size: 18px;">Confirmed Destination</p>
+                                                <textarea class="form-control" name="confirmed_place"
                                                     placeholder="(Optional confirmed destination)"></textarea>
-                                            </div><button class="btn btn-primary" type="button" style="background-color: #234e67;border: 0px;border-radius: 300px;min-width: 100px;max-width: 100px;">Next</button>
+                                            </div>
+                                            <div class="form-group" style="margin-top: 50px;">
+                                                    <p style="font-size: 18px;">Notes</p>
+                                                    <textarea class="form-control" name="notes"
+                                                        placeholder="(Optional Notes)"></textarea>
+                                                </div>
+                                            <button class="btn btn-primary" type="submit" style="background-color: #234e67;border: 0px;border-radius: 300px;min-width: 100px;max-width: 100px;">Next</button>
                                         </form>
                                     </div>
                                 </div>
@@ -157,23 +166,59 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <script src="../../../assets/js/script.min.js"></script>
+    <script src="https://www.blooware.co.uk/blooAuth/vendor/aws-cognito-sdk.min.js"></script>
+    <script src="https://www.blooware.co.uk/blooAuth/vendor/amazon-cognito-identity.min.js"></script>
+    <script src="https://www.blooware.co.uk/blooAuth/blooAuth.js"></script>
+    <script src="../../../assets/js/security.js"></script>
 </body>
 <script>
-
- var data = {
-        student_id: event.student_id,
-        aspiration: event.aspiration,
-        destination: event.destination,
-        industry: event.industry,
-        plan_a: event.plan_a,
-        plan_b: event.plan_b,
-        confirmed_place: event.confirmed_place,
-        notes: event.notes,
-        added: new Date(Date.now()),
-        added_id: "3001",
-        csv: "Wizard",
+  function postToLambda(url, data, callback) {
+        $.ajax({
+            url,
+            type: 'POST',
+            crossDomain: true,
+            data: JSON.stringify(data),
+            headers: { "Authorization": "Bearer " + token },
+            dataType: 'json',
+            contentType: "application/json",
+            success: function (reply) {
+                callback(reply);
+            }
+        });
     }
 
+    /*upload stuff*/
+
+    $(".save").submit(function (e) {
+        e.preventDefault();
+
+        postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaver-newDestinationSession", objectifyForm(this), function (reply) {
+
+            window.location.href = '/portal/students/profile';
+
+        });
+
+    });
+
+    function objectifyForm(formArray) {//serialize data function
+
+        var returnArray = {};
+        for (var i = 0; i < formArray.length; i++) {
+            if (formArray[i]['type'] == "checkbox") {
+                //console.log("checkbox");
+                returnArray[formArray[i]['name']] = formArray[i]['checked'];
+            } else {
+                if (formArray[i]['type'] == "radio") {
+                    //console.log("RadioBox");
+                    returnArray[formArray[i]['name']] = formArray[i]['checked'];
+                } else {
+                    //console.log("Not A checkbox");
+                    returnArray[formArray[i]['name']] = formArray[i]['value'];
+                }
+            }
+        }
+        return returnArray;
+    }
 
 </script>
 </html>
