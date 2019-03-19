@@ -13,7 +13,7 @@ var connection = mysql.createConnection({
 
 exports.handler = (event, context, callback) => {
     
-    connection.query("select * from fateweaver.mentors", [], function (err, results, fields) {
+    connection.query("select * from fateweaver.mentors order by id desc", [], function (err, results, fields) {
         if (err) {
             console.log("Error getting tutor groups:", err);
             context.succeed({
