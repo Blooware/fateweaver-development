@@ -16,7 +16,7 @@ var AWS = require('aws-sdk');
 var s3 = new AWS.S3();
 exports.handler = (event, context, callback) => {
 
-    connection.query("select given_name as 'Given Name', family_name as 'Family Name', dob as 'DOB', postcode as 'Postcode', null as 'Learner Phone Number', upn as 'UPN', uln as 'ULN', (select if(length((select confirmed_place from fateweaver.destination_sessions where student_id = fateweaver.students.id order by id desc limit 1)) > 1,((select confirmed_place from fateweaver.destination_sessions where student_id = fateweaver.students.id order by id desc limit 1)),((select concat('(Unconfirmed) ', aspiration) from fateweaver.destination_sessions where student_id = fateweaver.students.id order by id desc limit 1)))) as 'Intended Destination' from fateweaver.students", [], function (err, results, fields) {
+    connection.query("select given_name as 'Given Name', family_name as 'Family Name', dob as 'DOB', postcode as 'Postcode', null as 'Learner Phone Number', upn as 'UPN', uln as 'ULN', (select if(length((select destination from fateweaver.destination_sessions where student_id = fateweaver.students.id order by id desc limit 1)) > 1,((select destination from fateweaver.destination_sessions where student_id = fateweaver.students.id order by id desc limit 1)),((select concat('(Unconfirmed) ', aspiration) from fateweaver.destination_sessions where student_id = fateweaver.students.id order by id desc limit 1)))) as 'Intended Destination' from fateweaver.students", [], function (err, results, fields) {
         if (err) {
             console.log("Error getting tutor groups:", err);
             context.succeed({

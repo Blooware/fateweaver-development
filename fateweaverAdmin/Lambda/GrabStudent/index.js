@@ -21,7 +21,7 @@ exports.handler = (event, context, callback) => {
             });
         }
         var studentData = results;
-        connection.query("select * from fateweaver.destination_sessions where student_id in (select id from fateweaver.students where id = ? and  school_id = (select school_id from fateweaver.admins where cognito_id = ?))", [event.form.student_id, event.account.sub], function (err, results, fields) {
+        connection.query("select * from fateweaver.destination_sessions where student_id in (select id from fateweaver.students where id = ? and  school_id = (select school_id from fateweaver.admins where cognito_id = ?)) order by id desc", [event.form.student_id, event.account.sub], function (err, results, fields) {
             if (err) {
                 console.log("Error getting tutor groups:", err);
                 context.succeed({
