@@ -15,8 +15,8 @@ var connection = mysql.createConnection({
 exports.handler = (event, context, callback) => {
     console.log(event);
     //callback(null, event);
-    
-    
+
+
     /*
     connection.query("select * from fateweaver.schools", [data], function (err, results, fields) {
         if (err) {
@@ -39,7 +39,7 @@ exports.handler = (event, context, callback) => {
     });
     */
 
-    
+
     var poolData = {
         UserPoolId: 'eu-west-2_9yPc9js2X',
         ClientId: '4atq7kp8m6ibv56d3cgjbudhim'
@@ -53,7 +53,7 @@ exports.handler = (event, context, callback) => {
 
     var dataEmail = {
         Name: 'email',
-        Value: event.email
+        Value: event.form.email
     };
     var dataPhoneNumber = {
         Name: 'phone_number',
@@ -67,17 +67,21 @@ exports.handler = (event, context, callback) => {
     //TODO this should be a temport password
 
     userPool.signUp(event.form.email, event.form.password, attributeList, null, function (err, result) {
+
         if (err) {
-            alert(err);
+            console.log(err);
             return;
         }
-        cognitoUser = result.user;
-        //console.log('user name is ' + cognitoUser.getUsername());
+
+        //cognitoUser = result.user;
+        console.log(JSON.stringify(result.userSub));
+
         var data = {
-            email: event.email,
-            cognito_id: "3001",
+            email: event.form.email,
+            cognito_id: result.userSub,
             added: new Date(Date.now()),
-            school_id: event.school_id
+            added_id: event.account.sub,
+            school_id: event.form.school_id
         }
         connection.query("insert into fateweaver.admins set ?", [data], function (err, results, fields) {
             if (err) {
@@ -88,25 +92,18 @@ exports.handler = (event, context, callback) => {
                     errMsg: "error adding that mentor err :" + err
                 });
             }
-            
+
             context.succeed({
                 statusCode: 200,
                 status: true,
-                body : results
+                body: results,
+
             });
         });
 
-
-        /*
-        callback(null, {
-           //username: cognitoUser.getUsername(),
-           event : event
-        });
-        */
-        
-
     });
-    
+
+
 
 
 }
