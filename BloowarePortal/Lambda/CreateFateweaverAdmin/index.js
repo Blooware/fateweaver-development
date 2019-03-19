@@ -38,7 +38,7 @@ exports.handler = (event, context, callback) => {
         }
     });
     */
-
+    
     
     var poolData = {
         UserPoolId: 'eu-west-2_9yPc9js2X',
@@ -53,7 +53,7 @@ exports.handler = (event, context, callback) => {
 
     var dataEmail = {
         Name: 'email',
-        Value: event.email
+        Value: event.form.email
     };
     var dataPhoneNumber = {
         Name: 'phone_number',
@@ -66,46 +66,78 @@ exports.handler = (event, context, callback) => {
     attributeList.push(attributePhoneNumber);
     //TODO this should be a temport password
 
-    userPool.signUp(event.form.email, event.form.password, attributeList, null, function (err, result) {
+    userPool.signUp(event.form.email, "Event.form.password2!", attributeList, null, function (err, result) {
         if (err) {
-            alert(err);
+            context.succeed({
+                statusCode: 200,
+                status: false,
+                err : err,
+                erroris : "The error is here1"
+            });
             return;
         }
         cognitoUser = result.user;
+        console.log("Stuff" + cognitoUser);
+        var CognitoDataStuff;
+        callback(null, {
+            cognitoUser: cognitoUser,
+            results : results,
+            resultssub : results.sub,
+        })
         //console.log('user name is ' + cognitoUser.getUsername());
-        var data = {
-            email: event.email,
-            cognito_id: "3001",
-            added: new Date(Date.now()),
-            school_id: event.school_id
-        }
-        connection.query("insert into fateweaver.admins set ?", [data], function (err, results, fields) {
+        /*
+        cognitoUser.getUserAttributes(function(err, result) {
+
             if (err) {
-                console.log("Error getting tutor groups:", err);
                 context.succeed({
                     statusCode: 200,
                     status: false,
-                    errMsg: "error adding that mentor err :" + err
+                    err : err,
+                    erroris : "The error is here2"
                 });
             }
-            
-            context.succeed({
-                statusCode: 200,
-                status: true,
-                body : results
+            CognitoDataStuff = result;
+
+            var data = {
+                email: event.form.email,
+                cognito_id: "result.user.sub",
+                added: new Date(Date.now()),
+                added_id : event.account.sub,
+                school_id: event.form.school_id
+            }
+            connection.query("insert into fateweaver.admins set ?", [data], function (err, results, fields) {
+                if (err) {
+                    console.log("Error getting tutor groups:", err);
+                    context.succeed({
+                        statusCode: 200,
+                        status: false,
+                        errMsg: "error adding that mentor err :" + err
+                    });
+                }
+                
+                context.succeed({
+                    statusCode: 200,
+                    status: true,
+                    body : results,
+                    User : cognitoUser,
+                    CognitoDataStuff : CognitoDataStuff
+    
+                });
             });
-        });
-
-
-        /*
-        callback(null, {
-           //username: cognitoUser.getUsername(),
-           event : event
+            
         });
         */
         
 
+        
+
+
+        
+        
+        
+
     });
+    
     
 
 
