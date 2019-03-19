@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style="display:none;">
 
 <head>
     <meta charset="utf-8">
@@ -76,26 +76,30 @@
         </div>
     </div>
     <div id="wrapper">
-        <div id="sidebar-wrapper" style="background-color: #234e67!important;">
+       <!--navigation-->
+       <div id="sidebar-wrapper" style="background-color: #234e67!important;">
             <ul class="d-block sidebar-nav" style="height: 100%;overflow: hidden;">
                 <li style="padding-top: 150px;">
                     <a href="/portal" style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fa fa-home" style="padding-right: 10px;width: 60px;"></i>HOME</a>
+                        <i class="fa fa-home" style="padding-right: 10px;width: 60px;"></i>HOME
+                    </a>
                     <a href="/portal/students" style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fa fa-users" style="padding-right: 10px;width: 60px;"></i>STUDENTS</a>
-                    <a class="text-uppercase" href="#" style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fas fa-user-lock" style="padding-right: 10px;width: 60px;"></i>MENTORS</a>
-                
-                    <a class="text-uppercase" href="#" style="color: #fff!important;padding-bottom: 10px;"><i class="fa fa-bar-chart"
-                            style="padding-right: 10px;width: 60px;"></i>INSIGHTS</a>
-                
-                    <a class="text-uppercase" href="#" style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fa fa-user" style="padding-right: 10px;width: 60px;"></i>Account</a>
+                        <i class="fa fa-users" style="padding-right: 10px;width: 60px;"></i>STUDENTS
+                    </a>
+                    <a class="text-uppercase" href="/portal/mentors" style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fas fa-user-lock" style="padding-right: 10px;width: 60px;"></i>MENTORS
+                    </a>
+                    <a class="text-uppercase" href="/portal/insights" style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fa fa-bar-chart" style="padding-right: 10px;width: 60px;"></i>INSIGHTS
+                    </a>
+                    <a class="text-uppercase" href="/portal/account" style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fa fa-user" style="padding-right: 10px;width: 60px;"></i>Account
+                    </a>
                     <div style="position: absolute;bottom: 0px;width: 100%;padding-bottom: 25px;">
-                        <a href="#" style="color: #fff!important;width: 100%;padding-left: 19px;">huw@blooware.co.uk</a>
-                
-                        <a class="text-uppercase" href="#" style="color: #fff!important;width: 100%;"><i class="fa fa-sign-out"
-                                style="padding-right: 10px;width: 60px;"></i><strong>LOG OUT</strong></a>
+                        <a class="text-uppercase" onclick="signMeOut()" style="color: #fff!important;width: 100%;">
+                            <i class="fa fa-sign-out" style="padding-right: 10px;width: 60px;"></i>
+                            <strong>LOG OUT</strong>
+                        </a>
                     </div>
                 </li>
             </ul>
@@ -137,7 +141,7 @@
                     <div class="row" style="padding-bottom: 30px;">
                         <div class="float-left"
                             style="height: 60px;background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 15px;overflow: hidden;">
-                            <input type="search" placeholder="Search by name or UPN..."
+                            <input type="search" onkeyup="search(this.value)" placeholder="Search by name or UPN..."
                                 style="height: 60px;border: 0px;outline: none;width: 350px;text-indent: 24px;"></div>
                     </div>
                 </div>
@@ -152,36 +156,33 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/script.min.js"></script>
+    <script src="../assets/js/script.min.js"></script>
     <script src="https://www.blooware.co.uk/blooAuth/vendor/aws-cognito-sdk.min.js"></script>
     <script src="https://www.blooware.co.uk/blooAuth/vendor/amazon-cognito-identity.min.js"></script>
     <script src="https://www.blooware.co.uk/blooAuth/blooAuth.js"></script>
+    <script src="../assets/js/security.js"></script>
     <script>
-        var added_sub = "Not set yet";
-        var token;
-        $(document).ready(function () {
-            connectToPool('eu-west-2_9yPc9js2X', '4atq7kp8m6ibv56d3cgjbudhim', function () {
-                checkAuth(function (result) {
-                    if (result == true) {
-                        $('html').show();
-                        getJwtToken(function (x) {
-                            token = x.token;
-                            refresh();
-                        });
+       
+        function search(x) {
+            console.log(x)
+            if (x.length > 1) {
+                $('#results > .item').each(function () {
+                    var prod = $(this);
+                    if (prod.attr('search').toLowerCase().indexOf(x.toLowerCase()) > 0) {
+
+                        prod.show();
+                    } else {
+                        prod.hide();
                     }
                 });
-            });
-        });
-
-        function checkAuth(callback) {
-            signedIn(function (response) {
-                if (response.success) {
-                    callback(true);
-                } else {
-                    window.location.href = '/portal/signIn'
-                }
-            });
+            } else {
+                $('#results > .item').each(function () {
+                    var prod = $(this);
+                    prod.show();
+                });
+            }
         }
+
 
         //Load Existing Customers
         function refresh() {
@@ -193,7 +194,7 @@
                 console.log(reply);
                 $('#results').html('<tr style="font-weight: normal!important;"> <th style="width: 120px;"></th> <th style="font-weight: normal;">Name</th> <th style="font-weight: normal;">Tutor Group</th> <th style="font-weight: normal;">UPN</th> <th style="font-weight: normal;">Aspiration</th> </tr>');
                 for (var i = 0; i < reply.body.length; i++) {
-                    $('#results').append('<a href="/BloowarePortal/School/?id=' + reply.body[i].id + '"><tr style="font-weight: bold;"> <td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="assets/img/16.jpg" style="width: 100%;min-height: 100%;"></div> </td> <td style="font-size: 15px;">' + reply.body[i].given_name + ' ' + reply.body[i].family_name + '</td> <td style="font-size: 15px;">' + reply.body[i].tutor_group_id + '</td> <td style="font-size: 15px;">' + reply.body[i].upn + '</td> <td style="font-size: 15px;">' + reply.body[i].aspiration + '</td> </tr> </a>');
+                    $('#results').append('<tr class="item" search="search ' + reply.body[i].given_name + ' ' + reply.body[i].family_name + ' ' + reply.body[i].upn + ' search" style="font-weight: bold;"><td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="assets/img/placeholder.png" style="width: 100%;min-height: 100%;"></div> </td> <td style="font-size: 15px;"> <a  href="/portal/students/profile/?upn=' + reply.body[i].upn + '&sid=' + reply.body[i].school_id + '">' + reply.body[i].given_name + ' ' + reply.body[i].family_name + '</a></td> <td style="font-size: 15px;">' + reply.body[i].tutor_group_id + '</td> <td style="font-size: 15px;">' + reply.body[i].upn + '</td> <td style="font-size: 15px;">' + reply.body[i].aspiration + '</td> </tr> ');
                 }
 
             });
@@ -215,19 +216,7 @@
             });
         }
 
-        function signMeOut() {
-            signOut(function () {
-                checkAuth();
-            });
-        }
-
-        function getUserId(index, callback) {
-            getUser(function (user) {
-                return callback(user[index].Value);
-            });
-        }
-
-
+     
         function replaceStudent(i){
             console.log(studentsToEdit[i])
         }
@@ -256,7 +245,7 @@
 
                 for (var i = 0; i < reply.NotDone.length; i++) {
                     studentsToEdit.push(reply.NotDone[i].jsonStudent);
-                    $('#NotDone-results').append('<a href="/BloowarePortal/School/?id=' + reply.NotDone[i].jsonStudent.id + '"><tr style="font-weight: bold;"> <td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="assets/img/16.jpg" style="width: 100%;min-height: 100%;"></div> </td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.given_name + ' ' + reply.NotDone[i].jsonStudent.family_name + '</td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.tutor_group_id + '</td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.upn + '</td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.aspiration + '</td> <td style="font-size: 15px;"><button onclick="replaceStudent(' + i + ')">Replace</button></td> <td style="font-size: 15px;"><button onclick="ignoreStudent(' + i + ')">Ignore</button></td></tr> </a>');
+                    $('#NotDone-results').append('<a href="/BloowarePortal/School/?id=' + reply.NotDone[i].jsonStudent.id + '"><tr style="font-weight: bold;"> <td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="assets/img/placeholder.png" style="width: 100%;min-height: 100%;"></div> </td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.given_name + ' ' + reply.NotDone[i].jsonStudent.family_name + '</td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.tutor_group_id + '</td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.upn + '</td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.aspiration + '</td> <td style="font-size: 15px;"><button onclick="replaceStudent(' + i + ')">Replace</button></td> <td style="font-size: 15px;"><button onclick="ignoreStudent(' + i + ')">Ignore</button></td></tr> </a>');
                 }
             });
         });
