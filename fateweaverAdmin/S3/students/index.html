@@ -134,7 +134,7 @@
                             <button class="btn btn-primary" type="button"
                                 style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 20px;">Download
                                 Student Template &nbsp;<i class="fa fa-cloud-download"></i></button><button
-                                class="btn btn-primary" type="button"
+                                class="btn btn-primary" type="button"  onclick="getReport()"
                                 style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 20px;">Generate
                                 Report &nbsp;<i class="fa fa-paste"></i></button></div>
                     </div>
@@ -215,6 +215,29 @@
                 }
             });
         }
+
+    function getReport() {
+        $.ajax({
+            url: "https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaver-getReport",
+            type: 'GET',
+            crossDomain: true,
+            data: "",
+            headers: { "Authorization": "Bearer " + token },
+            dataType: 'json',
+            contentType: "application/json",
+            success: function (reply) {
+                console.log(reply)
+                var bytes = new Uint8Array(reply.Body.data); // pass your byte response to this constructor
+
+                var blob = new Blob([bytes], { type: "application/csv" });// change resultByte to bytes
+
+                var link = document.createElement('a');
+                link.href = window.URL.createObjectURL(blob);
+                link.download = "Ofsted.csv";
+                link.click();
+            }
+        });
+    }
 
      
         function replaceStudent(i){
