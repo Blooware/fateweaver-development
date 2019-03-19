@@ -54,12 +54,17 @@ exports.handler = (event, context, callback) => {
 
     //callback(null, fields[0]);
     var school_id;
-    connection.query("select school_id from fateweaver.admins where cognito_id = ?", [event.account.sub], function (err, results, fields) {
+
+    connection.query("select * from fateweaver.admins where cognito_id = ?", [event.account.sub], function (err, results, fields) {
         if (err) {
             console.log("Error getting tutor groups:", err);
         }
+        console.log(results);
+
         school_id = results[0].school_id;
+        console.log("School : " + school_id);
     });
+
 
 
 
