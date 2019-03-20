@@ -247,9 +247,21 @@
      
         function replaceStudent(i){
             console.log(studentsToEdit[i])
+            var studentData = studentsToEdit[i];
+            postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postReplaceStudent', [{studentData : studentData}], function (reply) {
+                console.log(reply);
+
+                if(reply.status = true){
+                    // now remove it from the list or say success
+                    console.log("success");
+                }
+            });
+
         }
 
         function ignoreStudent(i){
+            // this just needs to remove it from the list op people
+
             console.log(studentsToEdit[i])
         }
 
