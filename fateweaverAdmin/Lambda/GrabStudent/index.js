@@ -10,7 +10,7 @@ var connection = mysql.createConnection({
 
 exports.handler = (event, context, callback) => {
     //callback(null,event);
-    
+
     connection.query("select * from fateweaver.students where id = ? and school_id = (select school_id from fateweaver.admins where cognito_id = ? limit 1)", [event.form.student_id, event.account.sub], function (err, results, fields) {
         if (err) {
             console.log("Error getting tutor groups:", err);
@@ -30,15 +30,31 @@ exports.handler = (event, context, callback) => {
                     errMsg: "error getting students :" + err
                 });
             }
-            context.succeed({
-                statusCode: 200,
-                status: true,
-                studentData : studentData,
-                destinations : results
+            var destinations = results;
+            connection.query("select * from fateweaver.student_files where student_id = (select id from fateweaver.students where id = ? and school_id = (select school_id from fateweaver.admins where cognito_id = ?))", [event.form.student_id, event.account.sub], function (err, results, fields) {
+                if (err) {
+                    console.log("Error getting tutor groups:", err);
+                    context.succeed({
+                        statusCode: 200,
+                        status: false,
+                        errMsg: "error getting students :" + err
+                    });
+                }
+                var studentFiles = results;
+
+
+                context.succeed({
+                    statusCode: 200,
+                    status: true,
+                    studentData: studentData,
+                    destinations: destinations,
+                    studentFiles: studentFiles,
+                });
+
             });
         });
     });
-    
+
 }
 
 
