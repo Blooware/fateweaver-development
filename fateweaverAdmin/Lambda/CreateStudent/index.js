@@ -63,30 +63,31 @@ exports.handler = (event, context, callback) => {
     function delay() {
         return new Promise(resolve => setTimeout(resolve, 300));
     }
-    async function createStudent(Group_id, StudentInfo, file) {
+    function createStudent(Group_id, StudentInfo, file) {
 
 
         var dset = {
-            given_name: StudentInfo["Given Name"],
-            family_name: StudentInfo["Family Name"],
-            dob: StudentInfo.DOB,
-            postcode: StudentInfo.Postcode,
-            upn: StudentInfo.UPN,
-            uln: StudentInfo.ULN,
+            given_name: event.form.givenName,
+            family_name: event.form.familyName,
+            dob: event.form.dob,
+            postcode: event.form.Postcode,
+            upn: event.form.upn,
+            uln: event.form.uln,
             tutor_group_id: Group_id,
-            gender: StudentInfo.Gender,
-            pp: StudentInfo.PP,
-            sen: StudentInfo.SEN,
+            gender: event.form.gender,
+            pp: event.form.pp,
+            sen: event.form.sen,
             school_id: school_id,
 
             added: new Date(Date.now()),
             added_id: event.account.sub,
-            csv: file.fileFullName
+            csv: "added manually"
         }
 
         connection.query("select * from fateweaver.students where given_name = ? and postcode = ? and upn = ? and school_id = ?  ", [StudentInfo["Given Name"], StudentInfo.Postcode, StudentInfo.UPN, school_id], function (error, results, fields) {
             if (results.length > 0) {
                 //append to Not added
+                /*
                 var jsonStudent = {
                     given_name: StudentInfo["Given Name"],
                     family_name: StudentInfo["Family Name"],
@@ -103,8 +104,16 @@ exports.handler = (event, context, callback) => {
 
                 }
                 notAdded.push({ jsonStudent });
+                */
+                context.succeed({
+
+                    status : false,
+                    errmsg : "didn't add",
+                });
+                
             } else {
                 connection.query("insert into fateweaver.students set ?", [dset], function (error, results, fields) {
+                    /*
                     var jsonStudent = {
                         given_name: StudentInfo["Given Name"],
                         family_name: StudentInfo["Family Name"],
@@ -118,7 +127,14 @@ exports.handler = (event, context, callback) => {
                         sen: StudentInfo.SEN,
                     }
                     Added.push({ jsonStudent });
+                    */
+                    context.succeed({
+                        status : true,
+                        body : results,
+                        school_id : school_id,
+                    });
                     console.log(results);
+
                 });
 
             }
