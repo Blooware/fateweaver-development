@@ -13,7 +13,7 @@ var connection = mysql.createConnection({
 
 exports.handler = (event, context, callback) => {
 
-    connection.query("select * from fateweaver.students left join fateweaver.destination_sessions on fateweaver.destination_sessions.student_id=fateweaver.students.id where school_id = (select school_id from fateweaver.admins where cognito_id = ? limit 1)", [event.account.sub], function (err, results, fields) {
+    connection.query("select *, id as student_id, (select aspiration from fateweaver.destination_sessions where student_id = fateweaver.students.id order by id desc limit 1) as aspiration, (select if(length((select confirmed_place from fateweaver.destination_sessions where student_id = fateweaver.students.id order by id desc limit 1)) > 1,((select confirmed_place from fateweaver.destination_sessions where student_id = fateweaver.students.id order by id desc limit 1)),((select concat('(Unconfirmed) ', aspiration) from fateweaver.destination_sessions where student_id = fateweaver.students.id order by id desc limit 1)))) as destination from fateweaver.students where school_id = (select school_id from fateweaver.admins where cognito_id = '7cf76b96-b151-40ec-b2fd-448af70067fb' limit 1);", [event.account.sub], function (err, results, fields) {
         if (err) {
             console.log("Error getting tutor groups:", err);
             context.succeed({
