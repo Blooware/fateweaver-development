@@ -131,9 +131,11 @@
                                     Students &nbsp;<i class="fa fa-cloud-upload"></i>
                                 </button>
                             </a>
-                            <button class="btn btn-primary" type="button"
+                           <!-- <button class="btn btn-primary" type="button"
                                 style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 20px;">Download
-                                Student Template &nbsp;<i class="fa fa-cloud-download"></i></button><button
+                                Student Template &nbsp;<i class="fa fa-cloud-download"></i></button>-->
+                                
+                                <button
                                 class="btn btn-primary" type="button"  onclick="getReport()"
                                 style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 20px;">Generate
                                 Report &nbsp;<i class="fa fa-paste"></i></button></div>
@@ -195,7 +197,7 @@
                 $('#results').html('<tr style="font-weight: normal!important;"> <th style="width: 120px;"></th> <th style="font-weight: normal;">Name</th> <th style="font-weight: normal;">Tutor Group</th> <th style="font-weight: normal;">UPN</th>  <th style="font-weight: normal;">Destination</th> <th style="font-weight: normal;">Aspiration</th> </tr>');
                 for (var i = 0; i < reply.body.length; i++) {
                 
-                        $('#results').append('<tr class="item" search="search ' + reply.body[i].given_name + ' ' + reply.body[i].family_name + ' ' + reply.body[i].upn + ' search" style="font-weight: bold;"><td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="assets/img/placeholder.png" style="width: 100%;min-height: 100%;"></div> </td> <td style="font-size: 15px;"> <a  href="/portal/students/profile/?student_id=' + reply.body[i].student_id + '">' + reply.body[i].given_name + ' ' + reply.body[i].family_name + '</a></td> <td style="font-size: 15px;">' + reply.body[i].tutor_group_id + '</td> <td style="font-size: 15px;">' + reply.body[i].upn + '</td> <td style="font-size: 15px;">' + reply.body[i].destination + '</td><td style="font-size: 15px;">' + reply.body[i].aspiration + '</td></tr> ');
+                        $('#results').append('<tr class="item" search="search ' + reply.body[i].given_name + ' ' + reply.body[i].family_name + ' ' + reply.body[i].upn + ' search" style="font-weight: bold;"><td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="../assets/img/placeholder.png" style="width: 100%;min-height: 100%;"></div> </td> <td style="font-size: 15px;"> <a  href="/portal/students/profile/?student_id=' + reply.body[i].student_id + '">' + reply.body[i].given_name + ' ' + reply.body[i].family_name + '</a></td> <td style="font-size: 15px;">' + reply.body[i].tutor_group_id + '</td> <td style="font-size: 15px;">' + reply.body[i].upn + '</td> <td style="font-size: 15px;">' + reply.body[i].destination + '</td><td style="font-size: 15px;">' + reply.body[i].aspiration + '</td></tr> ');
                     
                     
                 }
