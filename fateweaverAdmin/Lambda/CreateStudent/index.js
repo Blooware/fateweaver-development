@@ -17,10 +17,13 @@ exports.handler = (event, context, callback) => {
     console.log(Object.keys(event.form[0]));
     var keys = Object.keys(event.form[0]);
 
+    //callback(null, keys);
+
     processJsonData(keys);
 
     async function processJsonData(array) {
         for (const item of array) {
+            console.log("Item is :" + item);
             await delayedJsonData(item);
         }
         console.log("Finished Checks");
@@ -132,8 +135,8 @@ exports.handler = (event, context, callback) => {
         console.log(key);
         if (required.includes(key) == true) {
             //console.log(required.hasOwnProperty("familyName"));
-            console.log(event.form[key])
-            if ((event.form[key] == null) || (event.form[key] == "")) {
+            console.log(event.form[0][key])
+            if ((event.form[0][key] == null) || (event.form[0][key] == "")) {
                 context.succeed({
                     status: false,
                     required: key
@@ -147,6 +150,7 @@ exports.handler = (event, context, callback) => {
         }
 
     }
+
 
 
 }
