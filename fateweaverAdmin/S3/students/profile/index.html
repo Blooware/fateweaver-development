@@ -169,7 +169,7 @@
                                             File &nbsp;<i class="fa fa-paperclip"></i></button></div>
                                     <div class="float-left"
                                         style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 0px;">
-                                        <button class="btn btn-primary" type="button"
+                                        <button class="btn btn-primary" type="button" onclick="deleteStudent()"
                                             style="height: 100%;padding: 12px 24px;background-color: transparent;color: #d32641;border: 0px!important;font-size: 16px;">Delete
                                             &nbsp;<i class="far fa-trash-alt"></i></button></div>
                                 </div>
@@ -425,7 +425,7 @@
             
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postUpdateStudent", {studentInfo : objectifyForm(this), student_id : student_id}, function (reply) {
                 console.log(reply);
-                //refresh();
+                refresh();
             });
             
 
@@ -450,6 +450,19 @@
                 }
             }
             return returnArray;
+        }
+
+
+
+
+        function deleteStudent (){
+            console.log(student_id);
+            
+            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postDeleteStudent", {student_id : student_id}, function (reply) {
+                console.log(reply);
+                //refresh();
+            });
+            
         }
 
     </script>
