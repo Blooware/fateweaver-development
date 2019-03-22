@@ -16,28 +16,64 @@
 
 <body style="width: 100%;height: 100%;background-color: #ffffff;">
 
-     <!--Popups-->
-     <div>
+    <!--Popups-->
+    <div>
         <div class="d-inline-flex popup1" id="popup1"
             style="display: none!important;border-radius: 15px;padding: 3%;position: relative;-webkit-box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);position: fixed;width: 100%;height: 80%;width: 80%;top: 10%;background: #FFF;left: 10%;z-index: 999999999999999999999999999999999999999999;">
-            
-                  
-                    
-                  
 
-                        <form method="post" class="save">
-                            <div class="form-group" style="padding:30px;padding-left:0px;padding-top:0px;">
-                                <p class="d-inline" style="text-align: right;cursor: pointer;text-decoration: underline; float:left; "
-                                    onclick="$('.popup1').attr('style', $('.popup1').attr('style') + ';display: none!important;');">Close</p>
-            
-                            </div>
-                            <input type="file" id="files" name="files" />
-                    
-                            <button type="submit">Upload</button>
-                    
-                        </form>
-    
-           
+
+
+
+
+            <form method="post" class="save">
+                <div class="form-group" style="padding:30px;padding-left:0px;padding-top:0px;">
+                    <p class="d-inline"
+                        style="text-align: right;cursor: pointer;text-decoration: underline; float:left; "
+                        onclick="$('.popup1').attr('style', $('.popup1').attr('style') + ';display: none!important;');">
+                        Close</p>
+
+                </div>
+                <input type="file" id="files" name="files" />
+
+                <button type="submit">Upload</button>
+
+            </form>
+
+
+        </div>
+        <div class="d-inline-flex popupEdit" id="popupEdit"
+            style="display: none!important;border-radius: 15px;padding: 3%;position: relative;-webkit-box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);position: fixed;width: 100%;height: 80%;width: 80%;top: 10%;background: #FFF;left: 10%;z-index: 999999999999999999999999999999999999999999;">
+
+
+
+
+
+            <form method="post" class="saveEdit">
+                <div class="form-group" style="padding:30px;padding-left:0px;padding-top:0px;">
+                    <p class="d-inline"
+                        style="text-align: right;cursor: pointer;text-decoration: underline; float:left; "
+                        onclick="$('.popupEdit').attr('style', $('.popupEdit').attr('style') + ';display: none!important;');">
+                        Close</p>
+
+                </div>
+
+                <input id="givenName" placeholder="givenName" type="text" id="given_name" name="givenName" /><br>
+                <input id="family_name" placeholder="family_name" type="text" id="family_name" name="familyName" /><br>
+                <input id="dob" placeholder="dob" type="date" id="dob" name="dob" /><br>
+                <input id="gender" placeholder="gender" type="text" id="gender" name="gender" /><br>
+                <input id="postcode" placeholder="postcode" type="text" id="postcode" name="postcode" /><br>
+                <input id="upn" placeholder="upn" type="text" id="upn" name="upn" /><br>
+                <input id="uln" placeholder="uln" type="text" id="uln" name="uln" /><br>
+                <input id="tutorGroup" placeholder="tutorGroup" type="text" id="tutorGroup" name="tutorGroup" /><br>
+                <input id="pp" placeholder="pp" type="text" id="pp" name="pp" /><br>
+                <!--pupil premium-->
+                <input id="sen" placeholder="sen" type="text" id="sen" name="sen" /><br>
+                <!--special education needs-->
+
+                <button type="submit">Upload</button>
+
+            </form>
+
         </div>
     </div>
 
@@ -120,19 +156,27 @@
                                         <button class="btn btn-primary" onclick="newSession()" type="button"
                                             style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 16px;">New
                                             Career Session &nbsp;<i class="fas fa-plus"></i></button></div>
-                                     <div class="float-left" style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 10px;">
-                                        <button class="btn btn-primary" type="button" style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 16px;">Edit
+                                    <div class="float-left"
+                                        style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 10px;">
+
+                                        <button class="btn btn-primary" onclick="$('#popupEdit').fadeIn()" type="button"
+                                            style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 16px;">Edit
                                             &nbsp;<i class="fas fa-pencil-alt"></i></button></div>
-                                            <div class="float-left" style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 60px;">
-                                                <button class="btn btn-primary" type="button" onclick="$('#popup1').show();" style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 16px;">Attach File &nbsp;<i class="fa fa-paperclip"></i></button></div>
-                                    <div class="float-left" style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 0px;">
-                                        <button class="btn btn-primary" type="button" style="height: 100%;padding: 12px 24px;background-color: transparent;color: #d32641;border: 0px!important;font-size: 16px;">Delete
+                                    <div class="float-left"
+                                        style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 60px;">
+                                        <button class="btn btn-primary" type="button" onclick="$('#popup1').show();"
+                                            style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 16px;">Attach
+                                            File &nbsp;<i class="fa fa-paperclip"></i></button></div>
+                                    <div class="float-left"
+                                        style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 0px;">
+                                        <button class="btn btn-primary" type="button" onclick="deleteStudent()"
+                                            style="height: 100%;padding: 12px 24px;background-color: transparent;color: #d32641;border: 0px!important;font-size: 16px;">Delete
                                             &nbsp;<i class="far fa-trash-alt"></i></button></div>
                                 </div>
                             </div>
                             <div class="row" style="margin-top:50px;">
-                               
-                               
+
+
                                 <div class="col-md-5" style="margin-left:0px;padding:15px;background: #fff;">
                                     <div>
                                         <div class="row" style="margin-bottom: 30px;">
@@ -156,59 +200,68 @@
                                             <div class="col-12"
                                                 style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 40px;">
                                                 <h1 style="font-weight: 300;">Suggested Mentors</h1>
-                                                <a style="font-size: 12px; color: #5981ca!important; ">POWERED BY MOLLI</a>
+                                                <a style="font-size: 12px; color: #5981ca!important; ">POWERED BY
+                                                    MOLLI</a>
                                             </div>
                                         </div>
-                                    
+
                                         <div class="row" id="matches" style="margin-left:0px;">
                                             <div class="col-3">
                                                 <div class="match" style="width:100px;">
-                                                    <div class="border m-auto d-block rounded-circle" style="width: 50px;height: 50px;overflow: hidden;">
-                                                        <img src="../../assets/img/placeholder.png" style="width: 100%;">
+                                                    <div class="border m-auto d-block rounded-circle"
+                                                        style="width: 50px;height: 50px;overflow: hidden;">
+                                                        <img src="../../assets/img/placeholder.png"
+                                                            style="width: 100%;">
                                                     </div>
                                                     <p style="text-align:center;">Clive Barker</p>
                                                 </div>
                                             </div>
                                             <div class="col-3">
                                                 <div class="match" style="width:100px;">
-                                                    <div class="border m-auto d-block rounded-circle" style="width: 50px;height: 50px;overflow: hidden;">
-                                                        <img src="../../assets/img/placeholder.png" style="width: 100%;">
+                                                    <div class="border m-auto d-block rounded-circle"
+                                                        style="width: 50px;height: 50px;overflow: hidden;">
+                                                        <img src="../../assets/img/placeholder.png"
+                                                            style="width: 100%;">
                                                     </div>
                                                     <p style="text-align:center;">Clive Barker</p>
                                                 </div>
                                             </div>
                                             <div class="col-3">
                                                 <div class="match" style="width:100px;">
-                                                    <div class="border m-auto d-block rounded-circle" style="width: 50px;height: 50px;overflow: hidden;">
-                                                        <img src="../../assets/img/placeholder.png" style="width: 100%;">
+                                                    <div class="border m-auto d-block rounded-circle"
+                                                        style="width: 50px;height: 50px;overflow: hidden;">
+                                                        <img src="../../assets/img/placeholder.png"
+                                                            style="width: 100%;">
                                                     </div>
                                                     <p style="text-align:center;">Clive Barker</p>
                                                 </div>
                                             </div>
                                             <div class="col-3">
                                                 <div class="match" style="width:100px;">
-                                                    <div class="border m-auto d-block rounded-circle" style="width: 50px;height: 50px;overflow: hidden;">
-                                                        <img src="../../assets/img/placeholder.png" style="width: 100%;">
+                                                    <div class="border m-auto d-block rounded-circle"
+                                                        style="width: 50px;height: 50px;overflow: hidden;">
+                                                        <img src="../../assets/img/placeholder.png"
+                                                            style="width: 100%;">
                                                     </div>
                                                     <p style="text-align:center;">Clive Barker</p>
                                                 </div>
                                             </div>
                                         </div>
-                                    
-                                    
+
+
                                     </div>
                                     <div>
                                         <div class="row" style="margin-bottom: 30px;">
                                             <div class="col-12"
                                                 style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 40px;">
                                                 <h1 style="font-weight: 300;">Files</h1>
-                                                
+
                                             </div>
                                         </div>
 
 
                                         <div id="filesList" style="padding-left: 40px;">
-                                            
+
                                         </div>
 
                                     </div>
@@ -217,13 +270,13 @@
                         </div>
                     </div>
 
-                 
+
                 </div>
             </div>
         </div>
     </div>
 
-    
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
@@ -260,9 +313,9 @@
                 }
                 for (i = 0; i < reply.studentFiles.length; i++) {
 
-                   
-                        $('#filesList').append('<a style="background:#eee;border-radius: 5px;padding:12px 24px;color:#000!important;box-shadow: 0 0 15px rgba(0,0,0,0.4);">' + reply.studentFiles[i].name + ' <i class="fa fa-download"></i></a>');
-                 
+
+                    $('#filesList').append('<a style="background:#eee;border-radius: 5px;padding:12px 24px;color:#000!important;box-shadow: 0 0 15px rgba(0,0,0,0.4);">' + reply.studentFiles[i].name + ' <i class="fa fa-download"></i></a>');
+
                 }
 
                 if (reply.status == false) {
@@ -272,6 +325,16 @@
                 } else if (reply.status == true) {
 
                     $('#Name').html(reply.studentData[0].given_name + " " + reply.studentData[0].family_name);
+                    $('#givenName').val(reply.studentData[0].given_name);
+                    $('#family_name').val(reply.studentData[0].family_name);
+                    $('#dob').val(reply.studentData[0].dateOfBirth);
+                    $('#gender').val(reply.studentData[0].gender);
+                    $('#postcode').val(reply.studentData[0].postcode);
+                    $('#upn').val(reply.studentData[0].upn);
+                    $('#uln').val(reply.studentData[0].uln);
+                    $('#tutorGroup').val(reply.studentData[0].tutorGroup);
+                    $('#pp').val(reply.studentData[0].pp);
+                    $('#sen').val(reply.studentData[0].sen);
 
                 } else {
 
@@ -314,12 +377,12 @@
             console.log(base64File);
             console.log(student_id);
 
-            
+
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postStudentFile", { base64String: base64File, name: fileName, student_id: student_id }, function (reply) {
                 console.log(reply);
                 //refresh();
             });
-            
+
 
         });
 
@@ -350,6 +413,56 @@
             })(f);
             // Read in the image file as a data URL.
             reader.readAsBinaryString(f);
+        }
+
+
+        $(".saveEdit").submit(function (e) {
+            e.preventDefault();
+
+            //console.log(objectifyForm(this));
+
+
+            
+            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postUpdateStudent", {studentInfo : objectifyForm(this), student_id : student_id}, function (reply) {
+                console.log(reply);
+                refresh();
+            });
+            
+
+
+        });
+
+        function objectifyForm(formArray) {//serialize data function
+
+            var returnArray = {};
+            for (var i = 0; i < formArray.length; i++) {
+                if (formArray[i]['type'] == "checkbox") {
+                    //console.log("checkbox");
+                    returnArray[formArray[i]['name']] = formArray[i]['checked'];
+                } else {
+                    if (formArray[i]['type'] == "radio") {
+                        //console.log("RadioBox");
+                        returnArray[formArray[i]['name']] = formArray[i]['checked'];
+                    } else {
+                        //console.log("Not A checkbox");
+                        returnArray[formArray[i]['name']] = formArray[i]['value'];
+                    }
+                }
+            }
+            return returnArray;
+        }
+
+
+
+
+        function deleteStudent (){
+            console.log(student_id);
+            
+            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postDeleteStudent", {student_id : student_id}, function (reply) {
+                console.log(reply);
+                //refresh();
+            });
+            
         }
 
     </script>
