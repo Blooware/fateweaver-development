@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html style="display:none;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Tutor Group</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400">
+    <link rel="stylesheet" href="../../assets/css/styles.min.css">
+</head>
+
+<body style="width: 100%;height: 100%;background-color: #ffffff;">
+
+    <!--Popups-->
+    <div>
+        <div class="d-inline-flex popupEdit" id="popupEdit"
+            style="display: none!important;border-radius: 15px;padding: 3%;position: relative;-webkit-box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);position: fixed;width: 100%;height: 80%;width: 80%;top: 10%;background: #FFF;left: 10%;z-index: 999999999999999999999999999999999999999999;">
+            <form method="post" class="saveEdit">
+                <div class="form-group" style="padding:30px;padding-left:0px;padding-top:0px;">
+                    <p class="d-inline"
+                        style="text-align: right;cursor: pointer;text-decoration: underline; float:left; "
+                        onclick="$('.popupEdit').attr('style', $('.popupEdit').attr('style') + ';display: none!important;');">
+                        Close</p>
+
+                </div>
+
+                <input id="Name" name="Name" placeholder="Name" type="text" /><br>
+                <input id="Description" name="Description" placeholder="Description" type="text" /><br>
+
+                <button type="submit">Update</button>
+
+            </form>
+
+        </div>
+    </div>
+
+    <div id="wrapper">
+        <!--navigation-->
+        <div id="sidebar-wrapper" style="background-color: #234e67!important;">
+            <ul class="d-block sidebar-nav" style="height: 100%;overflow: hidden;">
+                <li style="padding-top: 150px;">
+                    <a href="/portal" style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fa fa-home" style="padding-right: 10px;width: 60px;"></i>HOME
+                    </a>
+                    <a href="/portal/students" style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fa fa-users" style="padding-right: 10px;width: 60px;"></i>STUDENTS
+                    </a>
+                    <a class="text-uppercase" href="/portal/mentors"
+                        style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fas fa-user-lock" style="padding-right: 10px;width: 60px;"></i>MENTORS
+                    </a>
+                    <a class="text-uppercase" href="/portal/insights"
+                        style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fa fa-bar-chart" style="padding-right: 10px;width: 60px;"></i>INSIGHTS
+                    </a>
+                    <a class="text-uppercase" href="/portal/account"
+                        style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fa fa-user" style="padding-right: 10px;width: 60px;"></i>Account
+                    </a>
+                    <div style="position: absolute;bottom: 0px;width: 100%;padding-bottom: 25px;">
+                        <a class="text-uppercase" onclick="signMeOut()" style="color: #fff!important;width: 100%;">
+                            <i class="fa fa-sign-out" style="padding-right: 10px;width: 60px;"></i>
+                            <strong>LOG OUT</strong>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!--top bar and content-->
+        <div class="page-content-wrapper">
+            <div class="container-fluid" style="padding: 0px;margin-left: 0px;margin-right: 0px;">
+                <div class="row"
+                    style="margin: 0px;width: 100%;position: fixed;padding: 0px;height: 100px;z-index: 9999;box-shadow: 0 0 15px rgba(0,0,0,0.05);">
+                    <div class="col d-inline-flex" style="margin-bottom: 50px;height: 100px;"><a
+                            class="btn btn-link float-left d-inline-flex" role="button" href="#menu-toggle"
+                            id="menu-toggle"
+                            style="padding: 0px;padding-left: 20px;padding-right: 50px;width: 110px;"><i
+                                class="la la-bars"
+                                style="font-size: 32px;color: rgb(11,11,11);padding: 0px;padding-left: 0;text-decoration: none!important;line-height: 100px;"></i></a>
+                        <h1
+                            style="height: 100%;line-height: 100px;font-size: 40px;font-family: Roboto, sans-serif;font-weight: 300;color: #666;">
+                            <span
+                                style="background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);-webkit-background-clip: text;-webkit-text-fill-color: transparent;background-size: 150%;"><strong>student</strong></span>path
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid" style="padding-top: 100px;padding-left: 125px;">
+                <div>
+                    <div class="row" style="padding-bottom: 200px;">
+                        <div class="col-9" style="margin-top: 50px;">
+                            <div class="row" style="margin-bottom: 20px;">
+                                <div class="col-3">
+                                    <div class="border rounded-circle"
+                                        style="width: 150px;height: 150px;overflow: hidden;box-shadow: 0 0 15px rgba(0,0,0,0.2);">
+                                        <img src="../../../assets/img/placeholder.png" style="width: 100%;"></div>
+                                </div>
+                                <div class="col-9" style="min-width: 600px;">
+                                    <h1 style="font-weight: 300;"><strong id="TutorGroupName"></strong></h1>
+                                    <h1 style="font-weight: 300;font-size: 20px;color: rgb(142,142,142);"><strong>YEAR
+                                            13</strong></h1>
+                                    <h1 style="font-weight: 300;font-size: 20px;padding-top: 15px;"><strong>75%
+                                            Complete at Leigh UTC</strong></h1>
+                                    <div
+                                        style="height: 10px;background-color: #ccc;border-radius: 15px;overflow: hidden;/*box-shadow: 0 0 15px rgba(0,0,0,0.2);*/">
+                                        <div
+                                            style="width: 75%;height: 100%;color: rgb(0,128,255);background-color: #1eb061;">
+                                        </div>
+                                    </div>
+
+                                    <div class="float-left"
+                                        style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 10px;">
+
+                                        <button class="btn btn-primary" onclick="$('#popupEdit').fadeIn()" type="button"
+                                            style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 16px;">Edit
+                                            &nbsp;<i class="fas fa-pencil-alt"></i></button></div>
+
+                                    <div class="float-left"
+                                        style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 0px;">
+                                        <button class="btn btn-primary" type="button" onclick="deleteStudent()"
+                                            style="height: 100%;padding: 12px 24px;background-color: transparent;color: #d32641;border: 0px!important;font-size: 16px;">Delete
+                                            &nbsp;<i class="far fa-trash-alt"></i></button></div>
+                                </div>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table" id="results">
+
+                                </table>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/js/script.min.js"></script>
+    <script src="https://www.blooware.co.uk/blooAuth/vendor/aws-cognito-sdk.min.js"></script>
+    <script src="https://www.blooware.co.uk/blooAuth/vendor/amazon-cognito-identity.min.js"></script>
+    <script src="https://www.blooware.co.uk/blooAuth/blooAuth.js"></script>
+    <script src="../../assets/js/security.js"></script>
+    <script>
+
+        var tutor_group_id = getUrlParameter('tutor_group_id').replace("-", " ");
+
+
+        function refresh() {
+            postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postGrabTutorGroup', { tutor_group_id: tutor_group_id }, function (reply) {
+                console.log(reply);
+
+
+
+
+                if (reply.status == false) {
+
+                    $('#Name').html(reply.studentData[0].given_name + " " + reply.studentData[0].family_name);
+
+                } else if (reply.status == true) {
+
+                    $('#Name').val(reply.groupData[0].name);
+                    $('#Description').val(reply.groupData[0].description);
+
+                    $('#TutorGroupName').html(reply.groupData[0].name);
+
+                    $('#results').html('<tr style="font-weight: normal!important;"> <th style="width: 120px;"></th> <th style="font-weight: normal;">Name</th> <th style="font-weight: normal;">Tutor Group</th> <th style="font-weight: normal;">UPN</th>  <th style="font-weight: normal;">Destination</th> <th style="font-weight: normal;">Aspiration</th> </tr>');
+                    for (var i = 0; i < reply.students.length; i++) {
+
+                        $('#results').append('<tr class="item" search="search ' + reply.students[i].given_name + ' ' + reply.students[i].family_name + ' ' + reply.students[i].upn + ' search" style="font-weight: bold;"><td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="../assets/img/placeholder.png" style="width: 100%;min-height: 100%;"></div> </td> <td style="font-size: 15px;"> <a  href="/portal/students/profile/?student_id=' + reply.students[i].student_id + '">' + reply.students[i].given_name + ' ' + reply.students[i].family_name + '</a></td> <td style="font-size: 15px;">' + reply.groupData[0].name + '</td> <td style="font-size: 15px;">' + reply.students[i].upn + '</td> <td style="font-size: 15px;">' + reply.students[i].destination + '</td><td style="font-size: 15px;">' + reply.students[i].aspiration + '</td></tr> ');
+
+
+                    }
+
+                } else {
+
+                    $('#Name').html("error");
+                }
+
+            });
+        }
+
+        function postToLambda(url, data, callback) {
+            $.ajax({
+                url,
+                type: 'POST',
+                crossDomain: true,
+                data: JSON.stringify(data),
+                headers: { "Authorization": "Bearer " + token },
+                dataType: 'json',
+                contentType: "application/json",
+                success: function (reply) {
+                    callback(reply);
+                }
+            });
+        }
+
+        function newSession() {
+            window.location.href = '/portal/students/profile/session/?tutor_group_id=' + tutor_group_id;
+        }
+
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        };
+
+
+
+
+        $(".save").submit(function (e) {
+            e.preventDefault();
+            console.log(base64File);
+            console.log(tutor_group_id);
+
+
+            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postStudentFile", { base64String: base64File, name: fileName, tutor_group_id: tutor_group_id }, function (reply) {
+                console.log(reply);
+                //refresh();
+            });
+
+
+        });
+
+        var base64File;
+        var fileName;
+        if (window.File && window.FileReader && window.FileList && window.Blob) {
+            document.getElementById('files').addEventListener('change', handleFileSelect, false);
+        } else {
+            alert('The File APIs are not fully supported in this browser.');
+        }
+
+        function handleFileSelect(evt) {
+            fileName = $('#files').val().split('\\').pop();
+
+            var f = evt.target.files[0]; // FileList object
+            var reader = new FileReader();
+            // Closure to capture the file information.
+            reader.onload = (function (theFile) {
+                return function (e) {
+                    var binaryData = e.target.result;
+                    //Converting Binary Data to base 64
+                    var base64String = window.btoa(binaryData);
+                    //showing file converted to base64
+                    //document.getElementById('base64').value = base64String;
+                    console.log(base64String);
+                    base64File = base64String;
+                };
+            })(f);
+            // Read in the image file as a data URL.
+            reader.readAsBinaryString(f);
+        }
+
+
+        $(".saveEdit").submit(function (e) {
+            e.preventDefault();
+
+            console.log(objectifyForm(this));
+
+
+
+            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postUpdateTutorGroup", { groupInfo: objectifyForm(this), tutor_group_id: tutor_group_id }, function (reply) {
+                console.log(reply);
+                refresh();
+            });
+
+
+
+        });
+
+        function objectifyForm(formArray) {//serialize data function
+
+            var returnArray = {};
+            for (var i = 0; i < formArray.length; i++) {
+                if (formArray[i]['type'] == "checkbox") {
+                    //console.log("checkbox");
+                    returnArray[formArray[i]['name']] = formArray[i]['checked'];
+                } else {
+                    if (formArray[i]['type'] == "radio") {
+                        //console.log("RadioBox");
+                        returnArray[formArray[i]['name']] = formArray[i]['checked'];
+                    } else {
+                        //console.log("Not A checkbox");
+                        returnArray[formArray[i]['name']] = formArray[i]['value'];
+                    }
+                }
+            }
+            return returnArray;
+        }
+
+
+
+
+        function deleteStudent() {
+            console.log(tutor_group_id);
+
+            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postDeleteStudent", { tutor_group_id: tutor_group_id }, function (reply) {
+                console.log(reply);
+                //refresh();
+            });
+
+        }
+
+    </script>
+</body>
+
+</html>
