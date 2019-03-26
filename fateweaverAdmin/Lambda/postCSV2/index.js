@@ -49,13 +49,8 @@ var connection = mysql.createConnection({
 });
 
 exports.handler = (event, context, callback) => {
-    context.succeed({
-        status: "processing",
-        Done: 0,
-        NotDone: JsonData.length,
-    });
 
-/*
+
     var fields = ["Given Name", "Family Name", "DOB", "Gender", "Postcode", "UPN", "ULN", "Tutor Group", "PP", "SEN"];
     var school_id;
     let base64String = event.form.base64String;
@@ -66,6 +61,8 @@ exports.handler = (event, context, callback) => {
     var Added = [];
     var notAdded = [];
     var TutorGroupsAdded = [];
+    let fileRawText = buffer.toString('ascii');
+
 
     connection.query("select * from fateweaver.admins where cognito_id = ?", [event.account.sub], function (err, results, fields) {
         if (err) {
@@ -73,69 +70,30 @@ exports.handler = (event, context, callback) => {
         }
         school_id = results[0].school_id;
     });    
-   callback(null, {
-       "Name":"jkfsjfdlks"
-    });
-  /*  s3.putObject(params, function (err, data) {
-        if (err) {
-            console.log(params);
-            return console.log(err);
-        }
+   
 
-        s3.getObject({
-            Bucket: "fateweaver-files",
-            Key: file.fileFullName
-        }, function (err, data) {
-            if (err) {
-                console.log(err, err.stack);
-                callback(err);
-            } else {
-                if (data.Body.toString('ascii') == null) {
-                    callback(null, {
-                        statusCode: 200,
-                        status: false,
-                        errMsg: "Couldn't Detect CSV file"
-                    });
-                } else {
-                    console.log("Raw text:\n" + data.Body.toString('ascii'));
-                    context.succeed({
-                        status: "processing",
-                        Done: 0,
-                        NotDone: JsonData.length,
-                    });
-                    var JsonData = csvTojs(data.Body.toString('ascii').replace("\r", "") + "*")
-                    if (JsonData.length <= 1) {
-                        callback(null, {
-                            statusCode: 200,
-                            status: false,
-                            errMsg: "Couldn't find any data in the CSV file"
-                        });
-                    } else {
-                        //return data
-                        context.succeed({
-                            status: "processing",
-                            Done: 0,
-                            NotDone: JsonData.length,
-                        });
-                        if (JsonData.length > 20) {
-                            context.succeed({
-                                status: "processing",
-                                Done: 0,
-                                NotDone: JsonData.length,
-                            });
-                            processFields(fields, JsonData);
-                        } else {
-
-                            processFields(fields, JsonData);
-                        }
-
-
-                    }
-                }
-            }
+    if (fileRawText == null) {
+        callback(null, {
+            statusCode: 200,
+            status: false,
+            errMsg: "Couldn't Detect CSV file"
         });
-    });*/
-}
+    } else {
+        var JsonData = csvTojs(fileRawText.replace("\r", "") + "*")
+
+        if (JsonData.length <= 1) {
+            callback(null, {
+                statusCode: 200,
+                status: false,
+                errMsg: "Couldn't find any data in the CSV file"
+            });
+        } else {
+            //return data
+            
+            processFields(fields, JsonData);
+        }
+    }
+
 
     function delay() {
         return new Promise(resolve => setTimeout(resolve, 300));
