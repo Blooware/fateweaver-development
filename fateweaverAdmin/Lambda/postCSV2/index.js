@@ -35,7 +35,6 @@ let getFile = function (fileMime, buffer) {
 }
 
 const AWS = require('aws-sdk');
-const s3 = new AWS.S3();
 const moment = require('moment');
 const fileType = require('file-type');
 const sha1 = require('sha1');
@@ -49,7 +48,7 @@ var connection = mysql.createConnection({
 });
 
 exports.handler = (event, context, callback) => {
-
+    context.callbackWaitsForEmptyEventLoop = false;
 
     var fields = ["Given Name", "Family Name", "DOB", "Gender", "Postcode", "UPN", "ULN", "Tutor Group", "PP", "SEN"];
     var school_id;
@@ -63,46 +62,87 @@ exports.handler = (event, context, callback) => {
     var TutorGroupsAdded = [];
     let fileRawText = buffer.toString('ascii');
 
-
-    connection.query("select * from fateweaver.admins where cognito_id = ?", [event.account.sub], function (err, results, fields) {
-        if (err) {
-            console.log("Error getting tutor groups:", err);
-        }
-        school_id = results[0].school_id;
-    });    
-   
-
-    if (fileRawText == null) {
-        callback(null, {
+callback(null, {
             statusCode: 200,
             status: false,
-            errMsg: "Couldn't Detect CSV file"
+            students : fileRawText.split("\r\n").length - 1,
+            raw: fileRawText.length
         });
-    } else {
-        var JsonData = csvTojs(fileRawText.replace("\r", "") + "*")
 
-        if (JsonData.length <= 1) {
+    connection.query("insert into fateweaver.upload_progress set ?", [{qty : fileRawText.split("\r\n").length - 1}], function (error, results, fields) {
+        begin();
+    });
+
+
+    //#0
+    function begin(){
+        connection.query("select * from fateweaver.admins where cognito_id = ?", [event.account.sub], function (err, results, fields) {
+            if (err) {
+                console.log("Error getting tutor groups:", err);
+            }
+            school_id = results[0].school_id;
+        });    
+       
+    
+        if (fileRawText == null) {
             callback(null, {
                 statusCode: 200,
                 status: false,
-                errMsg: "Couldn't find any data in the CSV file"
+                errMsg: "Couldn't Detect CSV file"
             });
         } else {
-            //return data
-            
-            processFields(fields, JsonData);
+            var JsonData = csvTojs(fileRawText.replace("\r", "") + "*")
+    
+            if (JsonData.length <= 1) {
+                callback(null, {
+                    statusCode: 200,
+                    status: false,
+                    errMsg: "Couldn't find any data in the CSV file"
+                });
+            } else {
+                //return data
+                processFields(fields, JsonData);
+            }
         }
+    }    
+
+    //#1 - for each column heading
+    async function processFields(array, JsonData) {
+        for (const item of array) {
+            await delayedFields(item, JsonData);
+        }
+        processJsonData(JsonData);
     }
 
-
-    function delay() {
-        return new Promise(resolve => setTimeout(resolve, 300));
+    //#2 - check heading is correct
+    async function delayedFields(field, JsonData) {
+        if (JsonData[0][field] != null) {
+            console.log(field);
+        } else {
+            callback(null, {
+                statusCode: 200,
+                status: false,
+                errMsg: "couldn't find the field named " + field,
+            });
+        }
+        await delay();
     }
 
+    //#3 - process each student
+    async function processJsonData(array) {
+        for (const item of array) {
+            await delayedJsonData(item);
+        }
+
+        context.succeed({
+            Done: Added,
+            NotDone: notAdded,
+            TutorGroupsAdded: TutorGroupsAdded
+        });
+    }
+
+    //#4 - if tutor group doesn't exist - create one
     async function delayedJsonData(item) {
-        // This is where i would add them to mysql
-
-
         connection.query("select * from fateweaver.tutor_groups where name = ? and school_id = ?", [item["Tutor Group"], school_id], function (err, results, fields) {
             if (err) {
                 console.log("Error getting tutor groups:", err);
@@ -119,7 +159,7 @@ exports.handler = (event, context, callback) => {
                 }
                 connection.query("insert into fateweaver.tutor_groups set ? ", dataGroup, function (error, results, fields) {
 
-                    console.log("Student added - There Wasn't a tutor Group");
+                    //console.log("Student added - There Wasn't a tutor Group");
                     console.log(results.insertId);
                     //now create a student using this group id
                     TutorGroupsAdded.push(item["Tutor Group"]);
@@ -127,7 +167,7 @@ exports.handler = (event, context, callback) => {
 
                 });
             } else {
-                console.log("Student added - There Was a tutor Group");
+                //console.log("Student added - There Was a tutor Group");
                 console.log(results[0].id);
                 createStudent(results[0].id, item, file);
                 //now create a student using this group id
@@ -139,58 +179,8 @@ exports.handler = (event, context, callback) => {
 
     }
 
-    async function processJsonData(array) {
-        for (const item of array) {
-            await delayedJsonData(item);
-        }
-
-
-        console.log("Finished Itterating");
-        context.succeed({
-            Done: Added,
-            NotDone: notAdded,
-            TutorGroupsAdded: TutorGroupsAdded
-
-        });
-    }
-
-    function delay() {
-        return new Promise(resolve => setTimeout(resolve, 300));
-    }
-
-    async function delayedFields(field, JsonData) {
-
-        if (JsonData[0][field] != null) {
-            console.log(field);
-        } else {
-
-
-            callback(null, {
-                statusCode: 200,
-                status: false,
-                errMsg: "couldn't find the field named " + field,
-            });
-        }
-        console.log(JsonData)
-        await delay();
-        console.log(fields);
-    }
-
-    async function processFields(array, JsonData) {
-        for (const item of array) {
-            await delayedFields(item, JsonData);
-        }
-        console.log("Finished Itterating through the fields");
-        console.log("Now i would do this json data :")
-        console.log(JsonData);
-        processJsonData(JsonData);
-        //Now process the students
-
-    }
-
+    //#5 - insert student
     async function createStudent(Group_id, StudentInfo, file) {
-
-
         var dset = {
             given_name: StudentInfo["Given Name"],
             family_name: StudentInfo["Family Name"],
@@ -203,7 +193,6 @@ exports.handler = (event, context, callback) => {
             pp: StudentInfo.PP,
             sen: StudentInfo.SEN,
             school_id: school_id,
-
             added: new Date(Date.now()),
             added_id: event.account.sub,
             csv: file.fileFullName
@@ -225,7 +214,6 @@ exports.handler = (event, context, callback) => {
                     gender: StudentInfo.Gender,
                     pp: StudentInfo.PP,
                     sen: StudentInfo.SEN,
-
                 }
                 notAdded.push({ jsonStudent });
             } else {
@@ -243,16 +231,36 @@ exports.handler = (event, context, callback) => {
                         sen: StudentInfo.SEN,
                     }
                     Added.push({ jsonStudent });
-                    console.log(results);
                 });
-
             }
         });
-
-        console.log(Group_id);
-        console.log(StudentInfo);
     }
 
+    function delay() {
+        return new Promise(resolve => setTimeout(resolve, 300));
+    }
+
+    function occurrences(string, subString, allowOverlapping) {
+return new Promise(resolve => {
+    string += "";
+        subString += "";
+        if (subString.length <= 0) return (string.length + 1);
+    
+        var n = 0,
+            pos = 0,
+            step = allowOverlapping ? 1 : subString.length;
+    
+        while (true) {
+            pos = string.indexOf(subString, pos);
+            if (pos >= 0) {
+                ++n;
+                pos += step;
+            } else break;
+        }
+        resolve(n)
+});
+        
+    }
 
 }
 
