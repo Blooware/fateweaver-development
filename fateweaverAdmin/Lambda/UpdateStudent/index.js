@@ -10,8 +10,16 @@ var connection = mysql.createConnection({
 
 exports.handler = (event, context, callback) => {
     //callback(null, event.form.student_id);
-
+    var Year = null;
+    var YearAdded = null;
     var school_id;
+    if(event.form.studentInfo.year == "" || event.form.studentInfo.year == null){
+        Year = null;
+        YearAdded = null;
+    } else {
+        Year = event.form.studentInfo.year;
+        YearAdded = new Date(Date.now());
+    }
     
 
     
@@ -82,6 +90,8 @@ exports.handler = (event, context, callback) => {
             tutor_group_id: Group_id,
             pp: event.form.studentInfo.pp,
             sen: event.form.studentInfo.sen,
+            year : Year,
+            year_added : YearAdded,
 
             added: new Date(Date.now()),
             added_id: event.account.sub,
