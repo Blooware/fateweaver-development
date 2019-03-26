@@ -72,7 +72,8 @@
                             <div class="row" style="margin-bottom: 20px;">
                                 <div class="col" style="min-width: 500px;">
                                     <h1 style="font-weight: 300;"><strong id="Name"></strong></h1>
-                                    <h1 style="font-weight: 300;font-size: 20px;color: rgb(142,142,142);"><strong>Career Session</strong></h1>                                   
+                                    <h1 style="font-weight: 300;font-size: 20px;color: rgb(142,142,142);"><strong>Career
+                                            Session</strong></h1>
                                 </div>
                             </div>
                         </div>
@@ -82,14 +83,23 @@
                     <div class="form-group">
                         <p style="font-size: 18px;"><span id="firstName"></span> aspires to
                             become a <strong id="aspiration">.</strong><br><br>
-                    <div id="notesContainer">
-                        <strong>Their
-                            notes said :&nbsp;</strong><br><br>"<span id="notes"></span>"
-                    </div>
-                           
+                            <div id="notesContainer">
+                                <strong>Their
+                                    notes said :&nbsp;</strong><br><br>"<span id="notes"></span>"
+                            </div>
+
                         </p>
                     </div>
-                 
+                    <div>
+                        Destination: <p id="destination" name="destination" placeholder="destination">loading</p><br>
+                        Industry : <p id="industry" name="industry" placeholder="industry">loading</p><br>
+                        plan A : <p id="plan_a" name="plan_a" placeholder="plan_a">loading</p><br>
+                        plan B : <p id="plan_b" name="plan_b" placeholder="plan_b">loading</p><br>
+                        Confirmed Place : <p id="confirmed_place" name="confirmed_place" placeholder="confirmed_place">loading</p><br>
+                    </div>
+
+
+
                 </div>
             </div>
         </div>
@@ -138,11 +148,18 @@
     $('#studentId').val(student_id)
     function refresh() {
         postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postGrabStudent', { student_id: student_id }, function (reply) {
-
+            console.log(reply);
 
             $('#Name').html(reply.studentData[id].given_name + " " + reply.studentData[0].family_name);
             $('#firstName').html(reply.studentData[id].given_name);
             $('#aspiration').html(reply.destinations[id].aspiration);
+
+            $('#destination').html(reply.destinations[id].destination);
+            $('#industry').html(reply.destinations[id].industry);
+            $('#plan_a').html(reply.destinations[id].plan_a);
+            $('#plan_b').html(reply.destinations[id].plan_b);
+            $('#confirmed_place').html(reply.destinations[id].confirmed_place);
+
             $('#notes').html(reply.destinations[id].notes);
 
             if (reply.destinations[0].notes.length < 1) {
