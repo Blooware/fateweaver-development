@@ -373,8 +373,8 @@
             $(".circle-loader").show();
             $(this).hide();
 
-            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postCSV", { base64String: base64File, name: fileName }, function (reply) {
-               // console.log(reply);
+            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaveAdmin-postCSV2", { base64String: base64File, name: fileName }, function (reply) {
+                console.log(reply);
                 try {
                     $(".circle-loader").html("<p>Success! Completed " + reply.Done.length + "/" + (parseInt(reply.Done.length) + parseInt(reply.NotDone.length)) + '</p><br><br><div class="table-responsive"> <table class="table" id="NotDone-results"></table></div>');
 
