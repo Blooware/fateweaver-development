@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Students</title>
+    <title>Tutor Groups</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -134,9 +134,6 @@
                     <a href="/portal/students" style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fa fa-users" style="padding-right: 10px;width: 60px;"></i>STUDENTS
                     </a>
-                    <a href="/portal/tutorGroups" style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fa fa-users" style="padding-right: 10px;width: 60px;"></i>TUTOR GROUPS
-                    </a>
                     <a class="text-uppercase" href="/portal/mentors"
                         style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fas fa-user-lock" style="padding-right: 10px;width: 60px;"></i>MENTORS
@@ -147,9 +144,8 @@
                     </a>
                     <a class="text-uppercase" href="/portal/account"
                         style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fa fa-user" style="padding-right: 10px;width: 60px;"></i>ACCOUNT
+                        <i class="fa fa-user" style="padding-right: 10px;width: 60px;"></i>Account
                     </a>
-
                     <div style="position: absolute;bottom: 0px;width: 100%;padding-bottom: 25px;">
                         <a class="text-uppercase" onclick="signMeOut()" style="color: #fff!important;width: 100%;">
                             <i class="fa fa-sign-out" style="padding-right: 10px;width: 60px;"></i>
@@ -191,7 +187,7 @@
 
                             <button onclick="$('#popup2').fadeIn()" class="btn btn-primary" type="button"
                             style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 20px;">Add
-                            Student &nbsp;<i class="fa fa-cloud-upload"></i>
+                            Tutor Group &nbsp;<i class="fa fa-cloud-upload"></i>
                         </button>
                          
                             <button class="btn btn-primary" type="button" onclick="getReport()" style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 20px;">Generate Report &nbsp;<i class="fa fa-paste"></i></button></div>
@@ -247,14 +243,13 @@
             //console.log("it's working")
             console.log(token);
 
-            postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaver-getStudents', [], function (reply) {
+            postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postGrabTutorGroups', [], function (reply) {
 
                 console.log(reply);
                 $('#results').html('<tr style="font-weight: normal!important;"> <th style="width: 120px;"></th> <th style="font-weight: normal;">Name</th> <th style="font-weight: normal;">Tutor Group</th> <th style="font-weight: normal;">UPN</th>  <th style="font-weight: normal;">Destination</th> <th style="font-weight: normal;">Aspiration</th> </tr>');
                 for (var i = 0; i < reply.body.length; i++) {
 
-                    $('#results').append('<tr class="item" search="search ' + reply.body[i].given_name + ' ' + reply.body[i].family_name + ' ' + reply.body[i].upn + ' search" style="font-weight: bold;"><td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="../assets/img/placeholder.png" style="width: 100%;min-height: 100%;"></div> </td> <td style="font-size: 15px;"> <a  href="/portal/students/profile/?student_id=' + reply.body[i].student_id + '">' + reply.body[i].given_name + ' ' + reply.body[i].family_name + '</a></td> <td style="font-size: 15px;">' + reply.body[i].tutorGroup + '</td> <td style="font-size: 15px;">' + reply.body[i].upn + '</td> <td style="font-size: 15px;">' + reply.body[i].destination + '</td><td style="font-size: 15px;">' + reply.body[i].aspiration + '</td></tr> ');
-
+                    $('#results').append('<tr class="item" search="search ' + reply.body[i].given_name + ' ' + reply.body[i].family_name + ' ' + reply.body[i].upn + ' search" style="font-weight: bold;"><td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="../assets/img/placeholder.png" style="width: 100%;min-height: 100%;"></div> </td> <td style="font-size: 15px;"> <a  href="/portal/tutorGroups/profile/?tutor_group_id=' + reply.body[i].id + '">' + reply.body[i].name + '</a></td> <td style="font-size: 15px;">' + reply.body[i].description + '</td> <td style="font-size: 15px;">' + reply.body[i].added + '</td> <td style="font-size: 15px;">' + reply.body[i].destination + '</td><td style="font-size: 15px;">' + reply.body[i].aspiration + '</td></tr> ');
 
                 }
 
