@@ -25,8 +25,8 @@ exports.handler = (event, context, callback) => {
         town : event.form[0].Town,
         country : event.form[0].Country,
     }
-    callback(null,data);
-    /*
+    //callback(null,data);
+    
     var school_id;
     connection.query("select school_id from fateweaver.admins where cognito_id = ?", [event.account.sub], function (err, results, fields) {
         if (err) {
@@ -37,7 +37,8 @@ exports.handler = (event, context, callback) => {
             });
         }
         if (results.length > 0) {
-            school_id = results[0].id;
+            school_id = results[0].school_id;
+            
             connection.query("update fateweaver.schools set ? where id = ?", [data ,school_id], function (err, results, fields) {
                 if (err) {
                     context.succeed({
@@ -53,7 +54,6 @@ exports.handler = (event, context, callback) => {
                 });
             });
 
-
         } else {
             context.succeed({
                 statusCode: 200,
@@ -63,7 +63,8 @@ exports.handler = (event, context, callback) => {
         }
 
     });
-    */
+    
+    
     
 
 }
