@@ -21,25 +21,19 @@
         <div class="d-inline-flex popup1" id="popup1"
             style="display: none!important;border-radius: 15px;padding: 3%;position: relative;-webkit-box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);position: fixed;width: 100%;height: 80%;width: 80%;top: 10%;background: #FFF;left: 10%;z-index: 999999999999999999999999999999999999999999;">
 
-
-
-
-
-            <form method="post" class="save">
-                <div class="form-group" style="padding:30px;padding-left:0px;padding-top:0px;">
-                    <p class="d-inline"
-                        style="text-align: right;cursor: pointer;text-decoration: underline; float:left; "
-                        onclick="$('.popup1').attr('style', $('.popup1').attr('style') + ';display: none!important;');">
-                        Close</p>
-
-                </div>
-                <input type="file" id="files" name="files" />
-
-                <button type="submit">Upload</button>
-
-            </form>
-
-
+                        <form method="post" class="save" id="uploadLoader">
+                            <div class="form-group" style="padding:30px;padding-left:0px;padding-top:0px;">
+                                <p class="d-inline" style="text-align: right;cursor: pointer;text-decoration: underline; float:left; "
+                                    onclick="$('.popup1').attr('style', $('.popup1').attr('style') + ';display: none!important;');">Close</p>
+            
+                            </div>
+                            <input type="file" id="files" name="files" />
+                    
+                            <button type="submit">Upload</button>
+                    
+                        </form>
+    
+           
         </div>
         <div class="d-inline-flex popupEdit" id="popupEdit"
             style="display: none!important;border-radius: 15px;padding: 3%;position: relative;-webkit-box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);position: fixed;width: 100%;height: 80%;width: 80%;top: 10%;background: #FFF;left: 10%;z-index: 999999999999999999999999999999999999999999;">
@@ -132,7 +126,7 @@
             <div class="container-fluid" style="padding-top: 100px;padding-left: 125px;">
                 <div>
                     <div class="row" style="padding-bottom: 200px;">
-                        <div class="col-9" style="margin-top: 50px;">
+                        <div class="col-11" style="margin-top: 50px;">
                             <div class="row" style="margin-bottom: 20px;">
                                 <div class="col-3">
                                     <div class="border rounded-circle"
@@ -175,9 +169,9 @@
                                 </div>
                             </div>
                             <div class="row" style="margin-top:50px;">
-
-
-                                <div class="col-md-5" style="margin-left:0px;padding:15px;background: #fff;">
+                               
+                               
+                                <div class="col-md-5" style="margin-left:0px;margin-right:15px;margin-bottom:15px;padding:15px;background: #fff;min-width: 500px;">
                                     <div>
                                         <div class="row" style="margin-bottom: 30px;">
                                             <div class="col-12"
@@ -194,7 +188,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6" style="margin-left:15px;padding:15px;background: #fff;">
+                                <div class="col-md-6" style="margin-left:0px;padding:15px;background: #fff;min-width: 400px;">
                                     <div>
                                         <div class="row" style="margin-bottom: 30px;">
                                             <div class="col-12"
@@ -255,7 +249,8 @@
                                             <div class="col-12"
                                                 style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 40px;">
                                                 <h1 style="font-weight: 300;">Files</h1>
-
+                                             
+                                                    <button class="btn btn-primary" type="button" onclick="$('#popup1').fadeIn();" style="padding: 0px;background-color: transparent;color: #9c9c9c;border: 1px solid #9c9c9c;font-size: 16px;height:40px; width:40px;border-radius: 50%;line-height: 16px;"><i class="fa fa-plus"></i></button></div>
                                             </div>
                                         </div>
 
@@ -292,6 +287,35 @@
         student_id = getUrlParameter('student_id').replace("-", " ");
 
 
+        function getFile(i, name, file, file_ext) {
+            var oldHTML = $("#file-" + i).html();
+            $("#file-" + i).html('Loading... <div class="spinner-border spinner-border-sm" role="status">  <span class="sr-only">Loading...</span></div>');
+            var data = {
+                name: file
+            }
+            console.log(JSON.stringify(data));
+            $.ajax({
+                url: "https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-getStudentFile",
+                type: 'POST',
+                crossDomain: true,
+                data: JSON.stringify({name:file}),
+                headers: { "Authorization": "Bearer " + token },
+                dataType: 'json',
+                contentType: "application/json",
+                success: function (reply) {
+                    console.log(reply)
+                    var bytes = new Uint8Array(reply.Body.data); // pass your byte response to this constructor
+
+                    var blob = new Blob([bytes], { type: file_ext });// change resultByte to bytes
+
+                    var link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = name;
+                    link.click();
+                    $("#file-" + i).html(oldHTML);
+                }
+            });
+        }
         function refresh() {
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postGrabStudent', { student_id: student_id }, function (reply) {
                 console.log(reply);
@@ -313,9 +337,9 @@
                 }
                 for (i = 0; i < reply.studentFiles.length; i++) {
 
-
-                    $('#filesList').append('<a style="background:#eee;border-radius: 5px;padding:12px 24px;color:#000!important;box-shadow: 0 0 15px rgba(0,0,0,0.4);">' + reply.studentFiles[i].name + ' <i class="fa fa-download"></i></a>');
-
+                   
+                        $('#filesList').append('<div id="file-' + i + '" onclick="getFile(' + i + ', `' + reply.studentFiles[i].name + '`, `' + reply.studentFiles[i].path + '`, `' + reply.studentFiles[i].file_ext + '`)" style="background:#fff;border-radius: 5px;padding:12px 24px;color:#000!important;box-shadow: 0 5px 15px rgba(0,0,0,0.2);margin-right:20px;">' + reply.studentFiles[i].name + ' <i class="fa fa-download"></i></div>');
+                 
                 }
 
                 if (reply.status == false) {
@@ -373,16 +397,21 @@
 
 
         $(".save").submit(function (e) {
-            e.preventDefault();
-            console.log(base64File);
-            console.log(student_id);
+                e.preventDefault();
+                console.log(base64File);
+                console.log(student_id);
+
+                var oldHTML = $("#uploadLoader").html();
+                $("#uploadLoader").html('Loading... <div class="spinner-border spinner-border-sm" role="status">  <span class="sr-only">Loading...</span></div>');
+
+                postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postStudentFile", { base64String: base64File, name: fileName, student_id: student_id }, function (reply) {
+                    console.log(reply);
+                    $("#uploadLoader").html(oldHTML);
+                    refresh();
+                });
 
 
-            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postStudentFile", { base64String: base64File, name: fileName, student_id: student_id }, function (reply) {
-                console.log(reply);
-                //refresh();
             });
-
 
         });
 
