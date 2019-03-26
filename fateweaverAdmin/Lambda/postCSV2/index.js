@@ -48,7 +48,6 @@ var connection = mysql.createConnection({
 });
 
 exports.handler = (event, context, callback) => {
-    context.callbackWaitsForEmptyEventLoop = false;
 
     var fields = ["Given Name", "Family Name", "DOB", "Gender", "Postcode", "UPN", "ULN", "Tutor Group", "PP", "SEN"];
     var school_id;
@@ -61,13 +60,6 @@ exports.handler = (event, context, callback) => {
     var notAdded = [];
     var TutorGroupsAdded = [];
     let fileRawText = buffer.toString('ascii');
-
-callback(null, {
-            statusCode: 200,
-            status: false,
-            students : fileRawText.split("\r\n").length - 1,
-            raw: fileRawText.length
-        });
 
     connection.query("insert into fateweaver.upload_progress set ?", [{qty : fileRawText.split("\r\n").length - 1}], function (error, results, fields) {
         begin();
