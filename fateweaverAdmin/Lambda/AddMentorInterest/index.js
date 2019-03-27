@@ -1,4 +1,4 @@
-//fateweaverAdmin-postAddStudentInterest
+//fateweaverAdmin-postAddMentorInterest
 'use strict'
 
 var mysql = require('mysql');
@@ -12,7 +12,7 @@ var connection = mysql.createConnection({
 exports.handler = (event, context, callback) => {
     callback(null, event);
 
-    connection.query("select * from fateweaver.students where id = ? and school_id = (select school_id from fateweaver.admins where cognito_id = ?)", [event.form.student_id, event.account.sub], function (err, results, fields) {
+    connection.query("select * from fateweaver.mentors where id = ? and school_id = (select school_id from fateweaver.admins where cognito_id = ?)", [event.form.mentor_id, event.account.sub], function (err, results, fields) {
         if (err) {
             console.log("Error getting tutor groups:", err);
             context.succeed({
@@ -23,13 +23,13 @@ exports.handler = (event, context, callback) => {
         }
         if (results.length > 0) {
             var data = {
-                student_id: event.form.student_id,
-                interest_id: event.form.studentInfo.interest,
+                mentor_id: event.form.mentor_id,
+                interest_id: event.form.mentorInfo.interest,
                 added: new Date(Date.now()),
 
             }
 
-            connection.query("select * from student_interests where student_id = ? and interest_id = ?", [event.form.student_id, event.form.studentInfo.interest], function (err, results, fields) {
+            connection.query("select * from mentor_interests where mentor_id = ? and interest_id = ?", [event.form.mentor_id, event.form.mentorInfo.interest], function (err, results, fields) {
                 if (err) {
                     console.log("Error getting tutor groups:", err);
                     context.succeed({
@@ -42,10 +42,10 @@ exports.handler = (event, context, callback) => {
                     context.succeed({
                         statusCode: 200,
                         status: false,
-                        errMsg: "Student already has this interest"
+                        errMsg: "Mentor already has this interest"
                     });
                 } else {
-                    connection.query("insert into fateweaver.student_interests set ?", [data], function (err, results, fields) {
+                    connection.query("insert into fateweaver.mentor_interests set ?", [data], function (err, results, fields) {
                         if (err) {
                             console.log("Error getting tutor groups:", err);
                             context.succeed({
