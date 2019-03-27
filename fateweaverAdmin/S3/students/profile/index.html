@@ -21,10 +21,6 @@
         <div class="d-inline-flex popup1" id="popup1"
             style="display: none!important;border-radius: 15px;padding: 3%;position: relative;-webkit-box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);position: fixed;width: 100%;height: 80%;width: 80%;top: 10%;background: #FFF;left: 10%;z-index: 999999999999999999999999999999999999999999;">
 
-
-
-
-
             <form method="post" class="save">
                 <div class="form-group" style="padding:30px;padding-left:0px;padding-top:0px;">
                     <p class="d-inline"
@@ -47,15 +43,15 @@
 
 
 
+            <div class="form-group" style="padding:30px;padding-left:0px;padding-top:0px;">
+                <p class="d-inline"
+                    style="text-align: right;cursor: pointer;text-decoration: underline; float:left; "
+                    onclick="$('.popupEdit').attr('style', $('.popupEdit').attr('style') + ';display: none!important;');">
+                    Close</p>
 
+            </div>
             <form method="post" class="saveEdit">
-                <div class="form-group" style="padding:30px;padding-left:0px;padding-top:0px;">
-                    <p class="d-inline"
-                        style="text-align: right;cursor: pointer;text-decoration: underline; float:left; "
-                        onclick="$('.popupEdit').attr('style', $('.popupEdit').attr('style') + ';display: none!important;');">
-                        Close</p>
-
-                </div>
+                
 
                 <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="givenName" placeholder="Given Name" type="text" id="given_name" name="givenName" required />
                 <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="family_name" placeholder="Family Name" type="text" id="family_name" name="familyName" required />
@@ -71,12 +67,20 @@
                 <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"  id="year" placeholder="Year Group (Optional)" type="number" name="year" required />
                 <!--special education needs-->
             
-                <button class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 0px solid #ccc; background: rgb(0, 150, 92); border-radius:300px; width: 250px;color:#fff" type="submit">Create</button>
+                <button class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 0px solid #ccc; background: rgb(0, 150, 92); border-radius:300px; width: 250px;color:#fff" type="submit">Update</button>
                 <!--special education needs-->
          
 
 
             </form>
+            <form method="post" class="addInterest">
+                <select id="interest" name="interest">
+                    
+                </select>
+                <button class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 0px solid #ccc; background: rgb(0, 150, 92); border-radius:300px; width: 250px;color:#fff" type="submit">add interest</button>
+            </form>
+
+
 
         </div>
     </div>
@@ -325,7 +329,17 @@ var destinationData;
                     $('#Name').html("error");
                 }
             });
+            
+            postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-getInterests', {}, function (reply) {
+                console.log(reply);
+                $('#interest').html();
+                for (i = 0; i < reply.body.length; i++) {
+                    $('#interest').append('<option value="' + reply.body[i].id + '">' + reply.body[i].name + '</option>');
+                }
+
+            });
         }
+
 
         function goToSession(data){
       
@@ -422,6 +436,15 @@ var destinationData;
 
 
         });
+        $(".addInterest").submit(function (e) {
+            e.preventDefault();
+            //console.log(objectifyForm(this));
+            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postAddStudentInterest", {studentInfo : objectifyForm(this), student_id : student_id}, function (reply) {
+                console.log(reply);
+                refresh();
+            });
+        });
+        
 
         function objectifyForm(formArray) {//serialize data function
 
