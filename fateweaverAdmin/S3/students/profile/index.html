@@ -144,11 +144,11 @@
                                     <h1 style="font-weight: 300;"><strong id="Name"></strong></h1>
                                     <h1 id="Year" style="font-weight: 300;font-size: 20px;color: rgb(142,142,142);"><strong>YEAR
                                             </strong></h1>
-                                    <h1 style="font-weight: 300;font-size: 20px;padding-top: 15px;"><strong>75%
+                                    <h1 style="font-weight: 300;font-size: 20px;padding-top: 15px;"><strong><span id="progressPercentage"></span>%
                                             Complete at Leigh UTC</strong></h1>
                                     <div
                                         style="height: 10px;background-color: #ccc;border-radius: 15px;overflow: hidden;/*box-shadow: 0 0 15px rgba(0,0,0,0.2);*/">
-                                        <div
+                                        <div id="progressPercentageBar"
                                             style="width: 75%;height: 100%;color: rgb(0,128,255);background-color: #1eb061;">
                                         </div>
                                     </div>
@@ -312,6 +312,9 @@ var destinationData;
                     $('#pp').val(reply.studentData[0].pp);
                     $('#sen').val(reply.studentData[0].sen);
                     $('#year').val(reply.studentData[0].year);
+
+                    $('#progressPercentage').html(((100 / 12) * reply.studentData[0].yearGroup).toFixed(0).toString());
+                    $('#progressPercentageBar').css("width", ((100 / 12) * reply.studentData[0].yearGroup).toString() + "%");
                     
 
                 } else {

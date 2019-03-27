@@ -404,7 +404,7 @@
 
         postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaver-newDestinationSession", objectifyForm(this), function (reply) {
 
-            window.location.href = '/portal/students/profile';
+            window.location.href = '/portal/students/profile/?student_id=' + student_id;
 
         });
 
