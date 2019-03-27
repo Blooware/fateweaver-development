@@ -57,21 +57,24 @@
 
                 </div>
 
-                <input id="givenName" placeholder="givenName" type="text" id="given_name" name="givenName" /><br>
-                <input id="family_name" placeholder="family_name" type="text" id="family_name" name="familyName" /><br>
-                <input id="dob" placeholder="dob" type="date" id="dob" name="dob" /><br>
-                <input id="gender" placeholder="gender" type="text" id="gender" name="gender" /><br>
-                <input id="postcode" placeholder="postcode" type="text" id="postcode" name="postcode" /><br>
-                <input id="upn" placeholder="upn" type="text" id="upn" name="upn" /><br>
-                <input id="uln" placeholder="uln" type="text" id="uln" name="uln" /><br>
-                <input id="tutorGroup" placeholder="tutorGroup" type="text" id="tutorGroup" name="tutorGroup" /><br>
-                <input id="pp" placeholder="pp" type="text" id="pp" name="pp" /><br>
+                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="givenName" placeholder="Given Name" type="text" id="given_name" name="givenName" required />
+                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="family_name" placeholder="Family Name" type="text" id="family_name" name="familyName" required />
+                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="dob" placeholder="Date of Birth" type="text" id="dob" name="dob" onfocus="(this.type='date')" onblur="(this.type='text')"  required/>
+                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="gender" placeholder="Gender" type="text" id="gender" name="gender" required />
+                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="postcode" placeholder="Postcode" type="text" id="postcode" name="postcode" required />
+                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="upn" placeholder="UPN" type="text" id="upn" name="upn"  required/>
+                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="uln" placeholder="ULN" type="text" id="uln" name="uln" required />
+                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="tutorGroup" placeholder="Tutor Group" type="text" id="tutorGroup" name="tutorGroup" required />
+                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="pp" placeholder="Pupil Premium" type="text" id="pp" name="pp" required />
                 <!--pupil premium-->
-                <input id="sen" placeholder="sen" type="text" id="sen" name="sen" /><br>
+                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="sen" placeholder="Special Educational Needs" type="text" id="sen" name="sen" required />
+                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"  id="year" placeholder="Year Group (Optional)" type="number" name="year" required />
                 <!--special education needs-->
-                <input id="year" placeholder="Year Group (Optional)" type="number" name="year" /><br>
+            
+                <button class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 0px solid #ccc; background: rgb(0, 150, 92); border-radius:300px; width: 250px;color:#fff" type="submit">Create</button>
+                <!--special education needs-->
+         
 
-                <button type="submit">Upload</button>
 
             </form>
 
@@ -368,6 +371,7 @@ var destinationData;
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postStudentFile", { base64String: base64File, name: fileName, student_id: student_id }, function (reply) {
                 console.log(reply);
                 //refresh();
+                window.location.reload();
             });
 
 

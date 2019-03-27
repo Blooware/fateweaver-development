@@ -17,6 +17,7 @@
     "file-type": "10.8.0",
     "moment": "2.24.0",
     "mysql": "2.16.0",
+    "randomstring": "^1.1.5",
     "sha1": "1.1.1"
   }
 }

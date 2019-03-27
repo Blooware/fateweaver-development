@@ -46,14 +46,19 @@
 
 
             <form method="post" class="save">
+                <div class="form-group" style="padding:0px;padding-left:0px;padding-top:0px;">
+                    <p class="d-inline" style="text-align: right;cursor: pointer;text-decoration: underline; float:left; "
+                        onclick="$('#popup1').attr('style', $('#popup1').attr('style') + ';display: none!important;');">
+                        Close</p>
 
-                <input type="text" id="firstName" name="firstName" placeholder="First name" /> <br>
-                <input type="text" id="lastName" name="lastName" placeholder="Last Name" /><br>
-                <input type="text" id="role" name="role" placeholder="Role" /><br>
-                <input type="text" id="linkedin" name="linkedin" placeholder="Linkedin data" /><br>
+                </div>
+                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"  type="text" id="firstName" name="firstName" placeholder="First name" /> <br>
+                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"  type="text" id="lastName" name="lastName" placeholder="Last Name" /><br>
+                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" type="text" id="role" name="role" placeholder="Role" /><br>
+                <!--<input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"  type="text" id="linkedin" name="linkedin" placeholder="Linkedin data" /><br>-->
 
 
-                <button type="submit">Create</button>
+                <button class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 0px solid #ccc; background: rgb(0, 150, 92); border-radius:300px; width: 250px;color:#fff" type="submit">Create</button>
             </form>
         </div>
     </div>
@@ -162,7 +167,7 @@
 
                 $('#results').html('<tr style="font-weight: normal!important;"> <th style="width: 120px;"></th> <th style="font-weight: normal;">Name</th> <th style="font-weight: normal;">Role</th></tr>');
                 for (var i = 0; i < reply.body.length; i++) {
-                    $('#results').append('<a href="/BloowarePortal/School/?id=' + reply.body[i].id + '"><tr class="item" search="search ' + reply.body[i].first_name + ' ' + reply.body[i].last_name + ' ' + reply.body[i].role + ' search"  style="font-weight: bold;"> <td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="assets/img/placeholder.png" style="width: 100%;min-height: 100%;"></div> </td> <td style="font-size: 15px;">' + reply.body[i].first_name + ' ' + reply.body[i].last_name + '</td> <td style="font-size: 15px;">' + reply.body[i].role + '</td> </a>');
+                    $('#results').append('<a href="/BloowarePortal/School/?id=' + reply.body[i].id + '"><tr class="item" search="search ' + reply.body[i].first_name + ' ' + reply.body[i].last_name + ' ' + reply.body[i].role + ' search"  style="font-weight: bold;"> <td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="../assets/img/placeholder.png" style="width: 100%;min-height: 100%;"></div> </td> <td style="font-size: 15px;">' + reply.body[i].first_name + ' ' + reply.body[i].last_name + '</td> <td style="font-size: 15px;">' + reply.body[i].role + '</td> </a>');
                 }
 
 

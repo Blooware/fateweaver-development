@@ -79,27 +79,27 @@
 
 
 
-            <form method="post" class="create">
-                <div class="form-group" style="padding:30px;padding-left:0px;padding-top:0px;">
+            <form method="post" class="create d-block m-auto">
+                <div class="form-group" style="padding:0px;padding-left:0px;padding-top:0px;">
                     <p class="d-inline" style="text-align: right;cursor: pointer;text-decoration: underline; float:left; "
                         onclick="$('.popup2').attr('style', $('.popup2').attr('style') + ';display: none!important;');">
                         Close</p>
 
                 </div>
-                <input placeholder="givenName" type="text" id="given_name" name="givenName" /><br>
-                <input placeholder="family_name" type="text" id="family_name" name="familyName" /><br>
-                <input placeholder="dob" type="date" id="dob" name="dob" /><br>
-                <input placeholder="gender" type="text" id="gender" name="gender" /><br>
-                <input placeholder="postcode" type="text" id="postcode" name="postcode" /><br>
-                <input placeholder="upn" type="text" id="upn" name="upn" /><br>
-                <input placeholder="uln" type="text" id="uln" name="uln" /><br>
-                <input placeholder="tutorGroup" type="text" id="tutorGroup" name="tutorGroup" /><br>
-                <input placeholder="pp" type="text" id="pp" name="pp" /><br>
+                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="givenName" placeholder="Given Name" type="text" id="given_name" name="givenName" required />
+                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="family_name" placeholder="Family Name" type="text" id="family_name" name="familyName" required />
+                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="dob" placeholder="Date of Birth" type="text" id="dob" name="dob" onfocus="(this.type='date')" onblur="(this.type='text')"  required/>
+                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="gender" placeholder="Gender" type="text" id="gender" name="gender" required />
+                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="postcode" placeholder="Postcode" type="text" id="postcode" name="postcode" required />
+                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="upn" placeholder="UPN" type="text" id="upn" name="upn"  required/>
+                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="uln" placeholder="ULN" type="text" id="uln" name="uln" required />
+                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="tutorGroup" placeholder="Tutor Group" type="text" id="tutorGroup" name="tutorGroup" required />
+                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="pp" placeholder="Pupil Premium" type="text" id="pp" name="pp" required />
                 <!--pupil premium-->
-                <input placeholder="sen" type="text" id="sen" name="sen" /><br>
+                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="sen" placeholder="Special Educational Needs" type="text" id="sen" name="sen" required />
                 <!--special education needs-->
-
-                <button type="submit">Create</button>
+            
+                <button class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 0px solid #ccc; background: rgb(0, 150, 92); border-radius:300px; width: 250px;color:#fff" type="submit">Create</button>
             </form>
 
             <div class="circle-loader" style="display:none;text-align: center;">
@@ -419,21 +419,8 @@
 
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postCreateStudent", [objectifyForm(this)], function (reply) {
                 console.log(reply);
-                /*
-                try {
-                    $(".circle-loader").html("<p>Success! Completed " + reply.Done.length + "/" + reply.NotDone.length + '</p><br><br><div class="table-responsive"> <table class="table" id="NotDone-results"></table></div>');
-
-                } catch (e) {
-                    $(".circle-loader").html('<p>Success!</p><br><br><div class="table-responsive"> <table class="table" id="NotDone-results"></table></div>');
-
-                }
-                
-                
-                for (var i = 0; i < reply.NotDone.length; i++) {
-                    studentsToEdit.push(reply.NotDone[i].jsonStudent);
-                    $('#NotDone-results').append('<a href="/BloowarePortal/School/?id=' + reply.NotDone[i].jsonStudent.id + '"><tr style="font-weight: bold;"> <td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="assets/img/placeholder.png" style="width: 100%;min-height: 100%;"></div> </td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.given_name + ' ' + reply.NotDone[i].jsonStudent.family_name + '</td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.tutor_group_id + '</td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.upn + '</td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.aspiration + '</td> <td style="font-size: 15px;"><button onclick="replaceStudent(' + i + ')">Replace</button></td> <td style="font-size: 15px;"><button onclick="ignoreStudent(' + i + ')">Ignore</button></td></tr> </a>');
-                }
-                */
+               
+                window.location.reload();
 
             });
 
