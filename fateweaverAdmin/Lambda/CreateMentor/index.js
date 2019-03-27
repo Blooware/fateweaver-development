@@ -12,6 +12,55 @@ var connection = mysql.createConnection({
 });
 
 exports.handler = (event, context, callback) => {
+
+    connection.query("select * from fateweaver.admins where cognito_id = ? ", [event.account.sub], function (err, results, fields) {
+        if (err) {
+            console.log("Error getting tutor groups:", err);
+            context.succeed({
+                statusCode: 200,
+                status: false,
+                errMsg: "error adding that mentor err :" + err
+            });
+        }
+        if (results.length > 0) {
+            var data = {
+                first_name: event.firstName,
+                last_name: event.lastName,
+                school_id: results[0].school_id,
+                role: event.role,
+                linkedin: event.linkedin,
+                added: new Date(Date.now()),
+                added_id: event.account.sub,
+            }
+
+            connection.query("insert into fateweaver.mentors set ? ", [data], function (err, results, fields) {
+                if (err) {
+                    console.log("Error getting tutor groups:", err);
+                    context.succeed({
+                        statusCode: 200,
+                        status: false,
+                        errMsg: "error adding that mentor err :" + err
+                    });
+                }
+
+                context.succeed({
+                    statusCode: 200,
+                    status: true,
+                    body: "successfully added mentor"
+                });
+            });
+        } else {
+            context.succeed({
+                statusCode: 200,
+                status: false,
+                errMsg: "can't find admin account"
+            });
+        }
+    });
+    /*
+
+    
+    
     var data = {
         first_name: event.firstName,
         last_name: event.lastName,
@@ -19,7 +68,7 @@ exports.handler = (event, context, callback) => {
         role: event.role,
         linkedin: event.linkedin,
         added: new Date(Date.now()),
-        added_id: "3001",
+        added_id: event.account.sub,
     }
 
     connection.query("insert into fateweaver.mentors set ? ", [data], function (err, results, fields) {
@@ -38,6 +87,7 @@ exports.handler = (event, context, callback) => {
             body: "successfully added mentor"
         });
     });
+    */
 }
 
 
