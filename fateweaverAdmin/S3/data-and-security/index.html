@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400">
-    <link rel="stylesheet" href="../../../assets/css/styles.min.css">
+    <link rel="stylesheet" href="../assets/css/styles.min.css">
 </head>
 
 <body style="width: 100%;height: 100%;background-color: #ffffff;">
@@ -65,36 +65,29 @@
                         <div class="col-9" style="margin-top: 50px;">
                             <div class="row" style="margin-bottom: 20px;">
                                 <div class="col" style="min-width: 500px;">
-                                    <h1 style="font-weight: 300;"><strong id="Name"></strong></h1>
-                                    <h1 style="font-weight: 300;font-size: 20px;color: rgb(142,142,142);"><strong>Career
-                                            Session</strong></h1>
+                                    <h1 style="font-weight: 300;"><strong>Data storage you can trust</strong></h1>
+                                    <h1 style="font-weight: 300;font-size: 20px;color: rgb(142,142,142);"><strong>After extensive research and collaboration with schools and industry leaders, we have put together a system that ensures your student's data is safe. We use approved <a href="https://cloud.google.com/sql">Google Data Centres</a> and back everything up regularly.</h1>
+                                    <br>
+                                    <br>
+                                    <h1 style="font-weight: 300;"><strong>GDPR</strong></h1>
+                                    <h1 style="font-weight: 300;font-size: 20px;color: rgb(142,142,142);"><strong>The General Data Protection Regulation is something we all have to comply with. So here's where we stand. Any data you upload to StudentPath.co.uk is strictly confidential, that means we don't share it with anyone. Ever. StudentPath is a tool for your establishment to use and therefore you <strong>must</strong> get the correct permission for both adults and minors (In line with GDPR) before you upload any data to our service.  You may already have this permission if you're storing any student or mentor information in a cloud based solution such as Google Drive.<br><br>If you recieve a request to remove data from someone on the system under GDPR you must notify us ASAP via contact@blooware.co.uk. We can then process the request accordingly as is our legal duty.</h1>
                                     <div class="float-left" style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 15px;margin-right: 30px;">
-                                        <a href="javascript:history.back()" class="btn btn-primary" style="height: 100%;padding: 12px 24px;background-color: #fff;color: #d32641!important;border: 0px!important;font-size: 18px;">
-                                            Cancel&nbsp;
-                                            <i class="far fa-trash-alt"></i>
+                                        <a target="_blank" href="https://www.studentpath.co.uk/privacy" class="btn btn-primary" style="height: 100%;padding: 12px 24px;background-color: #fff;color: #2662d3!important;border: 0px!important;font-size: 18px;">
+                                            Privacy Policy&nbsp;
+                                            <i class="fa fa-lock"></i>
+                                        </a>
+                                    </div>
+                                    <div class="float-left" style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 15px;margin-right: 30px;">
+                                        <a target="_blank" href="https://www.studentpath.co.uk/cookies" class="btn btn-primary" style="height: 100%;padding: 12px 24px;background-color: #fff;color: #2662d3!important;border: 0px!important;font-size: 18px;">
+                                            Cookies&nbsp;
+                                            <i class="far fa-circle"></i>
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <h1 style="font-size: 30px;padding: 21px;padding-left: 0px;"><strong>Overview,</strong></h1>
-                    <div class="form-group">
-                        <p style="font-size: 18px;"><span id="firstName"></span> aspires to
-                            become a <strong id="aspiration">.</strong><br><br>
-                            <div id="notesContainer">
-                                <strong>Their notes said :&nbsp;</strong><br><br>"<span id="notes"></span>"
-                            </div>
-
-                        </p>
-                    </div>
-                    <div>
-                        <strong>Destination: </strong><p id="destination" name="destination" placeholder="destination">loading</p><br>
-                        <strong>Industry : </strong><p id="industry" name="industry" placeholder="industry">loading</p><br>
-                        <strong>Plan A : </strong><p id="plan_a" name="plan_a" placeholder="plan_a">loading</p><br>
-                        <strong>Plan B : </strong><p id="plan_b" name="plan_b" placeholder="plan_b">loading</p><br>
-                        <strong>Confirmed Place :</strong> <p id="confirmed_place" name="confirmed_place" placeholder="confirmed_place">loading</p><br>
-                    </div>
+                   
 
 
 
@@ -104,11 +97,11 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-    <script src="../../../assets/js/script.min.js"></script>
+    <script src="../assets/js/script.min.js"></script>
     <script src="https://www.blooware.co.uk/blooAuth/vendor/aws-cognito-sdk.min.js"></script>
     <script src="https://www.blooware.co.uk/blooAuth/vendor/amazon-cognito-identity.min.js"></script>
     <script src="https://www.blooware.co.uk/blooAuth/blooAuth.js"></script>
-    <script src="../../../assets/js/security.js"></script>
+    <script src="../assets/js/security.js"></script>
 </body>
 <script>
     function postToLambda(url, data, callback) {
@@ -126,24 +119,6 @@
         });
     }
 
-    /*upload stuff*/
-
-    $(".save").submit(function (e) {
-        e.preventDefault();
-
-        postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaver-newDestinationSession", objectifyForm(this), function (reply) {
-
-            window.location.href = '/portal/students/profile';
-
-        });
-
-    });
-
-    var id = getUrlParameter('id').replace("-", " ");
-    var student_id = getUrlParameter('student_id').replace("-", " ");
-
-
-    $('#studentId').val(student_id)
     function refresh() {
         postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postGrabStudent', { student_id: student_id }, function (reply) {
             console.log(reply);
@@ -168,35 +143,7 @@
         });
     }
 
-    function objectifyForm(formArray) {//serialize data function
-
-        var returnArray = {};
-        for (var i = 0; i < formArray.length; i++) {
-            if (formArray[i]['type'] == "checkbox") {
-                //console.log("checkbox");
-                returnArray[formArray[i]['name']] = formArray[i]['checked'];
-            } else {
-                if (formArray[i]['type'] == "radio") {
-                    //console.log("RadioBox");
-                    returnArray[formArray[i]['name']] = formArray[i]['checked'];
-                } else {
-                    //console.log("Not A checkbox");
-                    returnArray[formArray[i]['name']] = formArray[i]['value'];
-                }
-            }
-        }
-        return returnArray;
-    }
-
-
-
-    function getUrlParameter(name) {
-        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-        var results = regex.exec(location.search);
-        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-    };
-
+  
 </script>
 
 </html>
