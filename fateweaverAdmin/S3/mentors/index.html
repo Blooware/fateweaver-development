@@ -167,7 +167,7 @@
 
                 $('#results').html('<tr style="font-weight: normal!important;"> <th style="width: 120px;"></th> <th style="font-weight: normal;">Name</th> <th style="font-weight: normal;">Role</th></tr>');
                 for (var i = 0; i < reply.body.length; i++) {
-                    $('#results').append('<a href="/BloowarePortal/School/?id=' + reply.body[i].id + '"><tr class="item" search="search ' + reply.body[i].first_name + ' ' + reply.body[i].last_name + ' ' + reply.body[i].role + ' search"  style="font-weight: bold;"> <td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="../assets/img/placeholder.png" style="width: 100%;min-height: 100%;"></div> </td> <td style="font-size: 15px;">' + reply.body[i].first_name + ' ' + reply.body[i].last_name + '</td> <td style="font-size: 15px;">' + reply.body[i].role + '</td> </a>');
+                    $('#results').append('<a href="/BloowarePortal/School/?id=' + reply.body[i].id + '"><tr class="item" search="search ' + reply.body[i].first_name + ' ' + reply.body[i].last_name + ' ' + reply.body[i].role + ' search"  style="font-weight: bold;"> <td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="../assets/img/placeholder.png" style="width: 100%;min-height: 100%;"></div> </td> <td style="font-size: 15px;"><a  href="/portal/mentors/profile/?mentor_id=' + reply.body[i].id + '">' + reply.body[i].first_name + ' ' + reply.body[i].last_name + '</a></td> <td style="font-size: 15px;">' + reply.body[i].role + '</td> </a>');
                 }
 
 
