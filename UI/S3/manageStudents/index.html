@@ -88,9 +88,9 @@
     //Load Existing Articles
     function refresh() {
         postToLambda('https://hvbk9q6ua3.execute-api.eu-west-2.amazonaws.com/Prod/fateweaver-manageFateweaverStudents', { school: school_id }, function (reply) {
-            //console.log(reply);
+            ////console.log(reply);
             //$('#createdArticle').html(reply.body.insertId);
-            console.log(reply)
+            //console.log(reply)
             $('#results').html("<tr><th>Name</th><th>Study Subjects</th><th>Destination</th><th>School ID</th><th>Student ID</th><th>Article</th></tr>");
             for (var i = 0; i < reply.body.length; i++) {
                 $('#results').append('<tr><td>' + reply.body[i].name + '</td><td>' + reply.body[i].study_subjects + '</td><td>' + reply.body[i].destination + '</td><td>' + reply.body[i].school_id + '</td><td><button onclick="postToLambda(`https://hvbk9q6ua3.execute-api.eu-west-2.amazonaws.com/Prod/fateweaver-deleteFateweaverStudent`, {id:' + reply.body[i].id + '}, function(){window.location.reload();});">Delete</button></td><td><a href="/newArticle/?student=' + reply.body[i].id + '"><button onclick="">Add Article</button></a></td></tr>');
@@ -147,9 +147,9 @@
             return returnArray;
         }
         postToLambda(url, objectifyForm(form), function (reply) {
-            //console.log(reply);
+            ////console.log(reply);
             $('#createdArticle').html(reply.body.insertId);
-            console.log(reply);
+            //console.log(reply);
             callback();
         });
     }

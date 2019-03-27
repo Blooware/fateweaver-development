@@ -120,7 +120,7 @@
 
             postToLambda('https://mwujmaqyr3.execute-api.eu-west-2.amazonaws.com/Prod/BloowareFateweaver-postGetSchools', [], function (reply) {
 
-                console.log(reply);
+                //console.log(reply);
 
                 for (var i = 0; i < reply.body.length; i++) {
                     $('#results').append('<a href="/BloowarePortal/School/?id=' + reply.body[i].id + '"><div class="d-inline-flex hover-grow" style="height: 250px;border-radius: 10px;box-shadow: 1px 3px 5px #aaa;background-size: cover;margin-left: 0%;margin-right: 10px;background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url(&quot;assets/img/nastuh-abootalebi-284877-unsplash.jpg&quot;);box-shadow: 0 0 13px rgba(0,0,0,0.2);margin-top: 1%;min-width: 350px;cursor: pointer;"> <h1 style="color: #fff;padding: 23px;height: 200px;text-shadow: 0 0 5px rgba(0,0,0, 0.5);font-size: 30px;">' + reply.body[i].name + '</h1> </div></a>');

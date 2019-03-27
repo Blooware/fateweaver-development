@@ -89,7 +89,7 @@
     });
     function refresh() {
         postToLambda('https://mwujmaqyr3.execute-api.eu-west-2.amazonaws.com/Prod/BloowareFateweaver-postGrabSchool', { school_id: school_id }, function (reply) {
-            console.log(reply);
+            //console.log(reply);
             console.log(reply.status);
             if (reply.status == false) {
                 console.log("Failed");
@@ -165,7 +165,7 @@
         y.school_id = school_id;
         console.log(y);
         postToLambda("https://7d07lpvx72.execute-api.eu-west-2.amazonaws.com/Prod/negotium-postUpdateEvent", [y], function (reply) {
-            console.log(reply);
+            //console.log(reply);
             //refresh();
         });
         

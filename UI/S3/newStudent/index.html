@@ -251,9 +251,9 @@
                 return returnArray;
             }
             postToLambda(url, objectifyForm(form), function (reply) {
-                //console.log(reply);
+                ////console.log(reply);
                 $('#createdArticle').html(reply.body.insertId);
-                console.log(reply);
+                //console.log(reply);
                 callback();
             });
         }

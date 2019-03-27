@@ -115,9 +115,9 @@
     //Load Existing Articles
     function refresh() {
         postToLambda('https://hvbk9q6ua3.execute-api.eu-west-2.amazonaws.com/Prod/fateweaver-FateweaverHome', { school: school_id }, function (reply) {
-            //console.log(reply);
+            ////console.log(reply);
             //$('#createdArticle').html(reply.body.insertId);
-            console.log(reply)
+            //console.log(reply)
 
             for (var i = 0; i < reply.body.length; i++) {
                 //' + reply.body[i].image + '' + reply.body[i].image + '
@@ -172,9 +172,9 @@
             return returnArray;
         }
         postToLambda(url, objectifyForm(form), function (reply) {
-            //console.log(reply);
+            ////console.log(reply);
             $('#createdArticle').html(reply.body.insertId);
-            console.log(reply);
+            //console.log(reply);
             callback();
         });
     }

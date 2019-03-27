@@ -67,7 +67,7 @@
         // get all of the admin accounts from a different userpool
         /*
         postToLambda('https://mwujmaqyr3.execute-api.eu-west-2.amazonaws.com/Prod/BloowareFateweaver-postGrabSchool', { school_id: school_id }, function (reply) {
-            console.log(reply);
+            //console.log(reply);
             console.log(reply.status);
             
             if (reply.status == false) {
@@ -173,7 +173,7 @@
         
         
         postToLambda("https://mwujmaqyr3.execute-api.eu-west-2.amazonaws.com/Prod/BloowareFateweaver-postCreateFateweaverAdmin", {school_id : school_id, email : $('#newEmail').val(), password : $('#newPassword').val() }, function (reply) {
-            console.log(reply);
+            //console.log(reply);
             //$('#createdCustomer').html(reply.body.insertId);
             //console.log("Created an Event");
             //refresh();

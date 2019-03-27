@@ -79,7 +79,7 @@
     //Load Existing Articles
     function refresh() {
         postToLambda('https://hvbk9q6ua3.execute-api.eu-west-2.amazonaws.com/Prod/fateweaver-FateweaverArticle', { id: student_id }, function (reply) {
-            //console.log(reply);
+            ////console.log(reply);
             document.title = reply.body[0].studentName + " | Fateweaver";
             $('.studentName').html(reply.body[0].studentName);
             $('#body').html(reply.body[0].body);
@@ -87,7 +87,7 @@
             $('#studied').html(reply.body[0].study_subjects);
             $('#title').html(reply.body[0].title);
             $('.profile').attr("src", "https://randomuser.me/api/portraits/men/" + reply.body[0].student_id + ".jpg");
-            console.log(reply)
+            //console.log(reply)
         });
     }
 
@@ -126,9 +126,9 @@
             return returnArray;
         }
         postToLambda(url, objectifyForm(form), function (reply) {
-            //console.log(reply);
+            ////console.log(reply);
             $('#createdArticle').html(reply.body.insertId);
-            console.log(reply);
+            //console.log(reply);
             callback();
         });
     }

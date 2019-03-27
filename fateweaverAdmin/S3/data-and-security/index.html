@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>New Session</title>
+    <title>StudentPath</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -127,7 +127,7 @@
 
     function refresh() {
         postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postGrabStudent', { student_id: student_id }, function (reply) {
-            console.log(reply);
+            //console.log(reply);
 
             $('#Name').html(reply.studentData[0].given_name + " " + reply.studentData[0].family_name);
             $('#firstName').html(reply.studentData[0].given_name);

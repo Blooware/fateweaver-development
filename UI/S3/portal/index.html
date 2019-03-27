@@ -217,9 +217,9 @@
 
             console.log(userInfo);
             postToLambda('https://hvbk9q6ua3.execute-api.eu-west-2.amazonaws.com/Prod/fateweaver-manageFateweaverSchools', { user: userInfo }, function (reply) {
-                //console.log(reply);
+                ////console.log(reply);
                 //$('#createdArticle').html(reply.body.insertId);
-                //console.log(reply)
+                ////console.log(reply)
 
                 if (reply.body) {
                     $('#results').html("");
@@ -270,9 +270,9 @@
                 return returnArray;
             }
             postToLambda(url, objectifyForm(form), function (reply) {
-                //console.log(reply);
+                ////console.log(reply);
                 $('#createdArticle').html(reply.body.insertId);
-                //  console.log(reply);
+                //  //console.log(reply);
                 callback();
             });
         }

@@ -87,9 +87,9 @@
     //Load Existing Articles
     function refresh() {
         postToLambda('https://hvbk9q6ua3.execute-api.eu-west-2.amazonaws.com/Prod/fateweaver-manageFateweaverArticles', { student: student_id }, function (reply) {
-            //console.log(reply);
+            ////console.log(reply);
             //$('#createdArticle').html(reply.body.insertId);
-            console.log(reply)
+            //console.log(reply)
             $('#results').html("<tr><th>Title</th><th>Thumbnail</th><th>Body</th><th>Student ID</th><th>Article ID</th></tr>");
             for (var i = 0; i < reply.body.length; i++) {
                 $('#results').append('<tr><td>' + reply.body[i].title + '</td><td>' + reply.body[i].thumbnail + '</td><td>' + reply.body[i].body + '</td><td>' + reply.body[i].student_id + '</td><td><button onclick="postToLambda(`https://hvbk9q6ua3.execute-api.eu-west-2.amazonaws.com/Prod/fateweaver-deleteFateweaverArticle`, {id:' + reply.body[i].id + '}, function(){window.location.reload();});">Delete</button></td></tr>');
@@ -148,9 +148,9 @@
             return returnArray;
         }
         postToLambda(url, objectifyForm(form), function (reply) {
-            //console.log(reply);
+            ////console.log(reply);
             $('#createdArticle').html(reply.body.insertId);
-            //console.log(reply);
+            ////console.log(reply);
             callback();
         });
     }

@@ -261,7 +261,7 @@
 
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaver-getStudents', [], function (reply) {
 
-                console.log(reply);
+                //console.log(reply);
                 $('#results').html(document.getElementById('tableHeading').outerHTML);
                 for (var i = 0; i < reply.body.length; i++) {
 
@@ -310,7 +310,7 @@
                 dataType: 'json',
                 contentType: "application/json",
                 success: function (reply) {
-                    console.log(reply)
+                    //console.log(reply)
                     var bytes = new Uint8Array(reply.Body.data); // pass your byte response to this constructor
 
                     var blob = new Blob([bytes], { type: "application/csv" });// change resultByte to bytes
@@ -329,7 +329,7 @@
             console.log(studentsToEdit[i])
             var studentData = studentsToEdit[i];
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postReplaceStudent', [{ studentData: studentData }], function (reply) {
-                console.log(reply);
+                //console.log(reply);
 
                 if (reply.status = true) {
                     // now remove it from the list or say success
@@ -418,7 +418,7 @@
 
 
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postCreateStudent", [objectifyForm(this)], function (reply) {
-                console.log(reply);
+                //console.log(reply);
                
                 window.location.reload();
 

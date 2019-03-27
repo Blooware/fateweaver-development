@@ -245,7 +245,7 @@
 
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postGrabTutorGroups', [], function (reply) {
 
-                console.log(reply);
+                //console.log(reply);
                 $('#results').html('<tr style="font-weight: normal!important;"> <th style="width: 120px;"></th> <th style="font-weight: normal;">Name</th> <th style="font-weight: normal;">Tutor Group</th> <th style="font-weight: normal;">UPN</th>  <th style="font-weight: normal;">Destination</th> <th style="font-weight: normal;">Aspiration</th> </tr>');
                 for (var i = 0; i < reply.body.length; i++) {
 
@@ -282,7 +282,7 @@
                 dataType: 'json',
                 contentType: "application/json",
                 success: function (reply) {
-                    console.log(reply)
+                    //console.log(reply)
                     var bytes = new Uint8Array(reply.Body.data); // pass your byte response to this constructor
 
                     var blob = new Blob([bytes], { type: "application/csv" });// change resultByte to bytes
@@ -300,7 +300,7 @@
             console.log(studentsToEdit[i])
             var studentData = studentsToEdit[i];
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postReplaceStudent', [{ studentData: studentData }], function (reply) {
-                console.log(reply);
+                //console.log(reply);
 
                 if (reply.status = true) {
                     // now remove it from the list or say success
@@ -325,7 +325,7 @@
             $(this).hide();
 
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postCSV", { base64String: base64File, name: fileName }, function (reply) {
-                console.log(reply);
+                //console.log(reply);
                 try {
                     $(".circle-loader").html("<p>Success! Completed " + reply.Done.length + "/" + reply.NotDone.length + '</p><br><br><div class="table-responsive"> <table class="table" id="NotDone-results"></table></div>');
 
@@ -382,7 +382,7 @@
             
             
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postCreateStudent", [objectifyForm(this)], function (reply) {
-                console.log(reply);
+                //console.log(reply);
                 /*
                 try {
                     $(".circle-loader").html("<p>Success! Completed " + reply.Done.length + "/" + reply.NotDone.length + '</p><br><br><div class="table-responsive"> <table class="table" id="NotDone-results"></table></div>');
