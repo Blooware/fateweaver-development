@@ -274,7 +274,7 @@ var destinationData;
 
         function refresh() {
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postGrabStudent', { student_id: student_id }, function (reply) {
-                //console.log(reply);
+                console.log(reply);
                 destinationData = reply.destinations;
                 for (i = 0; i < reply.destinations.length; i++) {
 

@@ -41,14 +41,28 @@ exports.handler = (event, context, callback) => {
                     });
                 }
                 var studentFiles = results;
+                connection.query("select fateweaver.interests.id as interest_id, fateweaver.interests.name as name from fateweaver.student_interests left join fateweaver.interests on fateweaver.interests.id=fateweaver.student_interests.interest_id where student_id = (select id from fateweaver.students where id = ? and school_id = (select school_id from fateweaver.admins where cognito_id = ? limit 1))", [event.form.student_id, event.account.sub], function (err, results, fields) {
+                    if (err) {
+                        console.log("Error getting tutor groups:", err);
+                        context.succeed({
+                            statusCode: 200,
+                            status: false,
+                            errMsg: "error getting students :" + err
+                        });
+                    }
+                    var studentInterests = results;
 
 
-                context.succeed({
-                    statusCode: 200,
-                    status: true,
-                    studentData: studentData,
-                    destinations: destinations,
-                    studentFiles: studentFiles,
+
+
+                    context.succeed({
+                        statusCode: 200,
+                        status: true,
+                        studentData: studentData,
+                        destinations: destinations,
+                        studentFiles: studentFiles,
+                        studentInterests : studentInterests,
+                    });
                 });
 
             });

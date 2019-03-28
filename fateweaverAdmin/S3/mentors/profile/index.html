@@ -183,9 +183,12 @@
         mentor_id = getUrlParameter('mentor_id').replace("-", " ");
 
         function refresh() {
+            
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postGrabMentor', { mentor_id: mentor_id }, function (reply) {
                 console.log(reply);
+                
             });
+            
             
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-getInterests', {}, function (reply) {
                 console.log(reply);
@@ -197,12 +200,6 @@
             });
         }
 
-
-        function goToSession(data){
-      
-            window.location.href = '/portal/students/profile/session/?mentor_id=' + mentor_id + '&id=' + data;
-            //here
-        }
 
         function postToLambda(url, data, callback) {
             $.ajax({
@@ -237,13 +234,22 @@
 
 
             
-            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postUpdateMentor", {studentInfo : objectifyForm(this), mentor_id : mentor_id}, function (reply) {
+            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postUpdateMentor", {mentorInfo : objectifyForm(this), mentor_id : mentor_id}, function (reply) {
                 //console.log(reply);
                 refresh();
             });
             
 
 
+        });
+
+        $(".addInterest").submit(function (e) {
+            e.preventDefault();
+            //console.log(objectifyForm(this));
+            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postAddMentorInterest", {mentorInfo : objectifyForm(this), mentor_id : mentor_id}, function (reply) {
+                console.log(reply);
+                refresh();
+            });
         });
 
         function objectifyForm(formArray) {//serialize data function
