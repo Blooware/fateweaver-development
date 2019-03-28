@@ -10,7 +10,7 @@ var connection = mysql.createConnection({
 });
 
 exports.handler = (event, context, callback) => {
-    callback(null, event);
+    //callback(null, event);
 
     connection.query("select * from fateweaver.mentors where id = ? and school_id = (select school_id from fateweaver.admins where cognito_id = ?)", [event.form.mentor_id, event.account.sub], function (err, results, fields) {
         if (err) {
@@ -29,7 +29,7 @@ exports.handler = (event, context, callback) => {
 
             }
 
-            connection.query("select * from mentor_interests where mentor_id = ? and interest_id = ?", [event.form.mentor_id, event.form.mentorInfo.interest], function (err, results, fields) {
+            connection.query("select * from fateweaver.mentor_interests where mentor_id = ? and interest_id = ?", [event.form.mentor_id, event.form.mentorInfo.interest], function (err, results, fields) {
                 if (err) {
                     console.log("Error getting tutor groups:", err);
                     context.succeed({
