@@ -16,30 +16,7 @@ exports.handler = (event, context, callback) => {
     console.log(event);
     //callback(null, event);
 
-
-    /*
-    connection.query("select * from fateweaver.schools", [data], function (err, results, fields) {
-        if (err) {
-            console.log("Error getting tutor groups:", err);
-            context.succeed({
-                statusCode: 200,
-                status: false,
-                errMsg: "error adding that mentor err :" + err
-            });
-        }
-        if(results.length > 0){
-            // do the stuff
-        } else {
-            context.succeed({
-                statusCode: 200,
-                status: false,
-                errMsg: "you dont have access to add an account"
-            });
-        }
-    });
-    */
-
-
+    
     var poolData = {
         UserPoolId: 'eu-west-2_9yPc9js2X',
         ClientId: '4atq7kp8m6ibv56d3cgjbudhim'
@@ -59,12 +36,24 @@ exports.handler = (event, context, callback) => {
         Name: 'phone_number',
         Value: '+15555555555'
     };
+
+    
+    var dataaddedSub = {
+        Name : "custom:addedSub",
+        Value : event.account.sub
+    };
+    var attributeaddedSub = new AmazonCognitoIdentity.CognitoUserAttribute(dataaddedSub);
+    attributeList.push(attributeaddedSub);
+    
+   
     var attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute(dataEmail);
     var attributePhoneNumber = new AmazonCognitoIdentity.CognitoUserAttribute(dataPhoneNumber);
 
+    
     attributeList.push(attributeEmail);
     attributeList.push(attributePhoneNumber);
     //TODO this should be a temport password
+    console.log(attributeList);
 
     userPool.signUp(event.form.email, event.form.password, attributeList, null, function (err, result) {
 
@@ -103,7 +92,10 @@ exports.handler = (event, context, callback) => {
 
     });
 
-
+    
 
 
 }
+
+    
+    
