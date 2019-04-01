@@ -38,13 +38,12 @@ const AWS = require('aws-sdk');
 const moment = require('moment');
 const fileType = require('file-type');
 const sha1 = require('sha1');
-
 var mysql = require('mysql');
 var connection = mysql.createConnection({
-    host: 'blootest.c2qh4vkdvsoy.eu-west-2.rds.amazonaws.com',
-    user: 'blooware',
-    password: 'blooware18',
-    port: 3306
+    "host": process.env.host,
+    "user": process.env.user,
+    "password": process.env.password,
+    "port": process.env.port
 });
 
 exports.handler = (event, context, callback) => {
@@ -60,8 +59,10 @@ exports.handler = (event, context, callback) => {
     var notAdded = [];
     var TutorGroupsAdded = [];
     let fileRawText = buffer.toString('ascii');
+    var progressId;
 
     connection.query("insert into fateweaver.upload_progress set ?", [{qty : fileRawText.split("\r\n").length - 1}], function (error, results, fields) {
+        progressId = results.insertId;
         begin();
     });
 
@@ -223,6 +224,9 @@ exports.handler = (event, context, callback) => {
                         sen: StudentInfo.SEN,
                     }
                     Added.push({ jsonStudent });
+                    connection.query("update fateweaver.upload_progress set ? where id = ?", [{done : Added.length}, progressId], function (error, results, fields) {
+                      
+                    });
                 });
             }
         });

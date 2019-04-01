@@ -201,7 +201,7 @@ exports.handler = (event, context, callback) => {
             console.log(fields);
         }
         async function processFields(array, JsonData) {
-            for (const item of array) {
+            for (const item of JsonData) {
                 await delayedFields(item, JsonData);
             }
             console.log("Finished Itterating through the fields");
