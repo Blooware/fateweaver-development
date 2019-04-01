@@ -1,18 +1,31 @@
-'use strict'
-
 var mysql = require('mysql');
 var connection = mysql.createConnection({
-    host: 'blootest.c2qh4vkdvsoy.eu-west-2.rds.amazonaws.com',
-    user: 'blooware',
-    password: 'blooware18',
-    port: 3306
+    "host": process.env.host,
+    "user":  process.env.user,
+    "password":  process.env.password,
+    "port":  process.env.port
 });
 
 exports.handler = (event, context, callback) => {
-    //callback(null,event);
+    //callback(null, event);
+    
+    var data = {
+        name : event.form[0].Name,
+        email : event.form[0].Email,
+        logo : event.form[0].Logo,
+        address_1 : event.form[0].Address1,
+        address_2 : event.form[0].Address2,
+        address_3 : event.form[0].Address3,
+        postcode : event.form[0].Postcode,
+        county : event.form[0].County,
+        town : event.form[0].Town,
+        country : event.form[0].Country,
+    }
+    //callback(null,data);
+    
+    var school_id;
     connection.query("select school_id from fateweaver.admins where cognito_id = ?", [event.account.sub], function (err, results, fields) {
         if (err) {
-            console.log("Error getting tutor groups:", err);
             context.succeed({
                 statusCode: 200,
                 status: false,
@@ -20,26 +33,12 @@ exports.handler = (event, context, callback) => {
             });
         }
         if (results.length > 0) {
-            var data = {
-                given_name: event.form[0].studentData.given_name,
-                family_name: event.form[0].studentData.family_name,
-                dob: event.form[0].studentData.dob,
-                gender: event.form[0].studentData.gender,
-                postcode: event.form[0].studentData.postcode,
-                upn: event.form[0].studentData.upn,
-                uln: event.form[0].studentData.uln,
-                tutor_group_id: event.form[0].studentData.tutor_group_id,
-                pp: event.form[0].studentData.pp,
-                sen: event.form[0].studentData.sen,
-                added: new Date(Date.now()),
-                added_id: event.account.sub,
-                csv: "Replaced",
-                school_id: results[0].school_id,
-            }
-
-            connection.query("update fateweaver.students set ? where id = ? ", [data, event.form[0].studentData.Duplicate], function (err, results, fields) {
+            school_id = results[0].school_id;
+            
+            
+            
+            connection.query("update fateweaver.schools set ? where id = ?", [data ,school_id], function (err, results, fields) {
                 if (err) {
-                    console.log("Error getting tutor groups:", err);
                     context.succeed({
                         statusCode: 200,
                         status: false,
@@ -49,24 +48,23 @@ exports.handler = (event, context, callback) => {
                 context.succeed({
                     statusCode: 200,
                     status: true,
+                    body: results,
                 });
             });
+            
+
+
         } else {
             context.succeed({
                 statusCode: 200,
                 status: false,
-                errMsg: "Couldn't find admin account"
+                errMsg: "You dont have access to update students"
             });
         }
+
     });
+    
+    
+    
 
 }
-
-
-
-
-
-
-
-
-//john was here
