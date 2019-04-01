@@ -305,7 +305,35 @@
 
         var destinationData;
        
+        function getFile(i, name, file, file_ext) {
+            var oldHTML = $("#file-" + i).html();
+            $("#file-" + i).html('Loading... <div class="spinner-border spinner-border-sm" role="status">  <span class="sr-only">Loading...</span></div>');
+            var data = {
+                name: file
+            }
+            console.log(JSON.stringify(data));
+            $.ajax({
+                url: "https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-getStudentFile",
+                type: 'POST',
+                crossDomain: true,
+                data: JSON.stringify({name:file}),
+                headers: { "Authorization": "Bearer " + token },
+                dataType: 'json',
+                contentType: "application/json",
+                success: function (reply) {
+                    console.log(reply)
+                    var bytes = new Uint8Array(reply.Body.data); // pass your byte response to this constructor
 
+                    var blob = new Blob([bytes], { type: file_ext });// change resultByte to bytes
+
+                    var link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = name;
+                    link.click();
+                    $("#file-" + i).html(oldHTML);
+                }
+            });
+        }
         function refresh() {
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postGrabStudent', { student_id: student_id }, function (reply) {
         
@@ -330,7 +358,7 @@
                 for (i = 0; i < reply.studentFiles.length; i++) {
 
 
-                    $('#filesList').append('<a style="background:#eee;border-radius: 5px;padding:12px 24px;color:#000!important;box-shadow: 0 0 15px rgba(0,0,0,0.4);">' + reply.studentFiles[i].name + ' <i class="fa fa-download"></i></a>');
+                    $('#filesList').append('<div id="file-' + i + '" onclick="getFile(' + i + ', `' + reply.studentFiles[i].name + '`, `' + reply.studentFiles[i].path + '`, `' + reply.studentFiles[i].file_ext + '`)" style="background:#fff;border-radius: 5px;padding:12px 24px;color:#000!important;box-shadow: 0 5px 15px rgba(0,0,0,0.2);margin-right:20px;">' + reply.studentFiles[i].name + ' <i class="fa fa-download"></i></div>');
 
                 }
 
