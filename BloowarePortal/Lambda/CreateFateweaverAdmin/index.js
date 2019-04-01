@@ -1,15 +1,15 @@
-//TODO check the current sub against the subs in the database for blooware admins
-//TODO send an email with the temporary password
-var mysql = require('mysql');
+
 var AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 var AWS = require("aws-sdk");
 global.fetch = require('node-fetch');
 
+var mysql = require('mysql');
 var connection = mysql.createConnection({
-    host: 'blootest.c2qh4vkdvsoy.eu-west-2.rds.amazonaws.com',
-    user: 'blooware',
-    password: 'blooware18',
-    port: 3306
+    "host": process.env.host,
+    "user":  process.env.user,
+    "password":  process.env.password,
+    "port":  
+    process.env.port
 });
 
 exports.handler = (event, context, callback) => {
@@ -89,12 +89,7 @@ exports.handler = (event, context, callback) => {
 
             });
         });
-
     });
-
-    
-
-
 }
 
     
