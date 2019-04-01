@@ -209,6 +209,9 @@ exports.handler = (event, context, callback) => {
                     sen: StudentInfo.SEN,
                 }
                 notAdded.push({ jsonStudent });
+                connection.query("update fateweaver.upload_progress set not_done=? where id = ?", [JSON.stringify(notAdded), progressId], function (error, results, fields) {
+                    console.log(error);
+                  });
             } else {
                 connection.query("insert into fateweaver.students set ?", [dset], function (error, results, fields) {
                     var jsonStudent = {
@@ -224,8 +227,8 @@ exports.handler = (event, context, callback) => {
                         sen: StudentInfo.SEN,
                     }
                     Added.push({ jsonStudent });
-                    connection.query("update fateweaver.upload_progress set ? where id = ?", [{done : Added.length}, progressId], function (error, results, fields) {
-                      
+                    connection.query("update fateweaver.upload_progress set done=? where id = ?", [Added.length, progressId], function (error, results, fields) {
+                      console.log(error);
                     });
                 });
             }
