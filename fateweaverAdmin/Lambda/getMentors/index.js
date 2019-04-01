@@ -9,7 +9,7 @@ var connection = mysql.createConnection({
 exports.handler = (event, context, callback) => {
 
     connection.query("SET SESSION sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));", [event.account.sub], function (err, results, fields) {
-        connection.query("select * from fateweaver.mentors order by id desc", [], function (err, results, fields) {
+        connection.query("select * from fateweaver.mentors where school_id = (select school_id from fateweaver.admins where cognito_id = ?) order by id desc", [event.account.sub], function (err, results, fields) {
             if (err) {
                 console.log("Error getting tutor groups:", err);
                 context.succeed({

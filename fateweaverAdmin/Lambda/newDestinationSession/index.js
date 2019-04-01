@@ -9,14 +9,14 @@ var connection = mysql.createConnection({
 
 exports.handler = (event, context, callback) => {
     var data = {
-        student_id: event.student_id,
-        aspiration: event.aspiration,
-        destination: event.destination,
-        industry: event.industry,
-        plan_a: event.plan_a,
-        plan_b: event.plan_b,
-        confirmed_place: event.confirmed_place,
-        notes: event.notes,
+        student_id: event.form.student_id,
+        aspiration: event.form.aspiration,
+        destination: event.form.destination,
+        industry: event.form.industry,
+        plan_a: event.form.plan_a,
+        plan_b: event.form.plan_b,
+        confirmed_place: event.form.confirmed_place,
+        notes: event.form.notes,
         added: new Date(Date.now()),
         added_id: "3001",
         csv: "Wizard",
