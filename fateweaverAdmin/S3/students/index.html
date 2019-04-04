@@ -41,17 +41,18 @@
 
     <!--Popups-->
     <div>
-        <div class="d-inline-flex popup1" id="popup1" style="display: none!important;border-radius: 15px;padding: 3%;position: relative;-webkit-box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);position: fixed;width: 100%;height: 80%;width: 80%;top: 10%;background: #FFF;left: 10%;z-index: 999999999999999999999999999999999999999999;">
+        <div class="d-inline-flex popup1" id="popup1"
+            style="display: none!important;border-radius: 15px;padding: 3%;position: relative;-webkit-box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);position: fixed;width: 100%;height: 80%;width: 80%;top: 10%;background: #FFF;left: 10%;z-index: 999999999999999999999999999999999999999999;">
 
 
-                <div class="form-group" style="padding:30px;padding-left:0px;padding-top:0px;">
-                        <p class="d-inline" style="text-align: right;cursor: pointer;text-decoration: underline; float:left; "
-                            onclick="$('.popup1').attr('style', $('.popup1').attr('style') + ';display: none!important;');">
-                            Close</p>
-    
-                    </div>
+            <div class="form-group" style="padding:30px;padding-left:0px;padding-top:0px;">
+                <p class="d-inline" style="text-align: right;cursor: pointer;text-decoration: underline; float:left; "
+                    onclick="$('.popup1').attr('style', $('.popup1').attr('style') + ';display: none!important;');">
+                    Close</p>
+
+            </div>
             <form method="post" class="save">
-               
+
                 <input type="file" id="files" name="files" />
 
                 <button type="submit">Upload</button>
@@ -75,31 +76,57 @@
             </div>
         </div>
 
-        <div class="d-inline-flex popup2" id="popup2" style="display: none!important;border-radius: 15px;padding: 3%;position: relative;-webkit-box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);position: fixed;width: 100%;height: 80%;width: 80%;top: 10%;background: #FFF;left: 10%;z-index: 999999999999999999999999999999999999999999;">
+        <div class="d-inline-flex popup2" id="popup2"
+            style="display: none!important;border-radius: 15px;padding: 3%;position: relative;-webkit-box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);position: fixed;width: 100%;height: 80%;width: 80%;top: 10%;background: #FFF;left: 10%;z-index: 999999999999999999999999999999999999999999;">
 
 
 
             <form method="post" class="create d-block m-auto">
                 <div class="form-group" style="padding:0px;padding-left:0px;padding-top:0px;">
-                    <p class="d-inline" style="text-align: right;cursor: pointer;text-decoration: underline; float:left; "
+                    <p class="d-inline"
+                        style="text-align: right;cursor: pointer;text-decoration: underline; float:left; "
                         onclick="$('.popup2').attr('style', $('.popup2').attr('style') + ';display: none!important;');">
                         Close</p>
 
                 </div>
-                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="givenName" placeholder="Given Name" type="text" id="given_name" name="givenName" required />
-                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="family_name" placeholder="Family Name" type="text" id="family_name" name="familyName" required />
-                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="dob" placeholder="Date of Birth" type="text" id="dob" name="dob" onfocus="(this.type='date')" onblur="(this.type='text')"  required/>
-                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="gender" placeholder="Gender" type="text" id="gender" name="gender" required />
-                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="postcode" placeholder="Postcode" type="text" id="postcode" name="postcode" required />
-                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="upn" placeholder="UPN" type="text" id="upn" name="upn"  required/>
-                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="uln" placeholder="ULN" type="text" id="uln" name="uln" required />
-                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="tutorGroup" placeholder="Tutor Group" type="text" id="tutorGroup" name="tutorGroup" required />
-                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="pp" placeholder="Pupil Premium" type="text" id="pp" name="pp" required />
+                <input class="form-input d-block m-auto"
+                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
+                    id="givenName" placeholder="Given Name" type="text" id="given_name" name="givenName" required />
+                <input class="form-input d-block m-auto"
+                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
+                    id="family_name" placeholder="Family Name" type="text" id="family_name" name="familyName"
+                    required />
+                <input class="form-input d-block m-auto"
+                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
+                    id="dob" placeholder="Date of Birth" type="text" id="dob" name="dob" onfocus="(this.type='date')"
+                    onblur="(this.type='text')" required />
+                <input class="form-input d-block m-auto"
+                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
+                    id="gender" placeholder="Gender" type="text" id="gender" name="gender" required />
+                <input class="form-input d-block m-auto"
+                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
+                    id="postcode" placeholder="Postcode" type="text" id="postcode" name="postcode" required />
+                <input class="form-input d-block m-auto"
+                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
+                    id="upn" placeholder="UPN" type="text" id="upn" name="upn" required />
+                <input class="form-input d-block m-auto"
+                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
+                    id="uln" placeholder="ULN" type="text" id="uln" name="uln" required />
+                <input class="form-input d-block m-auto"
+                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
+                    id="tutorGroup" placeholder="Tutor Group" type="text" id="tutorGroup" name="tutorGroup" required />
+                <input class="form-input d-block m-auto"
+                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
+                    id="pp" placeholder="Pupil Premium" type="text" id="pp" name="pp" required />
                 <!--pupil premium-->
-                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;" id="sen" placeholder="Special Educational Needs" type="text" id="sen" name="sen" required />
+                <input class="form-input d-block m-auto"
+                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
+                    id="sen" placeholder="Special Educational Needs" type="text" id="sen" name="sen" required />
                 <!--special education needs-->
-            
-                <button class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 0px solid #ccc; background: rgb(0, 150, 92); border-radius:300px; width: 250px;color:#fff" type="submit">Create</button>
+
+                <button class="form-input d-block m-auto"
+                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 0px solid #ccc; background: rgb(0, 150, 92); border-radius:300px; width: 250px;color:#fff"
+                    type="submit">Create</button>
             </form>
 
             <div class="circle-loader" style="display:none;text-align: center;">
@@ -132,16 +159,20 @@
                     <a href="/portal/students" style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fa fa-users" style="padding-right: 10px;width: 60px;"></i>STUDENTS
                     </a>
-                    <a class="text-uppercase" href="/portal/mentors" style="color: #fff!important;padding-bottom: 10px;">
+                    <a class="text-uppercase" href="/portal/mentors"
+                        style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fas fa-user-lock" style="padding-right: 10px;width: 60px;"></i>MENTORS
                     </a>
-                    <a class="text-uppercase" href="/portal/insights" style="color: #fff!important;padding-bottom: 10px;">
+                    <a class="text-uppercase" href="/portal/insights"
+                        style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fa fa-bar-chart" style="padding-right: 10px;width: 60px;"></i>INSIGHTS
                     </a>
-                    <a class="text-uppercase" href="/portal/account" style="color: #fff!important;padding-bottom: 10px;">
+                    <a class="text-uppercase" href="/portal/account"
+                        style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fa fa-user" style="padding-right: 10px;width: 60px;"></i>Account
                     </a>
-                    <a class="text-uppercase" href="/portal/data-and-security" style="color: #fff!important;padding-bottom: 10px;">
+                    <a class="text-uppercase" href="/portal/data-and-security"
+                        style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fa fa-lock" style="padding-right: 10px;width: 60px;"></i>Data and Security
                     </a>
                     <div style="position: absolute;bottom: 0px;width: 100%;padding-bottom: 25px;">
@@ -155,12 +186,18 @@
         </div>
         <div class="page-content-wrapper">
             <div class="container-fluid" style="padding: 0px;margin-left: 0px;margin-right: 0px;">
-                <div class="row" style="margin: 0px;width: 100%;position: fixed;padding: 0px;height: 100px;z-index: 9999;box-shadow: 0 0 15px rgba(0,0,0,0.05);">
-                    <div class="col d-inline-flex" style="margin-bottom: 50px;height: 100px;"><a class="btn btn-link float-left d-inline-flex"
-                            role="button" href="#menu-toggle" id="menu-toggle" style="padding: 0px;padding-left: 20px;padding-right: 50px;width: 110px;"><i
-                                class="la la-bars" style="font-size: 32px;color: rgb(11,11,11);padding: 0px;padding-left: 0;text-decoration: none!important;line-height: 100px;"></i></a>
-                        <h1 style="height: 100%;line-height: 100px;font-size: 40px;font-family: Roboto, sans-serif;font-weight: 300;color: #666;">
-                            <span style="background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);-webkit-background-clip: text;-webkit-text-fill-color: transparent;background-size: 150%;"><strong>student</strong></span>path
+                <div class="row"
+                    style="margin: 0px;width: 100%;position: fixed;padding: 0px;height: 100px;z-index: 9999;box-shadow: 0 0 15px rgba(0,0,0,0.05);">
+                    <div class="col d-inline-flex" style="margin-bottom: 50px;height: 100px;"><a
+                            class="btn btn-link float-left d-inline-flex" role="button" href="#menu-toggle"
+                            id="menu-toggle"
+                            style="padding: 0px;padding-left: 20px;padding-right: 50px;width: 110px;"><i
+                                class="la la-bars"
+                                style="font-size: 32px;color: rgb(11,11,11);padding: 0px;padding-left: 0;text-decoration: none!important;line-height: 100px;"></i></a>
+                        <h1
+                            style="height: 100%;line-height: 100px;font-size: 40px;font-family: Roboto, sans-serif;font-weight: 300;color: #666;">
+                            <span
+                                style="background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);-webkit-background-clip: text;-webkit-text-fill-color: transparent;background-size: 150%;"><strong>student</strong></span>path
                         </h1>
                     </div>
                 </div>
@@ -168,23 +205,29 @@
             <div class="container-fluid" style="padding-top: 100px;padding-left: 125px;">
                 <div>
                     <div class="row">
-                        <div class="float-left" style="height: 60px;background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 15px;">
-                            <button onclick="$('#popup1').fadeIn()" class="btn btn-primary" type="button" style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 20px;">Upload
+                        <div class="float-left"
+                            style="height: 60px;background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 15px;">
+                            <button onclick="$('#popup1').fadeIn()" class="btn btn-primary" type="button"
+                                style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 20px;">Upload
                                 Students &nbsp;<i class="fa fa-cloud-upload"></i>
                             </button>
 
                             </a>
 
-                            <button onclick="$('#popup2').fadeIn()" class="btn btn-primary" type="button" style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 20px;">Add
+                            <button onclick="$('#popup2').fadeIn()" class="btn btn-primary" type="button"
+                                style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 20px;">Add
                                 Student &nbsp;<i class="fa fa-user-plus"></i>
                             </button>
 
-                            <button class="btn btn-primary" type="button" onclick="getReport()" style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 20px;">Generate
+                            <button class="btn btn-primary" type="button" onclick="getReport()"
+                                style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 20px;">Generate
                                 Report &nbsp;<i class="fa fa-paste"></i></button></div>
                     </div>
                     <div class="row" style="padding-bottom: 30px;">
-                        <div class="float-left" style="height: 60px;background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 300px;overflow: hidden;">
-                            <input type="search" onkeyup="search(this.value)" placeholder="Search by name, tutor or UPN..."
+                        <div class="float-left"
+                            style="height: 60px;background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 300px;overflow: hidden;">
+                            <input type="search" onkeyup="search(this.value)"
+                                placeholder="Search by name, tutor or UPN..."
                                 style="height: 60px;border: 0px;outline: none;width: 350px;text-indent: 24px;"></div>
                     </div>
                 </div>
@@ -235,8 +278,9 @@
     <script>
 
         function search(x) {
-            console.log(x)
             if (x.length > 1) {
+
+                loadMoreResults(true);
                 $('#results > .item').each(function () {
                     var prod = $(this);
                     if (prod.attr('search').toLowerCase().indexOf(x.toLowerCase()) > 0) {
@@ -247,6 +291,7 @@
                     }
                 });
             } else {
+                loadMoreResults(false, 1);
                 $('#results > .item').each(function () {
                     var prod = $(this);
                     prod.show();
@@ -255,21 +300,28 @@
         }
 
 
+        var pageState = 1;
+        var resultsLimit = 20;
+        var allResults;
         //Load Existing students
         function refresh() {
             console.log(token);
 
+
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaver-getStudents', [], function (reply) {
+
+
+                var pageCount = (reply.body.length / resultsLimit).toFixed(0);
+                console.log(pageCount);
+                console.log(reply.body.length);
+                allResults = reply.body;
 
                 //console.log(reply);
                 $('#results').html(document.getElementById('tableHeading').outerHTML);
-                for (var i = 0; i < reply.body.length; i++) {
-
-
-                    $('#results').append('<tr class="item" search="search year' + reply.body[i].yearGroup + ' ' + reply.body[i].tutorGroup + 'group ' + reply.body[i].given_name + ' ' + reply.body[i].family_name + ' ' + reply.body[i].upn + ' search" style="font-weight: bold;"><td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="../assets/img/placeholder.png" style="width: 100%;min-height: 100%;"></div> </td> <td style="font-size: 15px;"> <a  href="/portal/students/profile/?student_id=' + reply.body[i].student_id + '">' + reply.body[i].given_name + ' ' + reply.body[i].family_name + '</a></td> <td style="font-size: 15px;">' + reply.body[i].tutorGroup + '</td><td style="font-size: 15px;">' + reply.body[i].yearGroup + '</td> <td style="font-size: 15px;">' + reply.body[i].upn + '</td> <td style="font-size: 15px;">' + reply.body[i].destination + '</td><td style="font-size: 15px;">' + reply.body[i].aspiration + '</td></tr> ');
-
-
+                for (var i = 0; i < /*reply.body.length*/(resultsLimit * pageState); i++) {
+                    $('#results').append('<tr class="item" search="search year' + reply.body[i].yearGroup + ' ' + reply.body[i].tutorGroup + 'group ' + reply.body[i].given_name + ' ' + reply.body[i].family_name + ' ' + reply.body[i].upn + ' search" style="font-weight: bold;"><td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="https://source.unsplash.com/collection/791207/40x40/?' + i + '" style="min-width: 100%;height: 100%;"></div> </td> <td style="font-size: 15px;"> <a  href="/portal/students/profile/?student_id=' + reply.body[i].student_id + '">' + reply.body[i].given_name + ' ' + reply.body[i].family_name + '</a></td> <td style="font-size: 15px;">' + reply.body[i].tutorGroup + '</td><td style="font-size: 15px;">' + reply.body[i].yearGroup + '</td> <td style="font-size: 15px;">' + reply.body[i].upn + '</td> <td style="font-size: 15px;">' + reply.body[i].destination + '</td><td style="font-size: 15px;">' + reply.body[i].aspiration + '</td></tr> ');
                 }
+                $('#results').append("<button onclick='loadMoreResults()'>Load more</button>")
                 //<option selected value="">Tutor</option>
                 for (var i = 0; i < reply.tutor_groups.length; i++) {
                     $('#TutorSearch').append('<option selected value="' + reply.tutor_groups[i].name + 'group"> ' + reply.tutor_groups[i].name + '</option>');
@@ -277,6 +329,30 @@
                 }
 
             });
+
+        }
+
+        function loadMoreResults(infinite, resetPageState) {
+
+            if (resetPageState) {
+                pageState = resetPageState;
+            } else {
+                pageState++;
+            }
+
+            if (infinite) {
+                $('#results').html(document.getElementById('tableHeading').outerHTML);
+                for (var i = 0; i < allResults.length; i++) {
+                    $('#results').append('<tr class="item" search="search year' + allResults[i].yearGroup + ' ' + allResults[i].tutorGroup + 'group ' + allResults[i].given_name + ' ' + allResults[i].family_name + ' ' + allResults[i].upn + ' search" style="font-weight: bold;"><td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="https://source.unsplash.com/collection/791207/40x40/?' + i + '" style="min-width: 100%;height: 100%;"></div> </td> <td style="font-size: 15px;"> <a  href="/portal/students/profile/?student_id=' + allResults[i].student_id + '">' + allResults[i].given_name + ' ' + allResults[i].family_name + '</a></td> <td style="font-size: 15px;">' + allResults[i].tutorGroup + '</td><td style="font-size: 15px;">' + allResults[i].yearGroup + '</td> <td style="font-size: 15px;">' + allResults[i].upn + '</td> <td style="font-size: 15px;">' + allResults[i].destination + '</td><td style="font-size: 15px;">' + allResults[i].aspiration + '</td></tr> ');
+                }
+            } else {
+                $('#results').html(document.getElementById('tableHeading').outerHTML);
+                for (var i = 0; i < /*allResults.length*/(resultsLimit * pageState); i++) {
+                    $('#results').append('<tr class="item" search="search year' + allResults[i].yearGroup + ' ' + allResults[i].tutorGroup + 'group ' + allResults[i].given_name + ' ' + allResults[i].family_name + ' ' + allResults[i].upn + ' search" style="font-weight: bold;"><td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="https://source.unsplash.com/collection/791207/40x40/?' + i + '" style="min-width: 100%;height: 100%;"></div> </td> <td style="font-size: 15px;"> <a  href="/portal/students/profile/?student_id=' + allResults[i].student_id + '">' + allResults[i].given_name + ' ' + allResults[i].family_name + '</a></td> <td style="font-size: 15px;">' + allResults[i].tutorGroup + '</td><td style="font-size: 15px;">' + allResults[i].yearGroup + '</td> <td style="font-size: 15px;">' + allResults[i].upn + '</td> <td style="font-size: 15px;">' + allResults[i].destination + '</td><td style="font-size: 15px;">' + allResults[i].aspiration + '</td></tr> ');
+                }
+                $('#results').append("<button onclick='loadMoreResults()'>Load more</button>")
+            }
+
 
         }
 
@@ -323,8 +399,6 @@
             });
         }
 
-
-
         function replaceStudent(i) {
             console.log(studentsToEdit[i])
             var studentData = studentsToEdit[i];
@@ -354,7 +428,7 @@
 
 
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postCSV", { base64String: base64File, name: fileName }, function (reply) {
-            
+
                 try {
                     $(".circle-loader").html("<p>Success! Completed " + reply.Done.length + "/" + (parseInt(reply.Done.length) + parseInt(reply.NotDone.length)) + '</p><br><br><div class="table-responsive"> <table class="table" id="NotDone-results"></table></div>');
 
@@ -368,9 +442,9 @@
                 }
 
                 refresh();
-            }, function(){
+            }, function () {
                 console.log("Large file detected. need to check every so often for progress");
-                setTimeout(function(){
+                setTimeout(function () {
                     window.location.reload();
 
                 }, 3000);
@@ -419,7 +493,7 @@
 
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postCreateStudent", [objectifyForm(this)], function (reply) {
                 //console.log(reply);
-               
+
                 window.location.reload();
 
             });

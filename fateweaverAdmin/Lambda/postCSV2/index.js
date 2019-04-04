@@ -61,22 +61,21 @@ exports.handler = (event, context, callback) => {
     let fileRawText = buffer.toString('ascii');
     var progressId;
 
-    connection.query("insert into fateweaver.upload_progress set ?", [{qty : fileRawText.split("\r\n").length - 1}], function (error, results, fields) {
-        progressId = results.insertId;
-        begin();
-    });
+  
+    begin();
+
 
 
     //#0
-    function begin(){
+    function begin() {
         connection.query("select * from fateweaver.admins where cognito_id = ?", [event.account.sub], function (err, results, fields) {
             if (err) {
                 console.log("Error getting tutor groups:", err);
             }
             school_id = results[0].school_id;
-        });    
-       
-    
+        });
+
+
         if (fileRawText == null) {
             callback(null, {
                 statusCode: 200,
@@ -85,7 +84,7 @@ exports.handler = (event, context, callback) => {
             });
         } else {
             var JsonData = csvTojs(fileRawText.replace("\r", "") + "*")
-    
+
             if (JsonData.length <= 1) {
                 callback(null, {
                     statusCode: 200,
@@ -97,14 +96,18 @@ exports.handler = (event, context, callback) => {
                 processFields(fields, JsonData);
             }
         }
-    }    
+    }
 
     //#1 - for each column heading
     async function processFields(array, JsonData) {
         for (const item of array) {
             await delayedFields(item, JsonData);
         }
-        processJsonData(JsonData);
+        connection.query("insert into fateweaver.upload_progress set ?", [{ qty: fileRawText.split("\r\n").length - 1, sub: event.account.sub }], function (error, results, fields) {
+            progressId = results.insertId;
+
+            processJsonData(JsonData);
+        });
     }
 
     //#2 - check heading is correct
