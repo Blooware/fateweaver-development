@@ -57,23 +57,21 @@
 
                 <button type="submit">Upload</button>
             </form>
+            <div id="NotDone">
 
-            <div class="circle-loader" style="display:none;text-align: center;">
-                <div class="sk-circle">
-                    <div class="sk-circle1 sk-child"></div>
-                    <div class="sk-circle2 sk-child"></div>
-                    <div class="sk-circle3 sk-child"></div>
-                    <div class="sk-circle4 sk-child"></div>
-                    <div class="sk-circle5 sk-child"></div>
-                    <div class="sk-circle6 sk-child"></div>
-                    <div class="sk-circle7 sk-child"></div>
-                    <div class="sk-circle8 sk-child"></div>
-                    <div class="sk-circle9 sk-child"></div>
-                    <div class="sk-circle10 sk-child"></div>
-                    <div class="sk-circle11 sk-child"></div>
-                    <div class="sk-circle12 sk-child"></div>
-                </div>
             </div>
+
+            <div class="circle-loader d-block m-auto" style="display:none;text-align: center;width:500px; margin-top: 300px;">
+                <p id="uploadProgress">Uploading...</p>
+                <p>Failed : <span id="uploadFails"></span></p>
+                <div style="height: 10px;background-color: #ccc;border-radius: 15px;overflow: hidden;">
+                   
+                    <div id="progressPercentageBar" style="width: 0%;height: 100%;color: rgb(0,128,255);background-color: #0078db;transition: all ease 1s;">
+                    </div>
+                </div>             
+            </div>
+
+          
         </div>
 
         <div class="d-inline-flex popup2" id="popup2"
@@ -144,7 +142,10 @@
                     <div class="sk-circle11 sk-child"></div>
                     <div class="sk-circle12 sk-child"></div>
                 </div>
+
+               
             </div>
+
         </div>
 
     </div>
@@ -305,15 +306,13 @@
         var allResults;
         //Load Existing students
         function refresh() {
-            console.log(token);
-
+          
 
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaver-getStudents', [], function (reply) {
 
 
                 var pageCount = (reply.body.length / resultsLimit).toFixed(0);
-                console.log(pageCount);
-                console.log(reply.body.length);
+            
                 allResults = reply.body;
 
                 //console.log(reply);
@@ -420,6 +419,7 @@
         }
 
         var studentsToEdit = [];
+        var checkRate = 1000;
         /*upload stuff*/
         $(".save").submit(function (e) {
             e.preventDefault();
@@ -436,19 +436,31 @@
                     $(".circle-loader").html('<p>Success!</p><br><br><div class="table-responsive"> <table class="table" id="NotDone-results"></table></div>');
                 }
 
-                for (var i = 0; i < reply.NotDone.length; i++) {
-                    studentsToEdit.push(reply.NotDone[i].jsonStudent);
-                    $('#NotDone-results').append('<a href="/BloowarePortal/School/?id=' + reply.NotDone[i].jsonStudent.id + '"><tr style="font-weight: bold;"> <td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="../assets/img/placeholder.png" style="width: 100%;min-height: 100%;"></div> </td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.given_name + ' ' + reply.NotDone[i].jsonStudent.family_name + '</td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.tutorGroup + '</td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.upn + '</td><td style="font-size: 15px;"><button onclick="replaceStudent(' + i + ')">Replace</button></td> <td style="font-size: 15px;"><button onclick="ignoreStudent(' + i + ')">Ignore</button></td></tr> </a>');
-                }
 
-                refresh();
-            }, function () {
-                console.log("Large file detected. need to check every so often for progress");
-                setTimeout(function () {
-                    window.location.reload();
+            }, function () {});
 
-                }, 3000);
-            });
+
+            setInterval(function () {
+                postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-getUploadStatus", {}, function (reply) {
+                   
+                    $('#progressPercentageBar').css("width", ((100 / reply.body[0].qty) * reply.body[0].done).toString() + "%");
+                    
+                    $('#uploadProgress').html(((100 / reply.body[0].qty) * (JSON.parse(reply.body[0].not_done).length + reply.body[0].done)).toFixed(0).toString() + "%");
+                   
+                    $('#uploadFails').html(JSON.parse(reply.body[0].not_done).length);
+
+                    if ((JSON.parse(reply.body[0].not_done).length + reply.body[0].done) == reply.body[0].qty) {
+                        $('#NotDone').html("");
+                        for (var i = 0; i < JSON.parse(reply.body[0].not_done).length; i++) {
+                            studentsToEdit.push(JSON.parse(reply.body[0].not_done)[i].jsonStudent);
+                            $('#NotDone').append('<a href="/BloowarePortal/School/?id=' + JSON.parse(reply.body[0].not_done)[i].jsonStudent.id + '"><tr style="font-weight: bold;"> <td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="../assets/img/placeholder.png" style="width: 100%;min-height: 100%;"></div> </td> <td style="font-size: 15px;">' + JSON.parse(reply.body[0].not_done)[i].jsonStudent.given_name + ' ' + JSON.parse(reply.body[0].not_done)[i].jsonStudent.family_name + '</td> <td style="font-size: 15px;">' + JSON.parse(reply.body[0].not_done)[i].jsonStudent.tutorGroup + '</td> <td style="font-size: 15px;">' + JSON.parse(reply.body[0].not_done)[i].jsonStudent.upn + '</td><td style="font-size: 15px;"><button onclick="replaceStudent(' + i + ')">Replace</button></td> <td style="font-size: 15px;"><button onclick="ignoreStudent(' + i + ')">Ignore</button></td></tr> </a>');
+                        }
+                        checkrate = 1000000000000000000;
+                    }
+                        
+                    
+                });
+            }, checkrate);//refresh();
         });
 
         var base64File;
@@ -472,7 +484,7 @@
                     var base64String = window.btoa(binaryData);
                     //showing file converted to base64
                     //document.getElementById('base64').value = base64String;
-                    console.log(base64String);
+                   // console.log(base64String);
                     base64File = base64String;
                 };
             })(f);
@@ -485,8 +497,7 @@
 
         $(".create").submit(function (e) {
             e.preventDefault();
-            console.log(objectifyForm(this));
-
+            
             $(".circle-loader").show();
             $(this).hide();
 
