@@ -20,25 +20,25 @@
         <div id="sidebar-wrapper" style="background-color: #234e67!important;">
             <ul class="d-block sidebar-nav" style="height: 100%;overflow: hidden;">
                 <li style="padding-top: 150px;">
-                    <a href="/portal" style="color: #fff!important;padding-bottom: 10px;">
+                    <a href="/tutor" style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fa fa-home" style="padding-right: 10px;width: 60px;"></i>HOME
                     </a>
-                    <a href="/portal/jobs" style="color: #fff!important;padding-bottom: 10px;">
+                    <a href="/tutor/jobs" style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fa fa-users" style="padding-right: 10px;width: 60px;"></i>JOBS
                     </a>
-                    <a class="text-uppercase" href="/portal/applicants"
+                    <a class="text-uppercase" href="/tutor/applicants"
                         style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fas fa-user-lock" style="padding-right: 10px;width: 60px;"></i>APPLICANTS
                     </a>
-                    <a class="text-uppercase" href="/portal/admins"
+                    <a class="text-uppercase" href="/tutor/admins"
                         style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fa fa-user" style="padding-right: 10px;width: 60px;"></i>ADMINS
                     </a>
-                    <a class="text-uppercase" href="/portal/accounts"
+                    <a class="text-uppercase" href="/tutor/accounts"
                         style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fa fa-bar-chart" style="padding-right: 10px;width: 60px;"></i>ACCOUNTS
                     </a>
-                    <a class="text-uppercase" href="/portal/settings"
+                    <a class="text-uppercase" href="/tutor/settings"
                         style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fa fa-user" style="padding-right: 10px;width: 60px;"></i>SETTINGS
                     </a>
@@ -269,9 +269,9 @@
                 $('#jobCount').html(reply.jobs.length);
                 $('#applicantCount').html(reply.applicants.length);
                 if(reply.jobWeek.length > 0){
-                    $('#jobWeek').html(reply.jobWeek[0].name); //"<a style='font-weight: bold;' href='/portal/jobs/profile/?job_id="+ reply.jobWeek[0].id + '"' + reply.jobWeek[0].name + "</a>"
+                    $('#jobWeek').html(reply.jobWeek[0].name); //"<a style='font-weight: bold;' href='/tutor/jobs/profile/?job_id="+ reply.jobWeek[0].id + '"' + reply.jobWeek[0].name + "</a>"
 
-                    $('#jobWeek').attr("href", "/portal/jobs/profile/?job_id="+ reply.jobWeek[0].id);
+                    $('#jobWeek').attr("href", "/tutor/jobs/profile/?job_id="+ reply.jobWeek[0].id);
                     
                 } else {
                     $('#jobWeek').html("<strong>No Job of the week found</strong>");

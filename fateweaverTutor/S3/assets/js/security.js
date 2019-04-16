@@ -20,7 +20,7 @@ function checkAuth(callback) {
         if (response.success) {
             callback(true);
         } else {
-            window.location.href = '/portal/signIn'
+            window.location.href = '/tutor/signIn'
         }
     });
 }
