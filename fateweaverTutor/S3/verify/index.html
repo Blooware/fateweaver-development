@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html style="width:100%;height:100%;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>VerificationPage</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body style="width:100%;height:100%;">
+    <div class="text-center justify-content-center align-items-center align-content-center align-self-center flex-nowrap m-auto" style="padding: 40px;padding-top: 120px;max-width: 512px;">
+    <h2 class="sr-only">Login Form</h2><img class="d-block justify-content-center m-auto" src="assets/img/Netmix2.png" width="70%" style="width: 70%;margin-bottom: 10px;" />
+    <p>Please check your Email for the verification code,<br />It could take a few minutes to arrive.</p>
+    <div class="form-group"><input class="form-control" type="email" id="userEmail" name="email" required placeholder="Email" style="margin-top: 10px;" /></div>
+    <div class="form-group"><input class="form-control" type="text" id="userCode" name="Verification Code" required placeholder="Verification Code" /></div>
+    <div class="form-group"><button class="btn btn-primary btn-block d-block" onclick="verifyMe();" style="margin-top: 10px;">Verify(725 Admin)</button></div><a href="/portal/signIn" class="text-center d-block">Already Verified Account?</a><a href="/portal/signUp" class="text-center d-block">Not Yet created an account?</a>
+    <a
+        class="d-block justify-content-center forgot" href="#" style="margin-top: 15px;">Terms &amp; Conditions</a><a class="d-block justify-content-center forgot" href="#">Privacy Policy</a></div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
+
+<script src="https://www.blooware.co.uk/blooAuth/vendor/jquery-3.1.0.js"></script>
+<script src="https://www.blooware.co.uk/blooAuth/vendor/aws-cognito-sdk.min.js"></script>
+<script src="https://www.blooware.co.uk/blooAuth/vendor/amazon-cognito-identity.min.js"></script>
+<script src="https://www.blooware.co.uk/blooAuth/blooAuth0.3.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        connectToPool('eu-west-2_tU3QDPbNx', '7ise97tbc4op4n6q6nionfq45p', function () {
+            console.log("Connected to AWS");
+            signedIn(function (response) {
+                if (response.success) {
+                    console.log("Already Signed In");
+                    window.location.href = '/portal';
+                }
+            });
+        });
+    });
+
+    function verifyMe() {
+        verify($('#userEmail').val(), $('#userCode').val(), function () {
+            window.location.href = '/portal/signIn';
+        }, function (err) {
+            $('#err').html(err);
+        });
+    }
+
+</script>
