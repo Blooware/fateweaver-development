@@ -1,7 +1,7 @@
 var added_sub = "Not set yet";
 var token;
 $(document).ready(function () {
-    connectToPool('eu-west-2_tU3QDPbNx', '7ise97tbc4op4n6q6nionfq45p', function () {
+    connectToPool('eu-west-2_bXvoN04Fk', '70esqgdtmbq0ao3u2a1lqo0dre', function () {
         checkAuth(function (result) {
             if (result == true) {
                 $('html').show();
