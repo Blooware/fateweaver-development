@@ -41,7 +41,7 @@
 
     <!--Popups-->
     <div>
-        <div class="d-inline-flex popup1" id="popup1"
+        <div class="d-inline-flex popupTutor" id="popupTutor"
             style="display: none!important;border-radius: 15px;padding: 3%;position: relative;-webkit-box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);position: fixed;width: 100%;height: 80%;width: 80%;top: 10%;background: #FFF;left: 10%;z-index: 999999999999999999999999999999999999999999;">
 
 
@@ -50,13 +50,14 @@
                 <div class="form-group" style="padding:30px;padding-left:0px;padding-top:0px;">
                     <p class="d-inline"
                         style="text-align: right;cursor: pointer;text-decoration: underline; float:left; "
-                        onclick="$('.popup1').attr('style', $('.popup1').attr('style') + ';display: none!important;');">
+                        onclick="$('.popupTutor').attr('style', $('.popupTutor').attr('style') + ';display: none!important;');">
                         Close</p>
 
                 </div>
-                <input type="file" id="files" name="files" />
+                <input type="text" id="Username" name="username" placeholder="Email" />
+                <input type="password" id="password" name="password" placeholder="Temporary Password" />
 
-                <button type="submit">Upload</button>
+                <button type="submit">Create</button>
             </form>
 
             <div class="circle-loader" style="display:none;text-align: center;">
@@ -185,19 +186,15 @@
                     <div class="row">
                         <div class="float-left"
                             style="height: 60px;background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 15px;">
-                            <button onclick="$('#popup1').fadeIn()" class="btn btn-primary" type="button"
-                                style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 20px;">Upload
-                                Students &nbsp;<i class="fa fa-cloud-upload"></i>
+                            <button onclick="$('#popupTutor').fadeIn()" class="btn btn-primary" type="button"
+                                style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 20px;">Add Tutor &nbsp;<i class="fa fa-cloud-upload"></i>
                             </button>
-
-                            </a>
-
+                            <!--
                             <button onclick="$('#popup2').fadeIn()" class="btn btn-primary" type="button"
                             style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 20px;">Add
                             Tutor Group &nbsp;<i class="fa fa-cloud-upload"></i>
                         </button>
-                         
-                            <button class="btn btn-primary" type="button" onclick="getReport()" style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 20px;">Generate Report &nbsp;<i class="fa fa-paste"></i></button></div>
+                        -->
                     </div>
                     <div class="row" style="padding-bottom: 30px;">
                         <div class="float-left"
@@ -247,9 +244,7 @@
 
         //Load Existing Customers
         function refresh() {
-            //console.log("it's working")
-            console.log(token);
-
+            /*
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postGrabTutorGroups', [], function (reply) {
 
                 //console.log(reply);
@@ -261,6 +256,7 @@
                 }
 
             });
+            */
 
         }
 
@@ -279,135 +275,18 @@
             });
         }
 
-        function getReport() {
-            $.ajax({
-                url: "https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaver-getReport",
-                type: 'GET',
-                crossDomain: true,
-                data: "",
-                headers: { "Authorization": "Bearer " + token },
-                dataType: 'json',
-                contentType: "application/json",
-                success: function (reply) {
-                    //console.log(reply)
-                    var bytes = new Uint8Array(reply.Body.data); // pass your byte response to this constructor
-
-                    var blob = new Blob([bytes], { type: "application/csv" });// change resultByte to bytes
-
-                    var link = document.createElement('a');
-                    link.href = window.URL.createObjectURL(blob);
-                    link.download = "Ofsted.csv";
-                    link.click();
-                }
-            });
-        }
-
-
-        function replaceStudent(i) {
-            console.log(studentsToEdit[i])
-            var studentData = studentsToEdit[i];
-            postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postReplaceStudent', [{ studentData: studentData }], function (reply) {
-                //console.log(reply);
-
-                if (reply.status = true) {
-                    // now remove it from the list or say success
-                    console.log("success");
-                }
-            });
-
-        }
-
-        function ignoreStudent(i) {
-            // this just needs to remove it from the list op people
-
-            console.log(studentsToEdit[i])
-        }
-
-        var studentsToEdit = [];
-        /*upload stuff*/
         $(".save").submit(function (e) {
-            e.preventDefault();
-            console.log(base64File);
-            $(".circle-loader").show();
-            $(this).hide();
-
-            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postCSV", { base64String: base64File, name: fileName }, function (reply) {
-                //console.log(reply);
-                try {
-                    $(".circle-loader").html("<p>Success! Completed " + reply.Done.length + "/" + reply.NotDone.length + '</p><br><br><div class="table-responsive"> <table class="table" id="NotDone-results"></table></div>');
-
-                } catch (e) {
-                    $(".circle-loader").html('<p>Success!</p><br><br><div class="table-responsive"> <table class="table" id="NotDone-results"></table></div>');
-
-                }
-
-                for (var i = 0; i < reply.NotDone.length; i++) {
-                    studentsToEdit.push(reply.NotDone[i].jsonStudent);
-                    $('#NotDone-results').append('<a href="/BloowarePortal/School/?id=' + reply.NotDone[i].jsonStudent.id + '"><tr style="font-weight: bold;"> <td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="assets/img/placeholder.png" style="width: 100%;min-height: 100%;"></div> </td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.given_name + ' ' + reply.NotDone[i].jsonStudent.family_name + '</td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.tutorgGroup + '</td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.upn + '</td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.aspiration + '</td> <td style="font-size: 15px;"><button onclick="replaceStudent(' + i + ')">Replace</button></td> <td style="font-size: 15px;"><button onclick="ignoreStudent(' + i + ')">Ignore</button></td></tr> </a>');
-                }
-            });
-        });
-
-        var base64File;
-        var fileName;
-        if (window.File && window.FileReader && window.FileList && window.Blob) {
-            document.getElementById('files').addEventListener('change', handleFileSelect, false);
-        } else {
-            alert('The File APIs are not fully supported in this browser.');
-        }
-
-        function handleFileSelect(evt) {
-            fileName = $('#files').val().split('\\').pop();
-
-            var f = evt.target.files[0]; // FileList object
-            var reader = new FileReader();
-            // Closure to capture the file information.
-            reader.onload = (function (theFile) {
-                return function (e) {
-                    var binaryData = e.target.result;
-                    //Converting Binary Data to base 64
-                    var base64String = window.btoa(binaryData);
-                    //showing file converted to base64
-                    //document.getElementById('base64').value = base64String;
-                    console.log(base64String);
-                    base64File = base64String;
-                };
-            })(f);
-            // Read in the image file as a data URL.
-            reader.readAsBinaryString(f);
-        }
-
-
-
-
-        $(".create").submit(function (e) {
             e.preventDefault();
             console.log(objectifyForm(this));
             
             $(".circle-loader").show();
             $(this).hide();
             
-            
+            /*
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postCreateStudent", [objectifyForm(this)], function (reply) {
                 //console.log(reply);
-                /*
-                try {
-                    $(".circle-loader").html("<p>Success! Completed " + reply.Done.length + "/" + reply.NotDone.length + '</p><br><br><div class="table-responsive"> <table class="table" id="NotDone-results"></table></div>');
-
-                } catch (e) {
-                    $(".circle-loader").html('<p>Success!</p><br><br><div class="table-responsive"> <table class="table" id="NotDone-results"></table></div>');
-
-                }
-                
-                
-                for (var i = 0; i < reply.NotDone.length; i++) {
-                    studentsToEdit.push(reply.NotDone[i].jsonStudent);
-                    $('#NotDone-results').append('<a href="/BloowarePortal/School/?id=' + reply.NotDone[i].jsonStudent.id + '"><tr style="font-weight: bold;"> <td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="assets/img/placeholder.png" style="width: 100%;min-height: 100%;"></div> </td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.given_name + ' ' + reply.NotDone[i].jsonStudent.family_name + '</td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.tutor_group_id + '</td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.upn + '</td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.aspiration + '</td> <td style="font-size: 15px;"><button onclick="replaceStudent(' + i + ')">Replace</button></td> <td style="font-size: 15px;"><button onclick="ignoreStudent(' + i + ')">Ignore</button></td></tr> </a>');
-                }
-                */
-                
             });
-            
+            */
         });
 
         function objectifyForm(formArray) {//serialize data function
