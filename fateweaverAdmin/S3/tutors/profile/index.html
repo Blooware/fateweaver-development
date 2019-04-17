@@ -156,12 +156,12 @@
     <script src="../../assets/js/security.js"></script>
     <script>
 
-        var tutor_group_id = getUrlParameter('tutor_group_id').replace("-", " ");
+        var tutor_id = getUrlParameter('tutor_id').replace("-", " ");
 
 
         function refresh() {
-            postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postGrabTutorGroup', { tutor_group_id: tutor_group_id }, function (reply) {
-                //console.log(reply);
+            postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postGrabTutor', { tutor_id: tutor_id }, function (reply) {
+                console.log(reply);
 
 
 
@@ -209,7 +209,7 @@
         }
 
         function newSession() {
-            window.location.href = '/portal/students/profile/session/?tutor_group_id=' + tutor_group_id;
+            window.location.href = '/portal/students/profile/session/?tutor_id=' + tutor_id;
         }
 
         function getUrlParameter(name) {
@@ -225,10 +225,10 @@
         $(".save").submit(function (e) {
             e.preventDefault();
             console.log(base64File);
-            console.log(tutor_group_id);
+            console.log(tutor_id);
 
 
-            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postStudentFile", { base64String: base64File, name: fileName, tutor_group_id: tutor_group_id }, function (reply) {
+            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postStudentFile", { base64String: base64File, name: fileName, tutor_id: tutor_id }, function (reply) {
                 //console.log(reply);
                 //refresh();
             });
@@ -273,7 +273,7 @@
 
 
 
-            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postUpdateTutorGroup", { groupInfo: objectifyForm(this), tutor_group_id: tutor_group_id }, function (reply) {
+            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postUpdateTutorGroup", { groupInfo: objectifyForm(this), tutor_id: tutor_id }, function (reply) {
                 //console.log(reply);
                 refresh();
             });
@@ -306,9 +306,9 @@
 
 
         function deleteStudent() {
-            console.log(tutor_group_id);
+            console.log(tutor_id);
 
-            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postDeleteStudent", { tutor_group_id: tutor_group_id }, function (reply) {
+            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postDeleteStudent", { tutor_id: tutor_id }, function (reply) {
                 //console.log(reply);
                 //refresh();
             });

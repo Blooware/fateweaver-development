@@ -122,7 +122,11 @@ exports.handler = (event, context, callback) => {
                 cognito_id: result.userSub,
                 added: new Date(Date.now()),
                 added_id: event.account.sub,
-                school_id: school_id
+                school_id: school_id,
+                first_name : event.form[0].first_name,
+                second_name : event.form[0].second_name,
+                title : event.form[0].title,
+
 
             }
             console.log(data);
