@@ -54,7 +54,7 @@
                         Close</p>
 
                 </div>
-                <input type="text" id="Username" name="username" placeholder="Email" />
+                <input type="text" id="email" name="email" placeholder="Email" />
                 <input type="password" id="password" name="password" placeholder="Temporary Password" />
 
                 <button type="submit">Create</button>
@@ -136,10 +136,10 @@
                         <i class="fa fa-users" style="padding-right: 10px;width: 60px;"></i>STUDENTS
                     </a>
                     <a href="/portal/tutors" style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fa fa-user-friends" style="padding-right: 10px;width: 60px;"></i>TUTORS
+                        <i class="fas fa-user-friends" style="padding-right: 10px;width: 60px;"></i>TUTORS
                     </a>
                     <a href="/portal/tutorGroups" style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fa fa-chalkboard-teacher" style="padding-right: 10px;width: 60px;"></i>TUTOR GROUPS
+                        <i class="fas fa-chalkboard-teacher" style="padding-right: 10px;width: 60px;"></i>TUTOR GROUPS
                     </a>
 
                     <a class="text-uppercase" href="/portal/mentors" style="color: #fff!important;padding-bottom: 10px;">
@@ -242,7 +242,6 @@
         }
 
 
-        //Load Existing Customers
         function refresh() {
             /*
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postGrabTutorGroups', [], function (reply) {
@@ -282,11 +281,11 @@
             $(".circle-loader").show();
             $(this).hide();
             
-            /*
-            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postCreateStudent", [objectifyForm(this)], function (reply) {
-                //console.log(reply);
+            
+            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postCreateTutor", [objectifyForm(this)], function (reply) {
+                console.log(reply);
             });
-            */
+            
         });
 
         function objectifyForm(formArray) {//serialize data function
