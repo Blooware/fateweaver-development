@@ -29,10 +29,34 @@
 
                 </div>
 
-                <input id="Name" name="Name" placeholder="Name" type="text" /><br>
-                <input id="Description" name="Description" placeholder="Description" type="text" /><br>
-
+                <input id="title" name="title" placeholder="Title" type="text" required /><br>
+                <input id="first_name" name="first_name" placeholder="First Name" type="text" required /><br>
+                <input id="second_name" name="second_name" placeholder="Second Name" type="text" required /><br>
+                <input id="email" name="email" placeholder="Email" type="text" required /><br>
                 <button type="submit">Update</button>
+
+            </form>
+
+        </div>
+    </div>
+
+    <div>
+        <div class="d-inline-flex popupAssign" id="popupAssign"
+            style="display: none!important;border-radius: 15px;padding: 3%;position: relative;-webkit-box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);position: fixed;width: 100%;height: 80%;width: 80%;top: 10%;background: #FFF;left: 10%;z-index: 999999999999999999999999999999999999999999;">
+            <form method="post" class="saveEdit">
+                <div class="form-group" style="padding:30px;padding-left:0px;padding-top:0px;">
+                    <p class="d-inline"
+                        style="text-align: right;cursor: pointer;text-decoration: underline; float:left; "
+                        onclick="$('.popupAssign').attr('style', $('.popupAssign').attr('style') + ';display: none!important;');">
+                        Close</p>
+
+                </div>
+
+                <select id="Groups" name="Group" required>
+                    <option value="">Select Tutor Group</option>
+                </select>
+
+                <button type="submit">Add</button>
 
             </form>
 
@@ -50,16 +74,20 @@
                     <a href="/portal/students" style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fa fa-users" style="padding-right: 10px;width: 60px;"></i>STUDENTS
                     </a>
-                    <a class="text-uppercase" href="/portal/mentors" style="color: #fff!important;padding-bottom: 10px;">
+                    <a class="text-uppercase" href="/portal/mentors"
+                        style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fas fa-user-lock" style="padding-right: 10px;width: 60px;"></i>MENTORS
                     </a>
-                    <a class="text-uppercase" href="/portal/insights" style="color: #fff!important;padding-bottom: 10px;">
+                    <a class="text-uppercase" href="/portal/insights"
+                        style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fa fa-bar-chart" style="padding-right: 10px;width: 60px;"></i>INSIGHTS
                     </a>
-                    <a class="text-uppercase" href="/portal/account" style="color: #fff!important;padding-bottom: 10px;">
+                    <a class="text-uppercase" href="/portal/account"
+                        style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fa fa-user" style="padding-right: 10px;width: 60px;"></i>Account
                     </a>
-                    <a class="text-uppercase" href="/portal/data-and-security" style="color: #fff!important;padding-bottom: 10px;">
+                    <a class="text-uppercase" href="/portal/data-and-security"
+                        style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fa fa-lock" style="padding-right: 10px;width: 60px;"></i>Data and Security
                     </a>
                     <div style="position: absolute;bottom: 0px;width: 100%;padding-bottom: 25px;">
@@ -113,6 +141,13 @@
                                             style="width: 75%;height: 100%;color: rgb(0,128,255);background-color: #1eb061;">
                                         </div>
                                     </div>
+                                    <div class="float-left"
+                                        style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 10px;">
+
+                                        <button class="btn btn-primary" onclick="$('#popupAssign').fadeIn()"
+                                            type="button"
+                                            style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 16px;">Add
+                                            Tutor Group &nbsp;<i class="fas fa-pencil-alt"></i></button></div>
 
                                     <div class="float-left"
                                         style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 10px;">
@@ -120,6 +155,7 @@
                                         <button class="btn btn-primary" onclick="$('#popupEdit').fadeIn()" type="button"
                                             style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 16px;">Edit
                                             &nbsp;<i class="fas fa-pencil-alt"></i></button></div>
+
 
                                     <div class="float-left"
                                         style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 0px;">
@@ -158,13 +194,9 @@
 
         var tutor_id = getUrlParameter('tutor_id').replace("-", " ");
 
-
         function refresh() {
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postGrabTutor', { tutor_id: tutor_id }, function (reply) {
                 console.log(reply);
-
-
-
 
                 if (reply.status == false) {
 
@@ -172,23 +204,24 @@
 
                 } else if (reply.status == true) {
 
-                    $('#Name').val(reply.groupData[0].name);
-                    $('#Description').val(reply.groupData[0].description);
+                    $('#title').val(reply.tutorInfo[0].title);
+                    $('#first_name').val(reply.tutorInfo[0].first_name);
+                    $('#second_name').val(reply.tutorInfo[0].second_name);
+                    $('#email').val(reply.tutorInfo[0].email);
 
-                    $('#TutorGroupName').html(reply.groupData[0].name);
+                    //$("#Groups").html("<option value =''>Select Tutor Group</option>");
+                    for (var i = 0; i < reply.tutorGroups.length; i++) {
 
-                    $('#results').html('<tr style="font-weight: normal!important;"> <th style="width: 120px;"></th> <th style="font-weight: normal;">Name</th> <th style="font-weight: normal;">Tutor Group</th> <th style="font-weight: normal;">UPN</th>  <th style="font-weight: normal;">Destination</th> <th style="font-weight: normal;">Aspiration</th> </tr>');
-                    for (var i = 0; i < reply.students.length; i++) {
-
-                        $('#results').append('<tr class="item" search="search ' + reply.students[i].given_name + ' ' + reply.students[i].family_name + ' ' + reply.students[i].upn + ' search" style="font-weight: bold;"><td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="../assets/img/placeholder.png" style="width: 100%;min-height: 100%;"></div> </td> <td style="font-size: 15px;"> <a  href="/portal/students/profile/?student_id=' + reply.students[i].student_id + '">' + reply.students[i].given_name + ' ' + reply.students[i].family_name + '</a></td> <td style="font-size: 15px;">' + reply.groupData[0].name + '</td> <td style="font-size: 15px;">' + reply.students[i].upn + '</td> <td style="font-size: 15px;">' + reply.students[i].destination + '</td><td style="font-size: 15px;">' + reply.students[i].aspiration + '</td></tr> ');
-
-
+                        $('#Groups').append($('<option>', {
+                            value: reply.tutorGroups[i].id,
+                            text: reply.tutorGroups[i].name,
+                        }));
                     }
 
                 } else {
 
-                    $('#Name').html("error");
                 }
+
 
             });
         }
@@ -220,52 +253,6 @@
         };
 
 
-
-
-        $(".save").submit(function (e) {
-            e.preventDefault();
-            console.log(base64File);
-            console.log(tutor_id);
-
-
-            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postStudentFile", { base64String: base64File, name: fileName, tutor_id: tutor_id }, function (reply) {
-                //console.log(reply);
-                //refresh();
-            });
-
-
-        });
-
-        var base64File;
-        var fileName;
-        if (window.File && window.FileReader && window.FileList && window.Blob) {
-            document.getElementById('files').addEventListener('change', handleFileSelect, false);
-        } else {
-            alert('The File APIs are not fully supported in this browser.');
-        }
-
-        function handleFileSelect(evt) {
-            fileName = $('#files').val().split('\\').pop();
-
-            var f = evt.target.files[0]; // FileList object
-            var reader = new FileReader();
-            // Closure to capture the file information.
-            reader.onload = (function (theFile) {
-                return function (e) {
-                    var binaryData = e.target.result;
-                    //Converting Binary Data to base 64
-                    var base64String = window.btoa(binaryData);
-                    //showing file converted to base64
-                    //document.getElementById('base64').value = base64String;
-                    console.log(base64String);
-                    base64File = base64String;
-                };
-            })(f);
-            // Read in the image file as a data URL.
-            reader.readAsBinaryString(f);
-        }
-
-
         $(".saveEdit").submit(function (e) {
             e.preventDefault();
 
@@ -273,10 +260,11 @@
 
 
 
-            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postUpdateTutorGroup", { groupInfo: objectifyForm(this), tutor_id: tutor_id }, function (reply) {
-                //console.log(reply);
+            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postUpdateTutor", { tutorInfo: objectifyForm(this), tutor_id: tutor_id }, function (reply) {
+                console.log(reply);
                 refresh();
             });
+
 
 
 
