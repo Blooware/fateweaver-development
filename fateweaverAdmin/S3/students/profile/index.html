@@ -12,6 +12,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400">
     <link rel="stylesheet" href="../../assets/css/styles.min.css">
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script>
+        //ScrollReveal({ reset: true });
+    </script>
 </head>
 
 <body style="width: 100%;height: 100%;background-color: #ffffff;">
@@ -98,14 +102,6 @@
 
 
             </form>
-            <form method="post" class="addInterest">
-                <select id="interest" name="interest">
-
-                </select>
-                <button class="form-input d-block m-auto"
-                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 0px solid #ccc; background: rgb(0, 150, 92); border-radius:300px; width: 250px;color:#fff"
-                    type="submit">add interest</button>
-            </form>
 
 
 
@@ -171,14 +167,15 @@
             <div class="container-fluid" style="padding-top: 100px;padding-left: 125px;">
                 <div>
                     <div class="row" style="padding-bottom: 200px;">
-                        <div class="col-9" style="margin-top: 50px;">
+                        <div class="col-12" style="margin-top: 50px;">
                             <div class="row" style="margin-bottom: 20px;">
-                                <div class="col-2">
+                                <div class="col-2" style="min-width: 300px;margin-bottom:50px;">
                                     <div class="border rounded-circle"
                                         style="width: 150px;height: 150px;overflow: hidden;box-shadow: 0 0 15px rgba(0,0,0,0.2);border:8px solid #fff!important;">
-                                        <img src="https://source.unsplash.com/collection/791207/150x150" style="height:100%; min-width: 100%;"></div>
+                                        <img src="https://source.unsplash.com/collection/791207/150x150"
+                                            style="height:100%; min-width: 100%;"></div>
                                 </div>
-                                <div class="col-10" style="min-width: 600px;">
+                                <div class="col-6" style="min-width: 600px;">
                                     <h1 style="font-weight: 300;"><strong id="Name"></strong></h1>
                                     <h1 id="Year" style="font-weight: 300;font-size: 20px;color: rgb(142,142,142);">
                                         <strong>YEAR
@@ -216,91 +213,114 @@
                                 </div>
                             </div>
                             <div class="row" style="margin-top:50px;">
-
-
-                                <div class="col-md-5" style="margin-left:0px;padding:15px;background: #fff;">
+                            
+                            
+                                <div class="col-md-5 revealOnLoadFast" style="margin-left:0px;padding:15px;background: #fff;min-width: 500px;">
                                     <div>
+                                        <div style="border-bottom: 1px solid #eee;padding-bottom: 20px;">
+                                            <div class="row" style="margin-bottom: 30px;">
+                                                <div class="col-12"
+                                                    style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 40px;">
+                                                    <h1 style="font-weight: 300;">Suggested Mentors</h1>
+                                                   
+                                                </div>
+                                            </div>
+                            
+                                            <div class="row" id="matches" style="margin-left:0px;">
+                                                <div class="col-3">
+                                                    <div class="match" style="width:100px;">
+                                                        <div class="border m-auto d-block rounded-circle"
+                                                            style="width: 50px;height: 50px;overflow: hidden;">
+                                                            <img src="https://www.blooware.co.uk/assets/img/IMG_4260.jpg" style="width: 100%;">
+                                                        </div>
+                                                        <p style="text-align:center;">Clive Barker</p>
+                                                    </div>
+                                                </div>
+                            
+                                            </div>
+                            
+                            
+                                        </div>
                                         <div class="row" style="margin-bottom: 30px;">
                                             <div class="col-12"
                                                 style="margin-top: 30px;padding-bottom: 30px;font-family: Roboto, sans-serif;padding-left: 40px;">
                                                 <h1 style="font-weight: 300;">Career Sessions</h1>
                                             </div>
                                         </div>
-
-
+                            
+                            
                                         <div id="timeline" style="margin-left:50px;">
-
+                            
                                         </div>
-
+                            
                                     </div>
                                 </div>
-
+                            
                                 <div class="col-md-6" style="margin-left:15px;padding:15px;background: #fff;">
-                                    <div>
-                                        <div class="row" style="margin-bottom: 30px;">
-                                            <div class="col-12"
-                                                style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 40px;">
-                                                <h1 style="font-weight: 300;">Interests</h1>
-                                                
-                                            </div>
+                                    <div style="border-bottom: 1px solid #eee;padding-bottom: 20px;">
+                                        <div class="col-12"
+                                            style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 40px;">
+                                            <h1 style="font-weight: 300;">Interests</h1>
+                                            <p style="font-weight: 300;">The more interests you add here, the better mentor and career
+                                                recommendations
+                                                appear.</>
+                            
                                         </div>
-
-                                        <div class="row" id="matches" style="margin-left:0px;">
-                                            <div class="col-3">
-                                                
+                            
+                            
+                                        <div class="row " style="margin-left:0px;">
+                            
+                            
+                                            <div class="col-12 revealOnLoad" id="interests">
+                            
+                            
                                             </div>
-
-                                        </div>
-
-
-                                    </div>
-                                    <div>
-                                        <div class="row" style="margin-bottom: 30px;">
-                                            <div class="col-12"
-                                                style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 40px;">
-                                                <h1 style="font-weight: 300;">Suggested Mentors</h1>
-                                                <a style="font-size: 12px; color: #5981ca!important; ">POWERED BY
-                                                    MOLLI</a>
-                                            </div>
-                                        </div>
-
-                                        <div class="row" id="matches" style="margin-left:0px;">
-                                            <div class="col-3">
-                                                <div class="match" style="width:100px;">
-                                                    <div class="border m-auto d-block rounded-circle"
-                                                        style="width: 50px;height: 50px;overflow: hidden;">
-                                                        <img src="../../assets/img/placeholder.png"
-                                                            style="width: 100%;">
+                                            <div class="col-12">
+                                                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
+                                                    aria-expanded="false" aria-controls="collapseExample"
+                                                    style="margin:10px;padding:12px 24px;font-size:24px;outline:none;color:#234e67;background:transparent;box-shadow:none!important;border-radius: 10px;background-position: bottom;border:0px;">
+                                                    Add &nbsp;<i class="fas fa-plus"></i>
+                                                </button>
+                                                <div class="collapse" id="collapseExample">
+                                                    <div class="card card-body">
+                                                        <form method="post" class="addInterest">
+                                                            <select id="interest" name="interest" style="width:300px;">
+                            
+                                                            </select>
+                                                            <button class="btn btn-primary" type="submit"
+                                                                style="margin:10px;padding:6px 12px;font-size:18px;color:#fff;background:#234e67;border-radius: 10px;background-position: bottom;border:0px;border-radius:300px;">
+                                                                Confirm
+                                                            </button>
+                            
+                                                        </form>
+                            
                                                     </div>
-                                                    <p style="text-align:center;">Clive Barker</p>
                                                 </div>
                                             </div>
-
                                         </div>
-
-
+                            
+                            
                                     </div>
-                                    <div>
+                            
+                                    <div style="border-bottom: 1px solid #eee;padding-bottom: 50px;">
                                         <div class="row" style="margin-bottom: 30px;">
                                             <div class="col-12"
                                                 style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 40px;">
                                                 <h1 style="font-weight: 300;">Files</h1>
-
+                            
                                             </div>
                                         </div>
-
-
+                            
+                            
                                         <div id="filesList" style="padding-left: 40px;">
-
+                            
                                         </div>
-
+                            
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                            </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -316,13 +336,28 @@
     <script src="https://www.blooware.co.uk/blooAuth/blooAuth.js"></script>
     <script src="../../assets/js/security.js"></script>
     <script>
+   
+ScrollReveal().reveal('.revealOnLoad', {
+    delay: 1000,
+    duration: 500,
+    reset: false
+}); 
+
+
+ScrollReveal().reveal('.revealOnLoadFast', {
+    delay: 500,
+    duration: 500,
+    reset: false
+}); 
+    </script>
+    <script>
 
         var student_id;
 
         student_id = getUrlParameter('student_id').replace("-", " ");
 
         var destinationData;
-       
+
         function getFile(i, name, file, file_ext) {
             var oldHTML = $("#file-" + i).html();
             $("#file-" + i).html('Loading... <div class="spinner-border spinner-border-sm" role="status">  <span class="sr-only">Loading...</span></div>');
@@ -334,7 +369,7 @@
                 url: "https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-getStudentFile",
                 type: 'POST',
                 crossDomain: true,
-                data: JSON.stringify({name:file}),
+                data: JSON.stringify({ name: file }),
                 headers: { "Authorization": "Bearer " + token },
                 dataType: 'json',
                 contentType: "application/json",
@@ -353,23 +388,27 @@
             });
         }
         function refresh() {
+            ScrollReveal({ reset: true });
+            $('#interests').html("");
+            $('#timeline').html("");
+            $('#filesList').html("");
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postGrabStudent', { student_id: student_id }, function (reply) {
                 console.log(reply);
                 destinationData = reply.destinations;
                 for (i = 0; i < reply.destinations.length; i++) {
-                 
+
                     var dateAdded = reply.destinations[i].added;
 
                     if (i == 0) {
                         //bottom
-                        $('#timeline').append(' <div class="row bottom" onclick="goToSession(' + i + ')" style="margin-top: -60px;width: 80%;min-width: 800px;"> <div class="col-6" style="padding-left: 15px;border-left: 3px solid #234e67;padding-bottom: 50px;padding-top: 20px;margin-top: 60px;"> <div style="background: transparent;height: 130px;border-radius: 20px;border-radius: 20px;box-shadow: 0 0 15px rgba(0,0,0,0);background: #234e67;margin-bottom: 30px;margin-left: 20px;margin-top: -60px;"> <p class="text-left float-left" style="width: 100%;color: #fff;font-size: 16px;margin: 0px;padding-left: 40px;padding-top:10px;">' + dateAdded + '</p> <p class="text-left float-left" style="width: 100%;color: #fff;font-weight: 600;font-size: 16px;margin: 0px;padding-left: 40px;">' + reply.destinations[i].aspiration + ' - ' + reply.destinations[i].destination + '<br></p> </div> <div style="width: 20px;height: 20px;background: #000;border-radius: 50%;position: absolute;margin-left: -26px;margin-top: -93px;background-color: rgb(255,109,109);"> </div> </div> </div>');
+                        $('#timeline').append(' <div class="row bottom" onclick="goToSession(' + i + ')" style="cursor:pointer;margin-top: -60px;width: 80%;min-width: 800px;"> <div class="col-6" style="padding-left: 15px;border-left: 3px solid #234e67;padding-bottom: 50px;padding-top: 20px;margin-top: 60px;"> <div style="background: transparent;height: 130px;border-radius: 20px;border-radius: 20px;box-shadow: 0 0 15px rgba(0,0,0,0);background: #234e67;margin-bottom: 30px;margin-left: 20px;margin-top: -60px;"> <p class="text-left float-left" style="width: 100%;color: #fff;font-size: 16px;margin: 0px;padding-left: 40px;padding-top:10px;">' + dateAdded + '</p> <p class="text-left float-left" style="width: 100%;color: #fff;font-size: 16px;margin: 0px;padding-left: 40px;padding-right: 40px;"><strong style="text-transform: capitalize;">' + reply.destinations[i].aspiration + '</strong><br>' + reply.destinations[i].destination + '</p> </div> <div style="width: 20px;height: 20px;background: #000;border-radius: 50%;position: absolute;margin-left: -26px;margin-top: -93px;background-color: rgb(255,109,109);"> </div> </div> </div>');
                     } else {
                         if (i != reply.destinations.length) {
                             //middle
-                            $('#timeline').append('<div class="row top" onclick="goToSession(' + i + ')" style="margin-top: -120px;width: 80%;min-width: 800px;"> <div class="col-6" style="padding-left: 15px;border-left: 3px solid #234e67;padding-bottom: 50px;padding-top: 20px;margin-top: 60px;"> <div style="background: transparent;height: 130px;border-radius: 20px;border-radius: 20px;box-shadow: 0 0 15px rgba(0,0,0,0);background: #234e67;margin-left: 20px;margin-bottom: -96px;"> <p class="text-left float-left" style="width: 100%;color: #fff;font-size: 16px;margin: 0px;padding-left: 40px;padding-top:10px;">' + dateAdded + '</p> <p class="text-left float-left" style="width: 100%;color: #fff;font-weight: 600;font-size: 16px;margin: 0px;padding-left: 40px;margin-bottom: 50px;">' + reply.destinations[i].aspiration + ' - ' + reply.destinations[i].destination + '</p> </div> <div style="width: 20px;height: 20px;background: #000;border-radius: 50%;position: absolute;margin-left: -26px;margin-top: 33px;background-color: rgb(255,109,109);"> </div> </div> </div>');
+                            $('#timeline').append('<div class="row top" onclick="goToSession(' + i + ')" style="cursor:pointer;margin-top: -120px;width: 80%;min-width: 800px;"> <div class="col-6" style="padding-left: 15px;border-left: 3px solid #234e67;padding-bottom: 50px;padding-top: 20px;margin-top: 60px;"> <div style="background: transparent;height: 130px;border-radius: 20px;border-radius: 20px;box-shadow: 0 0 15px rgba(0,0,0,0);background: #234e67;margin-left: 20px;margin-bottom: -96px;"> <p class="text-left float-left" style="width: 100%;color: #fff;font-size: 16px;margin: 0px;padding-left: 40px;padding-top:10px;">' + dateAdded + '</p> <p class="text-left float-left" style="width: 100%;color: #fff;font-weight: 600;font-size: 16px;margin: 0px;padding-left: 40px;margin-bottom: 50px;padding-right: 40px;"><strong style="text-transform: capitalize;">' + reply.destinations[i].aspiration + '</strong><br>' + reply.destinations[i].destination + '</p> </div> <div style="width: 20px;height: 20px;background: #000;border-radius: 50%;position: absolute;margin-left: -26px;margin-top: 33px;background-color: rgb(255,109,109);"> </div> </div> </div>');
                         } else {
                             //top
-                            $('#timeline').append('<div class="row middle" onclick="goToSession(' + i + ')" style="margin-top: -60px;width: 80%;min-width: 800px;"> <div class="col-6" style="padding-left: 15px;border-left: 3px solid #234e67;padding-bottom: 50px;padding-top: 20px;margin-top: 60px;"> <div style="background: transparent;height: 130px;border-radius: 20px;border-radius: 20px;box-shadow: 0 0 15px rgba(0,0,0,0);background: #fff;margin-bottom: 30px;margin-left: 20px;margin-top: -60px;"> <p class="text-left float-left" style="width: 100%;color: #666;font-size: 16px;margin: 0px;padding-left: 40px;padding-top:10px;">' + dateAdded + '</p> <p class="text-left float-left" style="width: 100%;color: #fff;font-weight: 600;font-size: 16px;margin: 0px;padding:5px;padding-left: 40px;">' + reply.destinations[i].aspiration + ' - ' + reply.destinations[i].destination + '</p> </div> <div style="width: 20px;height: 20px;background: #000;border-radius: 50%;position: absolute;margin-left: -26px;margin-top: -93px;background-color: rgb(255,109,109);"> </div> </div> </div>');
+                            $('#timeline').append('<div class="row middle" onclick="goToSession(' + i + ')" style="cursor:pointer;margin-top: -60px;width: 80%;min-width: 800px;"> <div class="col-6" style="padding-left: 15px;border-left: 3px solid #234e67;padding-bottom: 50px;padding-top: 20px;margin-top: 60px;"> <div style="background: transparent;height: 130px;border-radius: 20px;border-radius: 20px;box-shadow: 0 0 15px rgba(0,0,0,0);background: #fff;margin-bottom: 30px;margin-left: 20px;margin-top: -60px;"> <p class="text-left float-left" style="width: 100%;color: #666;font-size: 16px;margin: 0px;padding-left: 40px;padding-top:10px;">' + dateAdded + '</p> <p class="text-left float-left" style="width: 100%;color: #fff;font-weight: 600;font-size: 16px;margin: 0px;padding:5px;padding-left: 40px;padding-right: 40px;"><strong style="text-transform: capitalize;">' + reply.destinations[i].aspiration + '</strong><br>' + reply.destinations[i].destination + '</p> </div> <div style="width: 20px;height: 20px;background: #000;border-radius: 50%;position: absolute;margin-left: -26px;margin-top: -93px;background-color: rgb(255,109,109);"> </div> </div> </div>');
                         }
                     }
                 }
@@ -378,6 +417,9 @@
 
                     $('#filesList').append('<div id="file-' + i + '" onclick="getFile(' + i + ', `' + reply.studentFiles[i].name + '`, `' + reply.studentFiles[i].path + '`, `' + reply.studentFiles[i].file_ext + '`)" style="background:#fff;border-radius: 5px;padding:12px 24px;color:#000!important;box-shadow: 0 5px 15px rgba(0,0,0,0.2);margin-right:20px;">' + reply.studentFiles[i].name + ' <i class="fa fa-download"></i></div>');
 
+                }
+                for (i = 0; i < reply.studentInterests.length; i++) {
+                    $('#interests').append('<button style="outline:none;margin:10px;padding:24px 24px;font-size:24px;color:#fff;background-color:#fff;text-shadow: 0 0 5px rgba(0,0,0,1);background-image: url(https://source.unsplash.com/300x100/?' + reply.studentInterests[i].name.replace(" ", "%20") + ');background-size:cover;background-position:bottom;border-radius: 10px;background-position: bottom;border:0px;"> ' + reply.studentInterests[i].name + ' </button>');
                 }
 
                 if (reply.status == false) {
@@ -412,7 +454,7 @@
             });
 
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-getInterests', {}, function (reply) {
-               
+
                 $('#interest').html();
                 for (i = 0; i < reply.body.length; i++) {
                     $('#interest').append('<option value="' + reply.body[i].id + '">' + reply.body[i].name + '</option>');
@@ -464,8 +506,8 @@
 
 
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postStudentFile", { base64String: base64File, name: fileName, student_id: student_id }, function (reply) {
-               // console.log(reply);
-               $('.popup1').attr('style', $('.popup1').attr('style') + ';display: none!important;');
+                // console.log(reply);
+                $('.popup1').attr('style', $('.popup1').attr('style') + ';display: none!important;');
                 refresh();
                 //window.location.reload();
             });
@@ -548,7 +590,6 @@
             }
             return returnArray;
         }
-
 
 
 
