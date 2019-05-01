@@ -30,12 +30,26 @@ exports.handler = (event, context, callback) => {
                         });
                     }
                     var students = results;
-                    context.succeed({
-                        statusCode: 200,
-                        status: true,
-                        groupData: groupData,
-                        students: students,
 
+                    connection.query("select * from fateweaver.tutors where id in (select tutor_id from fateweaver.tutor_assigned_groups where group_id = ? and school_id = (select school_id from fateweaver.admins where cognito_id = ?) ) ", [event.form.tutor_group_id, event.account.sub], function (err, results, fields) {
+                        if (err) {
+                            console.log("Error getting tutor groups:", err);
+                            context.succeed({
+                                statusCode: 200,
+                                status: false,
+                                errMsg: "error getting students :" + err
+                            });
+                        }
+                        var groupTutors = results;
+
+
+                        context.succeed({
+                            statusCode: 200,
+                            status: true,
+                            groupData: groupData,
+                            students: students,
+                            groupTutors: groupTutors
+                        });
                     });
 
                 });

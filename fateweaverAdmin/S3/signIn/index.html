@@ -24,6 +24,8 @@
             <div class="illustration"></div>
             <div class="form-group"><input class="form-control" type="email" name="email" required="" placeholder="Email" id="userEmail" ></div>
             <div class="form-group"><input class="form-control" type="password" name="password" required="" id="userPassword" placeholder="Password"></div>
+
+            <p id="ErrMsg" class="text-center" style="display: none; color: #fff!important;"></p>
             <div class="form-group"><button class="btn btn-primary btn-block" type="button" onclick="signMeIn()" style="background-color: #3c92da;">Log In</button></div><a href="#" class="forgot" style="color: #fff!important;">Forgot your email or password?</a></form>
     </div>
     <div class="footer-basic" style="position: absolute;width: 100%;bottom: 0;background-color: rgba(255,255,255,0);">
@@ -63,11 +65,31 @@
         });
     });
 
-    function signMeIn() {
-        signIn($('#userEmail').val(), $('#userPassword').val(), function () {
+     function signMeIn() {
+        $("#ErrMsg").html("");
+        signIn($('#userEmail').val().toLowerCase(), $('#userPassword').val(), function () {
             window.location.href = '/portal';
-        }, function (err) {
-            console.log(err);
+        }, function (error) {
+            var errorType = error.toString().substr(0, error.toString().indexOf(':'));
+            console.log(errorType);
+            if (errorType == "UserNotConfirmedException") {
+                window.location.href = '/portal/verify/?email=' + $("#userEmail").val();
+            }
+            
+            if (errorType == "UserNotFoundException") {
+                $("#ErrMsg").show().html("User Not Found");
+            }
+            if (errorType == "NotAuthorizedException" || errorType == "InvalidPasswordException") {
+                $("#ErrMsg").show().html("Incorrect Password");
+            }
+            if (errorType == "PasswordResetRequiredException") {
+                $("#ErrMsg").show().html("Reset Password Not Implimented yet");
+            }
+
+            else {
+                console.log(errorType);
+            }
+
         });
     }
 

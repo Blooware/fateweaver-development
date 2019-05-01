@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html style="display:none;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Tutor Groups</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400">
+    <link rel="stylesheet" href="../assets/css/styles.min.css">
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 0px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #e7e7e7;
+        }
+    </style>
+</head>
+
+<body style="width: 100%;height: 100%;background-color: #ffffff;">
+
+
+    <!--Popups-->
+    <div>
+        <div class="d-inline-flex popupTutor" id="popupTutor"
+            style="display: none!important;border-radius: 15px;padding: 3%;position: relative;-webkit-box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);position: fixed;width: 100%;height: 80%;width: 80%;top: 10%;background: #FFF;left: 10%;z-index: 999999999999999999999999999999999999999999;">
+
+
+
+            <form method="post" class="save">
+                <div class="form-group" style="padding:30px;padding-left:0px;padding-top:0px;">
+                    <p class="d-inline"
+                        style="text-align: right;cursor: pointer;text-decoration: underline; float:left; "
+                        onclick="$('.popupTutor').attr('style', $('.popupTutor').attr('style') + ';display: none!important;');">
+                        Close</p>
+
+                </div>
+
+                <input type="text" id="title" name="title" placeholder="Title" />
+                <input type="text" id="surename" name="first_name" placeholder="surename" />
+                <input type="text" id="forename" name="second_name" placeholder="forename" />
+                <input type="text" id="email" name="email" placeholder="Email" />
+                <input type="password" id="password" name="password" placeholder="Temporary Password" />
+                
+
+                <button type="submit">Create</button>
+            </form>
+
+            <div class="circle-loader" style="display:none;text-align: center;">
+                <div class="sk-circle">
+                    <div class="sk-circle1 sk-child"></div>
+                    <div class="sk-circle2 sk-child"></div>
+                    <div class="sk-circle3 sk-child"></div>
+                    <div class="sk-circle4 sk-child"></div>
+                    <div class="sk-circle5 sk-child"></div>
+                    <div class="sk-circle6 sk-child"></div>
+                    <div class="sk-circle7 sk-child"></div>
+                    <div class="sk-circle8 sk-child"></div>
+                    <div class="sk-circle9 sk-child"></div>
+                    <div class="sk-circle10 sk-child"></div>
+                    <div class="sk-circle11 sk-child"></div>
+                    <div class="sk-circle12 sk-child"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-inline-flex popup2" id="popup2"
+            style="display: none!important;border-radius: 15px;padding: 3%;position: relative;-webkit-box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);position: fixed;width: 100%;height: 80%;width: 80%;top: 10%;background: #FFF;left: 10%;z-index: 999999999999999999999999999999999999999999;">
+
+
+
+            <form method="post" class="create">
+                <div class="form-group" style="padding:30px;padding-left:0px;padding-top:0px;">
+                    <p class="d-inline"
+                        style="text-align: right;cursor: pointer;text-decoration: underline; float:left; "
+                        onclick="$('.popup2').attr('style', $('.popup2').attr('style') + ';display: none!important;');">
+                        Close</p>
+
+                </div>
+                <input placeholder="givenName" type="text" id="given_name" name="givenName" /><br>
+                <input placeholder="family_name" type="text" id="family_name" name="familyName"/><br>
+                <input placeholder="dob" type="date" id="dob" name="dob"/><br>
+                <input placeholder="gender" type="text" id="gender" name="gender"/><br>
+                <input placeholder="postcode" type="text" id="postcode" name="postcode"/><br>
+                <input placeholder="upn" type="text" id="upn" name="upn"/><br>
+                <input placeholder="uln" type="text" id="uln" name="uln"/><br>
+                <input placeholder="tutorGroup" type="text" id="tutorGroup" name="tutorGroup"/><br>
+                <input placeholder="pp" type="text" id="pp" name="pp"/><br><!--pupil premium-->
+                <input placeholder="sen" type="text" id="sen" name="sen"/><br> <!--special education needs-->
+
+                <button type="submit">Create</button>
+            </form>
+
+            <div class="circle-loader" style="display:none;text-align: center;">
+                <div class="sk-circle">
+                    <div class="sk-circle1 sk-child"></div>
+                    <div class="sk-circle2 sk-child"></div>
+                    <div class="sk-circle3 sk-child"></div>
+                    <div class="sk-circle4 sk-child"></div>
+                    <div class="sk-circle5 sk-child"></div>
+                    <div class="sk-circle6 sk-child"></div>
+                    <div class="sk-circle7 sk-child"></div>
+                    <div class="sk-circle8 sk-child"></div>
+                    <div class="sk-circle9 sk-child"></div>
+                    <div class="sk-circle10 sk-child"></div>
+                    <div class="sk-circle11 sk-child"></div>
+                    <div class="sk-circle12 sk-child"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div id="wrapper">
+        <!--navigation-->
+        <div id="sidebar-wrapper" style="background-color: #234e67!important;">
+            <ul class="d-block sidebar-nav" style="height: 100%;overflow: hidden;">
+                <li style="padding-top: 150px;">
+                    <a href="/portal" style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fa fa-home" style="padding-right: 10px;width: 60px;"></i>HOME
+                    </a>
+                    <a href="/portal/students" style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fa fa-users" style="padding-right: 10px;width: 60px;"></i>STUDENTS
+                    </a>
+                    <a href="/portal/tutors" style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fas fa-user-friends" style="padding-right: 10px;width: 60px;"></i>TUTORS
+                    </a>
+                    <a href="/portal/tutorGroups" style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fas fa-chalkboard-teacher" style="padding-right: 10px;width: 60px;"></i>TUTOR GROUPS
+                    </a>
+
+                    <a class="text-uppercase" href="/portal/mentors" style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fas fa-user-lock" style="padding-right: 10px;width: 60px;"></i>MENTORS
+                    </a>
+                    <a class="text-uppercase" href="/portal/insights" style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fa fa-bar-chart" style="padding-right: 10px;width: 60px;"></i>INSIGHTS
+                    </a>
+                    <a class="text-uppercase" href="/portal/account" style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fa fa-user" style="padding-right: 10px;width: 60px;"></i>Account
+                    </a>
+                    <a class="text-uppercase" href="/portal/data-and-security" style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fa fa-lock" style="padding-right: 10px;width: 60px;"></i>Data and Security
+                    </a>
+                    <div style="position: absolute;bottom: 0px;width: 100%;padding-bottom: 25px;">
+                        <a class="text-uppercase" onclick="signMeOut()" style="color: #fff!important;width: 100%;">
+                            <i class="fa fa-sign-out" style="padding-right: 10px;width: 60px;"></i>
+                            <strong>LOG OUT</strong>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="page-content-wrapper">
+            <div class="container-fluid" style="padding: 0px;margin-left: 0px;margin-right: 0px;">
+                <div class="row"
+                    style="margin: 0px;width: 100%;position: fixed;padding: 0px;height: 100px;z-index: 9999;box-shadow: 0 0 15px rgba(0,0,0,0.05);">
+                    <div class="col d-inline-flex" style="margin-bottom: 50px;height: 100px;"><a
+                            class="btn btn-link float-left d-inline-flex" role="button" href="#menu-toggle"
+                            id="menu-toggle"
+                            style="padding: 0px;padding-left: 20px;padding-right: 50px;width: 110px;"><i
+                                class="la la-bars"
+                                style="font-size: 32px;color: rgb(11,11,11);padding: 0px;padding-left: 0;text-decoration: none!important;line-height: 100px;"></i></a>
+                        <h1
+                            style="height: 100%;line-height: 100px;font-size: 40px;font-family: Roboto, sans-serif;font-weight: 300;color: #666;">
+                            <span
+                                style="background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);-webkit-background-clip: text;-webkit-text-fill-color: transparent;background-size: 150%;"><strong>student</strong></span>path
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid" style="padding-top: 100px;padding-left: 125px;">
+                <div>
+                    <div class="row">
+                        <div class="float-left"
+                            style="height: 60px;background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 15px;">
+                            <button onclick="$('#popupTutor').fadeIn()" class="btn btn-primary" type="button"
+                                style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 20px;">Add Tutor &nbsp;<i class="fa fa-cloud-upload"></i>
+                            </button>
+                            <!--
+                            <button onclick="$('#popup2').fadeIn()" class="btn btn-primary" type="button"
+                            style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 20px;">Add
+                            Tutor Group &nbsp;<i class="fa fa-cloud-upload"></i>
+                        </button>
+                        -->
+                    </div>
+                    <div class="row" style="padding-bottom: 30px;">
+                        <div class="float-left"
+                            style="height: 60px;background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 15px;overflow: hidden;">
+                            <input type="search" onkeyup="search(this.value)" placeholder="Search by name or UPN..."
+                                style="height: 60px;border: 0px;outline: none;width: 350px;text-indent: 24px;"></div>
+                    </div>
+                </div>
+            </div>
+            <!--Content-->
+            <div class="table-responsive">
+                <table class="table" id="results">
+                    <tr id="tableHeading" style="font-weight: normal!important;">
+                        <th style="width: 120px;"></th>
+                        <th style="font-weight: normal;">Name</th>
+                        <th style="font-weight: normal;">
+                            <select id="TutorSearch" onchange="search(this.value)">
+                                <option selected value="">Tutor</option>
+                            </select>
+                        </th>
+                        <th style="font-weight: normal;">
+                            <select id="YearSearch" onchange="search(this.value)">
+                                <option selected value="">Year</option>
+                                <option value="year7">7</option>
+                                <option value="year8">8</option>
+                                <option value="year9">9</option>
+                                <option value="year10">10</option>
+                                <option value="year11">11</option>
+                                <option value="year12">12</option>
+                                <option value="year13">13</option>
+                            </select>
+                        </th>
+                        <th style="font-weight: normal;">UPN</th>
+                        <th style="font-weight: normal;">
+                            <select onchange="search(this.value)">
+                                <option selected value="">Destination</option>
+                            </select>
+                        </th>
+                        <th style="font-weight: normal;">Aspiration</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/script.min.js"></script>
+    <script src="https://www.blooware.co.uk/blooAuth/vendor/aws-cognito-sdk.min.js"></script>
+    <script src="https://www.blooware.co.uk/blooAuth/vendor/amazon-cognito-identity.min.js"></script>
+    <script src="https://www.blooware.co.uk/blooAuth/blooAuth.js"></script>
+    <script src="../assets/js/security.js"></script>
+    <script>
+
+        function search(x) {
+            console.log(x)
+            if (x.length > 1) {
+                $('#results > .item').each(function () {
+                    var prod = $(this);
+                    if (prod.attr('search').toLowerCase().indexOf(x.toLowerCase()) > 0) {
+
+                        prod.show();
+                    } else {
+                        prod.hide();
+                    }
+                });
+            } else {
+                $('#results > .item').each(function () {
+                    var prod = $(this);
+                    prod.show();
+                });
+            }
+        }
+
+
+        function refresh() {
+            
+            postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postGrabTutors', [], function (reply) {
+                console.log(reply);
+                $('#results').html('<tr style="font-weight: normal!important;"> <th style="width: 120px;"></th> <th style="font-weight: normal;">Name</th> <th style="font-weight: normal;">Tutor Group</th> <th style="font-weight: normal;">UPN</th>  <th style="font-weight: normal;">Destination</th> <th style="font-weight: normal;">Aspiration</th> </tr>');
+                for (var i = 0; i < reply.body.length; i++) {
+
+                    $('#results').append('<tr class="item" search="search ' + reply.body[i].first_name + ' ' + reply.body[i].second_name + ' ' + reply.body[i].upn + ' search" style="font-weight: bold;"><td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="../assets/img/placeholder.png" style="width: 100%;min-height: 100%;"></div> </td> <td style="font-size: 15px;"> <a href="/portal/tutors/profile/?tutor_id=' + reply.body[i].id + '">' + reply.body[i].first_name + " " + reply.body[i].second_name + '</a></td> <td style="font-size: 15px;">' + reply.body[i].email + '</td> <td style="font-size: 15px;">' + reply.body[i].added + '</td> <td style="font-size: 15px;">' + reply.body[i].destination + '</td><td style="font-size: 15px;">' + reply.body[i].aspiration + '</td></tr> ');
+                }
+
+            });
+            
+
+        }
+
+        function postToLambda(url, data, callback) {
+            $.ajax({
+                url,
+                type: 'POST',
+                crossDomain: true,
+                data: JSON.stringify(data),
+                headers: { "Authorization": "Bearer " + token },
+                dataType: 'json',
+                contentType: "application/json",
+                success: function (reply) {
+                    callback(reply);
+                }
+            });
+        }
+
+        $(".save").submit(function (e) {
+            e.preventDefault();
+            console.log(objectifyForm(this));
+            
+            $(".circle-loader").show();
+            $(this).hide();
+            
+            
+            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postCreateTutor", [objectifyForm(this)], function (reply) {
+                console.log(reply);
+            });
+            
+        });
+
+        function objectifyForm(formArray) {//serialize data function
+
+            var returnArray = {};
+            for (var i = 0; i < formArray.length; i++) {
+                if (formArray[i]['type'] == "checkbox") {
+                    //console.log("checkbox");
+                    returnArray[formArray[i]['name']] = formArray[i]['checked'];
+                } else {
+                    if (formArray[i]['type'] == "radio") {
+                        //console.log("RadioBox");
+                        returnArray[formArray[i]['name']] = formArray[i]['checked'];
+                    } else {
+                        //console.log("Not A checkbox");
+                        returnArray[formArray[i]['name']] = formArray[i]['value'];
+                    }
+                }
+            }
+            return returnArray;
+        }
+
+    </script>
+</body>
+<style>
+    .sk-circle {
+        margin: 100px auto;
+        width: 40px;
+        height: 40px;
+        position: relative;
+    }
+
+    .sk-circle .sk-child {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .sk-circle .sk-child:before {
+        content: '';
+        display: block;
+        margin: 0 auto;
+        width: 15%;
+        height: 15%;
+        background-color: #333;
+        border-radius: 100%;
+        -webkit-animation: sk-circleBounceDelay 1.2s infinite ease-in-out both;
+        animation: sk-circleBounceDelay 1.2s infinite ease-in-out both;
+    }
+
+    .sk-circle .sk-circle2 {
+        -webkit-transform: rotate(30deg);
+        -ms-transform: rotate(30deg);
+        transform: rotate(30deg);
+    }
+
+    .sk-circle .sk-circle3 {
+        -webkit-transform: rotate(60deg);
+        -ms-transform: rotate(60deg);
+        transform: rotate(60deg);
+    }
+
+    .sk-circle .sk-circle4 {
+        -webkit-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+
+    .sk-circle .sk-circle5 {
+        -webkit-transform: rotate(120deg);
+        -ms-transform: rotate(120deg);
+        transform: rotate(120deg);
+    }
+
+    .sk-circle .sk-circle6 {
+        -webkit-transform: rotate(150deg);
+        -ms-transform: rotate(150deg);
+        transform: rotate(150deg);
+    }
+
+    .sk-circle .sk-circle7 {
+        -webkit-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+
+    .sk-circle .sk-circle8 {
+        -webkit-transform: rotate(210deg);
+        -ms-transform: rotate(210deg);
+        transform: rotate(210deg);
+    }
+
+    .sk-circle .sk-circle9 {
+        -webkit-transform: rotate(240deg);
+        -ms-transform: rotate(240deg);
+        transform: rotate(240deg);
+    }
+
+    .sk-circle .sk-circle10 {
+        -webkit-transform: rotate(270deg);
+        -ms-transform: rotate(270deg);
+        transform: rotate(270deg);
+    }
+
+    .sk-circle .sk-circle11 {
+        -webkit-transform: rotate(300deg);
+        -ms-transform: rotate(300deg);
+        transform: rotate(300deg);
+    }
+
+    .sk-circle .sk-circle12 {
+        -webkit-transform: rotate(330deg);
+        -ms-transform: rotate(330deg);
+        transform: rotate(330deg);
+    }
+
+    .sk-circle .sk-circle2:before {
+        -webkit-animation-delay: -1.1s;
+        animation-delay: -1.1s;
+    }
+
+    .sk-circle .sk-circle3:before {
+        -webkit-animation-delay: -1s;
+        animation-delay: -1s;
+    }
+
+    .sk-circle .sk-circle4:before {
+        -webkit-animation-delay: -0.9s;
+        animation-delay: -0.9s;
+    }
+
+    .sk-circle .sk-circle5:before {
+        -webkit-animation-delay: -0.8s;
+        animation-delay: -0.8s;
+    }
+
+    .sk-circle .sk-circle6:before {
+        -webkit-animation-delay: -0.7s;
+        animation-delay: -0.7s;
+    }
+
+    .sk-circle .sk-circle7:before {
+        -webkit-animation-delay: -0.6s;
+        animation-delay: -0.6s;
+    }
+
+    .sk-circle .sk-circle8:before {
+        -webkit-animation-delay: -0.5s;
+        animation-delay: -0.5s;
+    }
+
+    .sk-circle .sk-circle9:before {
+        -webkit-animation-delay: -0.4s;
+        animation-delay: -0.4s;
+    }
+
+    .sk-circle .sk-circle10:before {
+        -webkit-animation-delay: -0.3s;
+        animation-delay: -0.3s;
+    }
+
+    .sk-circle .sk-circle11:before {
+        -webkit-animation-delay: -0.2s;
+        animation-delay: -0.2s;
+    }
+
+    .sk-circle .sk-circle12:before {
+        -webkit-animation-delay: -0.1s;
+        animation-delay: -0.1s;
+    }
+
+    @-webkit-keyframes sk-circleBounceDelay {
+
+        0%,
+        80%,
+        100% {
+            -webkit-transform: scale(0);
+            transform: scale(0);
+        }
+
+        40% {
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+    }
+
+    @keyframes sk-circleBounceDelay {
+
+        0%,
+        80%,
+        100% {
+            -webkit-transform: scale(0);
+            transform: scale(0);
+        }
+
+        40% {
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+    }
+</style>
+
+</html>

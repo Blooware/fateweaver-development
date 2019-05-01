@@ -18,8 +18,9 @@
 
     <!--Popups-->
     <div>
-       
-        <div class="d-inline-flex popupEdit" id="popupEdit" style="display: none!important;border-radius: 15px;padding: 3%;position: relative;-webkit-box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);position: fixed;width: 100%;height: 80%;width: 80%;top: 10%;background: #FFF;left: 10%;z-index: 999999999999999999999999999999999999999999;">
+
+        <div class="d-inline-flex popupEdit" id="popupEdit"
+            style="display: none!important;border-radius: 15px;padding: 3%;position: relative;-webkit-box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);position: fixed;width: 100%;height: 80%;width: 80%;top: 10%;background: #FFF;left: 10%;z-index: 999999999999999999999999999999999999999999;">
 
 
 
@@ -27,34 +28,46 @@
 
             <form method="post" class="saveEdit d-block m-auto">
                 <div class="form-group" style="padding:30px;padding-left:0px;padding-top:0px;">
-                    <p class="d-inline" style="text-align: right;cursor: pointer;text-decoration: underline; float:left; "
+                    <p class="d-inline"
+                        style="text-align: right;cursor: pointer;text-decoration: underline; float:left; "
                         onclick="$('.popupEdit').attr('style', $('.popupEdit').attr('style') + ';display: none!important;');">
                         Close</p>
 
                 </div>
 
-                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
+                <input class="form-input d-block m-auto"
+                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
                     id="Name" name="Name" placeholder="Name" />
-                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
+                <input class="form-input d-block m-auto"
+                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
                     id="Email" name="Email" placeholder="Email" />
-                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
+                <input class="form-input d-block m-auto"
+                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
                     id="Logo" name="Logo" placeholder="Logo" />
-                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
+                <input class="form-input d-block m-auto"
+                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
                     id="Address1" name="Address1" placeholder="Address1" />
-                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
+                <input class="form-input d-block m-auto"
+                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
                     id="Address2" name="Address2" placeholder="Address2" />
-                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
+                <input class="form-input d-block m-auto"
+                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
                     id="Address3" name="Address3" placeholder="Address3" />
-                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
+                <input class="form-input d-block m-auto"
+                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
                     id="Town" name="Town" placeholder="Town" />
-                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
+                <input class="form-input d-block m-auto"
+                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
                     id="County" name="County" placeholder="County" />
-                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
+                <input class="form-input d-block m-auto"
+                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
                     id="Postcode" name="Postcode" placeholder="Postcode" />
-                <input class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
+                <input class="form-input d-block m-auto"
+                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
                     id="Country" name="Country" placeholder="Country" />
 
-                <button class="form-input d-block m-auto" style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 0px solid #ccc; background: rgb(0, 150, 92); border-radius:300px; width: 250px;color:#fff"
+                <button class="form-input d-block m-auto"
+                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 0px solid #ccc; background: rgb(0, 150, 92); border-radius:300px; width: 250px;color:#fff"
                     type="submit">Save</button>
 
             </form>
@@ -73,16 +86,27 @@
                     <a href="/portal/students" style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fa fa-users" style="padding-right: 10px;width: 60px;"></i>STUDENTS
                     </a>
-                    <a class="text-uppercase" href="/portal/mentors" style="color: #fff!important;padding-bottom: 10px;">
+                    <a href="/portal/tutors" style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fas fa-user-friends" style="padding-right: 10px;width: 60px;"></i>TUTORS
+                    </a>
+                    <a href="/portal/tutorGroups" style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fas fa-chalkboard-teacher" style="padding-right: 10px;width: 60px;"></i>TUTOR GROUPS
+                    </a>
+
+                    <a class="text-uppercase" href="/portal/mentors"
+                        style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fas fa-user-lock" style="padding-right: 10px;width: 60px;"></i>MENTORS
                     </a>
-                    <a class="text-uppercase" href="/portal/insights" style="color: #fff!important;padding-bottom: 10px;">
+                    <a class="text-uppercase" href="/portal/insights"
+                        style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fa fa-bar-chart" style="padding-right: 10px;width: 60px;"></i>INSIGHTS
                     </a>
-                    <a class="text-uppercase" href="/portal/account" style="color: #fff!important;padding-bottom: 10px;">
+                    <a class="text-uppercase" href="/portal/account"
+                        style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fa fa-user" style="padding-right: 10px;width: 60px;"></i>Account
                     </a>
-                    <a class="text-uppercase" href="/portal/data-and-security" style="color: #fff!important;padding-bottom: 10px;">
+                    <a class="text-uppercase" href="/portal/data-and-security"
+                        style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fa fa-lock" style="padding-right: 10px;width: 60px;"></i>Data and Security
                     </a>
                     <div style="position: absolute;bottom: 0px;width: 100%;padding-bottom: 25px;">
@@ -98,12 +122,18 @@
         <!--top bar and content-->
         <div class="page-content-wrapper">
             <div class="container-fluid" style="padding: 0px;margin-left: 0px;margin-right: 0px;">
-                <div class="row" style="margin: 0px;width: 100%;position: fixed;padding: 0px;height: 100px;z-index: 9999;box-shadow: 0 0 15px rgba(0,0,0,0.05);">
-                    <div class="col d-inline-flex" style="margin-bottom: 50px;height: 100px;"><a class="btn btn-link float-left d-inline-flex"
-                            role="button" href="#menu-toggle" id="menu-toggle" style="padding: 0px;padding-left: 20px;padding-right: 50px;width: 110px;"><i
-                                class="la la-bars" style="font-size: 32px;color: rgb(11,11,11);padding: 0px;padding-left: 0;text-decoration: none!important;line-height: 100px;"></i></a>
-                        <h1 style="height: 100%;line-height: 100px;font-size: 40px;font-family: Roboto, sans-serif;font-weight: 300;color: #666;">
-                            <span style="background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);-webkit-background-clip: text;-webkit-text-fill-color: transparent;background-size: 150%;"><strong>student</strong></span>path
+                <div class="row"
+                    style="margin: 0px;width: 100%;position: fixed;padding: 0px;height: 100px;z-index: 9999;box-shadow: 0 0 15px rgba(0,0,0,0.05);">
+                    <div class="col d-inline-flex" style="margin-bottom: 50px;height: 100px;"><a
+                            class="btn btn-link float-left d-inline-flex" role="button" href="#menu-toggle"
+                            id="menu-toggle"
+                            style="padding: 0px;padding-left: 20px;padding-right: 50px;width: 110px;"><i
+                                class="la la-bars"
+                                style="font-size: 32px;color: rgb(11,11,11);padding: 0px;padding-left: 0;text-decoration: none!important;line-height: 100px;"></i></a>
+                        <h1
+                            style="height: 100%;line-height: 100px;font-size: 40px;font-family: Roboto, sans-serif;font-weight: 300;color: #666;">
+                            <span
+                                style="background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);-webkit-background-clip: text;-webkit-text-fill-color: transparent;background-size: 150%;"><strong>student</strong></span>path
                         </h1>
                     </div>
                 </div>
@@ -114,7 +144,8 @@
                     here.</h1>
             </div>
             <div class="container-fluid" style="padding-top: 20px;padding-left: 125px;">
-                <button class="btn btn-primary" onclick="$('#popupEdit').fadeIn()" type="button" style="background:#fff; box-shadow:0 0 8px rgba(0,0,0,0.2);height: 100%;padding: 12px 24px;color: #000;border: 0px!important;font-size: 16px;">Edit
+                <button class="btn btn-primary" onclick="$('#popupEdit').fadeIn()" type="button"
+                    style="background:#fff; box-shadow:0 0 8px rgba(0,0,0,0.2);height: 100%;padding: 12px 24px;color: #000;border: 0px!important;font-size: 16px;">Edit
                     &nbsp;<i class="fas fa-pencil-alt"></i></button>
             </div>
             <div class="container-fluid" style="padding-top: 50px;padding-left: 125px;">
