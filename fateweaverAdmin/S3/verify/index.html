@@ -30,6 +30,7 @@
 <script src="https://www.blooware.co.uk/blooAuth/blooAuth0.3.js"></script>
 
 <script>
+    $("#userEmail").val(getUrlParameter("email"));
 
     $(document).ready(function () {
         connectToPool('eu-west-2_9yPc9js2X', '4atq7kp8m6ibv56d3cgjbudhim', function () {
@@ -50,5 +51,12 @@
             $('#err').html(err);
         });
     }
+
+    function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        };
 
 </script>
