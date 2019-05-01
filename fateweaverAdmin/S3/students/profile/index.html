@@ -98,10 +98,10 @@
                     style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 0px solid #ccc; background: rgb(0, 150, 92); border-radius:300px; width: 250px;color:#fff"
                     type="submit">Update</button>
                 <!--special education needs-->
-            </form>
 
-            <form method="post" class="addInterest">
-                <select id="interest" name="interest">
+
+
+            </form>
 
 
 
@@ -113,41 +113,37 @@
         <div id="sidebar-wrapper" style="background-color: #234e67!important;">
             <ul class="d-block sidebar-nav" style="height: 100%;overflow: hidden;">
                 <li style="padding-top: 150px;">
-                    <a href="/portal" style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fa fa-home" style="padding-right: 10px;width: 60px;"></i>HOME
-                    </a>
-                    <a href="/portal/students" style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fa fa-users" style="padding-right: 10px;width: 60px;"></i>STUDENTS
-                    </a>
-                    <a href="/portal/tutors" style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fas fa-user-friends" style="padding-right: 10px;width: 60px;"></i>TUTORS
-                    </a>
-                    <a href="/portal/tutorGroups" style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fas fa-chalkboard-teacher" style="padding-right: 10px;width: 60px;"></i>TUTOR GROUPS
-                    </a>
-
-                    <a class="text-uppercase" href="/portal/mentors"
-                        style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fas fa-user-lock" style="padding-right: 10px;width: 60px;"></i>MENTORS
-                    </a>
-                    <a class="text-uppercase" href="/portal/insights"
-                        style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fa fa-bar-chart" style="padding-right: 10px;width: 60px;"></i>INSIGHTS
-                    </a>
-                    <a class="text-uppercase" href="/portal/account"
-                        style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fa fa-user" style="padding-right: 10px;width: 60px;"></i>Account
-                    </a>
-                    <a class="text-uppercase" href="/portal/data-and-security"
-                        style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fa fa-lock" style="padding-right: 10px;width: 60px;"></i>Data and Security
-                    </a>
-                    <div style="position: absolute;bottom: 0px;width: 100%;padding-bottom: 25px;">
-                        <a class="text-uppercase" onclick="signMeOut()" style="color: #fff!important;width: 100%;">
-                            <i class="fa fa-sign-out" style="padding-right: 10px;width: 60px;"></i>
-                            <strong>LOG OUT</strong>
+                        <a href="/portal" style="color: #fff!important;padding-bottom: 10px;">
+                            <i class="fa fa-home" style="padding-right: 10px;width: 60px;"></i>HOME
                         </a>
-                    </div>
+                        <a href="/portal/students" style="color: #fff!important;padding-bottom: 10px;">
+                            <i class="fa fa-users" style="padding-right: 10px;width: 60px;"></i>STUDENTS
+                        </a>
+                        <a href="/portal/tutors" style="color: #fff!important;padding-bottom: 10px;">
+                            <i class="fas fa-user-friends" style="padding-right: 10px;width: 60px;"></i>TUTORS
+                        </a>
+                        <a href="/portal/tutorGroups" style="color: #fff!important;padding-bottom: 10px;">
+                            <i class="fas fa-chalkboard-teacher" style="padding-right: 10px;width: 60px;"></i>TUTOR GROUPS
+                        </a>
+    
+                        <a class="text-uppercase" href="/portal/mentors" style="color: #fff!important;padding-bottom: 10px;">
+                            <i class="fas fa-user-lock" style="padding-right: 10px;width: 60px;"></i>MENTORS
+                        </a>
+                        <a class="text-uppercase" href="/portal/insights" style="color: #fff!important;padding-bottom: 10px;">
+                            <i class="fa fa-bar-chart" style="padding-right: 10px;width: 60px;"></i>INSIGHTS
+                        </a>
+                        <a class="text-uppercase" href="/portal/account" style="color: #fff!important;padding-bottom: 10px;">
+                            <i class="fa fa-user" style="padding-right: 10px;width: 60px;"></i>Account
+                        </a>
+                        <a class="text-uppercase" href="/portal/data-and-security" style="color: #fff!important;padding-bottom: 10px;">
+                            <i class="fa fa-lock" style="padding-right: 10px;width: 60px;"></i>Data and Security
+                        </a>
+                        <div style="position: absolute;bottom: 0px;width: 100%;padding-bottom: 25px;">
+                            <a class="text-uppercase" onclick="signMeOut()" style="color: #fff!important;width: 100%;">
+                                <i class="fa fa-sign-out" style="padding-right: 10px;width: 60px;"></i>
+                                <strong>LOG OUT</strong>
+                            </a>
+                        </div>
                 </li>
             </ul>
         </div>
@@ -461,7 +457,7 @@ ScrollReveal().reveal('.revealOnLoadFast', {
             });
 
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-getInterests', {}, function (reply) {
-                console.log(reply);
+
                 $('#interest').html();
                 for (i = 0; i < reply.body.length; i++) {
                     $('#interest').append('<option value="' + reply.body[i].id + '">' + reply.body[i].name + '</option>');
