@@ -504,8 +504,8 @@
 
 
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postCreateStudent", [objectifyForm(this)], function (reply) {
-                
-                window.location.reload();
+                console.log(reply);
+                //window.location.reload();
 
             });
 
