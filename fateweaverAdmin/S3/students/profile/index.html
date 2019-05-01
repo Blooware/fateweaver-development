@@ -94,10 +94,8 @@
                     style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 0px solid #ccc; background: rgb(0, 150, 92); border-radius:300px; width: 250px;color:#fff"
                     type="submit">Update</button>
                 <!--special education needs-->
-
-
-
             </form>
+            
             <form method="post" class="addInterest">
                 <select id="interest" name="interest">
 
@@ -176,7 +174,8 @@
                                 <div class="col-2">
                                     <div class="border rounded-circle"
                                         style="width: 150px;height: 150px;overflow: hidden;box-shadow: 0 0 15px rgba(0,0,0,0.2);border:8px solid #fff!important;">
-                                        <img src="https://source.unsplash.com/collection/791207/150x150" style="height:100%; min-width: 100%;"></div>
+                                        <img src="https://source.unsplash.com/collection/791207/150x150"
+                                            style="height:100%; min-width: 100%;"></div>
                                 </div>
                                 <div class="col-10" style="min-width: 600px;">
                                     <h1 style="font-weight: 300;"><strong id="Name"></strong></h1>
@@ -241,13 +240,13 @@
                                             <div class="col-12"
                                                 style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 40px;">
                                                 <h1 style="font-weight: 300;">Interests</h1>
-                                                
+
                                             </div>
                                         </div>
 
                                         <div class="row" id="matches" style="margin-left:0px;">
                                             <div class="col-3">
-                                                
+
                                             </div>
 
                                         </div>
@@ -322,7 +321,7 @@
         student_id = getUrlParameter('student_id').replace("-", " ");
 
         var destinationData;
-       
+
         function getFile(i, name, file, file_ext) {
             var oldHTML = $("#file-" + i).html();
             $("#file-" + i).html('Loading... <div class="spinner-border spinner-border-sm" role="status">  <span class="sr-only">Loading...</span></div>');
@@ -334,7 +333,7 @@
                 url: "https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-getStudentFile",
                 type: 'POST',
                 crossDomain: true,
-                data: JSON.stringify({name:file}),
+                data: JSON.stringify({ name: file }),
                 headers: { "Authorization": "Bearer " + token },
                 dataType: 'json',
                 contentType: "application/json",
@@ -357,7 +356,7 @@
                 console.log(reply);
                 destinationData = reply.destinations;
                 for (i = 0; i < reply.destinations.length; i++) {
-                 
+
                     var dateAdded = reply.destinations[i].added;
 
                     if (i == 0) {
@@ -412,7 +411,7 @@
             });
 
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-getInterests', {}, function (reply) {
-               
+                console.log(reply);
                 $('#interest').html();
                 for (i = 0; i < reply.body.length; i++) {
                     $('#interest').append('<option value="' + reply.body[i].id + '">' + reply.body[i].name + '</option>');
@@ -464,8 +463,8 @@
 
 
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postStudentFile", { base64String: base64File, name: fileName, student_id: student_id }, function (reply) {
-               // console.log(reply);
-               $('.popup1').attr('style', $('.popup1').attr('style') + ';display: none!important;');
+                // console.log(reply);
+                $('.popup1').attr('style', $('.popup1').attr('style') + ';display: none!important;');
                 refresh();
                 //window.location.reload();
             });
