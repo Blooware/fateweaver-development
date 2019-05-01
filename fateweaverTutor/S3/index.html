@@ -23,20 +23,13 @@
                     <a href="/tutor" style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fa fa-home" style="padding-right: 10px;width: 60px;"></i>HOME
                     </a>
-                    <a href="/tutor/jobs" style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fa fa-users" style="padding-right: 10px;width: 60px;"></i>JOBS
-                    </a>
-                    <a class="text-uppercase" href="/tutor/applicants"
+                    <a class="text-uppercase" href="/tutor/groups"
                         style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fas fa-user-lock" style="padding-right: 10px;width: 60px;"></i>APPLICANTS
+                        <i class="fa fa-user" style="padding-right: 10px;width: 60px;"></i>GROUPS
                     </a>
-                    <a class="text-uppercase" href="/tutor/admins"
+                    <a class="text-uppercase" href="/tutor/students"
                         style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fa fa-user" style="padding-right: 10px;width: 60px;"></i>ADMINS
-                    </a>
-                    <a class="text-uppercase" href="/tutor/accounts"
-                        style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fa fa-bar-chart" style="padding-right: 10px;width: 60px;"></i>ACCOUNTS
+                        <i class="fa fa-bar-chart" style="padding-right: 10px;width: 60px;"></i>STUDENTS
                     </a>
                     <a class="text-uppercase" href="/tutor/settings"
                         style="color: #fff!important;padding-bottom: 10px;">
@@ -263,9 +256,10 @@
         refresh();
         function refresh() {
             //console.log("it's working");
-            /*
-            postToLambda('https://27a5ob9wp8.execute-api.eu-west-2.amazonaws.com/default/725Admin-grabHomePage', [], function (reply) {
+            
+            postToLambda('https://t3xkdnmau3.execute-api.eu-west-2.amazonaws.com/develop/fateweaverTutor-getHome', [], function (reply) {
                 console.log(reply);
+                /*
                 $('#jobCount').html(reply.jobs.length);
                 $('#applicantCount').html(reply.applicants.length);
                 if(reply.jobWeek.length > 0){
@@ -277,16 +271,13 @@
                     $('#jobWeek').html("<strong>No Job of the week found</strong>");
                 }
                 
+                */
             });
-            */
+            
 
         }
 
     </script>
-
-
-
-
 </body>
 
 
