@@ -195,7 +195,7 @@
         function refresh() {
 
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postGrabSchool', [], function (reply) {
-                //console.log(reply);
+                console.log(reply);
 
                 if (reply.status == false) {
 
@@ -268,7 +268,7 @@
 
 
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postUpdateSchool", [objectifyForm(this)], function (reply) {
-                //console.log(reply);
+                console.log(reply);
                 //refresh();
                 window.location.reload();
             });
@@ -304,7 +304,7 @@
             console.log(student_id);
 
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postDeleteStudent", { student_id: student_id }, function (reply) {
-                //console.log(reply);
+                console.log(reply);
                 //refresh();
             });
 

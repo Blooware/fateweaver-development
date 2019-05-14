@@ -88,7 +88,7 @@
                                     <div
                                         style="background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);">
                                         <h1 id ="studentCount" class="text-center"
-                                            style="padding-top: 75px;font-size: 60px;color: #234e67;">347</h1>
+                                            style="padding-top: 75px;font-size: 60px;color: #234e67;">0...</h1>
                                         <p class="text-center" style="color: #888;">Students</p>
                                     </div>
                                 </div>
@@ -253,7 +253,7 @@
 
         function refresh() {
             //console.log("it's working")
-            console.log(token);
+            //console.log(token);
 
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-getPortal', [], function (reply) {
                 //console.log(reply);

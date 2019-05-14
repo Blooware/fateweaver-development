@@ -19,7 +19,7 @@ connection.query("SET SESSION sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GRO
             });
         }
         var studentInfo = results;
-        connection.query("select * from fateweaver.tutor_groups where school_id = (select school_id from fateweaver.admins where cognito_id = ? limit 1) group by fateweaver.tutor_groups.name; ", [event.account.sub], function (err, results, fields) {
+        connection.query("select id, name, description, added, csv from fateweaver.tutor_groups where school_id = (select school_id from fateweaver.admins where cognito_id = ? limit 1)", [event.account.sub], function (err, results, fields) {
             if (err) {
                 console.log("Error getting tutor groups:", err);
                 context.succeed({

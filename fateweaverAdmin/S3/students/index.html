@@ -314,11 +314,18 @@
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaver-getStudents', [], function (reply) {
 
 
+                if(reply.body.length < resultsLimit){
+                    resultsLimit = reply.body.length;
+                }
+
                 var pageCount = (reply.body.length / resultsLimit).toFixed(0);
             
                 allResults = reply.body;
 
-                //console.log(reply);
+                console.log(reply);
+                console.log(reply.body[0].yearGroup);
+                console.log(reply.tutor_groups[0].name);
+                
                 $('#results').html(document.getElementById('tableHeading').outerHTML);
                 for (var i = 0; i < /*reply.body.length*/(resultsLimit * pageState); i++) {
                     $('#results').append('<tr class="item" search="search year' + reply.body[i].yearGroup + ' ' + reply.body[i].tutorGroup + 'group ' + reply.body[i].given_name + ' ' + reply.body[i].family_name + ' ' + reply.body[i].upn + ' search" style="font-weight: bold;"><td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="https://source.unsplash.com/collection/791207/40x40/?' + i + '" style="min-width: 100%;height: 100%;"></div> </td> <td style="font-size: 15px;"> <a  href="/portal/students/profile/?student_id=' + reply.body[i].student_id + '">' + reply.body[i].given_name + ' ' + reply.body[i].family_name + '</a></td> <td style="font-size: 15px;">' + reply.body[i].tutorGroup + '</td><td style="font-size: 15px;">' + reply.body[i].yearGroup + '</td> <td style="font-size: 15px;">' + reply.body[i].upn + '</td> <td style="font-size: 15px;">' + reply.body[i].destination + '</td><td style="font-size: 15px;">' + reply.body[i].aspiration + '</td></tr> ');
@@ -326,7 +333,9 @@
                 $('#results').append("<tr ><td ></td> <td ><button style='background:none; border:0px; padding:0px;text-decoration:underline; color:#0078db;' onclick='loadMoreResults()'>Load more</button></td> <td ></td><td></td> <td ></td></tr>");
                 //<option selected value="">Tutor</option>
                 for (var i = 0; i < reply.tutor_groups.length; i++) {
-                    $('#TutorSearch').append('<option selected value="' + reply.tutor_groups[i].name + 'group"> ' + reply.tutor_groups[i].name + '</option>');
+                    console.log(i);
+                    $('#TutorSearch').append('<option value="' + reply.tutor_groups[i].name+'">' + reply.tutor_groups[i].name + '</option>');
+                    //$('#TutorSearch').append('<option selected value="' + reply.tutor_groups[i].name + ' group"> ' + reply.tutor_groups[i].name + '</option>');
 
                 }
 
