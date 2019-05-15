@@ -247,8 +247,54 @@
                                                 </div>
 
                                             </div>
+                                            <div style="border-bottom: 1px solid #eee;padding-bottom: 20px;">
+                                                <div class="row" style="margin-bottom: 30px;">
+                                                    <div class="col-12"
+                                                        style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 40px;">
+                                                        <h1 style="font-weight: 300;">Assign a Mentor</h1>
+
+                                                        <p style="font-weight: 300;">If this student already has a
+                                                            mentor (or more than one), you can assign them here.</p>
+                                                    </div>
+                                                    <div class="row " style="margin-left:0px;">
 
 
+                                                        <div class="col-12 revealOnLoad" id="interests" data-sr-id="0"
+                                                            style="visibility: visible; opacity: 1; transition: opacity 0.5s cubic-bezier(0.5, 0, 0, 1) 1s;">
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <button class="btn btn-primary" type="button"
+                                                                data-toggle="collapse" data-target="#MentorCollapse"
+                                                                aria-expanded="true" aria-controls="MentorCollapse"
+                                                                style="margin:10px;padding:12px 24px;font-size:24px;outline:none;color:#234e67;background:transparent;box-shadow:none!important;border-radius: 10px;background-position: bottom;border:0px;">
+                                                                Add &nbsp;<i class="fas fa-plus"></i>
+                                                            </button>
+                                                            <div class="collapse show" id="MentorCollapse" style="">
+                                                                <div class="card card-body">
+
+
+                                                                    <form class="saveMentor" method="post">
+                                                                        <select id="Mentors" name="Mentors"
+                                                                            style="width:300px;">
+                                                                            <option value="" required="">Select Mentor
+                                                                            </option>
+                                                                        </select>
+
+
+                                                                        <button class="btn btn-primary" type="submit"
+                                                                            style="margin:10px;padding:6px 12px;font-size:18px;color:#fff;background:#234e67;border-radius: 10px;background-position: bottom;border:0px;border-radius:300px;">
+                                                                            Confirm
+                                                                        </button></form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+
+                                            </div>
                                         </div>
                                         <div class="row" style="margin-bottom: 30px;">
                                             <div class="col-12"
@@ -264,7 +310,6 @@
 
                                     </div>
                                 </div>
-
                                 <div class="col-md-6" style="margin-left:15px;padding:15px;background: #fff;">
                                     <div style="border-bottom: 1px solid #eee;padding-bottom: 20px;">
                                         <div class="col-12"
@@ -332,14 +377,6 @@
 
 
                             </div>
-
-                            <form type="post" class="saveMentor">
-                                <select id="Mentors" name="Mentors">
-                                    <option value="" required>Select Mentor</option>
-                                </select>
-
-                                <button type="submit">Submit</button>
-                            </form>
                         </div>
                     </div>
                 </div>
