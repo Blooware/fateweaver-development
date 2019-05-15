@@ -15,6 +15,10 @@ exports.handler = (event, context, callback) => {
     context.succeed({
         event : event,
     });
+
+    
     //assign them to a student / mentor new mysql table
+
+
     
 }
