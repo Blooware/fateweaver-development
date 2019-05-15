@@ -62,15 +62,27 @@ exports.handler = (event, context, callback) => {
                             }
                             var mentorList = results;
                             //assigned mentors
+                            connection.query("select id, first_name, last_name, role, linkedin, fateweaver.mentors.added  from fateweaver.mentors where id in (select  mentor_id from fateweaver.mentor_assigned where student_id = (select id from fateweaver.students where id = ? and school_id = (select school_id from fateweaver.admins where cognito_id = ? limit 1)))", [event.form.student_id, event.account.sub], function (err, results, fields) {
+                                if (err) {
+                                    console.log("Error getting tutor groups:", err);
+                                    context.succeed({
+                                        statusCode: 200,
+                                        status: false,
+                                        errMsg: "error getting students :" + err
+                                    });
+                                }
+                                var assignedMentors = results;
 
-                            context.succeed({
-                                statusCode: 200,
-                                status: true,
-                                studentData: studentData,
-                                destinations: destinations,
-                                studentFiles: studentFiles,
-                                studentInterests: studentInterests,
-                                mentorList: mentorList,
+                                context.succeed({
+                                    statusCode: 200,
+                                    status: true,
+                                    studentData: studentData,
+                                    destinations: destinations,
+                                    studentFiles: studentFiles,
+                                    studentInterests: studentInterests,
+                                    mentorList: mentorList,
+                                    assignedMentors: assignedMentors,
+                                });
                             });
                         });
                     });
