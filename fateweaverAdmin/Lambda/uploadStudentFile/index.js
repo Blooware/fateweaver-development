@@ -46,11 +46,11 @@ exports.handler = (event, context, callback) => {
                     if (err) { console.log("Error ending the connection:", err); }
                     //  reconnect in order to prevent the"Cannot enqueue Handshake after invoking quit"
                     connection = mysql.createConnection({
-    "host": process.env.host,
-    "user": process.env.user,
-    "password": process.env.password,
-    "port": process.env.port
-});
+                        "host": process.env.host,
+                        "user": process.env.user,
+                        "password": process.env.password,
+                        "port": process.env.port
+                    });
                     if (results.length > 0) {
                         var inserted = {
                             student_id: results[0].id,
@@ -68,11 +68,11 @@ exports.handler = (event, context, callback) => {
                                 if (err) { console.log("Error ending the connection:", err); }
                                 //  reconnect in order to prevent the"Cannot enqueue Handshake after invoking quit"
                                 connection = mysql.createConnection({
-    "host": process.env.host,
-    "user": process.env.user,
-    "password": process.env.password,
-    "port": process.env.port
-});
+                                    "host": process.env.host,
+                                    "user": process.env.user,
+                                    "password": process.env.password,
+                                    "port": process.env.port
+                                });
 
                                 console.log(results);
                                 console.log('File Name:', fileStuff.uploadFile.name);

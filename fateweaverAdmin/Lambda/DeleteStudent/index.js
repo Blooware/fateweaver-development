@@ -1,3 +1,4 @@
+//fateweaverAdmin-postDeleteStudent
 var mysql = require('mysql');
 var connection = mysql.createConnection({
     "host": process.env.host,
@@ -19,8 +20,8 @@ exports.handler = (event, context, callback) => {
                 });
             }
             if (results.length > 0) {
-                school_id = "*" + results[0].school_id + "*";
-                connection.query("update fateweaver.students set school_id = ? where id = ?", [school_id, event.form.student_id], function (err, results, fields) {
+                //destination_sessions
+                connection.query("delete from fateweaver.destination_sessions where student_id = ?", [event.form.student_id], function (err, results, fields) {
                     if (err) {
                         context.succeed({
                             statusCode: 200,
@@ -28,12 +29,32 @@ exports.handler = (event, context, callback) => {
                             errMsg: "error getting students :" + err
                         });
                     }
-                    context.succeed({
-                        statusCode: 200,
-                        status: true,
-                        body: results,
+                    //mentor_assigned
+                    connection.query("delete from fateweaver.mentor_assigned where student_id = ?", [event.form.student_id], function (err, results, fields) {
+                        if (err) {
+                            context.succeed({
+                                statusCode: 200,
+                                status: false,
+                                errMsg: "error getting students :" + err
+                            });
+                        }
+                        //student_files
+                        //For each file delete it from s3
+                        
+
+                    
                     });
                 });
+
+                //destination_sessions--
+                //mentor_assigned--
+                //student_files*
+                //From s3*
+                //student_intrests
+                //student_mentor_links
+                //students
+
+
 
 
             } else {
