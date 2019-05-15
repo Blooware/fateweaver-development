@@ -229,22 +229,12 @@
                                             <div class="row" style="margin-bottom: 30px;">
                                                 <div class="col-12"
                                                     style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 40px;">
-                                                    <h1 style="font-weight: 300;">Suggested Mentors</h1>
+                                                    <h1 style="font-weight: 300;">Assigned Mentors</h1>
 
                                                 </div>
                                             </div>
 
                                             <div class="row" id="matches" style="margin-left:0px;">
-                                                <div class="col-3">
-                                                    <div class="match" style="width:100px;">
-                                                        <div class="border m-auto d-block rounded-circle"
-                                                            style="width: 50px;height: 50px;overflow: hidden;">
-                                                            <img src="https://www.blooware.co.uk/assets/img/IMG_4260.jpg"
-                                                                style="width: 100%;">
-                                                        </div>
-                                                        <p style="text-align:center;">Clive Barker</p>
-                                                    </div>
-                                                </div>
 
                                             </div>
                                             <div style="border-bottom: 1px solid #eee;padding-bottom: 20px;">
@@ -479,6 +469,10 @@
                 }
                 for (i = 0; i < reply.mentorList.length; i++) {
                     $('#Mentors').append('<option value="' + reply.mentorList[i].id + '">' + reply.mentorList[i].first_name + " " + reply.mentorList[i].last_name + '</option>');
+                }
+                for (i = 0; i < reply.assignedMentors.length; i++) {
+                    console.log(reply.assignedMentors[i].first_name + " " + reply.assignedMentors[i].last_name);
+                    $('#matches').append('<div class="col-3"> <div class="match" style="width:100px;"> <div class="border m-auto d-block rounded-circle" style="width: 50px;height: 50px;overflow: hidden;"> <img src="https://www.blooware.co.uk/assets/img/IMG_4260.jpg" style="width: 100%;"> </div> <p style="text-align:center;">' + reply.assignedMentors[i].first_name + " " + reply.assignedMentors[i].last_name + '</p> </div> </div>')
                 }
 
                 if (reply.status == false) {
