@@ -29,15 +29,7 @@ exports.handler = (event, context, callback) => {
 
 }
 
-function getMatches(){
-    
+function getMatches() {
+
 }
 
-
-
-
-
-
-
-
-//john was here

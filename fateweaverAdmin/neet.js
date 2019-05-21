@@ -1,4 +1,4 @@
-var timeleft = 6; //time - how long left until they leave education
+var timeleft = 6; //time - how long left until they leave education months
 var loggedInterests = 0; //int - how many iterests in database linked to them?
 var timeSinceLastSession = 12; //time - how long since last career session??
 var confirmedPlace = false; //boolean - do they have a confirmed destination??
