@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html style="display:none;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>StudentPath</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400">
+    <link rel="stylesheet" href="../../../assets/css/styles.min.css">
+</head>
+
+<body style="width: 100%;height: 100%;background-color: #ffffff;">
+    <div id="wrapper">
+        <!--navigation-->
+        <div id="sidebar-wrapper" style="background-color: #234e67!important;">
+            <ul class="d-block sidebar-nav" style="height: 100%;overflow: hidden;">
+                <li style="padding-top: 150px;">
+                    <a href="/portal" style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fa fa-home" style="padding-right: 10px;width: 60px;"></i>HOME
+                    </a>
+                    <a href="/portal/students" style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fa fa-users" style="padding-right: 10px;width: 60px;"></i>STUDENTS
+                    </a>
+                    <a class="text-uppercase" href="/portal/mentors" style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fas fa-user-lock" style="padding-right: 10px;width: 60px;"></i>MENTORS
+                    </a>
+                    <a class="text-uppercase" href="/portal/insights" style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fa fa-bar-chart" style="padding-right: 10px;width: 60px;"></i>INSIGHTS
+                    </a>
+                    <a class="text-uppercase" href="/portal/account" style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fa fa-user" style="padding-right: 10px;width: 60px;"></i>Account
+                    </a>
+                    <a class="text-uppercase" href="/portal/data-and-security" style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fa fa-lock" style="padding-right: 10px;width: 60px;"></i>Data and Security
+                    </a>
+                    <div style="position: absolute;bottom: 0px;width: 100%;padding-bottom: 25px;">
+                        <a class="text-uppercase" onclick="signMeOut()" style="color: #fff!important;width: 100%;">
+                            <i class="fa fa-sign-out" style="padding-right: 10px;width: 60px;"></i>
+                            <strong>LOG OUT</strong>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="page-content-wrapper">
+            <div class="container-fluid" style="padding: 0px;margin-left: 0px;margin-right: 0px;">
+                <div class="row" style="margin: 0px;width: 100%;position: fixed;padding: 0px;height: 100px;z-index: 9999;box-shadow: 0 0 15px rgba(0,0,0,0.05);">
+                    <div class="col d-inline-flex" style="margin-bottom: 50px;height: 100px;"><a class="btn btn-link float-left d-inline-flex"
+                            role="button" href="#menu-toggle" id="menu-toggle" style="padding: 0px;padding-left: 20px;padding-right: 50px;width: 110px;"><i
+                                class="la la-bars" style="font-size: 32px;color: rgb(11,11,11);padding: 0px;padding-left: 0;text-decoration: none!important;line-height: 100px;"></i></a>
+                        <h1 style="height: 100%;line-height: 100px;font-size: 40px;font-family: Roboto, sans-serif;font-weight: 300;color: #666;">
+                            <span style="background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);-webkit-background-clip: text;-webkit-text-fill-color: transparent;background-size: 150%;"><strong>student</strong></span>path
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid" style="padding-top: 100px;padding-left: 125px;">
+                <div>
+                    <div class="row">
+                        <div class="col-9" style="margin-top: 50px;">
+                            <div class="row" style="margin-bottom: 20px;">
+                                <div class="col" style="min-width: 500px;">
+                                    <h1 style="font-weight: 300;"><strong id="Name"></strong></h1>
+                                    <h1 style="font-weight: 300;font-size: 20px;color: rgb(142,142,142);"><strong>Career
+                                            Session</strong></h1>
+                                    <div class="float-left" style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 15px;margin-right: 30px;">
+                                        <a href="javascript:history.back()" class="btn btn-primary" style="height: 100%;padding: 12px 24px;background-color: #fff;color: #d32641!important;border: 0px!important;font-size: 18px;">
+                                            Cancel&nbsp;
+                                            <i class="far fa-trash-alt"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h1 style="font-size: 30px;padding: 21px;padding-left: 0px;"><strong>Overview,</strong></h1>
+                    <div class="form-group">
+                        <p style="font-size: 18px;"><span id="firstName"></span> aspires to
+                            become a <strong id="aspiration">.</strong><br><br>
+                            <div id="notesContainer">
+                                <strong>Their notes said :&nbsp;</strong><br><br>"<span id="notes"></span>"
+                            </div>
+
+                        </p>
+                    </div>
+                    <div>
+                        <strong>Destination: </strong><p id="destination" name="destination" placeholder="destination">loading</p><br>
+                        <strong>Industry : </strong><p id="industry" name="industry" placeholder="industry">loading</p><br>
+                        <strong>Plan A : </strong><p id="plan_a" name="plan_a" placeholder="plan_a">loading</p><br>
+                        <strong>Plan B : </strong><p id="plan_b" name="plan_b" placeholder="plan_b">loading</p><br>
+                        <strong>Confirmed Place :</strong> <p id="confirmed_place" name="confirmed_place" placeholder="confirmed_place">loading</p><br>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../assets/js/script.min.js"></script>
+    <script src="https://www.blooware.co.uk/blooAuth/vendor/aws-cognito-sdk.min.js"></script>
+    <script src="https://www.blooware.co.uk/blooAuth/vendor/amazon-cognito-identity.min.js"></script>
+    <script src="https://www.blooware.co.uk/blooAuth/blooAuth.js"></script>
+    <script src="../../../assets/js/security.js"></script>
+</body>
+<script>
+    function postToLambda(url, data, callback) {
+        $.ajax({
+            url,
+            type: 'POST',
+            crossDomain: true,
+            data: JSON.stringify(data),
+            headers: { "Authorization": "Bearer " + token },
+            dataType: 'json',
+            contentType: "application/json",
+            success: function (reply) {
+                callback(reply);
+            }
+        });
+    }
+
+    /*upload stuff*/
+
+    $(".save").submit(function (e) {
+        e.preventDefault();
+
+        postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaver-newDestinationSession", objectifyForm(this), function (reply) {
+
+            window.location.href = '/portal/students/profile';
+
+        });
+
+    });
+
+    var id = getUrlParameter('id').replace("-", " ");
+    var student_id = getUrlParameter('student_id').replace("-", " ");
+
+
+    $('#studentId').val(student_id)
+    function refresh() {
+        postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postGrabStudent', { student_id: student_id }, function (reply) {
+            //console.log(reply);
+
+            $('#Name').html(reply.studentData[0].given_name + " " + reply.studentData[0].family_name);
+            $('#firstName').html(reply.studentData[0].given_name);
+            $('#aspiration').html(reply.destinations[id].aspiration);
+
+            $('#destination').html(reply.destinations[id].destination);
+            $('#industry').html(reply.destinations[id].industry);
+            $('#plan_a').html(reply.destinations[id].plan_a);
+            $('#plan_b').html(reply.destinations[id].plan_b);
+            $('#confirmed_place').html(reply.destinations[id].confirmed_place);
+
+            $('#notes').html(reply.destinations[id].notes);
+
+            if (reply.destinations[0].notes.length < 1) {
+                $('#notesContainer').hide();
+            }
+
+
+        });
+    }
+
+    function objectifyForm(formArray) {//serialize data function
+
+        var returnArray = {};
+        for (var i = 0; i < formArray.length; i++) {
+            if (formArray[i]['type'] == "checkbox") {
+                //console.log("checkbox");
+                returnArray[formArray[i]['name']] = formArray[i]['checked'];
+            } else {
+                if (formArray[i]['type'] == "radio") {
+                    //console.log("RadioBox");
+                    returnArray[formArray[i]['name']] = formArray[i]['checked'];
+                } else {
+                    //console.log("Not A checkbox");
+                    returnArray[formArray[i]['name']] = formArray[i]['value'];
+                }
+            }
+        }
+        return returnArray;
+    }
+
+
+
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
+
+</script>
+
+</html>
