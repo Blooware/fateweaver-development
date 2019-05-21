@@ -28,7 +28,41 @@ exports.handler = (event, context, callback) => {
             if (results.length > 0) {
 
                 //Try to delete the files first
+                //
+                connection.query("select * from fateweaver.student_files where student_id = 13", [event.form.student_id, event.account.sub], function (err, results, fields) {
+                    if (err) {
+                        context.succeed({
+                            statusCode: 200,
+                            status: false,
+                            errMsg: "error getting students :" + err
+                        });
+                    }
+                    for (var i = 0; i < results.length; i++) {
+                        console.log("Deleting : " + results[i].path);
+
+                        var params = {
+                            Bucket: 'fateweaver-files',
+                            Key: results[i].path // get path
+                          // where value for 'Key' equals 'pathName1/pathName2/.../pathNameN/fileName.ext' - full path name to your file without '/' at the beginning 
+                        };
+                        s3.deleteObject(params, function(err, data) {
+                            if (err) 
+                            context.succeed({
+                                error : err,
+                                stack : err.stack
+                            }); // an error occurred
+                            else     
+                            console.log();           // successful response
+                            console.log("deleted : " + results[i].path)
+                        });
+                    }
+
+
+                });
+
                 
+
+                /*
                 var params = {
                     Bucket: 'fateweaver-files',
                     Key: '5151027b12542103e0e0999226c7d49cc9a82f78.png' // get path
@@ -46,8 +80,15 @@ exports.handler = (event, context, callback) => {
                         deleted : "Deleted 5151027b12542103e0e0999226c7d49cc9a82f78.png",
                         data : data,
                 
+                    });
                 });
-                });
+
+                context.succeed({ 
+                                
+                        
+                            });
+                */
+
                 
 
                 //destination_sessions
