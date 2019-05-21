@@ -9,7 +9,7 @@ var connection = mysql.createConnection({
 exports.handler = (event, context, callback) => {
 
     connection.query("SET SESSION sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));", [event.account.sub], function (err, results, fields) {
-        connection.query("select fateweaver.students.id, given_name, family_name, school_id, if(((14 * 12) - (year * 12)) = 12, (7 - month(NOW())), ((14 * 12) - (year * 12))) as monthsLeft, (select count(*) from fateweaver.student_interests where student_id = fateweaver.students.id) as loggedInterests, (select time_to_sec(timediff(NOW(), fateweaver.destination_sessions.added)) from fateweaver.destination_sessions where student_id = fateweaver.students.id order by id desc limit 1) as timeSinceLastSession, (select if((select count(*) from fateweaver.destination_sessions where student_id = fateweaver.students.id) > 0, if(length((select confirmed_place from fateweaver.destination_sessions where student_id = fateweaver.students.id order by id desc limit 1)) > 0, 1, 0) , 0)) as confirmedPlace, (select count(*) from fateweaver.mentor_assigned where student_id = fateweaver.students.id) as assigned_mentors from fateweaver.students where school_id = (select school_id from fateweaver.admins where cognito_id = ?) ", [event.account.sub], function (err, results, fields) {
+        connection.query("select fateweaver.students.id, given_name, family_name, school_id, if(((14 * 12) - (year * 12)) = 12, (7 - month(NOW())), ((14 * 12) - (year * 12))) as monthsLeft, (select count(*) from fateweaver.student_interests where student_id = fateweaver.students.id) as loggedInterests, (select TIMESTAMPDIFF(MONTH, NOW(), fateweaver.destination_sessions.added)) from fateweaver.destination_sessions where student_id = fateweaver.students.id order by id desc limit 1) as timeSinceLastSession, (select if((select count(*) from fateweaver.destination_sessions where student_id = fateweaver.students.id) > 0, if(length((select confirmed_place from fateweaver.destination_sessions where student_id = fateweaver.students.id order by id desc limit 1)) > 0, 1, 0) , 0)) as confirmedPlace, (select count(*) from fateweaver.mentor_assigned where student_id = fateweaver.students.id) as assignedMentors from fateweaver.students where school_id = (select school_id from fateweaver.admins where cognito_id = ?) ", [event.account.sub], function (err, results, fields) {
             if (err) {
                 console.log("Error getting tutor groups:", err);
                 context.succeed({
@@ -19,10 +19,19 @@ exports.handler = (event, context, callback) => {
                 });
             }
 
+            var final = [];
+
+            for(i = 0; i < results.length; i++){
+                var x = results[i];
+                x.neetScore = calcNeetScore(results[i].monthsLeft,results[i].loggedInterests,results[i].timeSinceLastSession, results[i].confirmedPlace, results[i].assignedMentors);
+                final.push(x);
+            }
+
+
             context.succeed({
                 statusCode: 200,
                 status: true,
-                body: results
+                body: final
             });
         });
     });
