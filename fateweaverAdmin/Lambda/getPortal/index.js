@@ -40,4 +40,3 @@ function getMatches(){
 
 
 
-//john was here

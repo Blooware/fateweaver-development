@@ -107,4 +107,3 @@ function putObjectToS3(bucket, key, data, callback) {
 
 
 
-//john was here

@@ -290,5 +290,29 @@
         }
     }
 </style>
+<script>
+    function refresh() {
+        postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postGrabInsights', [], function (reply) {
+            console.log(reply);
+        });
+    }
+
+
+    function postToLambda(url, data, callback) {
+        $.ajax({
+            url,
+            type: 'POST',
+            crossDomain: true,
+            data: JSON.stringify(data),
+            headers: { "Authorization": "Bearer " + token },
+            dataType: 'json',
+            contentType: "application/json",
+            success: function (reply) {
+                callback(reply);
+            }
+        });
+    }
+
+</script>
 
 </html>
