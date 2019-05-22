@@ -200,25 +200,10 @@
                                     <div class="col-12"
                                         style="margin-top: 50px;padding-bottom: 30px;font-family: Roboto, sans-serif;">
                                         <h1 style="font-weight: 300;">Potential NEET'S</h1>
-                                        <h1 style="font-weight: 300;font-size:18px; color:#0078db;">Demo data. Add student aspiration data to begin.</h1>
                                     </div>
                                 </div>
-                                <div class="row" style="margin-top: 0px;">
-                                    <div class="col-7">
-                                        <div
-                                            style="background: transparent;height: 50px;width: 100%;border-radius: 20px;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);background: #fff;">
-                                            <p class="text-left float-left" style="width: 40%;color: #666;font-weight: 600;font-size: 18px;line-height: 50px;margin: 0px;padding-left: 40px;">
-                                                Jason Wenden</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-5">
-                                        <div
-                                            style="background: transparent;height: 50px;border-radius: 20px;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);background: #fff;background-color: rgb(255,168,0);min-width: 30px;">
-                                            <p class="text-left float-left"
-                                                style="width: 100%;color: #fff;font-size: 18px;line-height: 50px;margin: 0px;padding-left: 24px;">
-                                                Career Guidance Advised</p>
-                                        </div>
-                                    </div>
+                                <div class="row potentialNeets" style="margin-top: 0px;">
+                                   
                                 </div>
                             </div>
                         </div>
@@ -258,6 +243,25 @@
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-getPortal', [], function (reply) {
                 //console.log(reply);
                 $('#studentCount').html(reply.body[0].studentCount);
+            });
+
+            postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-getNeetScores', [], function (reply) {
+                console.log(reply);
+
+                for (i = 0; i < reply.body.length; i++) {
+                   
+                    if (reply.body[i].neetScore > 1) {
+                        if(reply.body[i].neetScore > 15){
+                            reply.body[i].neetColor = "#d32641";
+                        } else if (reply.body[i].neetScore > 10) {
+                            reply.body[i].neetColor = "rgb(255,168,0)";
+                        } else {
+                            reply.body[i].neetColor = "#0078db";
+                        }
+                        $('.potentialNeets').append('<div class="col-9" style="    padding: 2px;"> <a style="width:100%;" href="/portal/students/profile/?student_id=' + reply.body[i].id + '"> <div style="background: transparent;height: 50px;width: 100%;border-radius: 300px;overflow:hidden;box-shadow: 0 0 10px rgba(30,30,30,0.2);background: #fff;"><div class="row"> <div class="col-6"> <p class="text-left float-left" style="color: #666;font-weight: 600;font-size: 18px;line-height: 50px;margin: 0px;padding-left: 40px;"> ' + reply.body[i].given_name + ' ' + reply.body[i].family_name + '</p></div> <div class="col-6" > <div style="background: transparent;height: 50px;box-shadow: 0 0 10px rgba(30,30,30,0.2);background: #fff;background-color: ' + reply.body[i].neetColor + ';min-width: 30px;"> <p class="text-center float-left" style="width: 100%;color: #fff;font-size: 16px;line-height: 50px;margin: 0px;"> ' + reply.body[i].neetCauses[reply.body[i].neetCauses.length - 1].solution + '</p> </div> </div></div></div>  </a> </div>  <div class="col-3"  style="    padding: 2px;"> <div style="background: transparent;height: 50px;background: #fff;background-color: transparent;min-width: 30px;"> <p class="text-left float-left" style="width: 100%;color: #333;font-size: 18px;line-height: 50px;margin: 0px;padding-left: 24px;"> ' + reply.body[i].monthsLeft + ' months left</p> </div> </div>');
+                    }
+                }
+               
             });
         }
 
