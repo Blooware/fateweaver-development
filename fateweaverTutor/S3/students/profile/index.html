@@ -21,126 +21,27 @@
 <body style="width: 100%;height: 100%;background-color: #ffffff;">
 
     <!--Popups-->
-    <div>
-        <div class="d-inline-flex popup1" id="popup1"
-            style="display: none!important;border-radius: 15px;padding: 3%;position: relative;-webkit-box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);position: fixed;width: 100%;height: 80%;width: 80%;top: 10%;background: #FFF;left: 10%;z-index: 999999999999999999999999999999999999999999;">
-
-            <form method="post" class="save">
-                <div class="form-group" style="padding:30px;padding-left:0px;padding-top:0px;">
-                    <p class="d-inline"
-                        style="text-align: right;cursor: pointer;text-decoration: underline; float:left; "
-                        onclick="$('.popup1').attr('style', $('.popup1').attr('style') + ';display: none!important;');">
-                        Close</p>
-
-                </div>
-                <input type="file" id="files" name="files" />
-
-                <button type="submit">Upload</button>
-
-            </form>
-
-
-        </div>
-        <div class="d-inline-flex popupEdit" id="popupEdit"
-            style="display: none!important;border-radius: 15px;padding: 3%;position: relative;-webkit-box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);position: fixed;width: 100%;height: 80%;width: 80%;top: 10%;background: #FFF;left: 10%;z-index: 999999999999999999999999999999999999999999;">
-
-
-
-
-            <div class="form-group" style="padding:30px;padding-left:0px;padding-top:0px;">
-                <p class="d-inline" style="text-align: right;cursor: pointer;text-decoration: underline; float:left; "
-                    onclick="$('.popupEdit').attr('style', $('.popupEdit').attr('style') + ';display: none!important;');">
-                    Close</p>
-
-            </div>
-            <form method="post" class="saveEdit">
-
-
-                <input class="form-input d-block m-auto"
-                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
-                    id="givenName" placeholder="Given Name" type="text" id="given_name" name="givenName" required />
-                <input class="form-input d-block m-auto"
-                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
-                    id="family_name" placeholder="Family Name" type="text" id="family_name" name="familyName"
-                    required />
-                <input class="form-input d-block m-auto"
-                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
-                    id="dob" placeholder="Date of Birth" type="text" id="dob" name="dob" onfocus="(this.type='date')"
-                    onblur="(this.type='text')" required />
-                <input class="form-input d-block m-auto"
-                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
-                    id="gender" placeholder="Gender" type="text" id="gender" name="gender" required />
-                <input class="form-input d-block m-auto"
-                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
-                    id="postcode" placeholder="Postcode" type="text" id="postcode" name="postcode" required />
-                <input class="form-input d-block m-auto"
-                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
-                    id="upn" placeholder="UPN" type="text" id="upn" name="upn" required />
-                <input class="form-input d-block m-auto"
-                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
-                    id="uln" placeholder="ULN" type="text" id="uln" name="uln" required />
-                <input class="form-input d-block m-auto"
-                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
-                    id="tutorGroup" placeholder="Tutor Group" type="text" id="tutorGroup" name="tutorGroup" required />
-                <input class="form-input d-block m-auto"
-                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
-                    id="pp" placeholder="Pupil Premium" type="text" id="pp" name="pp" required />
-                <!--pupil premium-->
-                <input class="form-input d-block m-auto"
-                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
-                    id="sen" placeholder="Special Educational Needs" type="text" id="sen" name="sen" required />
-                <input class="form-input d-block m-auto"
-                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius:300px; width: 250px;"
-                    id="year" placeholder="Year Group (Optional)" type="number" name="year" />
-                <!--special education needs-->
-
-                <button class="form-input d-block m-auto"
-                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 0px solid #ccc; background: rgb(0, 150, 92); border-radius:300px; width: 250px;color:#fff"
-                    type="submit">Update</button>
-                <!--special education needs-->
-
-
-
-            </form>
-
-
-
-        </div>
-    </div>
+    
 
     <div id="wrapper">
         <!--navigation-->
         <div id="sidebar-wrapper" style="background-color: #234e67!important;">
             <ul class="d-block sidebar-nav" style="height: 100%;overflow: hidden;">
                 <li style="padding-top: 150px;">
-                    <a href="/portal" style="color: #fff!important;padding-bottom: 10px;">
+                    <a href="/tutor" style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fa fa-home" style="padding-right: 10px;width: 60px;"></i>HOME
                     </a>
-                    <a href="/portal/students" style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fa fa-users" style="padding-right: 10px;width: 60px;"></i>STUDENTS
-                    </a>
-                    <a href="/portal/tutors" style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fas fa-user-friends" style="padding-right: 10px;width: 60px;"></i>TUTORS
-                    </a>
-                    <a href="/portal/tutorGroups" style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fas fa-chalkboard-teacher" style="padding-right: 10px;width: 60px;"></i>TUTOR GROUPS
-                    </a>
-
-                    <a class="text-uppercase" href="/portal/mentors"
+                    <a class="text-uppercase" href="/tutor/groups"
                         style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fas fa-user-lock" style="padding-right: 10px;width: 60px;"></i>MENTORS
+                        <i class="fa fa-user" style="padding-right: 10px;width: 60px;"></i>GROUPS
                     </a>
-                    <a class="text-uppercase" href="/portal/insights"
+                    <a class="text-uppercase" href="/tutor/students"
                         style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fa fa-bar-chart" style="padding-right: 10px;width: 60px;"></i>INSIGHTS
+                        <i class="fa fa-bar-chart" style="padding-right: 10px;width: 60px;"></i>STUDENTS
                     </a>
-                    <a class="text-uppercase" href="/portal/account"
+                    <a class="text-uppercase" href="/tutor/settings"
                         style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fa fa-user" style="padding-right: 10px;width: 60px;"></i>Account
-                    </a>
-                    <a class="text-uppercase" href="/portal/data-and-security"
-                        style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fa fa-lock" style="padding-right: 10px;width: 60px;"></i>Data and Security
+                        <i class="fa fa-user" style="padding-right: 10px;width: 60px;"></i>SETTINGS
                     </a>
                     <div style="position: absolute;bottom: 0px;width: 100%;padding-bottom: 25px;">
                         <a class="text-uppercase" onclick="signMeOut()" style="color: #fff!important;width: 100%;">
@@ -201,22 +102,6 @@
                                         <button class="btn btn-primary" onclick="newSession()" type="button"
                                             style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 16px;">New
                                             Career Session &nbsp;<i class="fas fa-plus"></i></button></div>
-                                    <div class="float-left"
-                                        style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 10px;">
-
-                                        <button class="btn btn-primary" onclick="$('#popupEdit').fadeIn()" type="button"
-                                            style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 16px;">Edit
-                                            &nbsp;<i class="fas fa-pencil-alt"></i></button></div>
-                                    <div class="float-left"
-                                        style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 60px;">
-                                        <button class="btn btn-primary" type="button" onclick="$('#popup1').show();"
-                                            style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 16px;">Attach
-                                            File &nbsp;<i class="fa fa-paperclip"></i></button></div>
-                                    <div class="float-left"
-                                        style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 0px;">
-                                        <button class="btn btn-primary" type="button" onclick="if(confirm('Want to delete?')) deleteStudent()"
-                                            style="height: 100%;padding: 12px 24px;background-color: transparent;color: #d32641;border: 0px!important;font-size: 16px;">Delete
-                                            &nbsp;<i class="far fa-trash-alt"></i></button></div>
                                 </div>
                             </div>
                             <div class="row" style="margin-top:50px;">
@@ -426,7 +311,7 @@
             $('#interests').html("");
             $('#timeline').html("");
             $('#filesList').html("");
-            postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postGrabStudent', { student_id: student_id }, function (reply) {
+            postToLambda('https://t3xkdnmau3.execute-api.eu-west-2.amazonaws.com/develop/fateweaverTutor-postGrabStudent', { student_id: student_id }, function (reply) {
                 console.log(reply);
                 destinationData = reply.destinations;
                 for (i = 0; i < reply.destinations.length; i++) {
@@ -435,14 +320,14 @@
 
                     if (i == 0) {
                         //bottom
-                        $('#timeline').append(' <div class="row bottom" onclick="goToSession(' + i + ')" style="cursor:pointer;margin-top: -60px;width: 80%;min-width: 800px;"> <div class="col-6" style="padding-left: 15px;border-left: 3px solid #234e67;padding-bottom: 50px;padding-top: 20px;margin-top: 60px;"> <div style="background: transparent;height: 130px;border-radius: 20px;border-radius: 20px;box-shadow: 0 0 15px rgba(0,0,0,0);background: #234e67;margin-bottom: 30px;margin-left: 20px;margin-top: -60px;"> <p class="text-left float-left" style="width: 100%;color: #fff;font-size: 16px;margin: 0px;padding-left: 40px;padding-top:10px;">' + dateAdded + '</p> <p class="text-left float-left" style="width: 100%;color: #fff;font-size: 16px;margin: 0px;padding-left: 40px;padding-right: 40px;"><strong style="text-transform: capitalize;">' + reply.destinations[i].aspiration + '</strong><br>' + reply.destinations[i].destination + '</p> </div> <div style="width: 20px;height: 20px;background: #000;border-radius: 50%;position: absolute;margin-left: -26px;margin-top: -93px;background-color: rgb(255,109,109);"> </div> </div> </div>');
+                        $('#timeline').append(' <div class="row bottom" onclick="goToSession(' + reply.destinations[i].id + ')" style="cursor:pointer;margin-top: -60px;width: 80%;min-width: 800px;"> <div class="col-6" style="padding-left: 15px;border-left: 3px solid #234e67;padding-bottom: 50px;padding-top: 20px;margin-top: 60px;"> <div style="background: transparent;height: 130px;border-radius: 20px;border-radius: 20px;box-shadow: 0 0 15px rgba(0,0,0,0);background: #234e67;margin-bottom: 30px;margin-left: 20px;margin-top: -60px;"> <p class="text-left float-left" style="width: 100%;color: #fff;font-size: 16px;margin: 0px;padding-left: 40px;padding-top:10px;">' + dateAdded + '</p> <p class="text-left float-left" style="width: 100%;color: #fff;font-size: 16px;margin: 0px;padding-left: 40px;padding-right: 40px;"><strong style="text-transform: capitalize;">' + reply.destinations[i].aspiration + '</strong><br>' + reply.destinations[i].destination + '</p> </div> <div style="width: 20px;height: 20px;background: #000;border-radius: 50%;position: absolute;margin-left: -26px;margin-top: -93px;background-color: rgb(255,109,109);"> </div> </div> </div>');
                     } else {
                         if (i != reply.destinations.length) {
                             //middle
-                            $('#timeline').append('<div class="row top" onclick="goToSession(' + i + ')" style="cursor:pointer;margin-top: -120px;width: 80%;min-width: 800px;"> <div class="col-6" style="padding-left: 15px;border-left: 3px solid #234e67;padding-bottom: 50px;padding-top: 20px;margin-top: 60px;"> <div style="background: transparent;height: 130px;border-radius: 20px;border-radius: 20px;box-shadow: 0 0 15px rgba(0,0,0,0);background: #234e67;margin-left: 20px;margin-bottom: -96px;"> <p class="text-left float-left" style="width: 100%;color: #fff;font-size: 16px;margin: 0px;padding-left: 40px;padding-top:10px;">' + dateAdded + '</p> <p class="text-left float-left" style="width: 100%;color: #fff;font-weight: 600;font-size: 16px;margin: 0px;padding-left: 40px;margin-bottom: 50px;padding-right: 40px;"><strong style="text-transform: capitalize;">' + reply.destinations[i].aspiration + '</strong><br>' + reply.destinations[i].destination + '</p> </div> <div style="width: 20px;height: 20px;background: #000;border-radius: 50%;position: absolute;margin-left: -26px;margin-top: 33px;background-color: rgb(255,109,109);"> </div> </div> </div>');
+                            $('#timeline').append('<div class="row top" onclick="goToSession(' + reply.destinations[i].id + ')" style="cursor:pointer;margin-top: -120px;width: 80%;min-width: 800px;"> <div class="col-6" style="padding-left: 15px;border-left: 3px solid #234e67;padding-bottom: 50px;padding-top: 20px;margin-top: 60px;"> <div style="background: transparent;height: 130px;border-radius: 20px;border-radius: 20px;box-shadow: 0 0 15px rgba(0,0,0,0);background: #234e67;margin-left: 20px;margin-bottom: -96px;"> <p class="text-left float-left" style="width: 100%;color: #fff;font-size: 16px;margin: 0px;padding-left: 40px;padding-top:10px;">' + dateAdded + '</p> <p class="text-left float-left" style="width: 100%;color: #fff;font-weight: 600;font-size: 16px;margin: 0px;padding-left: 40px;margin-bottom: 50px;padding-right: 40px;"><strong style="text-transform: capitalize;">' + reply.destinations[i].aspiration + '</strong><br>' + reply.destinations[i].destination + '</p> </div> <div style="width: 20px;height: 20px;background: #000;border-radius: 50%;position: absolute;margin-left: -26px;margin-top: 33px;background-color: rgb(255,109,109);"> </div> </div> </div>');
                         } else {
                             //top
-                            $('#timeline').append('<div class="row middle" onclick="goToSession(' + i + ')" style="cursor:pointer;margin-top: -60px;width: 80%;min-width: 800px;"> <div class="col-6" style="padding-left: 15px;border-left: 3px solid #234e67;padding-bottom: 50px;padding-top: 20px;margin-top: 60px;"> <div style="background: transparent;height: 130px;border-radius: 20px;border-radius: 20px;box-shadow: 0 0 15px rgba(0,0,0,0);background: #fff;margin-bottom: 30px;margin-left: 20px;margin-top: -60px;"> <p class="text-left float-left" style="width: 100%;color: #666;font-size: 16px;margin: 0px;padding-left: 40px;padding-top:10px;">' + dateAdded + '</p> <p class="text-left float-left" style="width: 100%;color: #fff;font-weight: 600;font-size: 16px;margin: 0px;padding:5px;padding-left: 40px;padding-right: 40px;"><strong style="text-transform: capitalize;">' + reply.destinations[i].aspiration + '</strong><br>' + reply.destinations[i].destination + '</p> </div> <div style="width: 20px;height: 20px;background: #000;border-radius: 50%;position: absolute;margin-left: -26px;margin-top: -93px;background-color: rgb(255,109,109);"> </div> </div> </div>');
+                            $('#timeline').append('<div class="row middle" onclick="goToSession(' + reply.destinations[i].id + ')" style="cursor:pointer;margin-top: -60px;width: 80%;min-width: 800px;"> <div class="col-6" style="padding-left: 15px;border-left: 3px solid #234e67;padding-bottom: 50px;padding-top: 20px;margin-top: 60px;"> <div style="background: transparent;height: 130px;border-radius: 20px;border-radius: 20px;box-shadow: 0 0 15px rgba(0,0,0,0);background: #fff;margin-bottom: 30px;margin-left: 20px;margin-top: -60px;"> <p class="text-left float-left" style="width: 100%;color: #666;font-size: 16px;margin: 0px;padding-left: 40px;padding-top:10px;">' + dateAdded + '</p> <p class="text-left float-left" style="width: 100%;color: #fff;font-weight: 600;font-size: 16px;margin: 0px;padding:5px;padding-left: 40px;padding-right: 40px;"><strong style="text-transform: capitalize;">' + reply.destinations[i].aspiration + '</strong><br>' + reply.destinations[i].destination + '</p> </div> <div style="width: 20px;height: 20px;background: #000;border-radius: 50%;position: absolute;margin-left: -26px;margin-top: -93px;background-color: rgb(255,109,109);"> </div> </div> </div>');
                         }
                     }
                 }
@@ -496,8 +381,8 @@
                     $('#Name').html("error");
                 }
             });
-            postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-getInterests', {}, function (reply) {
-
+            postToLambda('https://t3xkdnmau3.execute-api.eu-west-2.amazonaws.com/develop/fateweaverTutor-getInterests', {}, function (reply) {
+                console.log(reply);
                 $('#interest').html();
                 for (i = 0; i < reply.body.length; i++) {
                     $('#interest').append('<option value="' + reply.body[i].id + '">' + reply.body[i].name + '</option>');
@@ -506,8 +391,9 @@
             });
         }
 
-        function goToSession(data) {
-            window.location.href = '/portal/students/profile/session/?student_id=' + student_id + '&id=' + data;
+        function goToSession(session_id) {
+            //console.log(session_id);
+            window.location.href = '/tutor/students/profile/session/?student_id=' + student_id + '&id=' + session_id;
             //here
         }
 
@@ -527,7 +413,7 @@
         }
 
         function newSession() {
-            window.location.href = '/portal/students/profile/new-session/?student_id=' + student_id;
+            window.location.href = '/tutor/students/profile/new-session/?student_id=' + student_id;
         }
 
         function getUrlParameter(name) {
@@ -540,80 +426,21 @@
 
 
 
-        $(".save").submit(function (e) {
-            e.preventDefault();
-            console.log(base64File);
-            console.log(student_id);
-
-
-            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postStudentFile", { base64String: base64File, name: fileName, student_id: student_id }, function (reply) {
-                // console.log(reply);
-                $('.popup1').attr('style', $('.popup1').attr('style') + ';display: none!important;');
-                refresh();
-                //window.location.reload();
-            });
-        });
+        
         $(".saveMentor").submit(function (e) {
             e.preventDefault();
             console.log(objectifyForm(this));
 
-            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postAssignStudentMentor", { mentorAssign: objectifyForm(this), student_id: student_id }, function (reply) {
+            postToLambda("https://t3xkdnmau3.execute-api.eu-west-2.amazonaws.com/develop/fateweaverTutor-postAssignStudentMentor", { mentorAssign: objectifyForm(this), student_id: student_id }, function (reply) {
                 console.log(reply);
             });
 
         });
 
-
-        var base64File;
-        var fileName;
-        if (window.File && window.FileReader && window.FileList && window.Blob) {
-            document.getElementById('files').addEventListener('change', handleFileSelect, false);
-        } else {
-            alert('The File APIs are not fully supported in this browser.');
-        }
-
-        function handleFileSelect(evt) {
-            fileName = $('#files').val().split('\\').pop();
-
-            var f = evt.target.files[0]; // FileList object
-            var reader = new FileReader();
-            // Closure to capture the file information.
-            reader.onload = (function (theFile) {
-                return function (e) {
-                    var binaryData = e.target.result;
-                    //Converting Binary Data to base 64
-                    var base64String = window.btoa(binaryData);
-                    //showing file converted to base64
-                    //document.getElementById('base64').value = base64String;
-                    console.log(base64String);
-                    base64File = base64String;
-                };
-            })(f);
-            // Read in the image file as a data URL.
-            reader.readAsBinaryString(f);
-        }
-
-
-        $(".saveEdit").submit(function (e) {
-            e.preventDefault();
-
-            //console.log(objectifyForm(this));
-
-
-
-            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postUpdateStudent", { studentInfo: objectifyForm(this), student_id: student_id }, function (reply) {
-                //console.log(reply);
-                refresh();
-                $('.popupEdit').attr('style', $('.popupEdit').attr('style') + ';display: none!important;');
-            });
-
-
-
-        });
         $(".addInterest").submit(function (e) {
             e.preventDefault();
             //console.log(objectifyForm(this));
-            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postAddStudentInterest", { studentInfo: objectifyForm(this), student_id: student_id }, function (reply) {
+            postToLambda("https://t3xkdnmau3.execute-api.eu-west-2.amazonaws.com/develop/fateweaverTutor-postAddStudentInterest", { studentInfo: objectifyForm(this), student_id: student_id }, function (reply) {
                 console.log(reply);
                 refresh();
             });
@@ -649,7 +476,7 @@
                 console.log(reply);
                 //refresh();
                 /*
-                window.location.href = "/portal/students/";
+                window.location.href = "/tutor/students/";
                 */
             });
             
