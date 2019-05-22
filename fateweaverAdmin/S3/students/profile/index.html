@@ -216,146 +216,148 @@
                                             File &nbsp;<i class="fa fa-paperclip"></i></button></div>
                                     <div class="float-left"
                                         style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 0px;">
-                                        <button class="btn btn-primary" type="button" onclick="if(confirm('Want to delete?')) deleteStudent()"
+                                        <button class="btn btn-primary" type="button"
+                                            onclick="if(confirm('Want to delete?')) deleteStudent()"
                                             style="height: 100%;padding: 12px 24px;background-color: transparent;color: #d32641;border: 0px!important;font-size: 16px;">Delete
                                             &nbsp;<i class="far fa-trash-alt"></i></button></div>
                                 </div>
                             </div>
 
 
-                            <div class="row" style="margin-top:50px;">
-                                <div class="col-md-5 revealOnLoadFast"
-                                    style="margin-left:0px;padding:15px;background: #fff;min-width: 500px;">
-                                    <div>
-                                        <div style="border-bottom: 1px solid #eee;padding-bottom: 20px;">
-                                            <div class="row" style="margin-bottom: 30px;">
-                                                <div class="col-12"
-                                                    style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 40px;">
-                                                    <h1 style="font-weight: 300;">Assigned Mentors</h1>
+                            <div class="row no_gutters" style="margin:auto!important;margin-top:50px!important;">
+                                <div class="col-md-12 col-lg-6 "style="margin-bottom:50px;">
+                                    <div style="margin-left:5px;margin-right:5px;padding:15px;background: #fff;">
+                                        <div>
+                                            <div style="border-bottom: 1px solid #eee;padding-bottom: 20px;">
+                                                <div class="row" style="margin-bottom: 30px;">
+                                                    <div class="col-12"
+                                                        style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 40px;">
+                                                        <h1 style="font-weight: 300;">Assigned Mentors</h1>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row" id="matches" style="margin-left:0px;">
+
                                                 </div>
                                             </div>
+                                            <div style="padding-bottom: 20px;">
+                                                <div class="row" style="margin-bottom: 30px;">
 
-                                            <div class="row" id="matches" style="margin-left:0px;">
+                                                    <div class="row " style="margin-left:0px;">
+
+
+
+                                                        <div class="col-12">
+                                                            <div class="collapse" id="MentorCollapse" style="">
+                                                                <div class="card card-body">
+
+
+                                                                    <form class="saveMentor" method="post">
+                                                                        <select id="Mentors" name="Mentors"
+                                                                            style="width:300px;">
+                                                                            <option value="" required="">Select Mentor
+                                                                            </option>
+                                                                        </select>
+
+
+                                                                        <button class="btn btn-primary" type="submit"
+                                                                            style="margin:10px;padding:6px 12px;font-size:18px;color:#fff;background:#234e67;border-radius: 10px;background-position: bottom;border:0px;border-radius:300px;">
+                                                                            Confirm
+                                                                        </button></form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
 
                                             </div>
                                         </div>
-                                        <div style="padding-bottom: 20px;">
-                                            <div class="row" style="margin-bottom: 30px;">
+                                        <div class="row" style="margin-bottom: 30px;">
+                                            <div class="col-12"
+                                                style="margin-top: 30px;padding-bottom: 30px;font-family: Roboto, sans-serif;padding-left: 40px;">
+                                                <h1 style="font-weight: 300;">Career Sessions</h1>
+                                            </div>
+                                        </div>
 
-                                                <div class="row " style="margin-left:0px;">
+                                        <div id="timeline" style="margin-left:50px;">
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <!--right hand side column-->
+                                <div class="col-md-12 col-lg-6 "style="margin-bottom:50px;">
+                                    <div style="margin-left:5px;margin-right:5px;padding:15px;background: #fff;">
+                                        <div style="border-bottom: 1px solid #eee;padding-bottom: 20px;">
+                                            <div class="col-12"
+                                                style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 40px;">
+                                                <h1 style="font-weight: 300;">Interests</h1>
+                                                <p style="font-weight: 300;">The more interests you add here, the better
+                                                    mentor and career
+                                                    recommendations
+                                                    appear.</>
+
+                                            </div>
 
 
-                                                   
-                                                    <div class="col-12">
-                                                        <div class="collapse" id="MentorCollapse" style="">
-                                                            <div class="card card-body">
+                                            <div class="row " style="margin-left:0px;">
 
 
-                                                                <form class="saveMentor" method="post">
-                                                                    <select id="Mentors" name="Mentors"
-                                                                        style="width:300px;">
-                                                                        <option value="" required="">Select Mentor
-                                                                        </option>
-                                                                    </select>
+                                                <div class="col-12 revealOnLoad" id="interests">
 
 
-                                                                    <button class="btn btn-primary" type="submit"
-                                                                        style="margin:10px;padding:6px 12px;font-size:18px;color:#fff;background:#234e67;border-radius: 10px;background-position: bottom;border:0px;border-radius:300px;">
-                                                                        Confirm
-                                                                    </button></form>
-                                                            </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <button class="btn btn-primary" type="button" data-toggle="collapse"
+                                                        data-target="#collapseExample" aria-expanded="false"
+                                                        aria-controls="collapseExample"
+                                                        style="margin:10px;padding:12px 24px;font-size:24px;outline:none;color:#234e67;background:transparent;box-shadow:none!important;border-radius: 10px;background-position: bottom;border:0px;">
+                                                        Add &nbsp;<i class="fas fa-plus"></i>
+                                                    </button>
+                                                    <div class="collapse" id="collapseExample">
+                                                        <div class="card card-body">
+                                                            <form method="post" class="addInterest">
+                                                                <select id="interest" name="interest"
+                                                                    style="width:300px;">
+
+                                                                </select>
+                                                                <button class="btn btn-primary" type="submit"
+                                                                    style="margin:10px;padding:6px 12px;font-size:18px;color:#fff;background:#234e67;border-radius: 10px;background-position: bottom;border:0px;border-radius:300px;">
+                                                                    Confirm
+                                                                </button>
+
+                                                            </form>
+
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
 
 
-
-
                                         </div>
-                                    </div>
-                                    <div class="row" style="margin-bottom: 30px;">
-                                        <div class="col-12"
-                                            style="margin-top: 30px;padding-bottom: 30px;font-family: Roboto, sans-serif;padding-left: 40px;">
-                                            <h1 style="font-weight: 300;">Career Sessions</h1>
-                                        </div>
-                                    </div>
 
-                                    <div id="timeline" style="margin-left:50px;">
-
-                                    </div>
-
-                                </div>
-
-                                
-                            <!--right hand side column-->
-
-                            <div class="col-md-6" style="margin-left:15px;padding:15px;background: #fff;">
-                                <div style="border-bottom: 1px solid #eee;padding-bottom: 20px;">
-                                    <div class="col-12"
-                                        style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 40px;">
-                                        <h1 style="font-weight: 300;">Interests</h1>
-                                        <p style="font-weight: 300;">The more interests you add here, the better
-                                            mentor and career
-                                            recommendations
-                                            appear.</>
-
-                                    </div>
-
-
-                                    <div class="row " style="margin-left:0px;">
-
-
-                                        <div class="col-12 revealOnLoad" id="interests">
-
-
-                                        </div>
-                                        <div class="col-12">
-                                            <button class="btn btn-primary" type="button" data-toggle="collapse"
-                                                data-target="#collapseExample" aria-expanded="false"
-                                                aria-controls="collapseExample"
-                                                style="margin:10px;padding:12px 24px;font-size:24px;outline:none;color:#234e67;background:transparent;box-shadow:none!important;border-radius: 10px;background-position: bottom;border:0px;">
-                                                Add &nbsp;<i class="fas fa-plus"></i>
-                                            </button>
-                                            <div class="collapse" id="collapseExample">
-                                                <div class="card card-body">
-                                                    <form method="post" class="addInterest">
-                                                        <select id="interest" name="interest" style="width:300px;">
-
-                                                        </select>
-                                                        <button class="btn btn-primary" type="submit"
-                                                            style="margin:10px;padding:6px 12px;font-size:18px;color:#fff;background:#234e67;border-radius: 10px;background-position: bottom;border:0px;border-radius:300px;">
-                                                            Confirm
-                                                        </button>
-
-                                                    </form>
+                                        <div style="border-bottom: 1px solid #eee;padding-bottom: 50px;">
+                                            <div class="row" style="margin-bottom: 30px;">
+                                                <div class="col-12"
+                                                    style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 40px;">
+                                                    <h1 style="font-weight: 300;">Files</h1>
 
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
 
 
-                                </div>
+                                            <div id="filesList" style="padding-left: 40px;">
 
-                                <div style="border-bottom: 1px solid #eee;padding-bottom: 50px;">
-                                    <div class="row" style="margin-bottom: 30px;">
-                                        <div class="col-12"
-                                            style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 40px;">
-                                            <h1 style="font-weight: 300;">Files</h1>
+                                            </div>
 
                                         </div>
                                     </div>
-
-
-                                    <div id="filesList" style="padding-left: 40px;">
-
-                                    </div>
-
                                 </div>
                             </div>
-                            </div>
-
 
                         </div>
                     </div>
@@ -465,7 +467,7 @@
                 }
                 for (i = 0; i < reply.assignedMentors.length; i++) {
                     console.log(reply.assignedMentors[i].first_name + " " + reply.assignedMentors[i].last_name);
-                    $('#matches').append('<div class="col-3"> <div class="match" style="width:100px;"> <div class="border m-auto d-block rounded-circle" style="width: 50px;height: 50px;overflow: hidden;"> <img src="https://www.blooware.co.uk/assets/img/IMG_4260.jpg" style="width: 100%;"> </div> <p style="text-align:center;">' + reply.assignedMentors[i].first_name + " " + reply.assignedMentors[i].last_name + '</p> </div> </div>')
+                    $('#matches').append('<a style="color:black!important;text-decoration:none!important;"href="/portal/mentors/profile/?mentor_id=' + reply.assignedMentors[i].id + '"><div class="col-3"> <div class="match" style="width:100px;"> <div class="border m-auto d-block rounded-circle" style="width: 50px;height: 50px;overflow: hidden;"> <img src="https://www.blooware.co.uk/assets/img/IMG_4260.jpg" style="width: 100%;"> </div> <p style="text-align:center;">' + reply.assignedMentors[i].first_name + " " + reply.assignedMentors[i].last_name + '</p> </div> </div>')
                 }
                 $('#matches').append('<div class="col-3"> <div class="" style="width:100px;"> <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#MentorCollapse" aria-expanded="true" aria-controls="MentorCollapse" style="margin:10px;padding:12px 24px;font-size:24px;outline:none;color:#234e67;background:transparent;box-shadow:none!important;border-radius: 10px;background-position: bottom;border:0px;"><i class="fas fa-plus"></i> </button> </div>')
 
@@ -649,7 +651,7 @@
 
         function deleteStudent() {
             console.log("Delete" + student_id);
-            
+
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postDeleteStudent", { student_id: student_id }, function (reply) {
                 console.log(reply);
                 //refresh();
@@ -657,18 +659,18 @@
                 window.location.href = "/portal/students/";
                 */
             });
-            
+
         }
         function deleteStudentFile(file_id) {
             console.log("Delete" + file_id);
-            
+
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postDeleteStudentFile", { file_id: file_id }, function (reply) {
                 console.log(reply);
                 //refresh();
-                
+
             });
-            
-            
+
+
         }
 
     </script>

@@ -126,7 +126,9 @@
                     style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 0px solid #ccc; background: rgb(0, 150, 92); border-radius:300px; width: 250px;color:#fff"
                     type="submit">Create</button>
             </form>
+            <p class="CreateError">
 
+            </p>
             <div class="circle-loader" style="display:none;text-align: center;">
                 <div class="sk-circle">
                     <div class="sk-circle1 sk-child"></div>
@@ -519,8 +521,17 @@
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postCreateStudent", [objectifyForm(this)], function (reply) {
                 console.log(reply);
                 //window.location.reload();
-
+                if(reply.body){
+                    refresh();
+                    $('.popup2').attr('style', $('.popup2').attr('style') + ';display: none!important;');
+                                        
+                } else {
+                    console.log(reply.errMsg)
+                    $('.CreateError').html('<p>Error: '+ reply.errMsg + '</p>')
+                }
+        
             });
+        
 
         });
 
