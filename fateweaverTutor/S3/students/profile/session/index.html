@@ -20,23 +20,20 @@
         <div id="sidebar-wrapper" style="background-color: #234e67!important;">
             <ul class="d-block sidebar-nav" style="height: 100%;overflow: hidden;">
                 <li style="padding-top: 150px;">
-                    <a href="/portal" style="color: #fff!important;padding-bottom: 10px;">
+                    <a href="/tutor" style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fa fa-home" style="padding-right: 10px;width: 60px;"></i>HOME
                     </a>
-                    <a href="/portal/students" style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fa fa-users" style="padding-right: 10px;width: 60px;"></i>STUDENTS
+                    <a class="text-uppercase" href="/tutor/groups"
+                        style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fa fa-user" style="padding-right: 10px;width: 60px;"></i>GROUPS
                     </a>
-                    <a class="text-uppercase" href="/portal/mentors" style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fas fa-user-lock" style="padding-right: 10px;width: 60px;"></i>MENTORS
+                    <a class="text-uppercase" href="/tutor/students"
+                        style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fa fa-bar-chart" style="padding-right: 10px;width: 60px;"></i>STUDENTS
                     </a>
-                    <a class="text-uppercase" href="/portal/insights" style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fa fa-bar-chart" style="padding-right: 10px;width: 60px;"></i>INSIGHTS
-                    </a>
-                    <a class="text-uppercase" href="/portal/account" style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fa fa-user" style="padding-right: 10px;width: 60px;"></i>Account
-                    </a>
-                    <a class="text-uppercase" href="/portal/data-and-security" style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fa fa-lock" style="padding-right: 10px;width: 60px;"></i>Data and Security
+                    <a class="text-uppercase" href="/tutor/settings"
+                        style="color: #fff!important;padding-bottom: 10px;">
+                        <i class="fa fa-user" style="padding-right: 10px;width: 60px;"></i>SETTINGS
                     </a>
                     <div style="position: absolute;bottom: 0px;width: 100%;padding-bottom: 25px;">
                         <a class="text-uppercase" onclick="signMeOut()" style="color: #fff!important;width: 100%;">
@@ -132,11 +129,8 @@
         e.preventDefault();
 
         postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaver-newDestinationSession", objectifyForm(this), function (reply) {
-
             window.location.href = '/portal/students/profile';
-
         });
-
     });
 
     var id = getUrlParameter('id').replace("-", " ");
@@ -145,8 +139,8 @@
 
     $('#studentId').val(student_id)
     function refresh() {
-        postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postGrabStudent', { student_id: student_id }, function (reply) {
-            //console.log(reply);
+        postToLambda('https://t3xkdnmau3.execute-api.eu-west-2.amazonaws.com/develop/fateweaverTutor-postGrabStudent', { student_id: student_id }, function (reply) {
+            console.log(reply);
 
             $('#Name').html(reply.studentData[0].given_name + " " + reply.studentData[0].family_name);
             $('#firstName').html(reply.studentData[0].given_name);
