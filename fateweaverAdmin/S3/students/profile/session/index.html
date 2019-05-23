@@ -16,36 +16,9 @@
 
 <body style="width: 100%;height: 100%;background-color: #ffffff;">
     <div id="wrapper">
-        <!--navigation-->
-        <div id="sidebar-wrapper" style="background-color: #234e67!important;">
-            <ul class="d-block sidebar-nav" style="height: 100%;overflow: hidden;">
-                <li style="padding-top: 150px;">
-                    <a href="/portal" style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fa fa-home" style="padding-right: 10px;width: 60px;"></i>HOME
-                    </a>
-                    <a href="/portal/students" style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fa fa-users" style="padding-right: 10px;width: 60px;"></i>STUDENTS
-                    </a>
-                    <a class="text-uppercase" href="/portal/mentors" style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fas fa-user-lock" style="padding-right: 10px;width: 60px;"></i>MENTORS
-                    </a>
-                    <a class="text-uppercase" href="/portal/insights" style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fa fa-bar-chart" style="padding-right: 10px;width: 60px;"></i>INSIGHTS
-                    </a>
-                    <a class="text-uppercase" href="/portal/account" style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fa fa-user" style="padding-right: 10px;width: 60px;"></i>Account
-                    </a>
-                    <a class="text-uppercase" href="/portal/data-and-security" style="color: #fff!important;padding-bottom: 10px;">
-                        <i class="fa fa-lock" style="padding-right: 10px;width: 60px;"></i>Data and Security
-                    </a>
-                    <div style="position: absolute;bottom: 0px;width: 100%;padding-bottom: 25px;">
-                        <a class="text-uppercase" onclick="signMeOut()" style="color: #fff!important;width: 100%;">
-                            <i class="fa fa-sign-out" style="padding-right: 10px;width: 60px;"></i>
-                            <strong>LOG OUT</strong>
-                        </a>
-                    </div>
-                </li>
-            </ul>
+          <!--navigation-->         
+          <div id="sidebar-wrapper" class=" insertNavHere" style="background-color: #234e67!important;">
+        
         </div>
         <div class="page-content-wrapper">
             <div class="container-fluid" style="padding: 0px;margin-left: 0px;margin-right: 0px;">
@@ -109,6 +82,7 @@
     <script src="https://www.blooware.co.uk/blooAuth/vendor/amazon-cognito-identity.min.js"></script>
     <script src="https://www.blooware.co.uk/blooAuth/blooAuth.js"></script>
     <script src="../../../assets/js/security.js"></script>
+    <script src="/portal/assets/js/nav.js"></script>
 </body>
 <script>
     function postToLambda(url, data, callback) {
