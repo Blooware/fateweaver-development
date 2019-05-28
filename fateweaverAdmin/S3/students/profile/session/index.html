@@ -120,7 +120,7 @@
     $('#studentId').val(student_id)
     function refresh() {
         postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postGrabStudent', { student_id: student_id }, function (reply) {
-            //console.log(reply);
+            console.log(reply);
 
             $('#Name').html(reply.studentData[0].given_name + " " + reply.studentData[0].family_name);
             $('#firstName').html(reply.studentData[0].given_name);
