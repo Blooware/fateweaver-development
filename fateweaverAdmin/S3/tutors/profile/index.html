@@ -59,7 +59,28 @@
                 <button type="submit">Add</button>
 
             </form>
+        </div>
+    </div>
 
+    <div>
+        <div class="d-inline-flex popupRemove" id="popupRemove"
+            style="display: none!important;border-radius: 15px;padding: 3%;position: relative;-webkit-box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);position: fixed;width: 100%;height: 80%;width: 80%;top: 10%;background: #FFF;left: 10%;z-index: 999999999999999999999999999999999999999999;">
+            <form method="post" class="removeGroup">
+                <div class="form-group" style="padding:30px;padding-left:0px;padding-top:0px;">
+                    <p class="d-inline"
+                        style="text-align: right;cursor: pointer;text-decoration: underline; float:left; "
+                        onclick="$('.popupRemove').attr('style', $('.popupRemove').attr('style') + ';display: none!important;');">
+                        Close</p>
+
+                </div>
+
+                <select id="GroupsRemove" name="group_id" required>
+                    <option value="">Select Tutor Group</option>
+                </select>
+
+                <button type="submit">Remove</button>
+
+            </form>
         </div>
     </div>
 
@@ -107,6 +128,14 @@
                                         <button class="btn btn-primary" onclick="$('#popupAssign').fadeIn()"
                                             type="button"
                                             style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 16px;">Add
+                                            Tutor Group &nbsp;<i class="fas fa-pencil-alt"></i></button></div>
+                                    
+                                    <div class="float-left"
+                                        style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 10px;">
+
+                                        <button class="btn btn-primary" onclick="$('#popupRemove').fadeIn()"
+                                            type="button"
+                                            style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 16px;">Remove
                                             Tutor Group &nbsp;<i class="fas fa-pencil-alt"></i></button></div>
 
                                     <div class="float-left"
@@ -179,6 +208,14 @@
                             text: reply.tutorGroups[i].name,
                         }));
                     }
+                    $("#GroupsRemove").html("<option value =''>Select Tutor Group</option>");
+                    for (var i = 0; i < reply.tutorAssignedGroups.length; i++) {
+
+                        $('#GroupsRemove').append($('<option>', {
+                            value: reply.tutorAssignedGroups[i].id,
+                            text: reply.tutorAssignedGroups[i].name,
+                        }));
+                    }
 
                 } else {
 
@@ -237,6 +274,16 @@
             console.log(objectifyForm(this));
 
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postAssignTutorGroup", { tutorInfo : objectifyForm(this), tutor_id: tutor_id }, function (reply) {
+                console.log(reply);
+                refresh();
+            });
+        });
+        $(".removeGroup").submit(function (e) {
+            e.preventDefault();
+
+            console.log(objectifyForm(this));
+
+            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postRemoveAssignTutorGroup", { tutorInfo : objectifyForm(this), tutor_id: tutor_id }, function (reply) {
                 console.log(reply);
                 refresh();
             });
