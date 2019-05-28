@@ -120,24 +120,29 @@
     $('#studentId').val(student_id)
     function refresh() {
         postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postGrabStudent', { student_id: student_id }, function (reply) {
-            //console.log(reply);
+            console.log(reply);
 
-            $('#Name').html(reply.studentData[0].given_name + " " + reply.studentData[0].family_name);
-            $('#firstName').html(reply.studentData[0].given_name);
-            $('#aspiration').html(reply.destinations[id].aspiration);
+            for (var i = 0; i < reply.destinations.length; i++) {
+                if (reply.destinations[i].id == id) {
 
-            $('#destination').html(reply.destinations[id].destination);
-            $('#industry').html(reply.destinations[id].industry);
-            $('#plan_a').html(reply.destinations[id].plan_a);
-            $('#plan_b').html(reply.destinations[id].plan_b);
-            $('#confirmed_place').html(reply.destinations[id].confirmed_place);
+                    $('#Name').html(reply.studentData[0].given_name + " " + reply.studentData[0].family_name);
+                    $('#firstName').html(reply.studentData[0].given_name);
+                    $('#aspiration').html(reply.destinations[i].aspiration);
 
-            $('#notes').html(reply.destinations[id].notes);
+                    $('#destination').html(reply.destinations[i].destination);
+                    $('#industry').html(reply.destinations[i].industry);
+                    $('#plan_a').html(reply.destinations[i].plan_a);
+                    $('#plan_b').html(reply.destinations[i].plan_b);
+                    $('#confirmed_place').html(reply.destinations[i].confirmed_place);
 
-            if (reply.destinations[0].notes.length < 1) {
-                $('#notesContainer').hide();
+                    $('#notes').html(reply.destinations[i].notes);
+
+                    if (reply.destinations[i].notes.length < 1) {
+                        $('#notesContainer').hide();
+                    }
+                
+                }
             }
-
 
         });
     }

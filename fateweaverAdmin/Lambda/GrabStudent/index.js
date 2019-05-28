@@ -20,7 +20,7 @@ exports.handler = (event, context, callback) => {
                 });
             }
             var studentData = results;
-            connection.query("select * from fateweaver.destination_sessions where student_id in (select id from fateweaver.students where id = ? and  school_id = (select school_id from fateweaver.admins where cognito_id = ?)) order by id desc", [event.form.student_id, event.account.sub], function (err, results, fields) {
+            connection.query("SELECT aspiration, destination, fateweaver.industries.name as industry, plan_a, plan_b, confirmed_place, notes, added, csv FROM fateweaver.destination_sessions left join fateweaver.industries on fateweaver.destination_sessions.industry= fateweaver.industries.id where student_id in (select id from fateweaver.students where id = ? and  school_id = (select school_id from fateweaver.admins where cognito_id = ?)) order by id desc", [event.form.student_id, event.account.sub], function (err, results, fields) {
                 if (err) {
                     console.log("Error getting tutor groups:", err);
                     context.succeed({
@@ -73,15 +73,28 @@ exports.handler = (event, context, callback) => {
                                 }
                                 var assignedMentors = results;
 
-                                context.succeed({
-                                    statusCode: 200,
-                                    status: true,
-                                    studentData: studentData,
-                                    destinations: destinations,
-                                    studentFiles: studentFiles,
-                                    studentInterests: studentInterests,
-                                    mentorList: mentorList,
-                                    assignedMentors: assignedMentors,
+                                connection.query("select id, name from fateweaver.industries", [event.account.sub], function (err, results, fields) {
+                                    if (err) {
+                                        console.log("Error getting tutor groups:", err);
+                                        context.succeed({
+                                            statusCode: 200,
+                                            status: false,
+                                            errMsg: "error getting students :" + err
+                                        });
+                                    }
+                                    var industries = results;
+
+                                    context.succeed({
+                                        statusCode: 200,
+                                        status: true,
+                                        studentData: studentData,
+                                        destinations: destinations,
+                                        studentFiles: studentFiles,
+                                        studentInterests: studentInterests,
+                                        mentorList: mentorList,
+                                        assignedMentors: assignedMentors,
+                                        industries: industries,
+                                    });
                                 });
                             });
                         });

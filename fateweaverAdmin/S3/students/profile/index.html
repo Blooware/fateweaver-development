@@ -396,6 +396,9 @@
             $('#interests').html("");
             $('#timeline').html("");
             $('#filesList').html("");
+            $('#matches').html("");
+            $('#Mentors').html("");
+
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postGrabStudent', { student_id: student_id }, function (reply) {
                 console.log(reply);
                 destinationData = reply.destinations;
@@ -430,7 +433,7 @@
                 }
                 for (i = 0; i < reply.assignedMentors.length; i++) {
                     console.log(reply.assignedMentors[i].first_name + " " + reply.assignedMentors[i].last_name);
-                    $('#matches').append('<a style="color:black!important;text-decoration:none!important;"href="/portal/mentors/profile/?mentor_id=' + reply.assignedMentors[i].id + '"><div class="col-3"> <div class="match" style="width:100px;"> <div class="border m-auto d-block rounded-circle" style="width: 50px;height: 50px;overflow: hidden;"> <img src="https://www.blooware.co.uk/assets/img/IMG_4260.jpg" style="width: 100%;"> </div> <p style="text-align:center;">' + reply.assignedMentors[i].first_name + " " + reply.assignedMentors[i].last_name + '</p> </div> </div>')
+                    $('#matches').append('<a onclick="RemoveMentor(' + reply.assignedMentors[i].id +')">Remove <a style="color:black!important;text-decoration:none!important;"href="/portal/mentors/profile/?mentor_id=' + reply.assignedMentors[i].id + '"><div class="col-3"> <div class="match" style="width:100px;"> <div class="border m-auto d-block rounded-circle" style="width: 50px;height: 50px;overflow: hidden;"> <img src="https://www.blooware.co.uk/assets/img/IMG_4260.jpg" style="width: 100%;"> </div> <p style="text-align:center;">' + reply.assignedMentors[i].first_name + " " + reply.assignedMentors[i].last_name + '</p> </div> </div>')
                 }
                 $('#matches').append('<div class="col-3"> <div class="" style="width:100px;"> <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#MentorCollapse" aria-expanded="true" aria-controls="MentorCollapse" style="margin:10px;padding:12px 24px;font-size:24px;outline:none;color:#234e67;background:transparent;box-shadow:none!important;border-radius: 10px;background-position: bottom;border:0px;"><i class="fas fa-plus"></i> </button> </div>')
 
@@ -523,12 +526,14 @@
                 //window.location.reload();
             });
         });
+        
         $(".saveMentor").submit(function (e) {
             e.preventDefault();
             console.log(objectifyForm(this));
 
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postAssignStudentMentor", { mentorAssign: objectifyForm(this), student_id: student_id }, function (reply) {
                 console.log(reply);
+                refresh();
             });
 
         });
@@ -634,6 +639,15 @@
             });
 
 
+        }
+        function RemoveMentor(mentor_id){
+            console.log("Mentor id to remove" + mentor_id);
+
+            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postRemoveStudentMentor", { mentor_id : mentor_id, student_id : student_id }, function (reply) {
+                console.log(reply);
+                refresh();
+
+            });
         }
 
     </script>
