@@ -94,10 +94,18 @@
 
             </div>
 
+            <div class="table-responsive">
+                <table class="table" id="results">
+        
+                </table>
+            </div>
+
         </div>
 
 
     </div>
+
+    
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
@@ -295,6 +303,13 @@
 
         postToLambda('https://t3xkdnmau3.execute-api.eu-west-2.amazonaws.com/develop/fateweaverTutor-postGrabGroups', [], function (reply) {
             console.log(reply);
+
+            $('#results').html('<tr style="font-weight: normal!important;"> <th style="width: 120px;"></th> <th style="font-weight: normal;">Name</th> <th style="font-weight: normal;">Tutor Group</th> <th style="font-weight: normal;">UPN</th>  <th style="font-weight: normal;">Destination</th> <th style="font-weight: normal;">Aspiration</th> </tr>');
+                for (var i = 0; i < reply.groups.length; i++) {
+
+                    $('#results').append('<tr class="item" search="search ' + reply.groups[i].given_name + ' ' + reply.groups[i].family_name + ' ' + reply.groups[i].upn + ' search" style="font-weight: bold;"><td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="../assets/img/placeholder.png" style="width: 100%;min-height: 100%;"></div> </td> <td style="font-size: 15px;"> <a  href="/tutor/groups/profile/?tutor_group_id=' + reply.groups[i].id + '">' + reply.groups[i].name + '</a></td> <td style="font-size: 15px;">' + reply.groups[i].description + '</td> <td style="font-size: 15px;">' + reply.groups[i].added + '</td> <td style="font-size: 15px;">' + reply.groups[i].destination + '</td><td style="font-size: 15px;">' + reply.groups[i].aspiration + '</td></tr> ');
+
+                }
         });
 
     }
