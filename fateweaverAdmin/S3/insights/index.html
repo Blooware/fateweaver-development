@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400">
     <link rel="stylesheet" href="../assets/css/styles.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-
     <style>
         table {
             font-family: arial, sans-serif;
@@ -56,164 +55,444 @@
                     </div>
                 </div>
             </div>
-            <div class="container-fluid" style="padding-top: 100px;padding-left: 125px;">
+            <div class="container-fluid" style="padding-top: 100px;padding-left: 125px;padding-right:125px;">
                 <h1 style="font-weight: bold;margin-top:50px;">Insights</h1>
                 <h1 style="font-weight: 300;font-size:18px; color:#666;">Soon you will be able to compare, promote and
                     share your student statistics right here.</h1>
-                <div class="row" style="margin-bottom: 20px;">
-                    <div style="margin-top:20px!important;" class="col-12">
-                        <div style="background: #fff;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);">
-                            <div style="margin-left:10%;width:80%;height:600px;" id="donutchart">
+                <div class="collapse show" id="collapseCurrent">
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div style="margin-top:20px!important;" class="col-12">
+                            <div style="background: #fff;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);">
+                                <div style="margin-left:10%;width:80%;height:600px;" id="currentdonutchart">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div style="margin-top:20px!important;" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div
+                                style="min-width:300px;;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);position:relative;">
+                                <h1 id="confirmedCount" class="text-center"
+                                    style="padding-top: 50px;font-size: 60px;color: #2ecc71;"></h1>
+                                <p class="text-center" style="color: #888;">Students with Confirmed Destinations</p>
+                                <a class="text-center"
+                                    style="width:100%;cursor:pointer;text-decoration:none!important;color:#234e67!important;position:absolute;bottom:0!important;margin:auto!important;"
+                                    href="#">
+                                    <p class="text-center">Embed <i class="icon ion-code"></i></p>
+                                </a>
+                            </div>
+                        </div>
+                        <div style="margin-top:20px!important;" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div
+                                style="min-width:300px;;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);position:relative;">
+                                <h1 id="confirmedPercent" class="text-center"
+                                    style="padding-top: 50px;font-size: 60px;color: #2ecc71;"></h1>
+                                <p class="text-center" style="color: #888;">of students have a Confirmed destination</p>
+                                <a class="text-center"
+                                    style="width:100%;cursor:pointer;text-decoration:none!important;color:#234e67!important;position:absolute;bottom:0!important;margin:auto!important;"
+                                    href="#">
+                                    <p class="text-center">Embed <i class="icon ion-code"></i></p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div style="min-width:250px;margin-top:20px!important;"
+                            class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                            <div
+                                style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);position:relative;">
+                                <h1 id="apprenticeCount" class="text-center"
+                                    style="padding-top: 50px;font-size: 60px;color: #234e67;"></h1>
+                                <p class="text-center" style="color: #888;">Aspiring Apprenticeship Students</p>
+                                <a class="text-center"
+                                    style="width:100%;cursor:pointer;text-decoration:none!important;color:#234e67!important;position:absolute;bottom:0!important;margin:auto!important;"
+                                    href="#">
+                                    <p class="text-center">Embed <i class="icon ion-code"></i></p>
+                                </a>
+                            </div>
+                        </div>
+                        <div style="min-width:250px;margin-top:20px!important;"
+                            class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                            <div
+                                style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);position:relative;">
+                                <h1 id="apprenticePercent" class="text-center"
+                                    style="padding-top: 50px;font-size: 60px;color: #234e67;"></h1>
+                                <p class="text-center" style="color: #888;">of students want to go into an
+                                    Apprenticeship
+                                </p>
+                                <a class="text-center"
+                                    style="width:100%;cursor:pointer;text-decoration:none!important;color:#234e67!important;position:absolute;bottom:0!important;margin:auto!important;"
+                                    href="#">
+                                    <p class="text-center">Embed <i class="icon ion-code"></i></p>
+                                </a>
+                            </div>
+                        </div>
+                        <div style="min-width:250px;margin-top:20px!important;"
+                            class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                            <div
+                                style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);position:relative;">
+                                <h1 id="universityCount" class="text-center"
+                                    style="padding-top: 50px;font-size: 60px;color: #234e67;"></h1>
+                                <p class="text-center" style="color: #888;">Aspiring University Students</p>
+                                <a class="text-center"
+                                    style="width:100%;cursor:pointer;text-decoration:none!important;color:#234e67!important;position:absolute;bottom:0!important;margin:auto!important;"
+                                    href="#">
+                                    <p class="text-center">Embed <i class="icon ion-code"></i></p>
+                                </a>
+                            </div>
+                        </div>
+                        <div style="min-width:250px;margin-top:20px!important;"
+                            class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                            <div
+                                style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);position:relative;">
+                                <h1 id="universityPercent" class="text-center"
+                                    style="padding-top: 50px;font-size: 60px;color: #234e67;"></h1>
+                                <p class="text-center" style="color: #888;">of students want to go into University</p>
+                                <a class="text-center"
+                                    style="width:100%;cursor:pointer;text-decoration:none!important;color:#234e67!important;position:absolute;bottom:0!important;margin:auto!important;"
+                                    href="#">
+                                    <p class="text-center">Embed <i class="icon ion-code"></i></p>
+                                </a>
+                            </div>
+                        </div>
+                        <div style="min-width:250px;margin-top:20px!important;"
+                            class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                            <div
+                                style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);position:relative;">
+                                <h1 id="furtherEducationCount" class="text-center"
+                                    style="padding-top: 50px;font-size: 60px;color: #234e67;"></h1>
+                                <p class="text-center" style="color: #888;">Aspiring Further Education</p>
+                                <a class="text-center"
+                                    style="width:100%;cursor:pointer;text-decoration:none!important;color:#234e67!important;position:absolute;bottom:0!important;margin:auto!important;"
+                                    href="#">
+                                    <p class="text-center">Embed <i class="icon ion-code"></i></p>
+                                </a>
+                            </div>
+                        </div>
+                        <div style="min-width:250px;margin-top:20px!important;"
+                            class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                            <div
+                                style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);position:relative;">
+                                <h1 id="furtherEducationPercent" class="text-center"
+                                    style="padding-top: 50px;font-size: 60px;color: #234e67;"></h1>
+                                <p class="text-center" style="color: #888;">of students want to go into Further
+                                    Education
+                                </p>
+                                <a class="text-center"
+                                    style="width:100%;cursor:pointer;text-decoration:none!important;color:#234e67!important;position:absolute;bottom:0!important;margin:auto!important;"
+                                    href="#">
+                                    <p class="text-center">Embed <i class="icon ion-code"></i></p>
+                                </a>
+                            </div>
+                        </div>
+                        <div style="min-width:250px;margin-top:20px!important;"
+                            class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                            <div
+                                style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);position:relative;">
+                                <h1 id="jobCount" class="text-center"
+                                    style="padding-top: 50px;font-size: 60px;color: #234e67;"></h1>
+                                <p class="text-center" style="color: #888;">Aspiring for full time Jobs</p>
+                                <a class="text-center"
+                                    style="width:100%;cursor:pointer;text-decoration:none!important;color:#234e67!important;position:absolute;bottom:0!important;margin:auto!important;"
+                                    href="#">
+                                    <p class="text-center">Embed <i class="icon ion-code"></i></p>
+                                </a>
+                            </div>
+                        </div>
+                        <div style="min-width:250px;margin-top:20px!important;"
+                            class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                            <div
+                                style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);position:relative;">
+                                <h1 id="jobPercent" class="text-center"
+                                    style="padding-top: 50px;font-size: 60px;color: #234e67;"></h1>
+                                <p class="text-center" style="color: #888;">of students want to go into Full-time
+                                    Employment
+                                </p>
+                                <a class="text-center"
+                                    style="width:100%;cursor:pointer;text-decoration:none!important;color:#234e67!important;position:absolute;bottom:0!important;margin:auto!important;"
+                                    href="#">
+                                    <p class="text-center">Embed <i class="icon ion-code"></i></p>
+                                </a>
+                            </div>
+                        </div>
+                        <div style="min-width:250px;margin-top:20px!important;"
+                            class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                            <div
+                                style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);position:relative;">
+                                <h1 id="gapYearCount" class="text-center"
+                                    style="padding-top: 50px;font-size: 60px;color: #234e67;"></h1>
+                                <p class="text-center" style="color: #888;">Students taking a Gap-Year</p>
+                                <a class="text-center"
+                                    style="width:100%;cursor:pointer;text-decoration:none!important;color:#234e67!important;position:absolute;bottom:0!important;margin:auto!important;"
+                                    href="#">
+                                    <p class="text-center">Embed <i class="icon ion-code"></i></p>
+                                </a>
+                            </div>
+                        </div>
+                        <div style="min-width:250px;margin-top:20px!important;"
+                            class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                            <div
+                                style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);position:relative;">
+                                <h1 id="gapYearPercent" class="text-center"
+                                    style="padding-top: 50px;font-size: 60px;color: #234e67;"></h1>
+                                <p class="text-center" style="color: #888;">of students want to take a Gap-Year</p>
+                                <a class="text-center"
+                                    style="width:100%;cursor:pointer;text-decoration:none!important;color:#234e67!important;position:absolute;bottom:0!important;margin:auto!important;"
+                                    href="#">
+                                    <p class="text-center">Embed <i class="icon ion-code"></i></p>
+                                </a>
+                            </div>
+                        </div>
+                        <div style="min-width:250px;margin-top:20px!important;"
+                            class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                            <div
+                                style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);position:relative;">
+                                <h1 id="neetCount" class="text-center"
+                                    style="padding-top: 50px;font-size: 60px;color: #e74c3c;"></h1>
+                                <p class="text-center" style="color: #888;">potential NEET Students</p>
+                                <a class="text-center"
+                                    style="width:100%;cursor:pointer;text-decoration:none!important;color:#234e67!important;position:absolute;bottom:0!important;margin:auto!important;"
+                                    href="#">
+                                    <p class="text-center">Embed <i class="icon ion-code"></i></p>
+                                </a>
+                            </div>
+                        </div>
+                        <div style="min-width:250px;margin-top:20px!important;"
+                            class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                            <div
+                                style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);position:relative;">
+                                <h1 id="neetPercent" class="text-center"
+                                    style="padding-top: 50px;font-size: 60px;color: #e74c3c;"></h1>
+                                <p class="text-center" style="color: #888;">of students are a potential NEET</p>
+                                <a class="text-center"
+                                    style="width:100%;cursor:pointer;text-decoration:none!important;color:#234e67!important;position:absolute;bottom:0!important;margin:auto!important;"
+                                    href="#">
+                                    <p class="text-center">Embed <i class="icon ion-code"></i></p>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row" style="margin-bottom: 20px;">
-                    <div style="margin-top:20px!important;" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <div
-                            style="min-width:300px;;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);">
-                            <h1 id="confirmedCount" class="text-center"
-                                style="padding-top: 75px;font-size: 60px;color: #2ecc71;"></h1>
-                            <p class="text-center" style="color: #888;">Students with Confirmed Destinations</p>
-                            <a class="text-center"style="width:100%;cursor:pointer;text-decoration:none!important;color:black!important;"href="#"><p class="text-center">Embed <i class="icon ion-code"></i></p></a>
+                <div class="collapse" id="collapseAlumni">
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div style="margin-top:20px!important;" class="col-12">
+                            <div style="background: #fff;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);">
+                                <div style="margin-left:10%;width:80%;height:600px;" id="alumnidonutchart">
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div style="margin-top:20px!important;" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <div
-                            style="min-width:300px;;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);">
-                            <h1 id="confirmedPercent" class="text-center"
-                                style="padding-top: 75px;font-size: 60px;color: #2ecc71;"></h1>
-                            <p class="text-center" style="color: #888;">of students have a Confirmed destination</p>
-                            <a class="text-center"style="width:100%;cursor:pointer;text-decoration:none!important;color:black!important;"href="#"><p class="text-center">Embed <i class="icon ion-code"></i></p></a>
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div style="margin-top:20px!important;" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div
+                                style="min-width:300px;;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);position:relative;">
+                                <h1 id="confirmedCount" class="text-center"
+                                    style="padding-top: 50px;font-size: 60px;color: #2ecc71;"></h1>
+                                <p class="text-center" style="color: #888;">Students with Confirmed Destinations</p>
+                                <a class="text-center"
+                                    style="width:100%;cursor:pointer;text-decoration:none!important;color:#234e67!important;position:absolute;bottom:0!important;margin:auto!important;"
+                                    href="#">
+                                    <p class="text-center">Embed <i class="icon ion-code"></i></p>
+                                </a>
+                            </div>
+                        </div>
+                        <div style="margin-top:20px!important;" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div
+                                style="min-width:300px;;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);position:relative;">
+                                <h1 id="confirmedPercent" class="text-center"
+                                    style="padding-top: 50px;font-size: 60px;color: #2ecc71;"></h1>
+                                <p class="text-center" style="color: #888;">of students have a Confirmed destination</p>
+                                <a class="text-center"
+                                    style="width:100%;cursor:pointer;text-decoration:none!important;color:#234e67!important;position:absolute;bottom:0!important;margin:auto!important;"
+                                    href="#">
+                                    <p class="text-center">Embed <i class="icon ion-code"></i></p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div style="min-width:250px;margin-top:20px!important;"
+                            class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                            <div
+                                style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);position:relative;">
+                                <h1 id="apprenticeCount" class="text-center"
+                                    style="padding-top: 50px;font-size: 60px;color: #234e67;"></h1>
+                                <p class="text-center" style="color: #888;">Aspiring Apprenticeship Students</p>
+                                <a class="text-center"
+                                    style="width:100%;cursor:pointer;text-decoration:none!important;color:#234e67!important;position:absolute;bottom:0!important;margin:auto!important;"
+                                    href="#">
+                                    <p class="text-center">Embed <i class="icon ion-code"></i></p>
+                                </a>
+                            </div>
+                        </div>
+                        <div style="min-width:250px;margin-top:20px!important;"
+                            class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                            <div
+                                style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);position:relative;">
+                                <h1 id="apprenticePercent" class="text-center"
+                                    style="padding-top: 50px;font-size: 60px;color: #234e67;"></h1>
+                                <p class="text-center" style="color: #888;">of students want to go into an
+                                    Apprenticeship
+                                </p>
+                                <a class="text-center"
+                                    style="width:100%;cursor:pointer;text-decoration:none!important;color:#234e67!important;position:absolute;bottom:0!important;margin:auto!important;"
+                                    href="#">
+                                    <p class="text-center">Embed <i class="icon ion-code"></i></p>
+                                </a>
+                            </div>
+                        </div>
+                        <div style="min-width:250px;margin-top:20px!important;"
+                            class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                            <div
+                                style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);position:relative;">
+                                <h1 id="universityCount" class="text-center"
+                                    style="padding-top: 50px;font-size: 60px;color: #234e67;"></h1>
+                                <p class="text-center" style="color: #888;">Aspiring University Students</p>
+                                <a class="text-center"
+                                    style="width:100%;cursor:pointer;text-decoration:none!important;color:#234e67!important;position:absolute;bottom:0!important;margin:auto!important;"
+                                    href="#">
+                                    <p class="text-center">Embed <i class="icon ion-code"></i></p>
+                                </a>
+                            </div>
+                        </div>
+                        <div style="min-width:250px;margin-top:20px!important;"
+                            class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                            <div
+                                style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);position:relative;">
+                                <h1 id="universityPercent" class="text-center"
+                                    style="padding-top: 50px;font-size: 60px;color: #234e67;"></h1>
+                                <p class="text-center" style="color: #888;">of students want to go into University</p>
+                                <a class="text-center"
+                                    style="width:100%;cursor:pointer;text-decoration:none!important;color:#234e67!important;position:absolute;bottom:0!important;margin:auto!important;"
+                                    href="#">
+                                    <p class="text-center">Embed <i class="icon ion-code"></i></p>
+                                </a>
+                            </div>
+                        </div>
+                        <div style="min-width:250px;margin-top:20px!important;"
+                            class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                            <div
+                                style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);position:relative;">
+                                <h1 id="furtherEducationCount" class="text-center"
+                                    style="padding-top: 50px;font-size: 60px;color: #234e67;"></h1>
+                                <p class="text-center" style="color: #888;">Aspiring Further Education</p>
+                                <a class="text-center"
+                                    style="width:100%;cursor:pointer;text-decoration:none!important;color:#234e67!important;position:absolute;bottom:0!important;margin:auto!important;"
+                                    href="#">
+                                    <p class="text-center">Embed <i class="icon ion-code"></i></p>
+                                </a>
+                            </div>
+                        </div>
+                        <div style="min-width:250px;margin-top:20px!important;"
+                            class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                            <div
+                                style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);position:relative;">
+                                <h1 id="furtherEducationPercent" class="text-center"
+                                    style="padding-top: 50px;font-size: 60px;color: #234e67;"></h1>
+                                <p class="text-center" style="color: #888;">of students want to go into Further
+                                    Education
+                                </p>
+                                <a class="text-center"
+                                    style="width:100%;cursor:pointer;text-decoration:none!important;color:#234e67!important;position:absolute;bottom:0!important;margin:auto!important;"
+                                    href="#">
+                                    <p class="text-center">Embed <i class="icon ion-code"></i></p>
+                                </a>
+                            </div>
+                        </div>
+                        <div style="min-width:250px;margin-top:20px!important;"
+                            class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                            <div
+                                style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);position:relative;">
+                                <h1 id="jobCount" class="text-center"
+                                    style="padding-top: 50px;font-size: 60px;color: #234e67;"></h1>
+                                <p class="text-center" style="color: #888;">Aspiring for full time Jobs</p>
+                                <a class="text-center"
+                                    style="width:100%;cursor:pointer;text-decoration:none!important;color:#234e67!important;position:absolute;bottom:0!important;margin:auto!important;"
+                                    href="#">
+                                    <p class="text-center">Embed <i class="icon ion-code"></i></p>
+                                </a>
+                            </div>
+                        </div>
+                        <div style="min-width:250px;margin-top:20px!important;"
+                            class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                            <div
+                                style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);position:relative;">
+                                <h1 id="jobPercent" class="text-center"
+                                    style="padding-top: 50px;font-size: 60px;color: #234e67;"></h1>
+                                <p class="text-center" style="color: #888;">of students want to go into Full-time
+                                    Employment
+                                </p>
+                                <a class="text-center"
+                                    style="width:100%;cursor:pointer;text-decoration:none!important;color:#234e67!important;position:absolute;bottom:0!important;margin:auto!important;"
+                                    href="#">
+                                    <p class="text-center">Embed <i class="icon ion-code"></i></p>
+                                </a>
+                            </div>
+                        </div>
+                        <div style="min-width:250px;margin-top:20px!important;"
+                            class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                            <div
+                                style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);position:relative;">
+                                <h1 id="gapYearCount" class="text-center"
+                                    style="padding-top: 50px;font-size: 60px;color: #234e67;"></h1>
+                                <p class="text-center" style="color: #888;">Students taking a Gap-Year</p>
+                                <a class="text-center"
+                                    style="width:100%;cursor:pointer;text-decoration:none!important;color:#234e67!important;position:absolute;bottom:0!important;margin:auto!important;"
+                                    href="#">
+                                    <p class="text-center">Embed <i class="icon ion-code"></i></p>
+                                </a>
+                            </div>
+                        </div>
+                        <div style="min-width:250px;margin-top:20px!important;"
+                            class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                            <div
+                                style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);position:relative;">
+                                <h1 id="gapYearPercent" class="text-center"
+                                    style="padding-top: 50px;font-size: 60px;color: #234e67;"></h1>
+                                <p class="text-center" style="color: #888;">of students want to take a Gap-Year</p>
+                                <a class="text-center"
+                                    style="width:100%;cursor:pointer;text-decoration:none!important;color:#234e67!important;position:absolute;bottom:0!important;margin:auto!important;"
+                                    href="#">
+                                    <p class="text-center">Embed <i class="icon ion-code"></i></p>
+                                </a>
+                            </div>
+                        </div>
+                        <div style="min-width:250px;margin-top:20px!important;"
+                            class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                            <div
+                                style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);position:relative;">
+                                <h1 id="neetCount" class="text-center"
+                                    style="padding-top: 50px;font-size: 60px;color: #e74c3c;"></h1>
+                                <p class="text-center" style="color: #888;">potential NEET Students</p>
+                                <a class="text-center"
+                                    style="width:100%;cursor:pointer;text-decoration:none!important;color:#234e67!important;position:absolute;bottom:0!important;margin:auto!important;"
+                                    href="#">
+                                    <p class="text-center">Embed <i class="icon ion-code"></i></p>
+                                </a>
+                            </div>
+                        </div>
+                        <div style="min-width:250px;margin-top:20px!important;"
+                            class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                            <div
+                                style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);position:relative;">
+                                <h1 id="neetPercent" class="text-center"
+                                    style="padding-top: 50px;font-size: 60px;color: #e74c3c;"></h1>
+                                <p class="text-center" style="color: #888;">of students are a potential NEET</p>
+                                <a class="text-center"
+                                    style="width:100%;cursor:pointer;text-decoration:none!important;color:#234e67!important;position:absolute;bottom:0!important;margin:auto!important;"
+                                    href="#">
+                                    <p class="text-center">Embed <i class="icon ion-code"></i></p>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="row" style="margin-bottom: 20px;">
-                    <div style="min-width:250px;margin-top:20px!important;"
-                        class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <div
-                            style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);">
-                            <h1 id="apprenticeCount" class="text-center"
-                                style="padding-top: 75px;font-size: 60px;color: #234e67;"></h1>
-                            <p class="text-center" style="color: #888;">Aspiring Apprenticeship Students</p>
-                            <a class="text-center"style="width:100%;cursor:pointer;text-decoration:none!important;color:black!important;"href="#"><p class="text-center">Embed <i class="icon ion-code"></i></p></a>
-                        </div>
-                    </div>
-                    <div style="min-width:250px;margin-top:20px!important;"
-                        class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <div
-                            style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);">
-                            <h1 id="apprenticePercent" class="text-center"
-                                style="padding-top: 75px;font-size: 60px;color: #234e67;"></h1>
-                            <p class="text-center" style="color: #888;">of students want to go into an Apprenticeship
-                            </p>
-                            <a class="text-center"style="width:100%;cursor:pointer;text-decoration:none!important;color:black!important;"href="#"><p class="text-center">Embed <i class="icon ion-code"></i></p></a>
-                        </div>
-                    </div>
-                    <div style="min-width:250px;margin-top:20px!important;"
-                        class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <div
-                            style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);">
-                            <h1 id="universityCount" class="text-center"
-                                style="padding-top: 75px;font-size: 60px;color: #234e67;"></h1>
-                            <p class="text-center" style="color: #888;">Aspiring University Students</p>
-                            <a class="text-center"style="width:100%;cursor:pointer;text-decoration:none!important;color:black!important;"href="#"><p class="text-center">Embed <i class="icon ion-code"></i></p></a>
-                        </div>
-                    </div>
-                    <div style="min-width:250px;margin-top:20px!important;"
-                        class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <div
-                            style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);">
-                            <h1 id="universityPercent" class="text-center"
-                                style="padding-top: 75px;font-size: 60px;color: #234e67;"></h1>
-                            <p class="text-center" style="color: #888;">of students want to go into University</p>
-                            <a class="text-center"style="width:100%;cursor:pointer;text-decoration:none!important;color:black!important;"href="#"><p class="text-center">Embed <i class="icon ion-code"></i></p></a>
-                        </div>
-                    </div>
-                    <div style="min-width:250px;margin-top:20px!important;"
-                        class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <div
-                            style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);">
-                            <h1 id="furtherEducationCount" class="text-center"
-                                style="padding-top: 75px;font-size: 60px;color: #234e67;"></h1>
-                            <p class="text-center" style="color: #888;">Aspiring Further Education</p>
-                            <a class="text-center"style="width:100%;cursor:pointer;text-decoration:none!important;color:black!important;"href="#"><p class="text-center">Embed <i class="icon ion-code"></i></p></a>
-                        </div>
-                    </div>
-                    <div style="min-width:250px;margin-top:20px!important;"
-                        class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <div
-                            style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);">
-                            <h1 id="furtherEducationPercent" class="text-center"
-                                style="padding-top: 75px;font-size: 60px;color: #234e67;"></h1>
-                            <p class="text-center" style="color: #888;">of students want to go into Further Education
-                            </p>
-                            <a class="text-center"style="width:100%;cursor:pointer;text-decoration:none!important;color:black!important;"href="#"><p class="text-center">Embed <i class="icon ion-code"></i></p></a>
-                        </div>
-                    </div>
-                    <div style="min-width:250px;margin-top:20px!important;"
-                        class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <div
-                            style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);">
-                            <h1 id="jobCount" class="text-center"
-                                style="padding-top: 75px;font-size: 60px;color: #234e67;"></h1>
-                            <p class="text-center" style="color: #888;">Aspiring for full time Jobs</p>
-                            <a class="text-center"style="width:100%;cursor:pointer;text-decoration:none!important;color:black!important;"href="#"><p class="text-center">Embed <i class="icon ion-code"></i></p></a>
-                        </div>
-                    </div>
-                    <div style="min-width:250px;margin-top:20px!important;"
-                        class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <div
-                            style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);">
-                            <h1 id="jobPercent" class="text-center"
-                                style="padding-top: 75px;font-size: 60px;color: #234e67;"></h1>
-                            <p class="text-center" style="color: #888;">of students want to go into Full-time Employment
-                            </p>
-                            <a class="text-center"style="width:100%;cursor:pointer;text-decoration:none!important;color:black!important;"href="#"><p class="text-center">Embed <i class="icon ion-code"></i></p></a>
-                        </div>
-                    </div>
-                    <div style="min-width:250px;margin-top:20px!important;"
-                        class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <div
-                            style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);">
-                            <h1 id="gapYearCount" class="text-center"
-                                style="padding-top: 75px;font-size: 60px;color: #234e67;"></h1>
-                            <p class="text-center" style="color: #888;">Students taking a Gap-Year</p>
-                            <a class="text-center"style="width:100%;cursor:pointer;text-decoration:none!important;color:black!important;"href="#"><p class="text-center">Embed <i class="icon ion-code"></i></p></a>
-                        </div>
-                    </div>
-                    <div style="min-width:250px;margin-top:20px!important;"
-                        class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <div
-                            style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);">
-                            <h1 id="gapYearPercent" class="text-center"
-                                style="padding-top: 75px;font-size: 60px;color: #234e67;"></h1>
-                            <p class="text-center" style="color: #888;">of students want to take a Gap-Year</p>
-                            <a class="text-center"style="width:100%;cursor:pointer;text-decoration:none!important;color:black!important;"href="#"><p class="text-center">Embed <i class="icon ion-code"></i></p></a>
-                        </div>
-                    </div>
-                    <div style="min-width:250px;margin-top:20px!important;"
-                        class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <div
-                            style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);">
-                            <h1 id="neetCount" class="text-center"
-                                style="padding-top: 75px;font-size: 60px;color: #e74c3c;"></h1>
-                            <p class="text-center" style="color: #888;">potential NEET Students</p>
-                            <a class="text-center"style="width:100%;cursor:pointer;text-decoration:none!important;color:black!important;"href="#"><p class="text-center">Embed <i class="icon ion-code"></i></p></a>
-                        </div>
-                    </div>
-                    <div style="min-width:250px;margin-top:20px!important;"
-                        class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <div
-                            style="min-width:200px;background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);">
-                            <h1 id="neetPercent" class="text-center"
-                                style="padding-top: 75px;font-size: 60px;color: #e74c3c;"></h1>
-                            <p class="text-center" style="color: #888;">of students are a potential NEET</p>
-
-                            <a class="text-center"style="width:100%;cursor:pointer;text-decoration:none!important;color:black!important;"href="#"><p class="text-center">Embed <i class="icon ion-code"></i></p></a>
-                        </div>
-                    </div>
-                </div>
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".collapse"
+                    aria-expanded="true" aria-controls="collapseCurrent collapseAlumni collapseButton1 collapseButton2"
+                    style="margin:10px;padding:12px 24px;font-size:24px;outline:none;color:#234e67;background:transparent;box-shadow:none!important;border-radius: 10px;background-position: bottom;border:0px;">
+                    <p class="collapse" id="collapseButton1">See Current Students Statistics instead</p>
+                    <p class="collapse show" id="collapseButton2">See Alumni Students Statistics instead</p>
+                </button>
             </div>
         </div>
     </div>
@@ -409,9 +688,9 @@
                 ]);
                 var options = {
                     title: 'Destinations',
-                    pieHole: 0.4,
+                    pieHole: 0.6,
                 };
-                var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+                var chart = new google.visualization.PieChart(document.getElementById('currentdonutchart'));
                 chart.draw(data, options);
             }
         });
