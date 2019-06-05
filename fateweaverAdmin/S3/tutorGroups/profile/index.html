@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html style="display:none;">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -12,10 +11,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400">
     <link rel="stylesheet" href="../../assets/css/styles.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 </head>
-
 <body style="width: 100%;height: 100%;background-color: #ffffff;">
-
     <!--Popups-->
     <div>
         <div class="d-inline-flex popupEdit" id="popupEdit"
@@ -26,24 +24,17 @@
                         style="text-align: right;cursor: pointer;text-decoration: underline; float:left; "
                         onclick="$('.popupEdit').attr('style', $('.popupEdit').attr('style') + ';display: none!important;');">
                         Close</p>
-
                 </div>
-
                 <input id="Name" name="Name" placeholder="Name" type="text" /><br>
                 <input id="Description" name="Description" placeholder="Description" type="text" /><br>
-
                 <button type="submit">Update</button>
-
             </form>
-
         </div>
     </div>
-
     <div id="wrapper">
-          <!--navigation-->         
-          <div id="sidebar-wrapper" class=" insertNavHere" style="background-color: #234e67!important;">
+        <!--navigation-->
+        <div id="sidebar-wrapper" class=" insertNavHere" style="background-color: #234e67!important;">
         </div>
-
         <!--top bar and content-->
         <div class="page-content-wrapper">
             <div class="container-fluid" style="padding: 0px;margin-left: 0px;margin-right: 0px;">
@@ -75,15 +66,13 @@
                                 </div>
                                 <div class="col-9" style="min-width: 600px;">
                                     <h1 style="font-weight: 300;"><strong id="TutorGroupName"></strong></h1>
-                                    <h1 style="font-weight: 300;font-size: 20px;color: rgb(142,142,142);"><strong id="TutorDescription"></strong></h1>
-                                    
+                                    <h1 style="font-weight: 300;font-size: 20px;color: rgb(142,142,142);"><strong
+                                            id="TutorDescription"></strong></h1>
                                     <div class="float-left"
                                         style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 10px;">
-
                                         <button class="btn btn-primary" onclick="$('#popupEdit').fadeIn()" type="button"
                                             style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 16px;">Edit
                                             &nbsp;<i class="fas fa-pencil-alt"></i></button></div>
-
                                     <div class="float-left"
                                         style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 0px;">
                                         <button class="btn btn-primary" type="button" onclick="deleteStudent()"
@@ -91,25 +80,22 @@
                                             &nbsp;<i class="far fa-trash-alt"></i></button></div>
                                 </div>
                             </div>
-
-                            <div class="table-responsive">
-                                <table class="table" id="results">
-
-                                </table>
+                            <div style="border-bottom: 1px solid #eee;padding-bottom: 20px;">
+                                <div class="row" style="margin-bottom: 30px;">
+                                    <div class="col-12"
+                                        style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 40px;">
+                                        <h1 style="font-weight: 300;">Students</h1>
+                                    </div>
+                                </div>
+                                <div class="row" id="Students" style="margin-left:0px;">
+                                </div>
                             </div>
-
-
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
     </div>
-
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <script src="../../assets/js/script.min.js"></script>
@@ -119,46 +105,28 @@
     <script src="../../assets/js/security.js"></script>
     <script src="/portal/assets/js/nav.js"></script>
     <script>
-
         var tutor_group_id = getUrlParameter('tutor_group_id').replace("-", " ");
-
-
         function refresh() {
             console.log("refresh :" + tutor_group_id);
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postGrabTutorGroup', { tutor_group_id: tutor_group_id }, function (reply) {
                 console.log(reply);
-
-
-
-
                 if (reply.status == false) {
-
                     $('#Name').html(reply.studentData[0].given_name + " " + reply.studentData[0].family_name);
-
                 } else if (reply.status == true) {
-
                     $('#Name').val(reply.groupData[0].name);
                     $('#Description').val(reply.groupData[0].description);
-
                     $('#TutorGroupName').html(reply.groupData[0].name);
                     $('#TutorDescription').html(reply.groupData[0].description);
-
-                    $('#results').html('<tr style="font-weight: normal!important;"> <th style="width: 120px;"></th> <th style="font-weight: normal;">Name</th> <th style="font-weight: normal;">Tutor Group</th> <th style="font-weight: normal;">UPN</th>  <th style="font-weight: normal;">Destination</th> <th style="font-weight: normal;">Aspiration</th> </tr>');
-                    for (var i = 0; i < reply.students.length; i++) {
-
-                        $('#results').append('<tr class="item" search="search ' + reply.students[i].given_name + ' ' + reply.students[i].family_name + ' ' + reply.students[i].upn + ' search" style="font-weight: bold;"><td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="../assets/img/placeholder.png" style="width: 100%;min-height: 100%;"></div> </td> <td style="font-size: 15px;"> <a  href="/portal/students/profile/?student_id=' + reply.students[i].id + '">' + reply.students[i].given_name + ' ' + reply.students[i].family_name + '</a></td> <td style="font-size: 15px;">' + reply.groupData[0].name + '</td> <td style="font-size: 15px;">' + reply.students[i].upn + '</td> <td style="font-size: 15px;">' + reply.students[i].destination + '</td><td style="font-size: 15px;">' + reply.students[i].aspiration + '</td></tr> ');
-
-
-                    }
-
-                } else {
-
+                }
+                else {
                     $('#Name').html("error");
                 }
-
+                for (i = 0; i < reply.students.length; i++) {
+                    console.log(reply.students[i].given_name + " " + reply.students[i].family_name + + reply.students[i].upn);
+                    $('#Students').append('<a style="color:black!important;text-decoration:none!important;"href="/portal/mentors/profile/?mentor_id=' + reply.students[i].id + '"><div class="col-2"> <div class="match" style="min-width:100px;"><div class="border m-auto d-block rounded-circle" style="width: 50px;height: 50px;overflow: hidden;"> <img src="https://www.blooware.co.uk/assets/img/IMG_4260.jpg" style="width: 100%;"> </div> <p style="text-align:center;font-weight:bold;margin-top:10px;">' + reply.students[i].given_name + " " + reply.students[i].family_name + '</p><p style="text-align:center;font-size:0.8em;">UPN: ' + reply.students[i].upn + '</p> </div> </div>')
+                }
             });
         }
-
         function postToLambda(url, data, callback) {
             $.ajax({
                 url,
@@ -173,32 +141,21 @@
                 }
             });
         }
-
         function getUrlParameter(name) {
             name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
             var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
             var results = regex.exec(location.search);
             return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
         };
-
         $(".saveEdit").submit(function (e) {
             e.preventDefault();
-
             console.log(objectifyForm(this));
-
-
-
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postUpdateTutorGroup", { groupInfo: objectifyForm(this), tutor_group_id: tutor_group_id }, function (reply) {
                 //console.log(reply);
                 refresh();
             });
-
-
-
         });
-
         function objectifyForm(formArray) {//serialize data function
-
             var returnArray = {};
             for (var i = 0; i < formArray.length; i++) {
                 if (formArray[i]['type'] == "checkbox") {
@@ -216,21 +173,13 @@
             }
             return returnArray;
         }
-
-
-
-
         function deleteStudent() {
             console.log(tutor_group_id);
-
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postDeleteStudent", { tutor_group_id: tutor_group_id }, function (reply) {
                 //console.log(reply);
                 //refresh();
             });
-
         }
-
     </script>
 </body>
-
 </html>
