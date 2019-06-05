@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400">
     <link rel="stylesheet" href="../../assets/css/styles.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <script src="https://unpkg.com/scrollreveal"></script>
     <script>
         //ScrollReveal({ reset: true });
@@ -411,12 +412,10 @@
                 }
                 for (i = 0; i < reply.assignedMentors.length; i++) {
                     console.log(reply.assignedMentors[i].first_name + " " + reply.assignedMentors[i].last_name);
-                    $('#matches').append('<a onclick="RemoveMentor(' + reply.assignedMentors[i].id + ')">Remove <a style="color:black!important;text-decoration:none!important;"href="/portal/mentors/profile/?mentor_id=' + reply.assignedMentors[i].id + '"><div class="col-3"> <div class="match" style="width:100px;"> <div class="border m-auto d-block rounded-circle" style="width: 50px;height: 50px;overflow: hidden;"> <img src="https://www.blooware.co.uk/assets/img/IMG_4260.jpg" style="width: 100%;"> </div> <p style="text-align:center;">' + reply.assignedMentors[i].first_name + " " + reply.assignedMentors[i].last_name + '</p> </div> </div>')
+                    $('#matches').append('<a style="color:black!important;text-decoration:none!important;"href="/portal/mentors/profile/?mentor_id=' + reply.assignedMentors[i].id + '"><div class="col-3"> <div class="match" style="width:100px;"><a style="color:#d32641!important;left:10px;top:10px;cursor:pointer;" onclick="RemoveMentor(' + reply.assignedMentors[i].id + ')"><i class="icon ion-android-remove-circle"></i></a><div class="border m-auto d-block rounded-circle" style="width: 50px;height: 50px;overflow: hidden;"> <img src="https://www.blooware.co.uk/assets/img/IMG_4260.jpg" style="width: 100%;"> </div> <p style="text-align:center;">' + reply.assignedMentors[i].first_name + " " + reply.assignedMentors[i].last_name + '</p> </div> </div>')
                 }
                 $('#matches').append('<div class="col-3"> <div class="" style="width:100px;"> <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#MentorCollapse" aria-expanded="true" aria-controls="MentorCollapse" style="margin:10px;padding:12px 24px;font-size:24px;outline:none;color:#234e67;background:transparent;box-shadow:none!important;border-radius: 10px;background-position: bottom;border:0px;"><i class="fas fa-plus"></i> </button> </div>')
                 if (reply.status == false) {
-
-                    console.log("false BOI");
                     $('.Name').html(reply.studentData[0].given_name + " " + reply.studentData[0].family_name);
                 } else if (reply.status == true) {
                     $('.Name').html(reply.studentData[0].given_name + " " + reply.studentData[0].family_name);
