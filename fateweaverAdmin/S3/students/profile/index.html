@@ -412,7 +412,7 @@
                 }
                 for (i = 0; i < reply.assignedMentors.length; i++) {
                     console.log(reply.assignedMentors[i].first_name + " " + reply.assignedMentors[i].last_name);
-                    $('#matches').append('<a style="color:black!important;text-decoration:none!important;"href="/portal/mentors/profile/?mentor_id=' + reply.assignedMentors[i].id + '"><div class="col-3"> <div class="match" style="width:100px;"><a style="color:#d32641!important;left:10px;top:10px;cursor:pointer;" onclick="RemoveMentor(' + reply.assignedMentors[i].id + ')"><i class="icon ion-android-remove-circle"></i></a><div class="border m-auto d-block rounded-circle" style="width: 50px;height: 50px;overflow: hidden;"> <img src="https://www.blooware.co.uk/assets/img/IMG_4260.jpg" style="width: 100%;"> </div> <p style="text-align:center;">' + reply.assignedMentors[i].first_name + " " + reply.assignedMentors[i].last_name + '</p> </div> </div>')
+                    $('#matches').append('<a style="color:black!important;text-decoration:none!important;"href="/portal/mentors/profile/?mentor_id=' + reply.assignedMentors[i].id + '"><div class="col-3"> <div class="match" style="width:100px;"><a style="color:#d32641!important;left:10px;top:10px;margin-bottom:-20px;cursor:pointer;" onclick="RemoveMentor(' + reply.assignedMentors[i].id + ')"><i class="icon ion-android-remove-circle"></i></a><div class="border m-auto d-block rounded-circle" style="width: 50px;height: 50px;overflow: hidden;"> <img src="https://gradientjoy.com/300x400" style="width: 100%;"> </div> <p style="text-align:center;padding-top:10px;">' + reply.assignedMentors[i].first_name + " " + reply.assignedMentors[i].last_name + '</p> </div> </div>')
                 }
                 $('#matches').append('<div class="col-3"> <div class="" style="width:100px;"> <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#MentorCollapse" aria-expanded="true" aria-controls="MentorCollapse" style="margin:10px;padding:12px 24px;font-size:24px;outline:none;color:#234e67;background:transparent;box-shadow:none!important;border-radius: 10px;background-position: bottom;border:0px;"><i class="fas fa-plus"></i> </button> </div>')
                 if (reply.status == false) {
@@ -442,8 +442,16 @@
                     $('.pp').html(reply.studentData[0].pp);
                     $('.sen').html(reply.studentData[0].sen);
                     $('.year').html(reply.studentData[0].yearGroup);
-                    $('.progressPercentage').html(((100 / 14) * reply.studentData[0].yearGroup).toFixed(0).toString());
-                    $('.progressPercentageBar').css("width", ((100 / 14) * reply.studentData[0].yearGroup).toString() + "%");
+
+                    if(((100 / 14) * reply.studentData[0].yearGroup) > 100){
+                        $('.progressPercentage').html("100");
+                        $('.progressPercentageBar').css("width", ((100 / 14) * reply.studentData[0].yearGroup).toString() + "%");
+                    }else{
+                        
+                        $('.progressPercentage').html(((100 / 14) * reply.studentData[0].yearGroup).toFixed(0).toString());
+                        $('.progressPercentageBar').css("width", ((100 / 14) * reply.studentData[0].yearGroup).toString() + "%");
+                    }
+                    
                 }
                 else {
                     $('.Name').html("error");
