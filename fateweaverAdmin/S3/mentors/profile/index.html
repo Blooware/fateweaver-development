@@ -72,6 +72,17 @@
 
 
             </form>
+
+            <form method="post" class="addIndustry">
+                <select id="industries" name="industry">
+
+                </select>
+                <button class="form-input d-block m-auto"
+                    style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 0px solid #ccc; background: rgb(0, 150, 92); border-radius:300px; width: 250px;color:#fff"
+                    type="submit">add industry</button>
+            </form>
+
+            
             <form method="post" class="addInterest">
                 <select id="interest" name="interest">
 
@@ -80,6 +91,8 @@
                     style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 0px solid #ccc; background: rgb(0, 150, 92); border-radius:300px; width: 250px;color:#fff"
                     type="submit">add interest</button>
             </form>
+            
+            
 
 
 
@@ -295,6 +308,15 @@
                 }
 
             });
+            postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-getIndustries', {}, function (reply) {
+                console.log(reply);
+                
+                $('#industries').html();
+                for (i = 0; i < reply.body.length; i++) {
+                    $('#industries').append('<option value="' + reply.body[i].id + '">' + reply.body[i].name + '</option>');
+                }
+                
+            });
         }
 
 
@@ -344,6 +366,14 @@
             e.preventDefault();
             //console.log(objectifyForm(this));
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postAddMentorInterest", { mentorInfo: objectifyForm(this), mentor_id: mentor_id }, function (reply) {
+                console.log(reply);
+                refresh();
+            });
+        });
+        $(".addIndustry").submit(function (e) {
+            e.preventDefault();
+            //console.log(objectifyForm(this));
+            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postAddMentorIndustry", { mentorInfo: objectifyForm(this), mentor_id: mentor_id }, function (reply) {
                 console.log(reply);
                 refresh();
             });
