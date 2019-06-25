@@ -77,51 +77,6 @@
             </div>
         </div>
 
-        <div class="d-inline-flex popup2" id="popup2"
-            style="display: none!important;border-radius: 15px;padding: 3%;position: relative;-webkit-box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);position: fixed;width: 100%;height: 80%;width: 80%;top: 10%;background: #FFF;left: 10%;z-index: 999999999999999999999999999999999999999999;">
-
-
-
-            <form method="post" class="create">
-                <div class="form-group" style="padding:30px;padding-left:0px;padding-top:0px;">
-                    <p class="d-inline"
-                        style="text-align: right;cursor: pointer;text-decoration: underline; float:left; "
-                        onclick="$('.popup2').attr('style', $('.popup2').attr('style') + ';display: none!important;');">
-                        Close</p>
-
-                </div>
-                <input placeholder="givenName" type="text" id="given_name" name="givenName" /><br>
-                <input placeholder="family_name" type="text" id="family_name" name="familyName"/><br>
-                <input placeholder="dob" type="date" id="dob" name="dob"/><br>
-                <input placeholder="gender" type="text" id="gender" name="gender"/><br>
-                <input placeholder="postcode" type="text" id="postcode" name="postcode"/><br>
-                <input placeholder="upn" type="text" id="upn" name="upn"/><br>
-                <input placeholder="uln" type="text" id="uln" name="uln"/><br>
-                <input placeholder="tutorGroup" type="text" id="tutorGroup" name="tutorGroup"/><br>
-                <input placeholder="pp" type="text" id="pp" name="pp"/><br><!--pupil premium-->
-                <input placeholder="sen" type="text" id="sen" name="sen"/><br> <!--special education needs-->
-
-                <button type="submit">Create</button>
-            </form>
-
-            <div class="circle-loader" style="display:none;text-align: center;">
-                <div class="sk-circle">
-                    <div class="sk-circle1 sk-child"></div>
-                    <div class="sk-circle2 sk-child"></div>
-                    <div class="sk-circle3 sk-child"></div>
-                    <div class="sk-circle4 sk-child"></div>
-                    <div class="sk-circle5 sk-child"></div>
-                    <div class="sk-circle6 sk-child"></div>
-                    <div class="sk-circle7 sk-child"></div>
-                    <div class="sk-circle8 sk-child"></div>
-                    <div class="sk-circle9 sk-child"></div>
-                    <div class="sk-circle10 sk-child"></div>
-                    <div class="sk-circle11 sk-child"></div>
-                    <div class="sk-circle12 sk-child"></div>
-                </div>
-            </div>
-        </div>
-
     </div>
     <div id="wrapper">
          <!--navigation-->         
@@ -155,12 +110,7 @@
                                 Students &nbsp;<i class="fa fa-cloud-upload"></i>
                             </button>
 
-                            </a>
-
-                            <button onclick="$('#popup2').fadeIn()" class="btn btn-primary" type="button"
-                            style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 20px;">Add
-                            Tutor Group &nbsp;<i class="fa fa-cloud-upload"></i>
-                        </button>
+                            
                          
                             <button class="btn btn-primary" type="button" onclick="getReport()" style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 20px;">Generate Report &nbsp;<i class="fa fa-paste"></i></button></div>
                     </div>
@@ -344,39 +294,6 @@
             // Read in the image file as a data URL.
             reader.readAsBinaryString(f);
         }
-
-
-
-
-        $(".create").submit(function (e) {
-            e.preventDefault();
-            console.log(objectifyForm(this));
-            
-            $(".circle-loader").show();
-            $(this).hide();
-            
-            
-            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postCreateStudent", [objectifyForm(this)], function (reply) {
-                //console.log(reply);
-                /*
-                try {
-                    $(".circle-loader").html("<p>Success! Completed " + reply.Done.length + "/" + reply.NotDone.length + '</p><br><br><div class="table-responsive"> <table class="table" id="NotDone-results"></table></div>');
-
-                } catch (e) {
-                    $(".circle-loader").html('<p>Success!</p><br><br><div class="table-responsive"> <table class="table" id="NotDone-results"></table></div>');
-
-                }
-                
-                
-                for (var i = 0; i < reply.NotDone.length; i++) {
-                    studentsToEdit.push(reply.NotDone[i].jsonStudent);
-                    $('#NotDone-results').append('<a href="/BloowarePortal/School/?id=' + reply.NotDone[i].jsonStudent.id + '"><tr style="font-weight: bold;"> <td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="assets/img/placeholder.png" style="width: 100%;min-height: 100%;"></div> </td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.given_name + ' ' + reply.NotDone[i].jsonStudent.family_name + '</td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.tutor_group_id + '</td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.upn + '</td> <td style="font-size: 15px;">' + reply.NotDone[i].jsonStudent.aspiration + '</td> <td style="font-size: 15px;"><button onclick="replaceStudent(' + i + ')">Replace</button></td> <td style="font-size: 15px;"><button onclick="ignoreStudent(' + i + ')">Ignore</button></td></tr> </a>');
-                }
-                */
-                
-            });
-            
-        });
 
         function objectifyForm(formArray) {//serialize data function
 
