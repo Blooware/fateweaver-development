@@ -16,7 +16,7 @@ var connection = mysql.createConnection({
 });
 
 exports.handler = (event, context, callback) => {
-
+    
     connection.query("select * from fateweaver.student_files where id = ? and student_id in (select id from fateweaver.students where school_id = (select school_id from fateweaver.admins where cognito_id = ?)) ", [event.form.file_id, event.account.sub], function (err, results, fields) {
         if (err) {
             context.succeed({
@@ -64,6 +64,7 @@ exports.handler = (event, context, callback) => {
             });
         }
     });
+
 }
 
 //destination_sessions--
