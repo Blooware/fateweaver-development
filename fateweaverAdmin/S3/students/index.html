@@ -248,6 +248,7 @@
     <script src="https://www.blooware.co.uk/blooAuth/blooAuth.js"></script>
     <script src="../assets/js/security.js"></script>
     <script src="/portal/assets/js/nav.js"></script>
+    <script src="https://s3.eu-west-2.amazonaws.com/www.blooware.co.uk/blooNotif/notif.js"></script>
     <script>
 
         function search(x) {
@@ -487,8 +488,12 @@
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postCreateStudent", [objectifyForm(this)], function (reply) {
                 console.log(reply);
                 //window.location.reload();
+
+                //confirmPopup("This is now the job of the week.", 3000);
+
                 if(reply.body){
                     refresh();
+                    confirmPopup("Added Student", 2000);
                     $('.popup2').attr('style', $('.popup2').attr('style') + ';display: none!important;');
                                         
                 } else {
