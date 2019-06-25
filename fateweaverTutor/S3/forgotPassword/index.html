@@ -22,12 +22,12 @@
         <form method="post" style="background-color: #234e67!important;">
             <h2 class="sr-only">Login Form</h2>
             <div class="illustration"></div>
-            <div class="form-group"><input class="form-control" type="email" name="email" required="" placeholder="Email" id="userEmail" ></div>
-            <div class="form-group"><input class="form-control" type="password" name="password" required="" id="userPassword" placeholder="Password"></div>
-            
-            <p id="ErrMsg" class="text-center" style="display: none; color: #fff!important;"></p>
-            <div class="form-group"><button class="btn btn-primary btn-block" type="button" onclick="signMeIn()" style="background-color: #3c92da;">Log In(Tutor)</button>
-            </div><a onclick="forgotPassword()" class="forgot" style="color: #fff!important;">Forgot your email or password?</a></form>
+            <div class="form-group"><input class="form-control" type="email" name="email" required=""
+                placeholder="Email" id="userEmail"></div>
+
+        <p id="ErrMsg" class="text-center" style="display: none; color: rgb(155, 155, 155)!important;"></p>
+            <div class="form-group"><button class="btn btn-primary btn-block" type="button" onclick="forgotPasswordSender()" style="background-color: #3c92da;">Reset Password</button>
+            </div><a href="/tutor/signIn" class="forgot" style="color: #fff!important;">already have an account?</a></form>
     </div>
     <div class="footer-basic" style="position: absolute;width: 100%;bottom: 0;background-color: rgba(255,255,255,0);">
         <footer>
@@ -50,12 +50,13 @@
 <script src="https://www.blooware.co.uk/blooAuth/vendor/jquery-3.1.0.js"></script>
 <script src="https://www.blooware.co.uk/blooAuth/vendor/aws-cognito-sdk.min.js"></script>
 <script src="https://www.blooware.co.uk/blooAuth/vendor/amazon-cognito-identity.min.js"></script>
-<script src="https://www.blooware.co.uk/blooAuth/blooAuth0.3.js"></script>
+<script src="https://www.blooware.co.uk/blooAuth/blooAuth0.5.js"></script>
 
 <script>
 
     $(document).ready(function () {
         connectToPool('eu-west-2_bXvoN04Fk', '70esqgdtmbq0ao3u2a1lqo0dre', function () {
+
             console.log("Connected to AWS");
             signedIn(function (response) {
                 if (response.success) {
@@ -66,35 +67,42 @@
         });
     });
 
-    function signMeIn() {
-        $("#ErrMsg").html("");
-        signIn($('#userEmail').val().toLowerCase(), $('#userPassword').val(), function () {
-            window.location.href = '/tutor';
-        }, function (error) {
-            var errorType = error.toString().substr(0, error.toString().indexOf(':'));
-            console.log(errorType);
-            if (errorType == "UserNotConfirmedException") {
-                window.location.href = '/tutor/verify/?email=' + $("#userEmail").val();
-            }
+    function forgotPasswordSender() {
+        connectToPool('eu-west-2_bXvoN04Fk', '70esqgdtmbq0ao3u2a1lqo0dre', function () {
+            resetPassword($('#userEmail').val().toLowerCase(), 
+            function(){
+                console.log("Success")
+                window.location.href = '/tutor/resetPassword/?email=' + $('#userEmail').val() ;
 
-            if (errorType == "UserNotFoundException") {
-                $("#ErrMsg").show().html("User Not Found");
+            }, 
+            function (err){
+                $("#ErrMsg").show().html("Error")
+                console.log("Failure" + err);
             }
-            if (errorType == "NotAuthorizedException" || errorType == "InvalidPasswordException") {
-                $("#ErrMsg").show().html("Incorrect Password");
-            }
-            if (errorType == "PasswordResetRequiredException") {
-                $("#ErrMsg").show().html("Reset Password Not Implimented yet");
-            }
+            
+            );
 
-            else {
-                console.log(errorType);
-            }
 
+            /*
+            resetPassword(function (response) {
+                if (response.success) {
+                    console.log("Success");
+
+                } else {
+                    console.log("Fail");
+                }
+            });
+            */
         });
+
     }
-    function forgotPassword(){
-        window.location.href = "/tutor/forgotPassword/?email=" + $('#userEmail').val();
-    }
+
+    $('#userEmail').val( getUrlParameter('email').replace("-", " "));
+    function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
 
 </script>
