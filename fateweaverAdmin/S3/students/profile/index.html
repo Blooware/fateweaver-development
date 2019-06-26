@@ -136,6 +136,13 @@
                                         <button class="btn btn-primary" onclick="$('#popupEdit').fadeIn()" type="button"
                                             style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 16px;">Edit
                                             &nbsp;<i class="fas fa-pencil-alt"></i></button></div>
+                                    
+                                    <div class="float-left"
+                                        style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 10px;">
+                                        <button class="btn btn-primary"  onclick="if(confirm('Are you sure you want to deactivate this student?')) Deactivate()" type="button"
+                                            style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 16px;">Deactivate? &nbsp;<i class="fas fa-trash-alt"></i></button></div>
+
+                                    
                                     <div class="float-left"
                                         style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 0px;">
                                         <button class="btn btn-primary" type="button"
@@ -423,6 +430,7 @@
         function refresh() {
             ScrollReveal({ reset: true });
             $('#interests').html("");
+            $('#subjects').html("");
             $('#timeline').html("");
             $('#filesList').html("");
             $('#matches').html("");
@@ -453,7 +461,8 @@
                     $('#interests').append('<button style="outline:none;margin:10px;padding:24px 24px;font-size:24px;color:#fff;background-color:#fff;text-shadow: 0 0 5px rgba(0,0,0,1);background-image: url(https://source.unsplash.com/300x100/?' + reply.studentInterests[i].name.replace(" ", "%20") + ');background-size:cover;background-position:bottom;border-radius: 10px;background-position: bottom;border:0px;"> ' + reply.studentInterests[i].name + ' </button>');
                 }
                 for (i = 0; i < reply.subjects.length; i++) {
-                    $('#subjects').append('<button style="outline:none;margin:10px;padding:24px 24px;font-size:24px;color:#fff;background-color:#fff;text-shadow: 0 0 5px rgba(0,0,0,1);background-image: url(https://source.unsplash.com/300x100/?' + reply.subjects[i].name.replace(" ", "%20") + ');background-size:cover;background-position:bottom;border-radius: 10px;background-position: bottom;border:0px;"> ' + reply.subjects[i].name + ' </button>');
+                    $('#subjects').append('<a style="color:#d32641!important;left:10px;top:10px;margin-bottom:-20px;cursor:pointer;" onclick="RemoveSubject(' + reply.subjects[i].id + ')"><i class="icon ion-android-remove-circle"></i></a><button style="outline:none;margin:10px;padding:24px 24px;font-size:24px;color:#fff;background-color:#fff;text-shadow: 0 0 5px rgba(0,0,0,1);background-image: url(https://source.unsplash.com/300x100/?' + reply.subjects[i].name.replace(" ", "%20") + ');background-size:cover;background-position:bottom;border-radius: 10px;background-position: bottom;border:0px;"> ' + reply.subjects[i].name + ' </button>');
+
                 }
                 for (i = 0; i < reply.mentorList.length; i++) {
                     $('#Mentors').append('<option value="' + reply.mentorList[i].id + '">' + reply.mentorList[i].first_name + " " + reply.mentorList[i].last_name + '</option>');
@@ -657,6 +666,24 @@
                 console.log(reply);
                 refresh();
             });
+        }
+        function RemoveSubject(subject_id) {
+            console.log("subject id to remove" + subject_id);
+            
+            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postRemoveStudentSubject", { subject_id: subject_id, student_id: student_id }, function (reply) {
+                console.log(reply);
+                refresh();
+            });
+            
+        }
+        function Deactivate(){
+            console.log("Deactivate Student??");
+
+            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postDeactivateStudent", { student_id: student_id }, function (reply) {
+                console.log(reply);
+                refresh();
+            });
+
         }
     </script>
 </body>

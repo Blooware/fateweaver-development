@@ -83,7 +83,7 @@ exports.handler = (event, context, callback) => {
                                         });
                                     }
                                     var industries = results;
-                                    connection.query("select id, name from fateweaver.subjects where id in (select subject_id from fateweaver.student_subjects where student_id = 34 and finished is null)", [event.form.student_id], function (err, results, fields) {
+                                    connection.query("select id, name from fateweaver.subjects where id in (select subject_id from fateweaver.student_subjects where student_id = ? and finished is null)", [event.form.student_id], function (err, results, fields) {
                                         if (err) {
                                             console.log("Error getting tutor groups:", err);
                                             context.succeed({
