@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html style="width:100%;height:100%;">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -14,6 +15,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400">
     <link rel="stylesheet" href="../assets/css/styles.min.css">
 </head>
+
 <body style="width:100%;height:100%;">
     <div class="container">
         <h1 class="text-center"
@@ -26,7 +28,8 @@
             few minutes to arrive.</p>
     </div>
     <div class="login-clean">
-        <form method="post" style="background-color: #234e67!important;padding:40px!important;">
+        <div
+            style="max-width:320px;width:90%;margin:0 auto;border-radius:4px;color:#505e6c;box-shadow:1px 1px 5px rgba(0,0,0,.1);background-color: #234e67!important;padding:40px!important;">
             <h2 class="sr-only">Verify Form</h2>
             <div class="form-group">
                 <input class="form-control" type="email" id="userEmail" name="email" required placeholder="Email">
@@ -41,7 +44,9 @@
             </div>
             <a href="/portal/signIn" style="color:white!important;text-decoration:none!important;margin:auto!important;"
                 class="text-center d-block">Already Verified Account?</a>
-        </form>
+            <a href="/portal/signUp" style="color:white!important;text-decoration:none!important;margin:auto!important;"
+                class="text-center d-block">Not Yet created an account?</a>
+        </div>
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
@@ -56,6 +61,7 @@
         <p class="copyright">Student Path is a product of Blooware © 2019</p>
     </footer>
 </div>
+
 </html>
 <script src="https://www.blooware.co.uk/blooAuth/vendor/jquery-3.1.0.js"></script>
 <script src="https://www.blooware.co.uk/blooAuth/vendor/aws-cognito-sdk.min.js"></script>
