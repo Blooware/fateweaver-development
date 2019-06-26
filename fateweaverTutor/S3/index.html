@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html style="display:none;">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -13,7 +12,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400">
     <link rel="stylesheet" href="assets/css/styles.min.css">
 </head>
-
 <body style="width: 100%;height: 100%;background-color: #ffffff;">
     <div id="wrapper">
         <!--navigation-->
@@ -23,8 +21,7 @@
                     <a href="/tutor" style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fa fa-home" style="padding-right: 10px;width: 60px;"></i>HOME
                     </a>
-                    <a class="text-uppercase" href="/tutor/groups"
-                        style="color: #fff!important;padding-bottom: 10px;">
+                    <a class="text-uppercase" href="/tutor/groups" style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fa fa-user" style="padding-right: 10px;width: 60px;"></i>GROUPS
                     </a>
                     <a class="text-uppercase" href="/tutor/students"
@@ -68,61 +65,157 @@
                         <div class="col-9" style="margin-top: 50px;">
                             <!-- Content Here-->
                             <div class="row" style="margin-top: 50px;">
-                                    <div class="col-12"
-                                        style="margin-bottom: 50px;padding-bottom: 30px;font-family: Roboto, sans-serif;">
-                                        <h1 style="font-weight: bold;">Welcome home,</h1>
-                                        <h1 style="font-weight: 300;font-size:18px; color:#666;">Here you can see an overview of everything. Recommendations, NEET's, statistics and more.</h1>
+                                <div class="col-12"
+                                    style="margin-bottom: 50px;padding-bottom: 30px;font-family: Roboto, sans-serif;">
+                                    <h1 style="font-weight: bold;">Welcome home,</h1>
+                                    <h1 style="font-weight: 300;font-size:18px; color:#666;">Here you can see an
+                                        overview of everything. Recommendations, NEET's, statistics and more.</h1>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom: 20px;">
+                                <div class="col-3">
+                                    <div
+                                        style="background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);">
+                                        <h1 id="studentCount" class="text-center"
+                                            style="padding-top: 75px;font-size:60px;color: #234e67;">
+                                            <div class="spinner-border text-primary d-block m-auto"
+                                                style="font-size:1em!important;" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </h1>
+                                        <p class="text-center" style="color: #888;">Students</p>
                                     </div>
                                 </div>
-                                <div class="row" style="margin-bottom: 20px;">
-                                    <div class="col-3">
-                                        <div
-                                            style="background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);">
-                                            <h1 id ="studentCount" class="text-center"
-                                                style="padding-top: 75px;font-size:1em;color: #234e67;">
-                                                <div class="spinner-border text-primary d-block m-auto" role="status">
-                                                    <span class="sr-only">Loading...</span>
-                                                  </div>
-                                            </h1>
-                                            <p class="text-center" style="color: #888;">Students</p>
-                                        </div>
+                                <div class="col-3">
+                                    <div
+                                        style="background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);">
+                                        <h1 id="groupCount" class="text-center"
+                                            style="padding-top: 75px;font-size:60px;color: #234e67;">
+                                            <div class="spinner-border text-primary d-block m-auto"
+                                                style="font-size:1em!important;" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </h1>
+                                        <p class="text-center" style="color: #888;">Tutor Group(s)</p>
                                     </div>
-                                    <div class="col-9">
-                                        <div
-                                            style="background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);">
-                                            <div style="padding-top: 40px;margin-bottom: -27px;">
-                                                <div class="text-center border rounded-circle d-block m-auto"
-                                                    style="height: 60px;width: 60px;border: 0px solid #0078db!important;background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);background-size: 400% 400%;transform: scale(1.4);-webkit-animation: Gradient 6.2s ease infinite;-moz-animation: Gradient 6.2s ease infinite;animation: Gradient 6.2s ease infinite;">
-                                                    <div style="padding-top: 5px;padding-left: 5px;">
-                                                        <div class="text-center border rounded-circle"
-                                                            style="height: 50px;width: 50px;border: 0px solid #0078db!important;background: #fff;border-radius: 50%;">
-                                                        </div>
+                                </div>
+                                <div class="col-6">
+                                    <div
+                                        style="background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);">
+                                        <div style="padding-top: 40px;margin-bottom: -27px;">
+                                            <div class="text-center border rounded-circle d-block m-auto"
+                                                style="height: 60px;width: 60px;border: 0px solid #0078db!important;background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);background-size: 400% 400%;transform: scale(1.4);-webkit-animation: Gradient 6.2s ease infinite;-moz-animation: Gradient 6.2s ease infinite;animation: Gradient 6.2s ease infinite;">
+                                                <div style="padding-top: 5px;padding-left: 5px;">
+                                                    <div class="text-center border rounded-circle"
+                                                        style="height: 50px;width: 50px;border: 0px solid #0078db!important;background: #fff;border-radius: 50%;">
                                                     </div>
                                                 </div>
                                             </div>
-                                            <h1 class="text-center"
-                                                style="padding-top: 50px;font-size: 20px;line-height: 100px;color: #555;margin-bottom: 0px;">
-                                                Welcome back, <strong>have a great day</strong>.</h1>
                                         </div>
+                                        <h1 class="text-center"
+                                            style="padding-top: 50px;font-size: 20px;line-height: 100px;color: #555;margin-bottom: 0px;">
+                                            Welcome back, <strong>have a great day</strong>.</h1>
                                     </div>
                                 </div>
-                                <div>
+                            </div>
+                            <div>
+                                <div class="row" style="margin-top: 50px;">
+                                    <div class="col-12"
+                                        style="margin-top: 50px;padding-bottom: 30px;font-family: Roboto, sans-serif;">
+                                        <h1 style="font-weight: 300;">Potential NEET'S</h1>
+                                    </div>
+                                </div>
+                                <div class="row potentialNeets" style="margin-top: 0px;">
+                                    <div class="spinner-border text-primary d-block m-auto" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
                                     <div class="row" style="margin-top: 50px;">
                                         <div class="col-12"
                                             style="margin-top: 50px;padding-bottom: 30px;font-family: Roboto, sans-serif;">
-                                            <h1 style="font-weight: 300;">Potential NEET'S</h1>
+                                            <h1 style="font-weight: 300;">Matches</h1>
+                                            <h1 style="font-weight: 300;font-size:18px; color:#0078db;">Demo data. Add mentors and students to begin.</h1>
                                         </div>
                                     </div>
-                                    <div class="row potentialNeets" style="margin-top: 0px;">
-                                        <div class="spinner-border text-primary d-block m-auto" role="status">
-                                            <span class="sr-only">Loading...</span>
-                                          </div> 
+                                    <div class="row" style="margin-top: 0px;">
+                                        <div class="col-8">
+                                            <div
+                                                style="background: transparent;height: 50px;width: 100%;border-radius: 20px;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);background: #fff;">
+                                                <p class="text-left float-left"
+                                                    style="width: 40%;color: #666;font-weight: 600;font-size: 18px;line-height: 50px;margin: 0px;padding-left: 40px;">
+                                                    Huw Prosser</p>
+                                                <p class="text-center float-left"
+                                                    style="width: 20%;color: #666;font-weight: 600;font-size: 18px;line-height: 50px;">
+                                                    <i class="fa fa-arrows-h"
+                                                        style="font-size: 25px;line-height: 50px;"></i></p>
+                                                <p class="text-right float-left"
+                                                    style="width: 40%;color: #34c17d;font-weight: 600;font-size: 18px;line-height: 50px;text-indent: 60px;padding-right: 40px;">
+                                                    Clive Barker</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div
+                                                style="background: transparent;height: 50px;border-radius: 20px;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);background: #fff;background-color: rgb(35,78,103);min-width: 30px;">
+                                                <p class="text-left float-left"
+                                                    style="width: 100%;color: #fff;font-size: 18px;line-height: 50px;margin: 0px;padding-left: 40px;">
+                                                    Career Guidance</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-top: 0px;">
+                                        <div class="col-8">
+                                            <div
+                                                style="background: transparent;height: 50px;width: 100%;border-radius: 20px;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);background: #fff;">
+                                                <p class="text-left float-left"
+                                                    style="width: 40%;color: #666;font-weight: 600;font-size: 18px;line-height: 50px;margin: 0px;padding-left: 40px;">
+                                                    John Croydon</p>
+                                                <p class="text-center float-left"
+                                                    style="width: 20%;color: #666;font-weight: 600;font-size: 18px;line-height: 50px;">
+                                                    <i class="fa fa-arrows-h"
+                                                        style="font-size: 25px;line-height: 50px;"></i></p>
+                                                <p class="text-right float-left"
+                                                    style="width: 40%;color: #34c17d;font-weight: 600;font-size: 18px;line-height: 50px;text-indent: 60px;padding-right: 40px;">
+                                                    Paul Blake</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div
+                                                style="background: transparent;height: 50px;border-radius: 20px;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);background: #fff;background-color: rgb(35,78,103);min-width: 30px;">
+                                                <p class="text-left float-left"
+                                                    style="width: 100%;color: #fff;font-size: 18px;line-height: 50px;margin: 0px;padding-left: 40px;">
+                                                    Inspiration</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-top: 0px;">
+                                        <div class="col-8">
+                                            <div
+                                                style="background: transparent;height: 50px;width: 100%;border-radius: 20px;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);background: #fff;">
+                                                <p class="text-left float-left"
+                                                    style="width: 40%;color: #666;font-weight: 600;font-size: 18px;line-height: 50px;margin: 0px;padding-left: 40px;">
+                                                    Dan Byrne</p>
+                                                <p class="text-center float-left"
+                                                    style="width: 20%;color: #666;font-weight: 600;font-size: 18px;line-height: 50px;">
+                                                    <i class="fa fa-arrows-h"
+                                                        style="font-size: 25px;line-height: 50px;"></i></p>
+                                                <p class="text-right float-left"
+                                                    style="width: 40%;color: #34c17d;font-weight: 600;font-size: 18px;line-height: 50px;text-indent: 60px;padding-right: 40px;">
+                                                    Amy Rose</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div
+                                                style="background: transparent;height: 50px;border-radius: 20px;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);background: #fff;background-color: rgb(35,78,103);min-width: 30px;">
+                                                <p class="text-left float-left"
+                                                    style="width: 100%;color: #fff;font-size: 18px;line-height: 50px;margin: 0px;padding-left: 40px;">
+                                                    Common Interest</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             <!-- Show most current Tutor Group link-->
-                            
-
-
                         </div>
                     </div>
                 </div>
@@ -151,40 +244,47 @@
                 }
             });
         }
-
-
-        refresh();
+        
+        //refresh();
         function refresh() {
             //console.log("it's working");
-            
+            //console.log(token);
             postToLambda('https://t3xkdnmau3.execute-api.eu-west-2.amazonaws.com/develop/fateweaverTutor-getHome', [], function (reply) {
                 console.log(reply);
-
-                
-
-
-
-                /*
-                $('#jobCount').html(reply.jobs.length);
-                $('#applicantCount').html(reply.applicants.length);
-                if(reply.jobWeek.length > 0){
-                    $('#jobWeek').html(reply.jobWeek[0].name); //"<a style='font-weight: bold;' href='/tutor/jobs/profile/?job_id="+ reply.jobWeek[0].id + '"' + reply.jobWeek[0].name + "</a>"
-
-                    $('#jobWeek').attr("href", "/tutor/jobs/profile/?job_id="+ reply.jobWeek[0].id);
-                    
-                } else {
-                    $('#jobWeek').html("<strong>No Job of the week found</strong>");
+                if (reply.body.length>0){
+                    $('#studentCount').html(reply.body.length);
+                    //loadNEETS();
+                    console.log(reply.body.length)
                 }
-                
-                */
+                //do a thing to count tutor groups
+                //$('#groupCount').html();
+            
+               
             });
             
-
         }
-
+        //copied from admin \/
+        /*
+        function loadNEETS(){
+            postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-getNeetScores', [], function (reply) {
+                console.log(reply);
+                        $('.potentialNeets').html("");
+                for (i = 0; i < reply.body.length; i++) {
+                   
+                    if (reply.body[i].neetScore > 1) {
+                        if(reply.body[i].neetScore > 15){
+                            reply.body[i].neetColor = "#d32641";
+                        } else if (reply.body[i].neetScore > 10) {
+                            reply.body[i].neetColor = "rgb(255,168,0)";
+                        } else {
+                            reply.body[i].neetColor = "#0078db";
+                        }
+                        $('.potentialNeets').append('<div class="col-9" style="    padding: 2px;"> <a style="width:100%;" href="/portal/students/profile/?student_id=' + reply.body[i].id + '"> <div style="background: transparent;height: 50px;width: 100%;border-radius: 300px;overflow:hidden;box-shadow: 0 0 10px rgba(30,30,30,0.2);background: #fff;"><div class="row"> <div class="col-6"> <p class="text-left float-left" style="color: #666;font-weight: 600;font-size: 18px;line-height: 50px;margin: 0px;padding-left: 40px;"> ' + reply.body[i].given_name + ' ' + reply.body[i].family_name + '</p></div> <div class="col-6" > <div style="background: transparent;height: 50px;box-shadow: 0 0 10px rgba(30,30,30,0.2);background: #fff;background-color: ' + reply.body[i].neetColor + ';min-width: 30px;"> <p class="text-center float-left" style="width: 100%;color: #fff;font-size: 16px;line-height: 50px;margin: 0px;"> ' + reply.body[i].neetCauses[reply.body[i].neetCauses.length - 1].solution + '</p> </div> </div></div></div>  </a> </div>  <div class="col-3"  style="    padding: 2px;"> <div style="background: transparent;height: 50px;background: #fff;background-color: transparent;min-width: 30px;"> <p class="text-left float-left" style="width: 100%;color: #333;font-size: 18px;line-height: 50px;margin: 0px;padding-left: 24px;"> ' + reply.body[i].monthsLeftSmart + ' months left</p> </div> </div>');
+                    }
+                }
+               
+            });
+        }*/
     </script>
 </body>
-
-
-
 </html>
