@@ -89,8 +89,8 @@
     });
     function refresh() {
         postToLambda('https://mwujmaqyr3.execute-api.eu-west-2.amazonaws.com/Prod/BloowareFateweaver-postGrabSchool', { school_id: school_id }, function (reply) {
-            //console.log(reply);
-            console.log(reply.status);
+            console.log(reply);
+            //console.log(reply.status);
             if (reply.status == false) {
                 console.log("Failed");
                 console.log(reply.errMsg);

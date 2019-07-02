@@ -1,4 +1,4 @@
-//fateweaverAdmin-postUpdateTutor
+//fateweaverAdmin-postUpdateMentor
 
 var mysql = require('mysql');
 var connection = mysql.createConnection({
@@ -10,28 +10,30 @@ var connection = mysql.createConnection({
 
 exports.handler = (event, context, callback) => {
     //callback(null, event);
-    
-    connection.query("select * from fateweaver.tutors where id = ? and school_id = (select school_id from fateweaver.admins where cognito_id = ?)", [event.form.tutor_id, event.account.sub], function (err, results, fields) {
+
+    connection.query("select * from fateweaver.mentors where id = ? and school_id = (select school_id from fateweaver.admins where cognito_id = ?)", [event.form.mentor_id, event.account.sub], function (err, results, fields) {
         if (err) {
             context.succeed({
                 statusCode: 200,
                 status: false,
-                errMsg: "error getting tutor :" + err
+                errMsg: "error getting Mentor :" + err
             });
         }
         if (results.length > 0) {
+
+
             var data = {
-                title: event.form.tutorInfo.title,
-                first_name: event.form.tutorInfo.first_name,
-                second_name: event.form.tutorInfo.second_name,
-                email: event.form.tutorInfo.email,
+                role: event.form.mentorInfo.role,
+                first_name: event.form.mentorInfo.firstName,
+                last_name: event.form.mentorInfo.lastName,
             }
-            connection.query("update fateweaver.tutors set ? where id = ? ", [data, event.form.tutor_id], function (error, results, fields) {
-                if (err) {
+            console.log(data);
+            connection.query("update fateweaver.mentors set ? where id = ?", [data, event.form.mentor_id], function (error, results, fields) {
+                if (error) {
                     context.succeed({
                         statusCode: 200,
                         status: false,
-                        errMsg: "error getting tutor :" + err
+                        errMsg: "error getting Mentor :" + error
                     });
                 } else {
                     context.succeed({
