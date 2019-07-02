@@ -20,18 +20,20 @@ exports.handler = (event, context, callback) => {
             });
         }
         if (results.length > 0) {
+
+
             var data = {
                 role: event.form.mentorInfo.role,
-                first_name: event.form.mentorInfo.first_name,
-                second_name: event.form.mentorInfo.second_name,
-                email: event.form.mentorInfo.email,
+                first_name: event.form.mentorInfo.firstName,
+                last_name: event.form.mentorInfo.lastName,
             }
-            connection.query("update fateweaver.mentors set ? where id = ? ", [data, event.form.mentor_id], function (error, results, fields) {
-                if (err) {
+            console.log(data);
+            connection.query("update fateweaver.mentors set ? where id = ?", [data, event.form.mentor_id], function (error, results, fields) {
+                if (error) {
                     context.succeed({
                         statusCode: 200,
                         status: false,
-                        errMsg: "error getting Mentor :" + err
+                        errMsg: "error getting Mentor :" + error
                     });
                 } else {
                     context.succeed({

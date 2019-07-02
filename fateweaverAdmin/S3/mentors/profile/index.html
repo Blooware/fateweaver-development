@@ -355,12 +355,12 @@
 
         $(".saveEdit").submit(function (e) {
             e.preventDefault();
-            //console.log(objectifyForm(this));
+            console.log(objectifyForm(this));
 
 
 
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postUpdateMentor", { mentorInfo: objectifyForm(this), mentor_id: mentor_id }, function (reply) {
-                //console.log(reply);
+                console.log(reply);
                 refresh();
             });
 
