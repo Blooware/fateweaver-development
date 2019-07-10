@@ -252,12 +252,12 @@
             postToLambda('https://t3xkdnmau3.execute-api.eu-west-2.amazonaws.com/develop/fateweaverTutor-getHome', [], function (reply) {
                 console.log(reply);
                 if (reply.body.length>0){
-                    $('#studentCount').html(reply.body.length);
+                    $('#groupCount').html(reply.body.length);
                     //loadNEETS();
                     console.log(reply.body.length)
                 }
-                //do a thing to count tutor groups
-                //$('#groupCount').html();
+                //do a thing to count students
+                //$('#studentCount').html();
             
                
             });
