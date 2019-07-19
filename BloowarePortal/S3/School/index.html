@@ -27,6 +27,13 @@
 <br>
 -->
 <br>
+
+<p>Price Per Pupil:</p>
+<input id="pps" value="3" onchange="Price()">
+
+<p id="Charge"></p>
+
+
 <a href="/BloowarePortal">Home</a>
 
 <head>
@@ -64,8 +71,17 @@
 <script src="https://www.blooware.co.uk/blooAuth/vendor/amazon-cognito-identity.min.js"></script>
 <script src="https://www.blooware.co.uk/blooAuth/blooAuth.js"></script>
 <script>
+    var chargable_students = 0;
     var school_id;
     var token;
+
+
+    function Price(){
+        console.log("Price");
+        console.log("Cost To the School: £" + $('#pps').val() * chargable_students);
+        $('#Charge').html("Cost To the School: £" + $('#pps').val() * chargable_students);
+    }
+
     $(document).ready(function () {
         connectToPool('eu-west-2_cZsv6n6t5', 'hrhsuoq7nrbt7ksucab050bpr', function () {
             checkAuth(function (result) {
@@ -101,6 +117,8 @@
 
                 $('#Name').val(reply.body[0].name);
                 $('#Details').val(reply.body[0].description);
+                chargable_students = reply.chargable_students.length;
+                Price();
 
             } else {
                 console.log("couldn't connect to the server");

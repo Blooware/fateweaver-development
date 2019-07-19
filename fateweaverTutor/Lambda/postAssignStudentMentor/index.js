@@ -14,7 +14,7 @@ exports.handler = (event, context, callback) => {
    console.log("start");
    console.log(event.form.mentorAssign.Mentors);
    console.log(event.form.student_id);
-    connection.query("select * from fateweaver.mentors where id = ? and and id in (select id from fateweaver.students where tutor_group_id in (select group_id from fateweaver.tutor_assigned_groups where tutor_id = (select id from fateweaver.tutors where cognito_id = ?)))", [event.form.mentorAssign.Mentors, event.account.sub], function (err, results, fields) {
+    connection.query("select * from fateweaver.tutor_assigned_groups where group_id = (select tutor_group_id from fateweaver.students where id = ?) and tutor_id = (select id from fateweaver.tutors where cognito_id = ? )", [event.form.student_id, event.account.sub], function (err, results, fields) {
         if (err) {
             console.log("Error getting tutor groups:", err);
             context.succeed({
