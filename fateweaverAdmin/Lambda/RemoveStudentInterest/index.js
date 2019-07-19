@@ -1,0 +1,2 @@
+//fateweaverAdmin-postRemoveStudentInterest
+
