@@ -217,13 +217,16 @@
 
             $('#Name').html(reply.studentData[0].given_name + " " + reply.studentData[0].family_name);
             $('#firstName').html(reply.studentData[0].given_name);
-            $('#aspiration').html(reply.destinations[0].aspiration);
-            $('#notes').html(reply.destinations[0].notes);
+            if (reply.destinations.length > 0) {
+                $('#aspiration').html(reply.destinations[0].aspiration);
+                $('#notes').html(reply.destinations[0].notes);
+
+                if (reply.destinations[0].notes.length < 1) {
+                    $('#notesContainer').hide();
+                }
+            }
             $('#industry').html("");
 
-            if (reply.destinations[0].notes.length < 1) {
-                $('#notesContainer').hide();
-            }
 
             for (var i = 0; i < reply.industries.length; i++) {
                 $('#industry').append('<option value="' + reply.industries[i].id + '">' + reply.industries[i].name + '</option>');

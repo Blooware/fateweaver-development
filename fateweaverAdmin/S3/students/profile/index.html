@@ -478,8 +478,8 @@
                 for (i = 0; i < reply.studentFiles.length; i++) {
                     $('#filesList').append('<div id="file-' + i + '"  style="background:#fff;border-radius: 5px;padding:12px 24px;color:#000!important;box-shadow: 0 0px 7px rgba(0,0,0,0.2);margin-right:20px;">' + reply.studentFiles[i].name + ' <i class="fa fa-download" style="cursor:pointer;"onclick="getFile(' + i + ', `' + reply.studentFiles[i].name + '`, `' + reply.studentFiles[i].path + '`, `' + reply.studentFiles[i].file_ext + '`)"></i><button class="btn btn-primary" type="button" onclick="if(confirm(`Want to delete?`)) deleteStudentFile(' + reply.studentFiles[i].id + ')" style="height: 100%;padding: 12px 24px;background-color: transparent;color: #d32641;border: 0px!important;font-size: 16px;">Delete &nbsp;<i class="far fa-trash-alt"></i></button></div></div>');
                 }
-                for (i = 0; i < reply.studentInterests.length; i++) { 
-                    $('#interests').append('<div class="d-inline-block"><a style="color:#d32641!important;position:absolute;z-index:9999999;!important;left:30px!important;top:10px!important;cursor:pointer;" onclick="RemoveInterest(' + reply.studentInterests[i].interest_id + ')"><i class="icon ion-android-remove-circle"></i></a><button style="outline:none;margin:10px;padding:24px 24px;font-size:24px;color:#fff;background-color:#fff;text-shadow: 0 0 5px rgba(0,0,0,1);background-image: url(https://source.unsplash.com/300x100/?' + reply.studentInterests[i].name.replace(" ", "%20") + ');background-size:cover;background-position:bottom;border-radius: 10px;background-position: bottom;border:0px;"> ' + reply.studentInterests[i].name + ' </button></div>');
+                for (i = 0; i < reply.studentInterests.length; i++) {
+                    $('#interests').append('<button style="outline:none;margin:10px;padding:24px 24px;font-size:24px;color:#fff;background-color:#fff;text-shadow: 0 0 5px rgba(0,0,0,1);background-image: url(https://source.unsplash.com/300x100/?' + reply.studentInterests[i].name.replace(" ", "%20") + ');background-size:cover;background-position:bottom;border-radius: 10px;background-position: bottom;border:0px;"> ' + reply.studentInterests[i].name + ' </button>');
                 }
                 for (i = 0; i < reply.subjects.length; i++) {
                     $('#subjects').append('<div class="d-inline-block"><a style="color:#d32641!important;position:absolute;z-index:9999999;!important;left:30px!important;top:10px!important;cursor:pointer;" onclick="RemoveSubject(' + reply.subjects[i].id + ')"><i class="icon ion-android-remove-circle"></i></a><button style="outline:none;margin:10px;padding:24px 24px;font-size:24px;color:#fff;background-color:#fff;text-shadow: 0 0 5px rgba(0,0,0,1);background-image: url(https://source.unsplash.com/300x100/?' + reply.subjects[i].name.replace(" ", "%20") + ');background-size:cover;background-position:bottom;border-radius: 10px;background-position: bottom;border:0px;"> ' + reply.subjects[i].name + ' </button></div>');
@@ -728,20 +728,9 @@
                 console.log(reply);
                 refresh();
             });
-
-        }
-
-        function RemoveInterest(interest_id) {
-            console.log("interest id to remove" + interest_id);
-            
-            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postRemoveStudentInterest", { interest_id: interest_id, student_id: student_id }, function (reply) {
-                console.log(reply);
-                refresh();
-            });
             
         }
-
-        function Deactivate(){
+        function Deactivate() {
             console.log("Deactivate Student??");
 
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postDeactivateStudent", { student_id: student_id }, function (reply) {

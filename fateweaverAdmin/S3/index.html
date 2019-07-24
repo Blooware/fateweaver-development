@@ -240,11 +240,8 @@
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-getPortal', [], function (reply) {
                 //console.log(reply);
                 $('#studentCount').html(reply.body[0].studentCount);
-                //
+                loadNEETS();
 
-                setTimeout(function(){
-                    loadNEETS();
-                }, 1000);
             });
 
 
