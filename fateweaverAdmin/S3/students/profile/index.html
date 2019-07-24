@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400">
     <link rel="stylesheet" href="../../assets/css/styles.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/introjs.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <script src="https://unpkg.com/scrollreveal"></script>
     <script>
         //ScrollReveal({ reset: true });
@@ -96,6 +98,11 @@
                     </div>
                 </div>
             </div>
+            <a class="btn btn-link float-right d-inline-flex expand" role="button" onclick="introJs().start();"
+                id="help-toggle"
+                style="cursor:pointer;width:50px;height:50px;right:0px;padding:0px;background-color:white;border-radius:25px;position:absolute;margin-top:120px;margin-right:20px;"><i
+                    class="icon ion-help"
+                    style="font-size: 24px;color: rgb(11,11,11);margin:auto;text-decoration: none!important;line-height:50px;"></i></a>
             <div class="container-fluid" style="padding-top: 100px;padding-left: 125px;">
                 <div>
                     <div class="row" style="padding-bottom: 200px;">
@@ -108,7 +115,9 @@
                                         <img src="https://source.unsplash.com/collection/791207/150x150"
                                             style="height:100%; min-width: 100%;"></div>
                                 </div>
-                                <div class="col-6" style="min-width: 600px;">
+                                <div data-step="1"
+                                    data-intro="in this bar, you can see the student's name, yeargroup, and progress through the school."
+                                    class="col-6" style="min-width: 600px;">
                                     <h1 style="font-weight: 300;"><strong class="Name">
                                             <div class="spinner-border text-primary d-block m-auto" role="status">
                                                 <span class="sr-only">Loading...</span>
@@ -117,9 +126,8 @@
                                     <h1 class="Year" style="font-weight: 300;font-size: 20px;color: rgb(142,142,142);">
                                         <strong>YEAR
                                         </strong></h1>
-                                    <h1 style="font-weight: 300;font-size: 20px;padding-top: 15px;"><strong id="schoolCompletion"><span
-                                                class="progressPercentage"></span>%
-                                            Complete at Leigh UTC</strong></h1>
+                                    <h1 style="font-weight: 300;font-size: 20px;padding-top: 15px;"><strong
+                                            id="schoolCompletion"></strong></h1>
                                     <div
                                         style="height: 10px;background-color: #ccc;border-radius: 15px;overflow: hidden;/*box-shadow: 0 0 15px rgba(0,0,0,0.2);*/">
                                         <div class="progressPercentageBar"
@@ -128,29 +136,37 @@
                                     </div>
                                     <div class="float-left"
                                         style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 10px;">
-                                        <button class="btn btn-primary" onclick="newSession()" type="button"
-                                            style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 16px;">New
+                                        <button data-step="2"
+                                            data-intro="add a new career session to keep this student on track."
+                                            class="btn btn-primary" onclick="newSession()" type="button"
+                                            style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 16px;margin:0px;">New
                                             Career Session &nbsp;<i class="fas fa-plus"></i></button></div>
                                     <div class="float-left"
                                         style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 10px;">
-                                        <button class="btn btn-primary" onclick="$('#popupEdit').fadeIn()" type="button"
-                                            style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 16px;">Edit
+                                        <button data-step="3"
+                                            data-intro="Edit this student's information, such as Name, Address, Tutor group, as well as SEN and PP status' here."
+                                            class="btn btn-primary" onclick="$('#popupEdit').fadeIn()" type="button"
+                                            style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 16px;margin:0px;">Edit
                                             &nbsp;<i class="fas fa-pencil-alt"></i></button></div>
 
                                     <div class="float-left"
                                         style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 10px;">
-                                        <button class="btn btn-primary"
+                                        <button data-step="4"
+                                            data-intro="Has this student left your school? Deactivate their profile to avoid being charged for them."
+                                            class="btn btn-primary"
                                             onclick="if(confirm('Are you sure you want to deactivate this student?')) Deactivate()"
                                             type="button"
-                                            style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 16px;">Deactivate?
+                                            style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 16px;margin:0px;">Deactivate?
                                             &nbsp;<i class="fas fa-trash-alt"></i></button></div>
 
 
                                     <div class="float-left"
                                         style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 0px;">
-                                        <button class="btn btn-primary" type="button"
+                                        <button data-step="5"
+                                            data-intro="No longer wish too keep this student's data? You can permanently remove them from the system using this button."
+                                            class="btn btn-primary" type="button"
                                             onclick="if(confirm('Want to delete?')) deleteStudent()"
-                                            style="height: 100%;padding: 12px 24px;background-color: transparent;color: #d32641;border: 0px!important;font-size: 16px;">Delete
+                                            style="height: 100%;padding: 12px 24px;background-color: transparent;color: #d32641;border: 0px!important;font-size: 16px;margin:0px;">Delete
                                             &nbsp;<i class="far fa-trash-alt"></i></button></div>
                                 </div>
                             </div>
@@ -159,7 +175,8 @@
                                 <div class="col-md-12 col-lg-6 " style="margin-bottom:50px;">
                                     <div style="margin-left:5px;margin-right:5px;padding:15px;background: #fff;">
 
-                                        <div>
+                                        <div data-step="6"
+                                            data-intro="Assigning Mentors to Students can be done here, hit the blue plus to get started!">
                                             <div style="border-bottom: 1px solid #eee;padding-bottom: 20px;">
                                                 <div class="row" style="margin-bottom: 30px;">
 
@@ -194,13 +211,15 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row" style="margin-bottom: 30px;">
-                                            <div class="col-12"
-                                                style="margin-top: 30px;padding-bottom: 30px;font-family: Roboto, sans-serif;padding-left: 40px;">
-                                                <h1 style="font-weight: 300;">Career Sessions</h1>
+                                        <div>
+                                            <div class="row" style="margin-bottom: 30px;">
+                                                <div class="col-12"
+                                                    style="margin-top: 30px;padding-bottom: 30px;font-family: Roboto, sans-serif;padding-left: 40px;">
+                                                    <h1 style="font-weight: 300;">Career Sessions</h1>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div id="timeline" style="margin-left:50px;">
+                                            <div id="timeline" style="margin-left:50px;">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -404,6 +423,8 @@
     <script src="../../assets/js/security.js"></script>
     <script src="/portal/assets/js/nav.js"></script>
     <script src="https://s3.eu-west-2.amazonaws.com/www.blooware.co.uk/blooNotif/notif.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/intro.min.js"
+        integrity="sha256-fOPHmaamqkHPv4QYGxkiSKm7O/3GAJ4554pQXYleoLo=" crossorigin="anonymous"></script>
 
     <script>
         ScrollReveal().reveal('.revealOnLoad', {
@@ -479,10 +500,10 @@
                     $('#filesList').append('<div id="file-' + i + '"  style="background:#fff;border-radius: 5px;padding:12px 24px;color:#000!important;box-shadow: 0 0px 7px rgba(0,0,0,0.2);margin-right:20px;">' + reply.studentFiles[i].name + ' <i class="fa fa-download" style="cursor:pointer;"onclick="getFile(' + i + ', `' + reply.studentFiles[i].name + '`, `' + reply.studentFiles[i].path + '`, `' + reply.studentFiles[i].file_ext + '`)"></i><button class="btn btn-primary" type="button" onclick="if(confirm(`Want to delete?`)) deleteStudentFile(' + reply.studentFiles[i].id + ')" style="height: 100%;padding: 12px 24px;background-color: transparent;color: #d32641;border: 0px!important;font-size: 16px;">Delete &nbsp;<i class="far fa-trash-alt"></i></button></div></div>');
                 }
                 for (i = 0; i < reply.studentInterests.length; i++) {
-                    $('#interests').append('<button style="outline:none;margin:10px;padding:24px 24px;font-size:24px;color:#fff;background-color:#fff;text-shadow: 0 0 5px rgba(0,0,0,1);background-image: url(https://source.unsplash.com/300x100/?' + reply.studentInterests[i].name.replace(" ", "%20") + ');background-size:cover;background-position:bottom;border-radius: 10px;background-position: bottom;border:0px;"> ' + reply.studentInterests[i].name + ' </button>');
+                    $('#interests').append('<button style="outline:none;margin:10px;padding:24px 24px;font-size:24px;color:#fff;background-color:#fff;text-shadow: 0 0 5px rgba(0,0,0,1);background-image: url(https://source.unsplash.com/300x100/?' + reply.studentInterests[i].name.replace(" ", "%20") + ');background-size:cover;background-position:bottom;border-radius: 10px;background-position: bottom;border:0px;"> ' + reply.studentInterests[i].name + ' <a style="color:#d32641!important;position:;z-index:9999999;!important;left:30px!important;top:10px!important;cursor:pointer;" onclick="RemoveInterest(' + reply.studentInterests[i].id + ')"><i class="icon ion-android-remove-circle"></i></a></button>');
                 }
                 for (i = 0; i < reply.subjects.length; i++) {
-                    $('#subjects').append('<div class="d-inline-block"><a style="color:#d32641!important;position:absolute;z-index:9999999;!important;left:30px!important;top:10px!important;cursor:pointer;" onclick="RemoveSubject(' + reply.subjects[i].id + ')"><i class="icon ion-android-remove-circle"></i></a><button style="outline:none;margin:10px;padding:24px 24px;font-size:24px;color:#fff;background-color:#fff;text-shadow: 0 0 5px rgba(0,0,0,1);background-image: url(https://source.unsplash.com/300x100/?' + reply.subjects[i].name.replace(" ", "%20") + ');background-size:cover;background-position:bottom;border-radius: 10px;background-position: bottom;border:0px;"> ' + reply.subjects[i].name + ' </button></div>');
+                    $('#subjects').append('<div class="d-inline-block"><div><button style="outline:none;margin:10px;padding:24px 24px;font-size:24px;color:#fff;background-color:#fff;text-shadow: 0 0 5px rgba(0,0,0,1);background-image: url(https://source.unsplash.com/300x100/?' + reply.subjects[i].name.replace(" ", "%20") + ');background-size:cover;background-position:bottom;border-radius: 10px;background-position: bottom;border:0px;"> ' + reply.subjects[i].name + ' <a style="color:#d32641!important;position:;z-index:9999999;!important;left:30px!important;top:10px!important;cursor:pointer;" onclick="RemoveSubject(' + reply.subjects[i].id + ')"><i class="icon ion-android-remove-circle"></i></a></button></div></div>');
 
                 }
                 for (i = 0; i < reply.mentorList.length; i++) {
@@ -536,7 +557,7 @@
                     $('.Name').html("error");
                 }
 
-
+            });
                 if (reply.neetScore > 15) {
                     console.log("red");
                     $('#neetbox').append('<div id="neetreasons" style="width:100%;border-radius:9px;padding:20px;background:linear-gradient(90deg, #ED213A, #93291E);background-size:300%;box-shadow:0 0 7px rgba(222, 34, 53, 0.45);"><h1 style="background:;font-weight: 300;color:white;">Probable NEET</h1></div>')
@@ -546,17 +567,17 @@
                 }
                 else if (reply.neetScore > 5 && reply.neetScore < 15) {
                     console.log("orange");
-                    $('#neetbox').append('<div id="neetreasons" style="width:100%;border-radius:9px;padding:20px;background:linear-gradient(90deg, #f46b45, #eea849);background-size:300%;box-shadow:0 0 7px rgba(241,138,71, 0.45);"><h1 style="background:;font-weight: 300;color:white;">Potential NEET</h1></div>')
+                    $('#neetbox').append('<div id="neetreasons" style="width:100%;border-radius:9px;padding:20px;background:linear-gradient(90deg, #f46b45, #eea849);background-size:300%;box-shadow:0 0 7px rgba(241,138,71, 0.45);"><h1 style="background:;font-weight: 300;color:white;">Needs attention</h1></div>')
                     for (i = 0; i < reply.neetCauses.length; i++) {
                         $('#neetreasons').append('<p style="padding-top:20px;color:white;">' + reply.neetCauses[i].solution + '</p>')
                     }
                 }
-                else if (reply.neetScore < 5){
+                else if (reply.neetScore < 5) {
                     console.log("green");
-                    $('#neetbox').append('<div id="neetreasons" style="width:100%;border-radius:9px;padding:20px;background:linear-gradient(90deg, #56ab2f, #a8e063);background-size:300%;box-shadow:0 0 7px rgba(101,180,56, 0.45);"><h3 style="background:;font-weight: 300;color:white;">Unlikely NEET</h3></div>')
+                    $('#neetbox').append('<div id="neetreasons" style="width:100%;border-radius:9px;padding:20px;background:linear-gradient(90deg, #56ab2f, #a8e063);background-size:300%;box-shadow:0 0 7px rgba(101,180,56, 0.45);"><h3 style="background:;font-weight: 300;color:white;">Student on track</h3></div>')
                 }
 
-            });
+            
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-getInterests', {}, function (reply) {
                 $('#interest').html();
                 for (i = 0; i < reply.body.length; i++) {
@@ -728,7 +749,16 @@
                 console.log(reply);
                 refresh();
             });
-            
+
+        }
+        function RemoveInterest(interest_id) {
+            console.log("interest id to remove" + interest_id);
+
+            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postRemoveStudentInterest", { interest_id: interest_id, student_id: student_id }, function (reply) {
+                console.log(reply);
+                refresh();
+            });
+
         }
         function Deactivate() {
             console.log("Deactivate Student??");

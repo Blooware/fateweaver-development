@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400">
     <link rel="stylesheet" href="../assets/css/styles.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/introjs.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <style>
         table {
             font-family: arial, sans-serif;
@@ -174,31 +176,37 @@
                     </div>
                 </div>
             </div>
+            <a
+                            class="btn btn-link float-right d-inline-flex expand" role="button" onclick="introJs().start();"
+                            id="help-toggle"
+                            style="cursor:pointer;width:50px;height:50px;right:0px;padding:0px;background-color:white;border-radius:25px;position:absolute;margin-top:120px;margin-right:20px;"><i
+                                class="icon ion-help"
+                                style="font-size: 24px;color: rgb(11,11,11);margin:auto;text-decoration: none!important;line-height:50px;"></i></a>
             <div class="container-fluid" style="padding-top: 100px;padding-left: 125px;">
                 <div>
                     <div class="row">
                         <div class="float-left"
                             style="height: 60px;background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 15px;">
                             <button onclick="$('#popup1').fadeIn()" class="btn btn-primary" type="button"
-                                style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 20px;">Upload
+                                style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 20px;" data-step="1" data-intro="Here you can upload Bulk student Data in CSV form">Upload
                                 Students &nbsp;<i class="fa fa-cloud-upload"></i>
                             </button>
 
                             </a>
 
                             <button onclick="$('#popup2').fadeIn()" class="btn btn-primary" type="button"
-                                style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 20px;">Add
+                                style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 20px;" data-step="2" data-intro="You can also individually input student data, this is best used for in year transfers etc.">Add
                                 Student &nbsp;<i class="fa fa-user-plus"></i>
                             </button>
 
                             <button class="btn btn-primary" type="button" onclick="getReport()"
-                                style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 20px;">Generate
+                                style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 20px;" data-step="3" data-intro="Here you can download student data for easy exportation in CSV form.">Generate
                                 Report &nbsp;<i class="fa fa-paste"></i></button></div>
                     </div>
                     <div class="row" style="padding-bottom: 30px;">
                         <div class="float-left"
                             style="height: 60px;background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 300px;overflow: hidden;">
-                            <input type="search" onkeyup="search(this.value)"
+                            <input data-step="4" data-intro="A search bar is always a good thing to remember; especially when you have hundreds of students!" type="search" onkeyup="search(this.value)"
                                 placeholder="Search by name, tutor or UPN..."
                                 style="height: 60px;border: 0px;outline: none;width: 350px;text-indent: 24px;"></div>
                     </div>
@@ -210,12 +218,12 @@
                         <th style="width: 120px;"></th>
                         <th style="font-weight: normal;">Name</th>
                         <th style="font-weight: normal;">
-                            <select id="TutorSearch" onchange="search(this.value)">
+                            <select id="TutorSearch" data-step="5" data-intro="Sometimes it's easier to narrow down the list by searching a specific tutor group." onchange="search(this.value)">
                                 <option selected value="">Tutor</option>
                             </select>
                         </th>
                         <th style="font-weight: normal;">
-                            <select id="YearSearch" onchange="search(this.value)">
+                            <select id="YearSearch" data-step="6" data-intro="Sometimes it's easier to narrow down the list by searching a specific yeargroup." onchange="search(this.value)">
                                 <option selected value="">Year</option>
                                 <option value="year7">7</option>
                                 <option value="year8">8</option>
@@ -249,6 +257,8 @@
     <script src="../assets/js/security.js"></script>
     <script src="/portal/assets/js/nav.js"></script>
     <script src="https://s3.eu-west-2.amazonaws.com/www.blooware.co.uk/blooNotif/notif.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/intro.min.js"
+        integrity="sha256-fOPHmaamqkHPv4QYGxkiSKm7O/3GAJ4554pQXYleoLo=" crossorigin="anonymous"></script>
     <script>
 
         function search(x) {
