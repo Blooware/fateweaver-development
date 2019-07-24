@@ -110,14 +110,14 @@
                                 </div>
                                 <div class="col-6" style="min-width: 600px;">
                                     <h1 style="font-weight: 300;"><strong class="Name">
-                                        <div class="spinner-border text-primary d-block m-auto" role="status">
-                                            <span class="sr-only">Loading...</span>
-                                          </div> 
-                                    </strong></h1>
+                                            <div class="spinner-border text-primary d-block m-auto" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </strong></h1>
                                     <h1 class="Year" style="font-weight: 300;font-size: 20px;color: rgb(142,142,142);">
                                         <strong>YEAR
                                         </strong></h1>
-                                    <h1 style="font-weight: 300;font-size: 20px;padding-top: 15px;"><strong><span
+                                    <h1 style="font-weight: 300;font-size: 20px;padding-top: 15px;"><strong id="schoolCompletion"><span
                                                 class="progressPercentage"></span>%
                                             Complete at Leigh UTC</strong></h1>
                                     <div
@@ -136,13 +136,16 @@
                                         <button class="btn btn-primary" onclick="$('#popupEdit').fadeIn()" type="button"
                                             style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 16px;">Edit
                                             &nbsp;<i class="fas fa-pencil-alt"></i></button></div>
-                                    
+
                                     <div class="float-left"
                                         style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 10px;">
-                                        <button class="btn btn-primary"  onclick="if(confirm('Are you sure you want to deactivate this student?')) Deactivate()" type="button"
-                                            style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 16px;">Deactivate? &nbsp;<i class="fas fa-trash-alt"></i></button></div>
+                                        <button class="btn btn-primary"
+                                            onclick="if(confirm('Are you sure you want to deactivate this student?')) Deactivate()"
+                                            type="button"
+                                            style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 16px;">Deactivate?
+                                            &nbsp;<i class="fas fa-trash-alt"></i></button></div>
 
-                                    
+
                                     <div class="float-left"
                                         style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 0px;">
                                         <button class="btn btn-primary" type="button"
@@ -159,9 +162,10 @@
                                         <div>
                                             <div style="border-bottom: 1px solid #eee;padding-bottom: 20px;">
                                                 <div class="row" style="margin-bottom: 30px;">
+
                                                     <div class="col-12"
-                                                        style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 40px;">
-                                                        <h1 style="font-weight: 300;">Assigned Mentors</h1>
+                                                        style="padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 40px;">
+                                                        <h1 style="background:;font-weight: 300;">Assigned Mentors</h1>
                                                     </div>
                                                 </div>
                                                 <div class="row" id="matches" style="margin-left:0px;">
@@ -200,8 +204,14 @@
                                         </div>
                                     </div>
                                 </div>
+
+
                                 <!--right hand side column-->
                                 <div class="col-md-12 col-lg-6 " style="margin-bottom:50px;">
+                                    <div class="col-12" id="neetbox"
+                                        style="margin-bottom:40px;padding-left:5px;padding-right:5px;font-family: Roboto, sans-serif;">
+
+                                    </div>
                                     <div style="margin-left:5px;margin-right:5px;padding:15px;background: #fff;">
                                         <div style="border-bottom: 1px solid #eee;padding-bottom: 20px;">
                                             <div class="col-12"
@@ -216,15 +226,17 @@
                                                 <div class="col-12 revealOnLoad" id="interests">
                                                 </div>
                                                 <div class="col-12">
-                                                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseInterests"
-                                                        aria-expanded="false" aria-controls="collapseInterests"
+                                                    <button class="btn btn-primary" type="button" data-toggle="collapse"
+                                                        data-target="#collapseInterests" aria-expanded="false"
+                                                        aria-controls="collapseInterests"
                                                         style="margin:10px;padding:12px 24px;font-size:24px;outline:none;color:#234e67;background:transparent;box-shadow:none!important;border-radius: 10px;background-position: bottom;border:0px;">
                                                         Add &nbsp;<i class="fas fa-plus"></i>
                                                     </button>
                                                     <div class="collapse" id="collapseInterests">
                                                         <div class="card card-body">
                                                             <form method="post" class="addInterest">
-                                                                <select id="interest" name="interest" style="width:300px;">
+                                                                <select id="interest" name="interest"
+                                                                    style="width:300px;">
                                                                 </select>
                                                                 <button class="btn btn-primary" type="submit"
                                                                     style="margin:10px;padding:6px 12px;font-size:18px;color:#fff;background:#234e67;border-radius: 10px;background-position: bottom;border:0px;border-radius:300px;">
@@ -251,8 +263,9 @@
                                                 <div class="col-12 revealOnLoad" id="subjects">
                                                 </div>
                                                 <div class="col-12">
-                                                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseSubjects"
-                                                        aria-expanded="false" aria-controls="collapseSubjects"
+                                                    <button class="btn btn-primary" type="button" data-toggle="collapse"
+                                                        data-target="#collapseSubjects" aria-expanded="false"
+                                                        aria-controls="collapseSubjects"
                                                         style="margin:10px;padding:12px 24px;font-size:24px;outline:none;color:#234e67;background:transparent;box-shadow:none!important;border-radius: 10px;background-position: bottom;border:0px;">
                                                         Add &nbsp;<i class="fas fa-plus"></i>
                                                     </button>
@@ -260,8 +273,8 @@
                                                         <div class="card card-body">
                                                             <form method="post" class="addSubject">
                                                                 <input id="subject" name="subject" style="width:300px;">
-                                                                
-                                                                
+
+
                                                                 <button class="btn btn-primary" type="submit"
                                                                     style="margin:10px;padding:6px 12px;font-size:18px;color:#fff;background:#234e67;border-radius: 10px;background-position: bottom;border:0px;border-radius:300px;">
                                                                     Confirm
@@ -276,15 +289,16 @@
 
 
                                         <div style="border-bottom: 1px solid #eee;padding-bottom: 50px;">
-                                        
+
                                             <div class="col-12"
                                                 style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 40px;">
                                                 <h1 style="font-weight: 300;">Files</h1>
                                             </div>
-                                        
+
                                             <div style="margin-left:40px;">
-                                                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseFiles"
-                                                    aria-expanded="false" aria-controls="collapseFiles"
+                                                <button class="btn btn-primary" type="button" data-toggle="collapse"
+                                                    data-target="#collapseFiles" aria-expanded="false"
+                                                    aria-controls="collapseFiles"
                                                     style="margin:10px;padding:12px 24px;font-size:24px;outline:none;color:#234e67;background:transparent;box-shadow:none!important;border-radius: 10px;background-position: bottom;border:0px;">
                                                     Add &nbsp;<i class="fas fa-plus"></i>
                                                 </button>
@@ -300,8 +314,9 @@
                                             </div>
                                             <div id="filesList" style="padding-left: 40px;">
                                                 <div class="col-12">
-                                                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseFiles"
-                                                        aria-expanded="false" aria-controls="collapseFiles"
+                                                    <button class="btn btn-primary" type="button" data-toggle="collapse"
+                                                        data-target="#collapseFiles" aria-expanded="false"
+                                                        aria-controls="collapseFiles"
                                                         style="margin:10px;padding:12px 24px;font-size:24px;outline:none;color:#234e67;background:transparent;box-shadow:none!important;border-radius: 10px;background-position: bottom;border:0px;">
                                                         Add &nbsp;<i class="fas fa-plus"></i>
                                                     </button>
@@ -316,53 +331,59 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <table style="margin-left:40px;"class="table">
-                                            <tr>
-                                                <th style="font-size: 15px;border:none!important;">Name</th>
-                                                <td style="font-size: 15px;border:none!important;" class="Name"></td>
-                                            </tr>
-                                            <tr>
-                                                <th style="font-size: 15px;border:none!important;">Year Group</th>
-                                                <td style="font-size: 15px;border:none!important;" class="year"></td>
-                                            </tr>
-                                            <tr>
-                                                <th style="font-size: 15px;border:none!important;">D.O.B</th>
-                                                <td style="font-size: 15px;border:none!important;" class="dob"></td>
-                                            </tr>
-                                            <tr>
-                                                <th style="font-size: 15px;border:none!important;">Gender</th>
-                                                <td style="font-size: 15px;border:none!important;" class="gender"></td>
-                                            </tr>
-                                            <tr>
-                                                <th style="font-size: 15px;border:none!important;">Postcode</th>
-                                                <td style="font-size: 15px;border:none!important;" class="postcode">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th style="font-size: 15px;border:none!important;">UPN</th>
-                                                <td style="font-size: 15px;border:none!important;" class="upn"></td>
-                                            </tr>
-                                            <tr>
-                                                <th style="font-size: 15px;border:none!important;">ULN</th>
-                                                <td style="font-size: 15px;border:none!important;" class="uln"></td>
-                                            </tr>
-                                            <tr>
-                                                <th style="font-size: 15px;border:none!important;">Tutor Group Full Name
-                                                </th>
-                                                <td style="font-size: 15px;border:none!important;" class="tutorGroup">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th style="font-size: 15px;border:none!important;">Pupil Premium</th>
-                                                <td style="font-size: 15px;border:none!important;" class="pp"></td>
-                                            </tr>
-                                            <tr>
-                                                <th style="font-size: 15px;border:none!important;">SEN</th>
-                                                <td style="font-size: 15px;border:none!important;" class="sen"></td>
-                                            </tr>
-                                        </table>
+                                            <table style="margin-left:40px;" class="table">
+                                                <tr>
+                                                    <th style="font-size: 15px;border:none!important;">Name</th>
+                                                    <td style="font-size: 15px;border:none!important;" class="Name">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th style="font-size: 15px;border:none!important;">Year Group</th>
+                                                    <td style="font-size: 15px;border:none!important;" class="year">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th style="font-size: 15px;border:none!important;">D.O.B</th>
+                                                    <td style="font-size: 15px;border:none!important;" class="dob"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th style="font-size: 15px;border:none!important;">Gender</th>
+                                                    <td style="font-size: 15px;border:none!important;" class="gender">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th style="font-size: 15px;border:none!important;">Postcode</th>
+                                                    <td style="font-size: 15px;border:none!important;" class="postcode">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th style="font-size: 15px;border:none!important;">UPN</th>
+                                                    <td style="font-size: 15px;border:none!important;" class="upn"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th style="font-size: 15px;border:none!important;">ULN</th>
+                                                    <td style="font-size: 15px;border:none!important;" class="uln"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th style="font-size: 15px;border:none!important;">Tutor Group Full
+                                                        Name
+                                                    </th>
+                                                    <td style="font-size: 15px;border:none!important;"
+                                                        class="tutorGroup">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th style="font-size: 15px;border:none!important;">Pupil Premium
+                                                    </th>
+                                                    <td style="font-size: 15px;border:none!important;" class="pp"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th style="font-size: 15px;border:none!important;">SEN</th>
+                                                    <td style="font-size: 15px;border:none!important;" class="sen"></td>
+                                                </tr>
+                                            </table>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -457,8 +478,8 @@
                 for (i = 0; i < reply.studentFiles.length; i++) {
                     $('#filesList').append('<div id="file-' + i + '"  style="background:#fff;border-radius: 5px;padding:12px 24px;color:#000!important;box-shadow: 0 0px 7px rgba(0,0,0,0.2);margin-right:20px;">' + reply.studentFiles[i].name + ' <i class="fa fa-download" style="cursor:pointer;"onclick="getFile(' + i + ', `' + reply.studentFiles[i].name + '`, `' + reply.studentFiles[i].path + '`, `' + reply.studentFiles[i].file_ext + '`)"></i><button class="btn btn-primary" type="button" onclick="if(confirm(`Want to delete?`)) deleteStudentFile(' + reply.studentFiles[i].id + ')" style="height: 100%;padding: 12px 24px;background-color: transparent;color: #d32641;border: 0px!important;font-size: 16px;">Delete &nbsp;<i class="far fa-trash-alt"></i></button></div></div>');
                 }
-                for (i = 0; i < reply.studentInterests.length; i++) { 
-                    $('#interests').append('<div class="d-inline-block"><a style="color:#d32641!important;position:absolute;z-index:9999999;!important;left:30px!important;top:10px!important;cursor:pointer;" onclick="RemoveInterest(' + reply.studentInterests[i].interest_id + ')"><i class="icon ion-android-remove-circle"></i></a><button style="outline:none;margin:10px;padding:24px 24px;font-size:24px;color:#fff;background-color:#fff;text-shadow: 0 0 5px rgba(0,0,0,1);background-image: url(https://source.unsplash.com/300x100/?' + reply.studentInterests[i].name.replace(" ", "%20") + ');background-size:cover;background-position:bottom;border-radius: 10px;background-position: bottom;border:0px;"> ' + reply.studentInterests[i].name + ' </button></div>');
+                for (i = 0; i < reply.studentInterests.length; i++) {
+                    $('#interests').append('<button style="outline:none;margin:10px;padding:24px 24px;font-size:24px;color:#fff;background-color:#fff;text-shadow: 0 0 5px rgba(0,0,0,1);background-image: url(https://source.unsplash.com/300x100/?' + reply.studentInterests[i].name.replace(" ", "%20") + ');background-size:cover;background-position:bottom;border-radius: 10px;background-position: bottom;border:0px;"> ' + reply.studentInterests[i].name + ' </button>');
                 }
                 for (i = 0; i < reply.subjects.length; i++) {
                     $('#subjects').append('<div class="d-inline-block"><a style="color:#d32641!important;position:absolute;z-index:9999999;!important;left:30px!important;top:10px!important;cursor:pointer;" onclick="RemoveSubject(' + reply.subjects[i].id + ')"><i class="icon ion-android-remove-circle"></i></a><button style="outline:none;margin:10px;padding:24px 24px;font-size:24px;color:#fff;background-color:#fff;text-shadow: 0 0 5px rgba(0,0,0,1);background-image: url(https://source.unsplash.com/300x100/?' + reply.subjects[i].name.replace(" ", "%20") + ');background-size:cover;background-position:bottom;border-radius: 10px;background-position: bottom;border:0px;"> ' + reply.subjects[i].name + ' </button></div>');
@@ -500,19 +521,41 @@
                     $('.sen').html(reply.studentData[0].sen);
                     $('.year').html(reply.studentData[0].yearGroup);
 
-                    if(((100 / 14) * reply.studentData[0].yearGroup) > 100){
+                    $('#schoolCompletion').append('<span class="progressPercentage"></span>% Complete at ' + reply.studentData.schoolName)
+                    if (((100 / 14) * reply.studentData[0].yearGroup) > 100) {
                         $('.progressPercentage').html("100");
                         $('.progressPercentageBar').css("width", ((100 / 14) * reply.studentData[0].yearGroup).toString() + "%");
-                    }else{
-                        
+                    } else {
+
                         $('.progressPercentage').html(((100 / 14) * reply.studentData[0].yearGroup).toFixed(0).toString());
                         $('.progressPercentageBar').css("width", ((100 / 14) * reply.studentData[0].yearGroup).toString() + "%");
                     }
-                    
+
                 }
                 else {
                     $('.Name').html("error");
                 }
+
+
+                if (reply.neetScore > 15) {
+                    console.log("red");
+                    $('#neetbox').append('<div id="neetreasons" style="width:100%;border-radius:9px;padding:20px;background:linear-gradient(90deg, #ED213A, #93291E);background-size:300%;box-shadow:0 0 7px rgba(222, 34, 53, 0.45);"><h1 style="background:;font-weight: 300;color:white;">Probable NEET</h1></div>')
+                    for (i = 0; i < reply.neetCauses.length; i++) {
+                        $('#neetreasons').append('<p style="padding-top:20px;color:white;">' + reply.neetCauses[i].solution + '</p>')
+                    }
+                }
+                else if (reply.neetScore > 5 && reply.neetScore < 15) {
+                    console.log("orange");
+                    $('#neetbox').append('<div id="neetreasons" style="width:100%;border-radius:9px;padding:20px;background:linear-gradient(90deg, #f46b45, #eea849);background-size:300%;box-shadow:0 0 7px rgba(241,138,71, 0.45);"><h1 style="background:;font-weight: 300;color:white;">Potential NEET</h1></div>')
+                    for (i = 0; i < reply.neetCauses.length; i++) {
+                        $('#neetreasons').append('<p style="padding-top:20px;color:white;">' + reply.neetCauses[i].solution + '</p>')
+                    }
+                }
+                else if (reply.neetScore < 5){
+                    console.log("green");
+                    $('#neetbox').append('<div id="neetreasons" style="width:100%;border-radius:9px;padding:20px;background:linear-gradient(90deg, #56ab2f, #a8e063);background-size:300%;box-shadow:0 0 7px rgba(101,180,56, 0.45);"><h3 style="background:;font-weight: 300;color:white;">Unlikely NEET</h3></div>')
+                }
+
             });
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-getInterests', {}, function (reply) {
                 $('#interest').html();
@@ -617,7 +660,7 @@
             //console.log(objectifyForm(this));
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postAddStudentSubject", { studentInfo: objectifyForm(this), student_id: student_id }, function (reply) {
                 console.log(reply);
-                if(reply.status == true){
+                if (reply.status == true) {
                     confirmPopup(reply.body, 2000);
                 } else {
                     confirmPopup(reply.errMsg, 2000);
@@ -625,6 +668,17 @@
                 //refresh();
             });
         });
+
+
+
+
+
+
+
+
+
+
+
         function objectifyForm(formArray) {//serialize data function
             var returnArray = {};
             for (var i = 0; i < formArray.length; i++) {
@@ -669,25 +723,14 @@
         }
         function RemoveSubject(subject_id) {
             console.log("subject id to remove" + subject_id);
-            
+
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postRemoveStudentSubject", { subject_id: subject_id, student_id: student_id }, function (reply) {
                 console.log(reply);
                 refresh();
             });
-            
-        }
 
-        function RemoveInterest(interest_id) {
-            console.log("interest id to remove" + interest_id);
-            
-            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postRemoveStudentInterest", { interest_id: interest_id, student_id: student_id }, function (reply) {
-                console.log(reply);
-                refresh();
-            });
-            
         }
-
-        function Deactivate(){
+        function Deactivate() {
             console.log("Deactivate Student??");
 
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postDeactivateStudent", { student_id: student_id }, function (reply) {

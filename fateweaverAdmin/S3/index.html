@@ -12,12 +12,14 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400">
     <link rel="stylesheet" href="assets/css/styles.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/introjs.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 </head>
 
 <body style="width: 100%;height: 100%;background-color: #ffffff;">
     <div id="wrapper">
-         <!--navigation-->         
-         <div id="sidebar-wrapper" class=" insertNavHere" style="background-color: #234e67!important;">
+        <!--navigation-->
+        <div id="sidebar-wrapper" class=" insertNavHere" style="background-color: #234e67!important;">
         </div>
         <div class="page-content-wrapper">
             <div class="container-fluid" style="padding: 0px;margin-left: 0px;margin-right: 0px;">
@@ -34,9 +36,16 @@
                             <span
                                 style="background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);-webkit-background-clip: text;-webkit-text-fill-color: transparent;background-size: 150%;"><strong>student</strong></span>path
                         </h1>
+                        
                     </div>
                 </div>
             </div>
+            <a
+                            class="btn btn-link float-right d-inline-flex expand" role="button" onclick="introJs().start();"
+                            id="help-toggle"
+                            style="cursor:pointer;width:50px;height:50px;right:0px;padding:0px;background-color:white;border-radius:25px;position:absolute;margin-top:120px;margin-right:20px;"><i
+                                class="icon ion-help"
+                                style="font-size: 24px;color: rgb(11,11,11);margin:auto;text-decoration: none!important;line-height:50px;"></i></a>
             <div class="container-fluid" style="padding-top: 100px;padding-left: 125px;">
                 <div>
                     <div class="row" style="padding-bottom: 200px;">
@@ -44,19 +53,20 @@
                             <div class="row" style="margin-top: 50px;">
                                 <div class="col-12"
                                     style="margin-bottom: 50px;padding-bottom: 30px;font-family: Roboto, sans-serif;">
-                                    <h1 style="font-weight: bold;">Welcome home,</h1>
-                                    <h1 style="font-weight: 300;font-size:18px; color:#666;">Here you can see an overview of everything. Recommendations, NEET's, statistics and more.</h1>
+                                    <h1 data-step="1"  data-intro="This is your Homepage, Where you can see a general overview of your School's data" style="font-weight: bold;">Welcome home</h1>
+                                    <h1 style="font-weight: 300;font-size:18px; color:#666;">Here you can see an
+                                        overview of everything. Recommendations, NEET's, statistics and more.</h1>
                                 </div>
                             </div>
                             <div class="row" style="margin-bottom: 20px;">
                                 <div class="col-3">
-                                    <div
-                                        style="background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);">
-                                        <h1 id ="studentCount" class="text-center"
-                                        style="padding-top: 75px;font-size:60px;color: #234e67;">
-                                        <div class="spinner-border text-primary d-block m-auto" style="font-size:1em;"role="status">
+                                    <div data-step="2"  data-intro="Here you can see the total amount of students that your school has in the Studentpath system." style="background: #fff;height: 250px;width: 100%;border-radius: 20px;box-shadow: 0 0 10px rgba(30,30,30,0.2);">
+                                        <h1 id="studentCount" class="text-center"
+                                            style="padding-top: 75px;font-size:60px;color: #234e67;">
+                                            <div class="spinner-border text-primary d-block m-auto"
+                                                style="font-size:1em;" role="status">
                                                 <span class="sr-only">Loading...</span>
-                                              </div>
+                                            </div>
                                         </h1>
                                         <p class="text-center" style="color: #888;">Students</p>
                                     </div>
@@ -80,25 +90,26 @@
                                     </div>
                                 </div>
                             </div>
-                            <div>
+                            <div  data-step="3" data-intro="We take pride in our early detection system for potential NEETs, They can be seen listed here. Clicking on a potential NEET will take you to their student profile.">
                                 <div class="row" style="margin-top: 50px;">
                                     <div class="col-12"
                                         style="margin-top: 50px;padding-bottom: 30px;font-family: Roboto, sans-serif;">
                                         <h1 style="font-weight: 300;">Potential NEET'S</h1>
                                     </div>
                                 </div>
-                                <div class="row potentialNeets" style="margin-top: 0px;">
+                                <div class="row potentialNeets" style="margin-left:0px;margin-top: 0px;">
                                     <div class="spinner-border text-primary d-block m-auto" role="status">
                                         <span class="sr-only">Loading...</span>
-                                      </div> 
+                                    </div>
                                 </div>
                             </div>
-                            <div>
-                                <div class="row" style="margin-top: 50px;">
-                                    <div class="col-12"
+                            <div data-step="4"  data-intro="In the Matches Section, you can see suggested Mentors for students, based on shared interests and industries.">
+                                <div class="row"  style="margin-top: 50px;">
+                                    <div class="col-12" 
                                         style="margin-top: 50px;padding-bottom: 30px;font-family: Roboto, sans-serif;">
                                         <h1 style="font-weight: 300;">Matches</h1>
-                                        <h1 style="font-weight: 300;font-size:18px; color:#0078db;">Demo data. Add mentors and students to begin.</h1>
+                                        <h1 style="font-weight: 300;font-size:18px; color:#0078db;">Demo data. Add
+                                            mentors and students to begin.</h1>
                                     </div>
                                 </div>
                                 <div class="row" style="margin-top: 0px;">
@@ -177,12 +188,23 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <style>
+        .expand{
+            transition: ease all 1s;
+        }
+        .expand:hover{
+            transform: scale(1.1)
+        }
+            
+        
+        </style>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
@@ -192,6 +214,8 @@
     <script src="https://www.blooware.co.uk/blooAuth/blooAuth.js"></script>
     <script src="assets/js/security.js"></script>
     <script src="/portal/assets/js/nav.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/intro.min.js"
+        integrity="sha256-fOPHmaamqkHPv4QYGxkiSKm7O/3GAJ4554pQXYleoLo=" crossorigin="anonymous"></script>
     <script>
         refresh();
         function postToLambda(url, data, callback) {
@@ -216,26 +240,23 @@
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-getPortal', [], function (reply) {
                 //console.log(reply);
                 $('#studentCount').html(reply.body[0].studentCount);
-                //
+                loadNEETS();
 
-                setTimeout(function(){
-                    loadNEETS();
-                }, 1000);
             });
 
-            
+
         }
 
 
-        function loadNEETS(){
+        function loadNEETS() {
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-getNeetScores', [], function (reply) {
                 console.log(reply);
 
-                        $('.potentialNeets').html("");
+                $('.potentialNeets').html("");
                 for (i = 0; i < reply.body.length; i++) {
-                   
+
                     if (reply.body[i].neetScore > 1) {
-                        if(reply.body[i].neetScore > 15){
+                        if (reply.body[i].neetScore > 15) {
                             reply.body[i].neetColor = "#d32641";
                         } else if (reply.body[i].neetScore > 10) {
                             reply.body[i].neetColor = "rgb(255,168,0)";
@@ -246,7 +267,7 @@
                         $('.potentialNeets').append('<div class="col-9" style="    padding: 2px;"> <a style="width:100%;" href="/portal/students/profile/?student_id=' + reply.body[i].id + '"> <div style="background: transparent;height: 50px;width: 100%;border-radius: 300px;overflow:hidden;box-shadow: 0 0 10px rgba(30,30,30,0.2);background: #fff;"><div class="row"> <div class="col-6"> <p class="text-left float-left" style="color: #666;font-weight: 600;font-size: 18px;line-height: 50px;margin: 0px;padding-left: 40px;"> ' + reply.body[i].given_name + ' ' + reply.body[i].family_name + '</p></div> <div class="col-6" > <div style="background: transparent;height: 50px;box-shadow: 0 0 10px rgba(30,30,30,0.2);background: #fff;background-color: ' + reply.body[i].neetColor + ';min-width: 30px;"> <p class="text-center float-left" style="width: 100%;color: #fff;font-size: 16px;line-height: 50px;margin: 0px;"> ' + reply.body[i].neetCauses[reply.body[i].neetCauses.length - 1].solution + '</p> </div> </div></div></div>  </a> </div>  <div class="col-3"  style="    padding: 2px;"> <div style="background: transparent;height: 50px;background: #fff;background-color: transparent;min-width: 30px;"> <p class="text-left float-left" style="width: 100%;color: #333;font-size: 18px;line-height: 50px;margin: 0px;padding-left: 24px;"> ' + reply.body[i].monthsLeftSmart + ' months left</p> </div> </div>');
                     }
                 }
-               
+
             });
         }
 
