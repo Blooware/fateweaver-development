@@ -557,8 +557,7 @@
                     $('.Name').html("error");
                 }
 
-            });
-                if (reply.neetScore > 15) {
+                  if (reply.neetScore > 15) {
                     console.log("red");
                     $('#neetbox').append('<div id="neetreasons" style="width:100%;border-radius:9px;padding:20px;background:linear-gradient(90deg, #ED213A, #93291E);background-size:300%;box-shadow:0 0 7px rgba(222, 34, 53, 0.45);"><h1 style="background:;font-weight: 300;color:white;">Probable NEET</h1></div>')
                     for (i = 0; i < reply.neetCauses.length; i++) {
@@ -578,6 +577,9 @@
                 }
 
             
+
+            });
+              
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-getInterests', {}, function (reply) {
                 $('#interest').html();
                 for (i = 0; i < reply.body.length; i++) {
