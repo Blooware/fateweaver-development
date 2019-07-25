@@ -41,6 +41,13 @@
         });
     });
 
+
+    $(document).on('keypress',function(e) {
+        if(e.which == 13) {
+            signMeUp();
+        }
+    });
+
     function signMeUp() {
         
         signUp($('#newEmail').val(), $('#newPassword').val(), function () { //  signUp($('#newEmail').val(), $('#newPassword').val(), { "company": "null" }, function () {
