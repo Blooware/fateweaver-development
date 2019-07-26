@@ -73,7 +73,11 @@
 
             </form>
 
-            <form method="post" class="addIndustry">
+           
+
+            <!--
+
+                 <form method="post" class="addIndustry">
                 <select id="industries" name="industry">
 
                 </select>
@@ -81,8 +85,6 @@
                     style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 0px solid #ccc; background: rgb(0, 150, 92); border-radius:300px; width: 250px;color:#fff"
                     type="submit">add industry</button>
             </form>
-
-            
             <form method="post" class="addInterest">
                 <select id="interest" name="interest">
 
@@ -91,7 +93,7 @@
                     style="margin-bottom:5px!important;outline:none;padding: 6px 12px; border: 0px solid #ccc; background: rgb(0, 150, 92); border-radius:300px; width: 250px;color:#fff"
                     type="submit">add interest</button>
             </form>
-            
+        -->
             
 
 
@@ -137,8 +139,8 @@
                                 </div>
                                 <div class="col-6" style="min-width: 600px;">
                                     <h1 style="font-weight: 300;"><strong id="Name"></strong></h1>
-                                    <h1 id="jobRoleIndustry" style="font-weight: 300;font-size: 20px;color: rgb(142,142,142);">
-                                        </h1>
+                                    <h1 style="font-weight: bold;font-size: 16px;color: #0078db;">MENTOR <i class="fas fa-check-circle"></i></h1>
+                                    <h1 id="jobRoleIndustry" style="font-weight: 300;font-size: 20px;color: rgb(142,142,142);">  </h1>
 
                                     <div class="float-left"
                                         style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 10px;">
@@ -184,10 +186,54 @@
                             <div style="margin-left:5px;margin-right:5px;padding:15px;background: #fff;">
                                 <div style="border-bottom: 1px solid #eee;padding-bottom: 20px;">
                                     <div class="col-12"
-                                        style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 40px;">
+                                        style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 25px;">
+                                        <h1 style="font-weight: 300;">Industries</h1>
+                                        <p style="font-weight: 300;">Adding the mentor's past and present industries will help us recommend students.</p>
+
+                                    </div>
+
+
+                                    <div class="row " style="margin-left:0px;">
+
+
+                                        <div class="col-12 revealOnLoad" id="industry">
+
+
+                                        </div>
+                                        <div class="col-12">
+                                            <button class="btn btn-primary" type="button" data-toggle="collapse"
+                                                data-target="#collapseExample" aria-expanded="false"
+                                                aria-controls="collapseExample"
+                                                style="margin:10px;padding:12px 24px;font-size:24px;outline:none;color:#234e67;background:transparent;box-shadow:none!important;border-radius: 10px;background-position: bottom;border:0px;">
+                                                Add &nbsp;<i class="fas fa-plus"></i>
+                                            </button>
+                                            <div class="collapse" id="collapseExample">
+                                                <div class="card card-body">
+                                                    <form method="post" class="addIndustry">
+                                                        <select id="industries" name="industry" style="width:300px;">
+
+                                                        </select>
+                                                        <button class="btn btn-primary" type="submit"
+                                                            style="margin:10px;padding:6px 12px;font-size:18px;color:#fff;background:#234e67;border-radius: 10px;background-position: bottom;border:0px;border-radius:300px;">
+                                                            Confirm
+                                                        </button>
+
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div style="border-bottom: 1px solid #eee;padding-bottom: 20px;">
+                                    <div class="col-12"
+                                        style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 25px;">
                                         <h1 style="font-weight: 300;">Interests</h1>
                                         <p style="font-weight: 300;">The more interests you add here, the better
-                                            mentor and career
+                                            student 
                                             recommendations
                                             appear.</>
 
@@ -257,17 +303,17 @@
 
         mentor_id = getUrlParameter('mentor_id').replace("-", " ");
 
-
         var pageState = 1;
         var resultsLimit = 20;
         var allResults;
+
         function refresh() {
 
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postGrabMentor', { mentor_id: mentor_id }, function (reply) {
                 console.log(reply);
 
                 $('#Name').html(reply.mentorData[0].first_name + " " + reply.mentorData[0].last_name);
-                $('#jobRoleIndustry').html(reply.mentorData[0].role + " in the " + reply.mentorIndustries[0].name + " Industry.")
+             //   $('#jobRoleIndustry').html(reply.mentorData[0].role + " in the " + reply.mentorIndustries[0].name + " Industry.")
 
                 //Edit
                 $('#firstName').val(reply.mentorData[0].first_name);
@@ -295,14 +341,13 @@
 
 
                 }
-                //$('#results').append("<tr ><td ></td> <td ><button style='background:none; border:0px; padding:0px;text-decoration:underline; color:#0078db;' onclick='loadMoreResults()'>Load more</button></td> <td ></td><td></td> <td ></td></tr>");
-                //<option selected value="">Tutor</option>
-                /*for (var i = 0; i < reply.tutor_groups.length; i++) {
-                    console.log(i);
-                    $('#TutorSearch').append('<option value="' + reply.tutor_groups[i].name + '">' + reply.tutor_groups[i].name + '</option>');
-                    //$('#TutorSearch').append('<option selected value="' + reply.tutor_groups[i].name + ' group"> ' + reply.tutor_groups[i].name + '</option>');
+                for (i = 0; i < reply.mentorInterests.length; i++) {
+                    $('#interests').append('<button style="outline:none;margin:10px;padding:24px 24px;font-size:24px;color:#fff;background-color:#fff;text-shadow: 0 0 5px rgba(0,0,0,1);background-image: url(https://source.unsplash.com/300x100/?' + reply.mentorInterests[i].name.replace(" ", "%20") + ');background-size:cover;background-position:bottom;border-radius: 10px;background-position: bottom;border:0px;"> ' + reply.mentorInterests[i].name + ' <a style="color:#d32641!important;position:;z-index:9999999;!important;left:30px!important;top:10px!important;cursor:pointer;" onclick="RemoveInterest(' + reply.mentorInterests[i].id + ')"><i class="icon ion-android-remove-circle"></i></a></button>');
+                }
 
-                }*/
+                for (i = 0; i < reply.mentorIndustries.length; i++) {
+                    $('#industry').append('<button style="outline:none;margin:10px;padding:24px 24px;font-size:24px;color:#fff;background-color:#fff;text-shadow: 0 0 5px rgba(0,0,0,1);background-image: url(https://source.unsplash.com/300x100/?' + reply.mentorIndustries[i].name.replace(" ", "%20") + ');background-size:cover;background-position:bottom;border-radius: 10px;background-position: bottom;border:0px;"> ' + reply.mentorIndustries[i].name + ' <a style="color:#d32641!important;position:;z-index:9999999;!important;left:30px!important;top:10px!important;cursor:pointer;" onclick="RemoveInterest(' + reply.mentorIndustries[i].id + ')"><i class="icon ion-android-remove-circle"></i></a></button>');
+                }
             });
 
 
@@ -324,7 +369,6 @@
                 
             });
         }
-
 
         function postToLambda(url, data, callback) {
             $.ajax({
@@ -352,7 +396,6 @@
             return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
         };
 
-
         $(".saveEdit").submit(function (e) {
             e.preventDefault();
             console.log(objectifyForm(this));
@@ -367,7 +410,6 @@
 
 
         });
-
         $(".addInterest").submit(function (e) {
             e.preventDefault();
             //console.log(objectifyForm(this));
@@ -404,9 +446,6 @@
             }
             return returnArray;
         }
-
-
-
 
         function deleteMentor() {
             console.log(mentor_id);
