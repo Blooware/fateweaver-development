@@ -137,10 +137,9 @@
                                         <img src="https://source.unsplash.com/collection/791207/150x150"
                                             style="height:100%; min-width: 100%;"></div>
                                 </div>
-                                <div class="col-6" style="min-width: 600px;">
+                                <div class="col-6" id="profileBanner"style="min-width: 600px;">
                                     <h1 style="font-weight: 300;"><strong id="Name"></strong></h1>
                                     <h1 style="font-weight: bold;font-size: 16px;color: #0078db;">MENTOR <i class="fas fa-check-circle"></i></h1>
-                                    <h1 id="jobRoleIndustry" style="font-weight: 300;font-size: 20px;color: rgb(142,142,142);">  </h1>
 
                                     <div class="float-left"
                                         style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 10px;">
@@ -311,14 +310,13 @@
 
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postGrabMentor', { mentor_id: mentor_id }, function (reply) {
                 console.log(reply);
-
+                $('#jobRole').html("")
                 $('#Name').html(reply.mentorData[0].first_name + " " + reply.mentorData[0].last_name);
-             //   $('#jobRoleIndustry').html(reply.mentorData[0].role + " in the " + reply.mentorIndustries[0].name + " Industry.")
-
+                $('#profileBanner').append('<h1 id="jobRole" style="font-weight: 300;font-size: 20px;color: #0078db;">' + reply.mentorData[0].role + '</h1>')
                 //Edit
                 $('#firstName').val(reply.mentorData[0].first_name);
                 $('#lastName').val(reply.mentorData[0].last_name);
-                $('#mentorRole').val(reply.mentorData[0].role)
+                $('#mentorRole').val(reply.mentorData[0].role);
 
 
                 if (reply.mentorStudents.length < resultsLimit) {

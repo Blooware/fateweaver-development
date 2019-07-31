@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html style="display:none;">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -11,18 +10,15 @@
     <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="../../assets/css/styles.min.css">
     <script src="https://unpkg.com/scrollreveal"></script>
     <script>
         //ScrollReveal({ reset: true });
     </script>
 </head>
-
 <body style="width: 100%;height: 100%;background-color: #ffffff;">
-
     <!--Popups-->
-    
-
     <div id="wrapper">
         <!--navigation-->
         <div id="sidebar-wrapper" style="background-color: #234e67!important;">
@@ -31,8 +27,7 @@
                     <a href="/tutor" style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fa fa-home" style="padding-right: 10px;width: 60px;"></i>HOME
                     </a>
-                    <a class="text-uppercase" href="/tutor/groups"
-                        style="color: #fff!important;padding-bottom: 10px;">
+                    <a class="text-uppercase" href="/tutor/groups" style="color: #fff!important;padding-bottom: 10px;">
                         <i class="fa fa-user" style="padding-right: 10px;width: 60px;"></i>GROUPS
                     </a>
                     <a class="text-uppercase" href="/tutor/students"
@@ -52,7 +47,6 @@
                 </li>
             </ul>
         </div>
-
         <!--top bar and content-->
         <div class="page-content-wrapper">
             <div class="container-fluid" style="padding: 0px;margin-left: 0px;margin-right: 0px;">
@@ -104,137 +98,211 @@
                                             Career Session &nbsp;<i class="fas fa-plus"></i></button></div>
                                 </div>
                             </div>
-                            <div class="row" style="margin-top:50px;">
-
-
-                                <div class="col-md-5 revealOnLoadFast"
-                                    style="margin-left:0px;padding:15px;background: #fff;min-width: 500px;">
-                                    <div>
+                            <div class="row no_gutters" style="margin:auto!important;margin-top:50px!important;">
+                                <div class="col-md-12 col-lg-6 " style="margin-bottom:50px;">
+                                    <div style="margin-left:5px;margin-right:5px;padding:15px;background: #fff;">
                                         <div style="border-bottom: 1px solid #eee;padding-bottom: 20px;">
-                                            <div class="row" style="margin-bottom: 30px;">
-                                                <div class="col-12"
-                                                    style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 40px;">
-                                                    <h1 style="font-weight: 300;">Assigned Mentors</h1>
+                                            <div class="col-12"
+                                                style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 15px;">
+                                                <h1 style="font-weight: 300;">Interests</h1>
+                                                <p style="font-weight: 300;">The more interests you add here, the better
+                                                    mentor and career
+                                                    recommendations
+                                                    appear.</p>
+                                            </div>
+                                            <div class="row " style="margin-left:0px;">
+                                                <div class="col-12 revealOnLoad" id="interests">
+                                                </div>
+                                                <div class="col-12">
+                                                    <button class="btn btn-primary" type="button" data-toggle="collapse"
+                                                        data-target="#collapseInterests" aria-expanded="false"
+                                                        aria-controls="collapseInterests"
+                                                        style="margin:10px;padding:12px 24px;font-size:24px;outline:none;color:#234e67;background:transparent;box-shadow:none!important;border-radius: 10px;background-position: bottom;border:0px;">
+                                                        Add &nbsp;<i class="fas fa-plus"></i>
+                                                    </button>
+                                                    <div class="collapse" id="collapseInterests">
+                                                        <div class="card card-body">
+                                                            <form method="post" class="addInterest">
+                                                                <select id="interest" name="interest"
+                                                                    style="width:300px;">
+                                                                </select>
+                                                                <button class="btn btn-primary" type="submit"
+                                                                    style="margin:10px;padding:6px 12px;font-size:18px;color:#fff;background:#234e67;border-radius: 10px;background-position: bottom;border:0px;border-radius:300px;">
+                                                                    Confirm
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-
-                                            <div class="row" id="matches" style="margin-left:0px;">
-
+                                        </div>
+                                        <div>
+                                            <div class="row" style="margin-bottom: 30px;">
+                                                <div class="col-12"
+                                                    style="margin-top: 30px;padding-bottom: 30px;font-family: Roboto, sans-serif;padding-left: 40px;">
+                                                    <h1 style="font-weight: 300;">Career Sessions</h1>
+                                                </div>
+                                            </div>
+                                            <div id="timeline" style="margin-left:50px;">
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                                <!--right hand side column-->
+                                <div class="col-md-12 col-lg-6 " style="margin-bottom:50px;">
+                                    <div class="col-12" id="neetbox"
+                                        style="margin-bottom:40px;padding-left:5px;padding-right:5px;font-family: Roboto, sans-serif;">
+                                    </div>
+                                    <div style="margin-left:5px;margin-right:5px;padding:15px;background: #fff;">
                                         <div style="border-bottom: 1px solid #eee;padding-bottom: 20px;">
-                                            <div class="row" style="margin-bottom: 30px;">
-
-                                                <div class="row " style="margin-left:0px;">
-
-
-                                                    <div class="col-12 revealOnLoad" id="interests" data-sr-id="0"
-                                                        style="visibility: visible; opacity: 1; transition: opacity 0.5s cubic-bezier(0.5, 0, 0, 1) 1s;">
+                                            <div data-step="6"
+                                                data-intro="Assigning Mentors to Students can be done here, hit the blue plus to get started!">
+                                                <div style="border-bottom: 1px solid #eee;padding-bottom: 0px;">
+                                                    <div class="row" style="margin-bottom: 3px;">
+                                                        <div class="col-12"
+                                                            style="padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 15px;">
+                                                            <p
+                                                                style="font-weight: bold;font-size: 18px;text-transform: uppercase;color: #666">
+                                                                Assigned Mentors</p>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-12">
-                                                        <div class="collapse" id="MentorCollapse" style="">
-                                                            <div class="card card-body">
-
-
-                                                                <form class="saveMentor" method="post">
-                                                                    <select id="Mentors" name="Mentors"
-                                                                        style="width:300px;">
-                                                                        <option value="" required="">Select Mentor
-                                                                        </option>
-                                                                    </select>
-
-
-                                                                    <button class="btn btn-primary" type="submit"
-                                                                        style="margin:10px;padding:6px 12px;font-size:18px;color:#fff;background:#234e67;border-radius: 10px;background-position: bottom;border:0px;border-radius:300px;">
-                                                                        Confirm
-                                                                    </button></form>
+                                                    <div class="table-responsive">
+                                                        <table class="table">
+                                                            <tbody id="matches">
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div style="padding-bottom: 0px;">
+                                                    <div class="row" style="margin-bottom: 10px;">
+                                                        <div class="row " style="margin-left:0px;">
+                                                            <div class="col-12">
+                                                                <div class="collapse" id="MentorCollapse" style="">
+                                                                    <div class="card card-body">
+                                                                        <form class="saveMentor" method="post">
+                                                                            <select id="Mentors" name="Mentors"
+                                                                                style="width:300px;">
+                                                                                <option value="" required="">Select
+                                                                                    Mentor
+                                                                                </option>
+                                                                            </select>
+                                                                            <button class="btn btn-primary"
+                                                                                type="submit"
+                                                                                style="margin:10px;padding:6px 12px;font-size:18px;color:#fff;background:#234e67;border-radius: 10px;background-position: bottom;border:0px;border-radius:300px;">
+                                                                                Confirm
+                                                                            </button></form>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
 
-
-
-
-                                        </div>
-                                    </div>
-                                    <div class="row" style="margin-bottom: 30px;">
-                                        <div class="col-12"
-                                            style="margin-top: 30px;padding-bottom: 30px;font-family: Roboto, sans-serif;padding-left: 40px;">
-                                            <h1 style="font-weight: 300;">Career Sessions</h1>
-                                        </div>
-                                    </div>
-
-
-                                    <div id="timeline" style="margin-left:50px;">
-
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-md-6" style="margin-left:15px;padding:15px;background: #fff;">
-                                <div style="border-bottom: 1px solid #eee;padding-bottom: 20px;">
-                                    <div class="col-12"
-                                        style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 40px;">
-                                        <h1 style="font-weight: 300;">Interests</h1>
-                                        <p style="font-weight: 300;">The more interests you add here, the better
-                                            mentor and career
-                                            recommendations
-                                            appear.</>
-
-                                    </div>
-
-
-                                    <div class="row " style="margin-left:0px;">
-
-
-                                        <div class="col-12 revealOnLoad" id="interests">
-
-
-                                        </div>
-                                        <div class="col-12">
-                                            <button class="btn btn-primary" type="button" data-toggle="collapse"
-                                                data-target="#collapseExample" aria-expanded="false"
-                                                aria-controls="collapseExample"
-                                                style="margin:10px;padding:12px 24px;font-size:24px;outline:none;color:#234e67;background:transparent;box-shadow:none!important;border-radius: 10px;background-position: bottom;border:0px;">
-                                                Add &nbsp;<i class="fas fa-plus"></i>
-                                            </button>
-                                            <div class="collapse" id="collapseExample">
-                                                <div class="card card-body">
-                                                    <form method="post" class="addInterest">
-                                                        <select id="interest" name="interest" style="width:300px;">
-
-                                                        </select>
-                                                        <button class="btn btn-primary" type="submit"
-                                                            style="margin:10px;padding:6px 12px;font-size:18px;color:#fff;background:#234e67;border-radius: 10px;background-position: bottom;border:0px;border-radius:300px;">
-                                                            Confirm
-                                                        </button>
-
-                                                    </form>
-
+                                            <div class="col-12"
+                                                style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 40px;">
+                                                <h1 style="font-weight: 300;">Subjects</h1>
+                                            </div>
+                                            <div class="row " style="margin-left:0px;">
+                                                <div class="col-12 revealOnLoad" id="subjects">
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-
-
-                                </div>
-
-                                <div style="border-bottom: 1px solid #eee;padding-bottom: 50px;">
-                                    <div class="row" style="margin-bottom: 30px;">
-                                        <div class="col-12"
-                                            style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 40px;">
-                                            <h1 style="font-weight: 300;">Files</h1>
-
+                                        <div style="border-bottom: 1px solid #eee;padding-bottom: 50px;">
+                                            <div class="col-12"
+                                                style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 40px;">
+                                                <h1 style="font-weight: 300;">Files</h1>
+                                            </div>
+                                            <div style="margin-left:40px;">
+                                                <button class="btn btn-primary" type="button" data-toggle="collapse"
+                                                    data-target="#collapseFiles" aria-expanded="false"
+                                                    aria-controls="collapseFiles"
+                                                    style="margin:10px;padding:12px 24px;font-size:24px;outline:none;color:#234e67;background:transparent;box-shadow:none!important;border-radius: 10px;background-position: bottom;border:0px;">
+                                                    Add &nbsp;<i class="fas fa-plus"></i>
+                                                </button>
+                                                <div class="collapse" id="collapseFiles">
+                                                    <div
+                                                        style="margin-bottom:20px;background:#fff;border-radius: 5px;padding:12px 24px;color:#000!important;box-shadow: 0 0px 7px rgba(0,0,0,0.2);margin-right:20px;">
+                                                        <form method="post" class="save">
+                                                            <input type="file" id="files" name="files" />
+                                                            <button type="submit">Upload</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="filesList" style="padding-left: 40px;">
+                                                <div class="col-12">
+                                                    <button class="btn btn-primary" type="button" data-toggle="collapse"
+                                                        data-target="#collapseFiles" aria-expanded="false"
+                                                        aria-controls="collapseFiles"
+                                                        style="margin:10px;padding:12px 24px;font-size:24px;outline:none;color:#234e67;background:transparent;box-shadow:none!important;border-radius: 10px;background-position: bottom;border:0px;">
+                                                        Add &nbsp;<i class="fas fa-plus"></i>
+                                                    </button>
+                                                    <div class="collapse" id="collapseFiles">
+                                                        <div
+                                                            style="background:#fff;border-radius: 5px;padding:12px 24px;color:#000!important;box-shadow: 0 5px 15px rgba(0,0,0,0.2);margin-right:20px;">
+                                                            <form method=" post" class="save">
+                                                                <input type="file" id="files" name="files" />
+                                                                <button type="submit">Upload</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <table style="margin-left:40px;" class="table">
+                                                <tr>
+                                                    <th style="font-size: 15px;border:none!important;">Name</th>
+                                                    <td style="font-size: 15px;border:none!important;" class="Name">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th style="font-size: 15px;border:none!important;">Year Group</th>
+                                                    <td style="font-size: 15px;border:none!important;" class="year">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th style="font-size: 15px;border:none!important;">D.O.B</th>
+                                                    <td style="font-size: 15px;border:none!important;" class="dob"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th style="font-size: 15px;border:none!important;">Gender</th>
+                                                    <td style="font-size: 15px;border:none!important;" class="gender">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th style="font-size: 15px;border:none!important;">Postcode</th>
+                                                    <td style="font-size: 15px;border:none!important;" class="postcode">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th style="font-size: 15px;border:none!important;">UPN</th>
+                                                    <td style="font-size: 15px;border:none!important;" class="upn"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th style="font-size: 15px;border:none!important;">ULN</th>
+                                                    <td style="font-size: 15px;border:none!important;" class="uln"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th style="font-size: 15px;border:none!important;">Tutor Group Full
+                                                        Name
+                                                    </th>
+                                                    <td style="font-size: 15px;border:none!important;"
+                                                        class="tutorGroup">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th style="font-size: 15px;border:none!important;">Pupil Premium
+                                                    </th>
+                                                    <td style="font-size: 15px;border:none!important;" class="pp"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th style="font-size: 15px;border:none!important;">SEN</th>
+                                                    <td style="font-size: 15px;border:none!important;" class="sen"></td>
+                                                </tr>
+                                            </table>
                                         </div>
                                     </div>
-
-
-                                    <div id="filesList" style="padding-left: 40px;">
-
-                                    </div>
-
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -243,10 +311,6 @@
             </div>
         </div>
     </div>
-    </div>
-
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <script src="../../assets/js/script.min.js"></script>
@@ -255,14 +319,11 @@
     <script src="https://www.blooware.co.uk/blooAuth/blooAuth.js"></script>
     <script src="../../assets/js/security.js"></script>
     <script>
-
         ScrollReveal().reveal('.revealOnLoad', {
             delay: 1000,
             duration: 500,
             reset: false
         });
-
-
         ScrollReveal().reveal('.revealOnLoadFast', {
             delay: 500,
             duration: 500,
@@ -270,13 +331,9 @@
         }); 
     </script>
     <script>
-
         var student_id;
-
         student_id = getUrlParameter('student_id').replace("-", " ");
-
         var destinationData;
-
         function getFile(i, name, file, file_ext) {
             var oldHTML = $("#file-" + i).html();
             $("#file-" + i).html('Loading... <div class="spinner-border spinner-border-sm" role="status">  <span class="sr-only">Loading...</span></div>');
@@ -295,9 +352,7 @@
                 success: function (reply) {
                     console.log(reply)
                     var bytes = new Uint8Array(reply.Body.data); // pass your byte response to this constructor
-
                     var blob = new Blob([bytes], { type: file_ext });// change resultByte to bytes
-
                     var link = document.createElement('a');
                     link.href = window.URL.createObjectURL(blob);
                     link.download = name;
@@ -315,9 +370,7 @@
                 console.log(reply);
                 destinationData = reply.destinations;
                 for (i = 0; i < reply.destinations.length; i++) {
-
                     var dateAdded = reply.destinations[i].added;
-
                     if (i == 0) {
                         //bottom
                         $('#timeline').append(' <div class="row bottom" onclick="goToSession(' + reply.destinations[i].id + ')" style="cursor:pointer;margin-top: -60px;width: 80%;min-width: 800px;"> <div class="col-6" style="padding-left: 15px;border-left: 3px solid #234e67;padding-bottom: 50px;padding-top: 20px;margin-top: 60px;"> <div style="background: transparent;height: 130px;border-radius: 20px;border-radius: 20px;box-shadow: 0 0 15px rgba(0,0,0,0);background: #234e67;margin-bottom: 30px;margin-left: 20px;margin-top: -60px;"> <p class="text-left float-left" style="width: 100%;color: #fff;font-size: 16px;margin: 0px;padding-left: 40px;padding-top:10px;">' + dateAdded + '</p> <p class="text-left float-left" style="width: 100%;color: #fff;font-size: 16px;margin: 0px;padding-left: 40px;padding-right: 40px;"><strong style="text-transform: capitalize;">' + reply.destinations[i].aspiration + '</strong><br>' + reply.destinations[i].destination + '</p> </div> <div style="width: 20px;height: 20px;background: #000;border-radius: 50%;position: absolute;margin-left: -26px;margin-top: -93px;background-color: rgb(255,109,109);"> </div> </div> </div>');
@@ -332,32 +385,24 @@
                     }
                 }
                 for (i = 0; i < reply.studentFiles.length; i++) {
-
-
                     $('#filesList').append('<div id="file-' + i + '"  style="background:#fff;border-radius: 5px;padding:12px 24px;color:#000!important;box-shadow: 0 5px 15px rgba(0,0,0,0.2);margin-right:20px;">' + reply.studentFiles[i].name + ' <i class="fa fa-download" style="cursor:pointer;"onclick="getFile(' + i + ', `' + reply.studentFiles[i].name + '`, `' + reply.studentFiles[i].path + '`, `' + reply.studentFiles[i].file_ext + '`)"></i><button class="btn btn-primary" type="button" onclick="if(confirm(`Want to delete?`)) deleteStudentFile(' + reply.studentFiles[i].id + ')" style="height: 100%;padding: 12px 24px;background-color: transparent;color: #d32641;border: 0px!important;font-size: 16px;">Delete &nbsp;<i class="far fa-trash-alt"></i></button></div></div>');
-
                 }
                 for (i = 0; i < reply.studentInterests.length; i++) {
-                    $('#interests').append('<button style="outline:none;margin:10px;padding:24px 24px;font-size:24px;color:#fff;background-color:#fff;text-shadow: 0 0 5px rgba(0,0,0,1);background-image: url(https://source.unsplash.com/300x100/?' + reply.studentInterests[i].name.replace(" ", "%20") + ');background-size:cover;background-position:bottom;border-radius: 10px;background-position: bottom;border:0px;"> ' + reply.studentInterests[i].name + ' </button>');
+                    $('#interests').append('<button style="outline:none;margin:10px;padding:24px 24px;font-size:24px;color:#fff;background-color:#fff;text-shadow: 0 0 5px rgba(0,0,0,1);background-image: url(https://source.unsplash.com/300x100/?' + reply.studentInterests[i].name.replace(" ", "%20") + ');background-size:cover;background-position:bottom;border-radius: 10px;background-position: bottom;border:0px;"> ' + reply.studentInterests[i].name + ' <a style="color:#d32641!important;position:;z-index:9999999;!important;left:30px!important;top:10px!important;cursor:pointer;" onclick="RemoveInterest(' + reply.studentInterests[i].id + ')"><i class="icon ion-android-remove-circle"></i></a></button>');
                 }
                 for (i = 0; i < reply.mentorList.length; i++) {
                     $('#Mentors').append('<option value="' + reply.mentorList[i].id + '">' + reply.mentorList[i].first_name + " " + reply.mentorList[i].last_name + '</option>');
                 }
                 for (i = 0; i < reply.assignedMentors.length; i++) {
                     console.log(reply.assignedMentors[i].first_name + " " + reply.assignedMentors[i].last_name);
-                    $('#matches').append('<div class="col-3"> <div class="match" style="width:100px;"> <div class="border m-auto d-block rounded-circle" style="width: 50px;height: 50px;overflow: hidden;"> <img src="https://www.blooware.co.uk/assets/img/IMG_4260.jpg" style="width: 100%;"> </div> <p style="text-align:center;">' + reply.assignedMentors[i].first_name + " " + reply.assignedMentors[i].last_name + '</p> </div> </div>')
+                    $('#matches').append('<a style="color:black!important;text-decoration:none!important;"href="/portal/mentors/profile/?mentor_id=' + reply.assignedMentors[i].id + '"><tr style="background-color: #fff;padding: 5px;border: 10px solid #f1f5f8;border-left:0px;"> <td style="width: 140px;"><img class="rounded-circle d-block m-auto" src="https://gradientjoy.com/70x70?x=' + i + '" style="width: 50px;height: 50px;" /></td> <td style="line-height: 50px;"><strong>' + reply.assignedMentors[i].first_name + " " + reply.assignedMentors[i].last_name + '</strong></td><td style="line-height: 50px;"><strong><a style="color:#d32641!important;left:10px;top:10px;margin-bottom:-20px;cursor:pointer;" onclick="RemoveMentor(' + reply.assignedMentors[i].id + ')"><i class="icon ion-android-remove-circle"></i></a></strong></td> </tr></a>');
                 }
-                $('#matches').append('<div class="col-3"> <div class="" style="width:100px;"> <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#MentorCollapse" aria-expanded="true" aria-controls="MentorCollapse" style="margin:10px;padding:12px 24px;font-size:24px;outline:none;color:#234e67;background:transparent;box-shadow:none!important;border-radius: 10px;background-position: bottom;border:0px;"><i class="fas fa-plus"></i> </button> </div>')
-
+                $('#matches').append('<tr style="background-color: transparent;padding: 5px;border: 10px solid #f1f5f8;border-left:0px;height:84px;"> <td style="width:140px;"><button class="btn btn-primary d-block m-auto" type="button" data-toggle="collapse" data-target="#MentorCollapse" aria-expanded="true" aria-controls="MentorCollapse" style="font-size:20px;outline:none;color:#234e67;background:#43C6AC;  background: -webkit-linear-gradient(to right, #191654, #43C6AC); background: linear-gradient(to right, #191654, #43C6AC); background-size:200%;border-radius: 300px;box-shadow: 0 7px 15px rgba(67, 198, 172, 0.36); background-position: bottom;border:0px; width:100px;   display: block; margin: auto;color:#fff;"><i class="fas fa-plus"></i> </button></td><td></td><td></td> </tr>');
                 if (reply.status == false) {
-
                     $('#Name').html(reply.studentData[0].given_name + " " + reply.studentData[0].family_name);
-
                 } else if (reply.status == true) {
-
                     $('#Name').html(reply.studentData[0].given_name + " " + reply.studentData[0].family_name);
                     $('#Year').html("<strong>YEAR " + reply.studentData[0].yearGroup + "</strong>");
-
                     $('#givenName').val(reply.studentData[0].given_name);
                     $('#family_name').val(reply.studentData[0].family_name);
                     $('#dob').val(reply.studentData[0].dateOfBirth);
@@ -369,15 +414,9 @@
                     $('#pp').val(reply.studentData[0].pp);
                     $('#sen').val(reply.studentData[0].sen);
                     $('#year').val(reply.studentData[0].year);
-
                     $('#progressPercentage').html(((100 / 14) * reply.studentData[0].yearGroup).toFixed(0).toString());
                     $('#progressPercentageBar').css("width", ((100 / 14) * reply.studentData[0].yearGroup).toString() + "%");
-
-
-
-
                 } else {
-
                     $('#Name').html("error");
                 }
             });
@@ -387,16 +426,13 @@
                 for (i = 0; i < reply.body.length; i++) {
                     $('#interest').append('<option value="' + reply.body[i].id + '">' + reply.body[i].name + '</option>');
                 }
-
             });
         }
-
         function goToSession(session_id) {
             //console.log(session_id);
             window.location.href = '/tutor/students/profile/session/?student_id=' + student_id + '&id=' + session_id;
             //here
         }
-
         function postToLambda(url, data, callback) {
             $.ajax({
                 url,
@@ -411,32 +447,22 @@
                 }
             });
         }
-
         function newSession() {
             window.location.href = '/tutor/students/profile/new-session/?student_id=' + student_id;
         }
-
         function getUrlParameter(name) {
             name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
             var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
             var results = regex.exec(location.search);
             return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
         };
-
-
-
-
-        
         $(".saveMentor").submit(function (e) {
             e.preventDefault();
             console.log(objectifyForm(this));
-
             postToLambda("https://t3xkdnmau3.execute-api.eu-west-2.amazonaws.com/develop/fateweaverTutor-postAssignStudentMentor", { mentorAssign: objectifyForm(this), student_id: student_id }, function (reply) {
                 console.log(reply);
             });
-
         });
-
         $(".addInterest").submit(function (e) {
             e.preventDefault();
             //console.log(objectifyForm(this));
@@ -445,10 +471,7 @@
                 refresh();
             });
         });
-
-
         function objectifyForm(formArray) {//serialize data function
-
             var returnArray = {};
             for (var i = 0; i < formArray.length; i++) {
                 if (formArray[i]['type'] == "checkbox") {
@@ -466,12 +489,8 @@
             }
             return returnArray;
         }
-
-
-
         function deleteStudent() {
             console.log("Delete" + student_id);
-            
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postDeleteStudent", { student_id: student_id }, function (reply) {
                 console.log(reply);
                 //refresh();
@@ -479,21 +498,14 @@
                 window.location.href = "/tutor/students/";
                 */
             });
-            
         }
         function deleteStudentFile(file_id) {
             console.log("Delete" + file_id);
-            
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postDeleteStudentFile", { file_id: file_id }, function (reply) {
                 console.log(reply);
                 //refresh();
-                
             });
-            
-            
         }
-
     </script>
 </body>
-
 </html>

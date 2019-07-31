@@ -241,6 +241,7 @@
                             </select>
                         </th>
                         <th style="font-weight: normal;">Aspiration</th>
+                        <th style="font-weight: normal;">Active</th>
                     </tr>
                 </table>
 
@@ -308,7 +309,13 @@
                 
                 $('#results').html(document.getElementById('tableHeading').outerHTML);
                 for (var i = 0; i < /*reply.body.length*/(resultsLimit * pageState); i++) {
-                    $('#results').append('<tr class="item" search="search year' + reply.body[i].yearGroup + ' ' + reply.body[i].tutorGroup + 'group ' + reply.body[i].given_name + ' ' + reply.body[i].family_name + ' ' + reply.body[i].upn + ' search" style="font-weight: bold;"><td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="https://source.unsplash.com/collection/791207/40x40/?' + i + '" style="min-width: 100%;height: 100%;"></div> </td> <td style="font-size: 15px;"> <a  href="/portal/students/profile/?student_id=' + reply.body[i].student_id + '">' + reply.body[i].given_name + ' ' + reply.body[i].family_name + '</a></td> <td style="font-size: 15px;">' + reply.body[i].tutorGroup + '</td><td style="font-size: 15px;">' + reply.body[i].yearGroup + '</td> <td style="font-size: 15px;">' + reply.body[i].upn + '</td> <td style="font-size: 15px;">' + reply.body[i].destination + '</td><td style="font-size: 15px;">' + reply.body[i].aspiration + '</td></tr> ');
+                    if(reply.body[i].active == 1){
+                        var billable = "yes"
+                    }
+                    else{
+                        var billable = "no"
+                    }
+                    $('#results').append('<tr class="item" search="search year' + reply.body[i].yearGroup + ' ' + reply.body[i].tutorGroup + 'group ' + reply.body[i].given_name + ' ' + reply.body[i].family_name + ' ' + reply.body[i].upn + ' search" style="font-weight: bold;"><td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="https://source.unsplash.com/collection/791207/40x40/?' + i + '" style="min-width: 100%;height: 100%;"></div> </td> <td style="font-size: 15px;"> <a  href="/portal/students/profile/?student_id=' + reply.body[i].student_id + '">' + reply.body[i].given_name + ' ' + reply.body[i].family_name + '</a></td> <td style="font-size: 15px;">' + reply.body[i].tutorGroup + '</td><td style="font-size: 15px;">' + reply.body[i].yearGroup + '</td> <td style="font-size: 15px;">' + reply.body[i].upn + '</td> <td style="font-size: 15px;">' + reply.body[i].destination + '</td><td style="font-size: 15px;">' + reply.body[i].aspiration + '</td><td style="font-size: 15px;">' + billable + '</td></tr> ');
                 }
                 $('#results').append("<tr ><td ></td> <td ><button style='background:none; border:0px; padding:0px;text-decoration:underline; color:#0078db;' onclick='loadMoreResults()'>Load more</button></td> <td ></td><td></td> <td ></td></tr>");
                 //<option selected value="">Tutor</option>
