@@ -112,7 +112,7 @@ exports.handler = (event, context, callback) => {
                 console.log("rows2");
                 totalRows[count].Interests = rows;
                 //console.log(totalRows);
-                /*
+                
                 (async () => {
                     try {
                         const rows = await query('SELECT fateweaver.subjects.name, fateweaver.subjects.added, fateweaver.subjects.id FROM fateweaver.student_subjects left join fateweaver.subjects on fateweaver.student_subjects.subject_id = fateweaver.subjects.id where fateweaver.student_subjects.student_id = "' + student.student_id + '" and finished is null ;');
@@ -120,18 +120,18 @@ exports.handler = (event, context, callback) => {
                         //totalRows.push(rows);
                         rows2 = rows;
                         console.log("rows2");
-                        totalRows[count].Interests = rows;
+                        totalRows[count].Subjects = rows;
                         //console.log(totalRows);
         
                     } finally {
-                        console.log("Finallyzzz:" + count);
+                        console.log("Finallyxxx:" + count);
                         
                         //connection.end();
         
         
                     }
                 })()
-                */
+                
 
             } finally {
                 console.log("Finallyzzz:" + count);
