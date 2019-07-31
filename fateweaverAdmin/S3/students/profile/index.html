@@ -148,7 +148,6 @@
                                             class="btn btn-primary" onclick="$('#popupEdit').fadeIn()" type="button"
                                             style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 16px;margin:0px;">Edit
                                             &nbsp;<i class="fas fa-pencil-alt"></i></button></div>
-
                                     <div class="float-left"
                                         style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 10px;">
                                         <button data-step="4"
@@ -158,8 +157,6 @@
                                             type="button"
                                             style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 16px;margin:0px;">Deactivate?
                                             &nbsp;<i class="fas fa-trash-alt"></i></button></div>
-
-
                                     <div class="float-left"
                                         style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 0px;">
                                         <button data-step="5"
@@ -171,11 +168,8 @@
                                 </div>
                             </div>
                             <div class="row no_gutters" style="margin:auto!important;margin-top:50px!important;">
-
                                 <div class="col-md-12 col-lg-6 " style="margin-bottom:50px;">
-                                
                                     <div style="margin-left:5px;margin-right:5px;padding:15px;background: #fff;">
-
                                         <div style="border-bottom: 1px solid #eee;padding-bottom: 20px;">
                                             <div class="col-12"
                                                 style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 15px;">
@@ -210,7 +204,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
                                         <div>
                                             <div class="row" style="margin-bottom: 30px;">
@@ -224,59 +217,57 @@
                                         </div>
                                     </div>
                                 </div>
-
-
                                 <!--right hand side column-->
                                 <div class="col-md-12 col-lg-6 " style="margin-bottom:50px;">
                                     <div class="col-12" id="neetbox"
                                         style="margin-bottom:40px;padding-left:5px;padding-right:5px;font-family: Roboto, sans-serif;">
-
                                     </div>
-
-                                    <div data-step="6" data-intro="Assigning Mentors to Students can be done here, hit the blue plus to get started!">
-                                        <div style="border-bottom: 1px solid #eee;padding-bottom: 0px;">
-                                            <div class="row" style="margin-bottom: 3px;">
-                                                <div class="col-12"
-                                                    style="padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 15px;">
-                                                    <p style="font-weight: bold;font-size: 18px;text-transform: uppercase;color: #666">Assigned Mentors</p>
+                                    <div style="margin-left:5px;margin-right:5px;padding:15px;background: #fff;">
+                                        <div style="border-bottom: 1px solid #eee;padding-bottom: 20px;">
+                                            <div data-step="6"
+                                                data-intro="Assigning Mentors to Students can be done here, hit the blue plus to get started!">
+                                                <div style="border-bottom: 1px solid #eee;padding-bottom: 0px;">
+                                                    <div class="row" style="margin-bottom: 3px;">
+                                                        <div class="col-12"
+                                                            style="padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 15px;">
+                                                            <p
+                                                                style="font-weight: bold;font-size: 18px;text-transform: uppercase;color: #666">
+                                                                Assigned Mentors</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="table-responsive">
+                                                        <table class="table">
+                                                            <tbody id="matches">
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="table-responsive">
-                                                <table class="table">
-                                                    <tbody id="matches">
-                                                        
-                                    
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        <div style="padding-bottom: 0px;">
-                                            <div class="row" style="margin-bottom: 10px;">
-                                                <div class="row " style="margin-left:0px;">
-                                                    <div class="col-12">
-                                                        <div class="collapse" id="MentorCollapse" style="">
-                                                            <div class="card card-body">
-                                                                <form class="saveMentor" method="post">
-                                                                    <select id="Mentors" name="Mentors"
-                                                                        style="width:300px;">
-                                                                        <option value="" required="">Select Mentor
-                                                                        </option>
-                                                                    </select>
-                                                                    <button class="btn btn-primary" type="submit"
-                                                                        style="margin:10px;padding:6px 12px;font-size:18px;color:#fff;background:#234e67;border-radius: 10px;background-position: bottom;border:0px;border-radius:300px;">
-                                                                        Confirm
-                                                                    </button></form>
+                                                <div style="padding-bottom: 0px;">
+                                                    <div class="row" style="margin-bottom: 10px;">
+                                                        <div class="row " style="margin-left:0px;">
+                                                            <div class="col-12">
+                                                                <div class="collapse" id="MentorCollapse" style="">
+                                                                    <div class="card card-body">
+                                                                        <form class="saveMentor" method="post">
+                                                                            <select id="Mentors" name="Mentors"
+                                                                                style="width:300px;">
+                                                                                <option value="" required="">Select
+                                                                                    Mentor
+                                                                                </option>
+                                                                            </select>
+                                                                            <button class="btn btn-primary"
+                                                                                type="submit"
+                                                                                style="margin:10px;padding:6px 12px;font-size:18px;color:#fff;background:#234e67;border-radius: 10px;background-position: bottom;border:0px;border-radius:300px;">
+                                                                                Confirm
+                                                                            </button></form>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div style="margin-left:5px;margin-right:5px;padding:15px;background: #fff;">
-                                       
 
-                                        <div style="border-bottom: 1px solid #eee;padding-bottom: 20px;">
                                             <div class="col-12"
                                                 style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 40px;">
                                                 <h1 style="font-weight: 300;">Subjects</h1>
@@ -299,8 +290,6 @@
                                                         <div class="card card-body">
                                                             <form method="post" class="addSubject">
                                                                 <input id="subject" name="subject" style="width:300px;">
-
-
                                                                 <button class="btn btn-primary" type="submit"
                                                                     style="margin:10px;padding:6px 12px;font-size:18px;color:#fff;background:#234e67;border-radius: 10px;background-position: bottom;border:0px;border-radius:300px;">
                                                                     Confirm
@@ -310,17 +299,12 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
-
-
                                         <div style="border-bottom: 1px solid #eee;padding-bottom: 50px;">
-
                                             <div class="col-12"
                                                 style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 40px;">
                                                 <h1 style="font-weight: 300;">Files</h1>
                                             </div>
-
                                             <div style="margin-left:40px;">
                                                 <button class="btn btn-primary" type="button" data-toggle="collapse"
                                                     data-target="#collapseFiles" aria-expanded="false"
@@ -409,7 +393,6 @@
                                                 </tr>
                                             </table>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -418,8 +401,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
@@ -432,7 +413,6 @@
     <script src="https://s3.eu-west-2.amazonaws.com/www.blooware.co.uk/blooNotif/notif.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/intro.min.js"
         integrity="sha256-fOPHmaamqkHPv4QYGxkiSKm7O/3GAJ4554pQXYleoLo=" crossorigin="anonymous"></script>
-
     <script>
         ScrollReveal().reveal('.revealOnLoad', {
             delay: 1000,
@@ -485,6 +465,8 @@
             $('#matches').html("");
             $('#Mentors').html("");
             $('#studentData').html("");
+            $('#neetbox').html("");
+
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postGrabStudent', { student_id: student_id }, function (reply) {
                 console.log(reply);
                 destinationData = reply.destinations;
@@ -511,7 +493,6 @@
                 }
                 for (i = 0; i < reply.subjects.length; i++) {
                     $('#subjects').append('<div class="d-inline-block"><div><button style="outline:none;margin:10px;padding:24px 24px;font-size:24px;color:#fff;background-color:#fff;text-shadow: 0 0 5px rgba(0,0,0,1);background-image: url(https://source.unsplash.com/300x100/?' + reply.subjects[i].name.replace(" ", "%20") + ');background-size:cover;background-position:bottom;border-radius: 10px;background-position: bottom;border:0px;"> ' + reply.subjects[i].name + ' <a style="color:#d32641!important;position:;z-index:9999999;!important;left:30px!important;top:10px!important;cursor:pointer;" onclick="RemoveSubject(' + reply.subjects[i].id + ')"><i class="icon ion-android-remove-circle"></i></a></button></div></div>');
-
                 }
                 for (i = 0; i < reply.mentorList.length; i++) {
                     $('#Mentors').append('<option value="' + reply.mentorList[i].id + '">' + reply.mentorList[i].first_name + " " + reply.mentorList[i].last_name + '</option>');
@@ -548,23 +529,19 @@
                     $('.pp').html(reply.studentData[0].pp);
                     $('.sen').html(reply.studentData[0].sen);
                     $('.year').html(reply.studentData[0].yearGroup);
-
                     $('#schoolCompletion').append('<span class="progressPercentage"></span>% Complete at ' + reply.studentData.schoolName)
                     if (((100 / 14) * reply.studentData[0].yearGroup) > 100) {
                         $('.progressPercentage').html("100");
                         $('.progressPercentageBar').css("width", ((100 / 14) * reply.studentData[0].yearGroup).toString() + "%");
                     } else {
-
                         $('.progressPercentage').html(((100 / 14) * reply.studentData[0].yearGroup).toFixed(0).toString());
                         $('.progressPercentageBar').css("width", ((100 / 14) * reply.studentData[0].yearGroup).toString() + "%");
                     }
-
                 }
                 else {
                     $('.Name').html("error");
                 }
-
-                  if (reply.neetScore > 15) {
+                if (reply.neetScore > 15) {
                     console.log("red");
                     $('#neetbox').append('<div id="neetreasons" style="width:100%;border-radius:9px;padding:20px;background:linear-gradient(90deg, #ED213A, #93291E);background-size:300%;box-shadow:0 0 7px rgba(222, 34, 53, 0.45);"><h1 style="background:;font-weight: 300;color:white;">Probable NEET</h1></div>')
                     for (i = 0; i < reply.neetCauses.length; i++) {
@@ -582,19 +559,13 @@
                     console.log("green");
                     $('#neetbox').append('<div id="neetreasons" style="width:100%;border-radius:9px;padding:20px;background:linear-gradient(90deg, #56ab2f, #a8e063);background-size:300%;box-shadow:0 0 7px rgba(101,180,56, 0.45);"><h3 style="background:;font-weight: 300;color:white;">Student on track</h3></div>')
                 }
-
-            
-
             });
-              
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-getInterests', {}, function (reply) {
                 $('#interest').html();
                 for (i = 0; i < reply.body.length; i++) {
                     $('#interest').append('<option value="' + reply.body[i].id + '">' + reply.body[i].name + '</option>');
                 }
             });
-
-
         }
         function goToSession(data) {
             window.location.href = '/portal/students/profile/session/?student_id=' + student_id + '&id=' + data;
@@ -684,7 +655,6 @@
                 refresh();
             });
         });
-
         $(".addSubject").submit(function (e) {
             e.preventDefault();
             //console.log(objectifyForm(this));
@@ -698,16 +668,6 @@
                 //refresh();
             });
         });
-
-
-
-
-
-
-
-
-
-
 
         function objectifyForm(formArray) {//serialize data function
             var returnArray = {};
@@ -753,30 +713,24 @@
         }
         function RemoveSubject(subject_id) {
             console.log("subject id to remove" + subject_id);
-
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postRemoveStudentSubject", { subject_id: subject_id, student_id: student_id }, function (reply) {
                 console.log(reply);
                 refresh();
             });
-
         }
         function RemoveInterest(interest_id) {
             console.log("interest id to remove" + interest_id);
-
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postRemoveStudentInterest", { interest_id: interest_id, student_id: student_id }, function (reply) {
                 console.log(reply);
                 refresh();
             });
-
         }
         function Deactivate() {
             console.log("Deactivate Student??");
-
             postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postDeactivateStudent", { student_id: student_id }, function (reply) {
                 console.log(reply);
                 refresh();
             });
-
         }
     </script>
 </body>
