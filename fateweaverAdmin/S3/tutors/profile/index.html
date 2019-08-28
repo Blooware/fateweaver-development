@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html style="display:none;">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -12,10 +11,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400">
     <link rel="stylesheet" href="../../assets/css/styles.min.css">
+    <link rel="stylesheet" href="../../assets/css/table.css">
 </head>
-
 <body style="width: 100%;height: 100%;background-color: #ffffff;">
-
     <!--Popups-->
     <div>
         <div class="d-inline-flex popupEdit" id="popupEdit"
@@ -26,20 +24,15 @@
                         style="text-align: right;cursor: pointer;text-decoration: underline; float:left; "
                         onclick="$('.popupEdit').attr('style', $('.popupEdit').attr('style') + ';display: none!important;');">
                         Close</p>
-
                 </div>
-
                 <input id="title" name="title" placeholder="Title" type="text" required /><br>
                 <input id="first_name" name="first_name" placeholder="First Name" type="text" required /><br>
                 <input id="second_name" name="second_name" placeholder="Second Name" type="text" required /><br>
                 <input id="email" name="email" placeholder="Email" type="text" required /><br>
                 <button type="submit">Update</button>
-
             </form>
-
         </div>
     </div>
-
     <div>
         <div class="d-inline-flex popupAssign" id="popupAssign"
             style="display: none!important;border-radius: 15px;padding: 3%;position: relative;-webkit-box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);position: fixed;width: 100%;height: 80%;width: 80%;top: 10%;background: #FFF;left: 10%;z-index: 999999999999999999999999999999999999999999;">
@@ -49,19 +42,14 @@
                         style="text-align: right;cursor: pointer;text-decoration: underline; float:left; "
                         onclick="$('.popupAssign').attr('style', $('.popupAssign').attr('style') + ';display: none!important;');">
                         Close</p>
-
                 </div>
-
                 <select id="Groups" name="group_id" required>
                     <option value="">Select Tutor Group</option>
                 </select>
-
                 <button type="submit">Add</button>
-
             </form>
         </div>
     </div>
-
     <div>
         <div class="d-inline-flex popupRemove" id="popupRemove"
             style="display: none!important;border-radius: 15px;padding: 3%;position: relative;-webkit-box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);position: fixed;width: 100%;height: 80%;width: 80%;top: 10%;background: #FFF;left: 10%;z-index: 999999999999999999999999999999999999999999;">
@@ -71,24 +59,18 @@
                         style="text-align: right;cursor: pointer;text-decoration: underline; float:left; "
                         onclick="$('.popupRemove').attr('style', $('.popupRemove').attr('style') + ';display: none!important;');">
                         Close</p>
-
                 </div>
-
                 <select id="GroupsRemove" name="group_id" required>
                     <option value="">Select Tutor Group</option>
                 </select>
-
                 <button type="submit">Remove</button>
-
             </form>
         </div>
     </div>
-
     <div id="wrapper">
-         <!--navigation-->         
-         <div id="sidebar-wrapper" class=" insertNavHere" style="background-color: #234e67!important;">
+        <!--navigation-->
+        <div id="sidebar-wrapper" class=" insertNavHere" style="background-color: #234e67!important;">
         </div>
-
         <!--top bar and content-->
         <div class="page-content-wrapper">
             <div class="container-fluid" style="padding: 0px;margin-left: 0px;margin-right: 0px;">
@@ -120,32 +102,23 @@
                                 </div>
                                 <div class="col-9" style="min-width: 600px;">
                                     <h1 style="font-weight: 300;"><strong id="TutorName">Loading...</strong></h1>
-                                    
-
                                     <div class="float-left"
                                         style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 10px;">
-
                                         <button class="btn btn-primary" onclick="$('#popupAssign').fadeIn()"
                                             type="button"
                                             style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 16px;">Add
                                             Tutor Group &nbsp;<i class="fas fa-pencil-alt"></i></button></div>
-                                    
                                     <div class="float-left"
                                         style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 10px;">
-
                                         <button class="btn btn-primary" onclick="$('#popupRemove').fadeIn()"
                                             type="button"
                                             style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 16px;">Remove
                                             Tutor Group &nbsp;<i class="fas fa-pencil-alt"></i></button></div>
-
                                     <div class="float-left"
                                         style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 10px;">
-
                                         <button class="btn btn-primary" onclick="$('#popupEdit').fadeIn()" type="button"
                                             style="height: 100%;padding: 12px 24px;background-color: transparent;color: #000;border: 0px!important;font-size: 16px;">Edit
                                             &nbsp;<i class="fas fa-pencil-alt"></i></button></div>
-
-
                                     <div class="float-left"
                                         style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 0px;">
                                         <button class="btn btn-primary" type="button" onclick="deleteStudent()"
@@ -153,33 +126,15 @@
                                             &nbsp;<i class="far fa-trash-alt"></i></button></div>
                                 </div>
                             </div>
-
                             <p id="email2" name="email2">Email:</p>
-
-                            <div class="table-responsive">
-                                <table class="table" id="results">
-
-                                </table>
-                            </div>
-
-
-
-
-
-
+                            <table class="table" id="results">
+                            </table>
                         </div>
                     </div>
-
-
                 </div>
             </div>
-
-            
         </div>
     </div>
-
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <script src="../../assets/js/script.min.js"></script>
@@ -189,7 +144,6 @@
     <script src="../../assets/js/security.js"></script>
     <script src="/portal/assets/js/nav.js"></script>
     <script>
-
         var tutor_id = getUrlParameter('tutor_id').replace("-", " ");
 
         function refresh() {
@@ -207,7 +161,7 @@
                     $('#second_name').val(reply.tutorInfo[0].second_name);
                     $('#email').val(reply.tutorInfo[0].email);
                     $('#TutorName').html(reply.tutorInfo[0].title + " " + reply.tutorInfo[0].first_name + " " + reply.tutorInfo[0].second_name);
-                    
+
 
                     $('#email2').html("Email: " + reply.tutorInfo[0].email);
 
@@ -219,12 +173,12 @@
                             text: reply.tutorGroups[i].name,
                         }));
                     }
-                    $('#results').html('<tr style="font-weight: normal!important;"> <th style="font-weight: normal;">Name</th> <th style="font-weight: normal;">Added By</th> <th style="font-weight: normal;">Added</th> </tr>');
+                    $('#results').html('<tr><th>Name</th><th>Added By</th><th>Added</th></tr>');
 
                     $("#GroupsRemove").html("<option value =''>Select Tutor Group</option>");
 
                     for (var i = 0; i < reply.tutorAssignedGroups.length; i++) {
-                        $('#results').append('<tr><td style="font-size: 15px;"> <a  href="/portal/tutorGroups/profile/?tutor_group_id=' + reply.tutorAssignedGroups[i].id + '">' + reply.tutorAssignedGroups[i].name + '</a></td> <td style="font-size: 15px;">' + reply.tutorAssignedGroups[i].description + '</td> <td style="font-size: 15px;">' + reply.tutorAssignedGroups[i].added + '</td></tr> ');
+                        $('#results').append('<tr><td> <a href="/portal/tutorGroups/profile/?tutor_group_id=' + reply.tutorAssignedGroups[i].id + '">' + reply.tutorAssignedGroups[i].name + '</a></td><td>' + reply.tutorAssignedGroups[i].description + '</td><td>' + reply.tutorAssignedGroups[i].added + '</td></tr> ');
 
                         $('#GroupsRemove').append($('<option>', {
                             value: reply.tutorAssignedGroups[i].id,
@@ -232,7 +186,7 @@
                         }));
                     }
 
-                    
+
 
 
 
@@ -292,7 +246,7 @@
 
             console.log(objectifyForm(this));
 
-            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postAssignTutorGroup", { tutorInfo : objectifyForm(this), tutor_id: tutor_id }, function (reply) {
+            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postAssignTutorGroup", { tutorInfo: objectifyForm(this), tutor_id: tutor_id }, function (reply) {
                 console.log(reply);
                 refresh();
             });
@@ -302,7 +256,7 @@
 
             console.log(objectifyForm(this));
 
-            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postRemoveAssignTutorGroup", { tutorInfo : objectifyForm(this), tutor_id: tutor_id }, function (reply) {
+            postToLambda("https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postRemoveAssignTutorGroup", { tutorInfo: objectifyForm(this), tutor_id: tutor_id }, function (reply) {
                 console.log(reply);
                 refresh();
             });
