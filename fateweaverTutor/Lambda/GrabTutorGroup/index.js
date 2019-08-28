@@ -21,18 +21,31 @@ exports.handler = (event, context, callback) => {
                 });
             }
             if (results.length > 0) {
-                var students = rows;
-                
-                context.succeed({
-                    statusCode: 200,
-                    status: true,
-                    students: students,
+                var students = results;
+
+                connection.query("select id, name, description, added, csv from fateweaver.tutor_groups  where fateweaver.tutor_groups.id in (select group_id from fateweaver.tutor_assigned_groups where tutor_id = (select id from fateweaver.tutors where cognito_id = ? limit 1) and fateweaver.tutor_groups.id = ?)", [event.account.sub, event.form.tutor_group_id], function (err, results, fields) {
+                    if (err) {
+                        console.log("Error getting tutor groups:", err);
+                        context.succeed({
+                            statusCode: 200,
+                            status: false,
+                            errMsg: "error getting students :" + err
+                        });
+                    }
+                    var groupData = results;
+                    context.succeed({
+                        statusCode: 200,
+                        status: true,
+                        students: students,
+                        groupData: groupData
+                    });
                 });
+
             } else {
                 context.succeed({
                     statusCode: 200,
                     status: false,
-                    errMsg : "Couldn't find students in that tutor group"
+                    errMsg: "Couldn't find students in that tutor group"
                 });
             }
 
@@ -41,11 +54,3 @@ exports.handler = (event, context, callback) => {
 
 
 }
-
-
-
-
-
-
-
-

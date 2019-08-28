@@ -122,6 +122,7 @@
                     $('#Name').html("error");
                 }
                 for (i = 0; i < reply.students.length; i++) {
+                    
                     console.log(reply.students[i].given_name + " " + reply.students[i].family_name + + reply.students[i].upn);
                     $('#Students').append('<a style="color:black!important;text-decoration:none!important;"href="/portal/mentors/profile/?mentor_id=' + reply.students[i].id + '"><div class="col-2"> <div class="match" style="min-width:100px;"><div class="border m-auto d-block rounded-circle" style="width: 50px;height: 50px;overflow: hidden;"> <img src="https://www.blooware.co.uk/assets/img/IMG_4260.jpg" style="width: 100%;"> </div> <p style="text-align:center;font-weight:bold;margin-top:10px;">' + reply.students[i].given_name + " " + reply.students[i].family_name + '</p><p style="text-align:center;font-size:0.8em;">UPN: ' + reply.students[i].upn + '</p> </div> </div>')
                 }
