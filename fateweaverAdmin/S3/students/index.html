@@ -293,6 +293,7 @@
           
 
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaver-getStudents', [], function (reply) {
+                console.log(reply)
 
 
                 if(reply.body.length < resultsLimit){
