@@ -154,11 +154,17 @@
                                 </div>
                             </div>
 
+                            <p id="email2" name="email2">Email:</p>
+
                             <div class="table-responsive">
                                 <table class="table" id="results">
 
                                 </table>
                             </div>
+
+
+
+
 
 
                         </div>
@@ -167,6 +173,8 @@
 
                 </div>
             </div>
+
+            
         </div>
     </div>
 
@@ -198,7 +206,10 @@
                     $('#first_name').val(reply.tutorInfo[0].first_name);
                     $('#second_name').val(reply.tutorInfo[0].second_name);
                     $('#email').val(reply.tutorInfo[0].email);
-                    $('#TutorName').html(reply.tutorInfo[0].first_name + " " + reply.tutorInfo[0].second_name);
+                    $('#TutorName').html(reply.tutorInfo[0].title + " " + reply.tutorInfo[0].first_name + " " + reply.tutorInfo[0].second_name);
+                    
+
+                    $('#email2').html("Email: " + reply.tutorInfo[0].email);
 
                     $("#Groups").html("<option value =''>Select Tutor Group</option>");
                     for (var i = 0; i < reply.tutorGroups.length; i++) {
@@ -208,14 +219,22 @@
                             text: reply.tutorGroups[i].name,
                         }));
                     }
+                    $('#results').html('<tr style="font-weight: normal!important;"> <th style="font-weight: normal;">Name</th> <th style="font-weight: normal;">Added By</th> <th style="font-weight: normal;">Added</th> </tr>');
+
                     $("#GroupsRemove").html("<option value =''>Select Tutor Group</option>");
+
                     for (var i = 0; i < reply.tutorAssignedGroups.length; i++) {
+                        $('#results').append('<tr><td style="font-size: 15px;"> <a  href="/portal/tutorGroups/profile/?tutor_group_id=' + reply.tutorAssignedGroups[i].id + '">' + reply.tutorAssignedGroups[i].name + '</a></td> <td style="font-size: 15px;">' + reply.tutorAssignedGroups[i].description + '</td> <td style="font-size: 15px;">' + reply.tutorAssignedGroups[i].added + '</td></tr> ');
 
                         $('#GroupsRemove').append($('<option>', {
                             value: reply.tutorAssignedGroups[i].id,
                             text: reply.tutorAssignedGroups[i].name,
                         }));
                     }
+
+                    
+
+
 
                 } else {
 
