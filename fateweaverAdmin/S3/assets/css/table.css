@@ -1,0 +1,30 @@
+table { 
+    color: #333;
+    font-family: Helvetica, Arial, sans-serif;
+    width: 80%;
+    margin-top:40px;
+    margin-left:10%;
+    margin-right:10%;
+    /* Table reset stuff */
+    border-collapse: collapse; border-spacing: 0; 
+    border-radius:5px;
+    overflow:hidden;
+  }
+          
+  td, th {  border: 0 none; height: 30px; }
+              
+  tr:first-child {
+    /* Gradient Background */
+      background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+      color: #FFF; font-weight: bold;
+      height: 50px;
+  }
+          
+  td { background: #FAFAFA; text-align: center; }
+  th { text-align: center; }
+  /* Zebra Stripe Rows */
+          
+  tr:nth-child(even) td { background: #EEE; } 
+  tr:nth-child(odd) td { background: #FDFDFD; }
+  
+  
