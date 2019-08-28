@@ -73,7 +73,7 @@
 
             </form>
 
-           
+
 
             <!--
 
@@ -94,7 +94,7 @@
                     type="submit">add interest</button>
             </form>
         -->
-            
+
 
 
 
@@ -102,9 +102,9 @@
     </div>
 
     <div id="wrapper">
-          <!--navigation-->         
-          <div id="sidebar-wrapper" class=" insertNavHere" style="background-color: #234e67!important;">
-          
+        <!--navigation-->
+        <div id="sidebar-wrapper" class=" insertNavHere" style="background-color: #234e67!important;">
+
         </div>
 
         <!--top bar and content-->
@@ -137,10 +137,11 @@
                                         <img src="https://source.unsplash.com/collection/791207/150x150"
                                             style="height:100%; min-width: 100%;"></div>
                                 </div>
-                                <div class="col-6" id="profileBanner"style="min-width: 600px;">
+                                <div class="col-6" id="profileBanner" style="min-width: 600px;">
                                     <h1 style="font-weight: 300;"><strong id="Name"></strong></h1>
-                                    <h1 style="font-weight: bold;font-size: 16px;color: #0078db;">MENTOR <i class="fas fa-check-circle"></i></h1>
-
+                                    <h1 style="font-weight: bold;font-size: 16px;color: #0078db;">MENTOR <i
+                                            class="fas fa-check-circle"></i></h1>
+                                    <div id="jobTitle"></div>
                                     <div class="float-left"
                                         style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 10px;">
 
@@ -149,7 +150,8 @@
                                             &nbsp;<i class="fas fa-pencil-alt"></i></button></div>
                                     <div class="float-left"
                                         style="background-color: #fff;margin-top: 30px;box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;margin-right: 0px;">
-                                        <button class="btn btn-primary" type="button" onclick="deleteMentor()" href="/portal/mentors/"
+                                        <button class="btn btn-primary" type="button" onclick="deleteMentor()"
+                                            href="/portal/mentors/"
                                             style="height: 100%;padding: 12px 24px;background-color: transparent;color: #d32641;border: 0px!important;font-size: 16px;">Delete
                                             &nbsp;<i class="far fa-trash-alt"></i></button></div>
                                 </div>
@@ -187,7 +189,8 @@
                                     <div class="col-12"
                                         style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 25px;">
                                         <h1 style="font-weight: 300;">Industries</h1>
-                                        <p style="font-weight: 300;">Adding the mentor's past and present industries will help us recommend students.</p>
+                                        <p style="font-weight: 300;">Adding the mentor's past and present industries
+                                            will help us recommend students.</p>
 
                                     </div>
 
@@ -232,7 +235,7 @@
                                         style="margin-top: 30px;padding-bottom: 0px;font-family: Roboto, sans-serif;padding-left: 25px;">
                                         <h1 style="font-weight: 300;">Interests</h1>
                                         <p style="font-weight: 300;">The more interests you add here, the better
-                                            student 
+                                            student
                                             recommendations
                                             appear.</>
 
@@ -312,7 +315,7 @@
                 console.log(reply);
                 $('#jobRole').html("")
                 $('#Name').html(reply.mentorData[0].first_name + " " + reply.mentorData[0].last_name);
-                $('#profileBanner').append('<h1 id="jobRole" style="font-weight: 300;font-size: 20px;color: #0078db;">' + reply.mentorData[0].role + '</h1>')
+                $('#jobTitle').append('<h1 id="jobRole" style="font-weight: 300;font-size: 20px;color: #0078db;">' + reply.mentorData[0].role + '</h1>')
                 //Edit
                 $('#firstName').val(reply.mentorData[0].first_name);
                 $('#lastName').val(reply.mentorData[0].last_name);
@@ -359,12 +362,12 @@
             });
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-getIndustries', {}, function (reply) {
                 console.log(reply);
-                
+
                 $('#industries').html();
                 for (i = 0; i < reply.body.length; i++) {
                     $('#industries').append('<option value="' + reply.body[i].id + '">' + reply.body[i].name + '</option>');
                 }
-                
+
             });
         }
 
