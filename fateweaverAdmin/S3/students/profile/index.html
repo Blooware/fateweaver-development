@@ -212,45 +212,7 @@
                                                     style="margin-top: 30px;padding-bottom: 30px;font-family: Roboto, sans-serif;padding-left: 40px;">
                                                     <h1 style="font-weight: 300;">Career Sessions</h1>
                                                 </div>
-                                            
-                                            <!--<div id="timeline" style="margin-left:50px;">
-                                            </div>-->
-                                            <div id="timeline">
-                                                <!--<ul id="tl">
-                                                    
-                                                    <li>
-                                                        <div class="bullet pink"></div>
-                                                        <div class="time">5pm</div>
-                                                        <div class="desc">
-                                                            <h3>New Icon</h3>
-                                                            <h4>Mobile App</h4>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="bullet green"></div>
-                                                        <div class="time">3 - 4pm</div>
-                                                        <div class="desc">
-                                                            <h3>Design Stand Up</h3>
-                                                            <h4>Hangouts</h4>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="bullet orange"></div>
-                                                        <div class="time">12pm</div>
-                                                        <div class="desc">
-                                                            <h3>Lunch Break</h3>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="bullet green"></div>
-                                                        <div class="time">9 - 11am</div>
-                                                        <div class="desc">
-                                                            <h3>Finish Home Screen</h3>
-                                                            <h4>Web App</h4>
-                                                        </div>
-                                                    </li>
-                                                    
-                                                </ul>-->
+                                                <div id="timeline">
                                                 </div>
                                             </div>
                                         </div>
@@ -510,23 +472,6 @@
             postToLambda('https://fpy3ge6zm8.execute-api.eu-west-2.amazonaws.com/Prod/fateweaverAdmin-postGrabStudent', { student_id: student_id }, function (reply) {
                 console.log(reply);
                 destinationData = reply.destinations;
-                /*
-                for (i = 0; i < reply.destinations.length; i++) {
-                    var dateAdded = reply.destinations[i].added;
-                    if (i == 0) {
-                        //bottom
-                        $('#timeline').append(' <div onclick="goToSession(' + reply.destinations[i].id + ')" style="cursor:pointer;margin-left:5%;border-left:solid 2px #0078db;margin-top: -60px;width: 80%;min-width: 800px;"><div class="bullet"></div><div class="tl"> <p class=" time">' + dateAdded + '</p><p class="desc"><h3>' + reply.destinations[i].aspiration + '</h3><br><h4>' + reply.destinations[i].destination + '</h4></p></div></div>');
-                    } else {
-                        if (i != reply.destinations.length) {
-                            //middle
-                            $('#timeline').append('<div class="row top" onclick="goToSession(' + reply.destinations[i].id + ')" style="cursor:pointer;margin-top: -120px;width: 80%;min-width: 800px;"> <div class="col-6" style="padding-left: 15px;border-left: 3px solid #234e67;padding-bottom: 50px;padding-top: 20px;margin-top: 60px;"> <div style="background: transparent;height: 130px;border-radius: 20px;border-radius: 20px;box-shadow: 0 0 15px rgba(0,0,0,0);background: #234e67;margin-left: 20px;margin-bottom: -96px;"> <p class="text-left float-left" style="width: 100%;color: #fff;font-size: 16px;margin: 0px;padding-left: 40px;padding-top:10px;">' + dateAdded + '</p> <p class="text-left float-left" style="width: 100%;color: #fff;font-weight: 600;font-size: 16px;margin: 0px;padding-left: 40px;margin-bottom: 50px;padding-right: 40px;"><strong style="text-transform: capitalize;">' + reply.destinations[i].aspiration + '</strong><br>' + reply.destinations[i].destination + '</p> </div> <div style="width: 20px;height: 20px;background: #000;border-radius: 50%;position: absolute;margin-left: -26px;margin-top: 33px;background-color: rgb(255,109,109);"> </div> </div> </div>');
-                        } else {
-                            //top
-                            $('#timeline').append('<div class="row middle" onclick="goToSession(' + reply.destinations[i].id + ')" style="cursor:pointer;margin-top: -60px;width: 80%;min-width: 800px;"> <div class="col-6" style="padding-left: 15px;border-left: 3px solid #234e67;padding-bottom: 50px;padding-top: 20px;margin-top: 60px;"> <div style="background: transparent;height: 130px;border-radius: 20px;border-radius: 20px;box-shadow: 0 0 15px rgba(0,0,0,0);background: #fff;margin-bottom: 30px;margin-left: 20px;margin-top: -60px;"> <p class="text-left float-left" style="width: 100%;color: #666;font-size: 16px;margin: 0px;padding-left: 40px;padding-top:10px;">' + dateAdded + '</p> <p class="text-left float-left" style="width: 100%;color: #fff;font-weight: 600;font-size: 16px;margin: 0px;padding:5px;padding-left: 40px;padding-right: 40px;"><strong style="text-transform: capitalize;">' + reply.destinations[i].aspiration + '</strong><br>' + reply.destinations[i].destination + '</p> </div> <div style="width: 20px;height: 20px;background: #000;border-radius: 50%;position: absolute;margin-left: -26px;margin-top: -93px;background-color: rgb(255,109,109);"> </div> </div> </div>');
-                        }
-                    }
-                }
-                */
                 for (i = 0; i < reply.destinations.length; i++) {
                     var dateAdded = reply.destinations[i].added;
                     var calDatef = new Date(Date.parse(dateAdded));
@@ -535,9 +480,7 @@
                     var mm1 = calDatef.getMonth(); //January is 0!
                     var yyyy1 = calDatef.getFullYear();
                     var calDate = dd1 + '/' + mm1 + '/' + yyyy1;
-                    /*
-                        $('#tl').append('<li style="cursor:pointer;" onclick="goToSession(' + reply.destinations[i].id + ')"><div class="bullet blue"></div><div class="time">' + dateAdded + '</div><div class="desc"><h3>' + reply.destinations[i].aspiration + '</h3><h4>' + reply.destinations[i].destination + '</h4></div></li>');*/
-                        $('#timeline').append(' <div class="tlitem"onclick="goToSession(' + reply.destinations[i].id + ')"><div class="tl"><div class="bullet"></div><div class="tlinfo"><p class="date">' + calDate + '</p><div class="desc"><h3>' + reply.destinations[i].Destination + '</h3><br><h4>' + reply.destinations[i].aspiration + '</h4></div></div></div></div><hr>');
+                        $('#timeline').append(' <div class="tlitem"onclick="goToSession(' + reply.destinations[i].id + ')"><div class="tl"><div class="bullet"></div><div class="tlinfo"><p class="date">' + calDate + '</p><div class="desc"><h3>' + reply.destinations[i].destination + '</h3><br><h4>' + reply.destinations[i].aspiration + '</h4></div></div></div></div><hr>');
                     }
                     
                 
