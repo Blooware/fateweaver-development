@@ -11,7 +11,8 @@ table {
     overflow:hidden;
   }
           
-  td, th {  border: 0 none; height: 30px; }
+  td, th {  border: 0 none;}
+
               
   tr:first-child {
     /* Gradient Background */
