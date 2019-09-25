@@ -236,34 +236,30 @@
                                                                 Assigned Mentors</p>
                                                         </div>
                                                     </div>
-                                                    <div class="table-responsive">
-                                                        <table class="table">
-                                                            <tbody id="matches">
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                                <div style="padding-bottom: 0px;">
-                                                    <div class="row" style="margin-bottom: 10px;">
-                                                        <div class="row " style="margin-left:0px;">
-                                                            <div class="col-12">
-                                                                <div class="collapse" id="MentorCollapse" >
-                                                                    <div class="card card-body">
-                                                                        <form class="saveMentor" method="post">
-                                                                            <select id="Mentors" name="Mentors"
-                                                                                style="width:300px;">
-                                                                                <option value="" required="">Select
-                                                                                    Mentor
-                                                                                </option>
-                                                                            </select>
-                                                                            <button class="btn btn-primary"
-                                                                                type="submit"
-                                                                                style="margin:10px;padding:6px 12px;font-size:18px;color:#fff;background:#234e67;border-radius: 10px;background-position: bottom;border:0px;border-radius:300px;">
-                                                                                Confirm
-                                                                            </button></form>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                    <table id="matches" class="table">
+                                                    </table>
+                                                    <button type="button" class="btn btn-primary" type="button"
+                                                        data-toggle="collapse" data-target="#MentorCollapse"
+                                                        aria-expanded="true" aria-controls="MentorCollapse"
+                                                        style="margin:10px;padding:12px 24px;font-size:24px;outline:none;color:#234e67;background:transparent;box-shadow:none!important;border-radius: 10px;background-position: bottom;border:0px;">
+                                                        Add
+                                                        <i class="fas fa-plus">
+                                                        </i>
+                                                    </button>
+                                                    <div class="collapse" id="MentorCollapse">
+                                                        <div class="card card-body">
+                                                            <form class="saveMentor" method="post">
+                                                                <select id="Mentors" name="Mentors"
+                                                                    style="width:300px;">
+                                                                    <option value="" required="">Select
+                                                                        Mentor
+                                                                    </option>
+                                                                </select>
+                                                                <button class="btn btn-primary" type="submit"
+                                                                    style="margin:10px;padding:6px 12px;font-size:18px;color:#fff;background:#234e67;border-radius: 10px;background-position: bottom;border:0px;border-radius:300px;">
+                                                                    Confirm
+                                                                </button>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -457,7 +453,7 @@
                 }
             });
         }
-            function refresh() {
+        function refresh() {
             ScrollReveal({ reset: true });
             $('#interests').html("");
             $('#subjects').html("");
@@ -477,13 +473,13 @@
                     var calDatef = new Date(Date.parse(dateAdded));
 
                     var dd1 = calDatef.getDate();
-                    var mm1 = calDatef.getMonth(); //January is 0!
+                    var mm1 = calDatef.getMonth();
                     var yyyy1 = calDatef.getFullYear();
                     var calDate = dd1 + '/' + mm1 + '/' + yyyy1;
-                        $('#timeline').append(' <div class="tlitem"onclick="goToSession(' + reply.destinations[i].id + ')"><div class="tl"><div class="bullet"></div><div class="tlinfo"><p class="date">' + calDate + '</p><div class="desc"><h3>' + reply.destinations[i].destination + '</h3><br><h4>' + reply.destinations[i].aspiration + '</h4></div></div></div></div><hr>');
-                    }
-                    
-                
+                    $('#timeline').append(' <div class="tlitem"onclick="goToSession(' + reply.destinations[i].id + ')"><div class="tl"><div class="bullet"></div><div class="tlinfo"><p class="date">' + calDate + '</p><div class="desc"><h3>' + reply.destinations[i].destination + '</h3><br><h4>' + reply.destinations[i].aspiration + '</h4></div></div></div></div><hr>');
+                }
+
+
                 for (i = 0; i < reply.studentFiles.length; i++) {
                     $('#filesList').append('<div id="file-' + i + '"  style="background:#fff;border-radius: 5px;padding:12px 24px;color:#000!important;box-shadow: 0 0px 7px rgba(0,0,0,0.2);margin-right:20px;">' + reply.studentFiles[i].name + ' <i class="fa fa-download" style="cursor:pointer;"onclick="getFile(' + i + ', `' + reply.studentFiles[i].name + '`, `' + reply.studentFiles[i].path + '`, `' + reply.studentFiles[i].file_ext + '`)"></i><button class="btn btn-primary" type="button" onclick="if(confirm(`Want to delete?`)) deleteStudentFile(' + reply.studentFiles[i].id + ')" style="height: 100%;padding: 12px 24px;background-color: transparent;color: #d32641;border: 0px!important;font-size: 16px;">Delete &nbsp;<i class="far fa-trash-alt"></i></button></div></div>');
                 }
@@ -500,7 +496,6 @@
                     console.log(reply.assignedMentors[i].first_name + " " + reply.assignedMentors[i].last_name);
                     $('#matches').append('<a style="color:black!important;text-decoration:none!important;"href="/portal/mentors/profile/?mentor_id=' + reply.assignedMentors[i].id + '"><tr style="background-color: #fff;padding: 5px;border: 10px solid #f1f5f8;border-left:0px;"> <td style="width: 140px;"><img class="rounded-circle d-block m-auto" src="https://gradientjoy.com/70x70?x=' + i + '" style="width: 50px;height: 50px;" /></td> <td style="line-height: 50px;"><strong>' + reply.assignedMentors[i].first_name + " " + reply.assignedMentors[i].last_name + '</strong></td><td style="line-height: 50px;"><strong><a style="color:#d32641!important;left:10px;top:10px;margin-bottom:-20px;cursor:pointer;" onclick="RemoveMentor(' + reply.assignedMentors[i].id + ')"><i class="icon ion-android-remove-circle"></i></a></strong></td> </tr></a>');
                 }
-                $('#matches').append('<tr style="background-color: transparent;padding: 5px;border: 10px solid #f1f5f8;border-left:0px;height:84px;"> <td style="width:140px;"><button class="btn btn-primary d-block m-auto" type="button" data-toggle="collapse" data-target="#MentorCollapse" aria-expanded="true" aria-controls="MentorCollapse" style="font-size:20px;outline:none;color:#234e67;background:#43C6AC;  background: -webkit-linear-gradient(to right, #191654, #43C6AC); background: linear-gradient(to right, #191654, #43C6AC); background-size:200%;border-radius: 300px;box-shadow: 0 7px 15px rgba(67, 198, 172, 0.36); background-position: bottom;border:0px; width:100px;   display: block; margin: auto;color:#fff;"><i class="fas fa-plus"></i> </button></td><td></td><td></td> </tr>');
                 if (reply.status == false) {
                     $('.Name').html(reply.studentData[0].given_name + " " + reply.studentData[0].family_name);
                 } else if (reply.status == true) {
