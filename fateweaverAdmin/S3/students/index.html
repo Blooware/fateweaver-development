@@ -289,12 +289,24 @@
             if (infinite) {
                 $('#results').html(document.getElementById('tableHeading').outerHTML);
                 for (var i = 0; i < allResults.length; i++) {
-                    $('#results').append('<tr class="item" search="search year' + allResults[i].yearGroup + ' ' + allResults[i].tutorGroup + 'group ' + allResults[i].given_name + ' ' + allResults[i].family_name + ' ' + allResults[i].upn + ' search" style="font-weight: bold;"><td> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="https://source.unsplash.com/collection/791207/40x40/?' + i + '" style="min-width: 100%;height: 100%;"></div> </td> <td> <a  href="/portal/students/profile/?student_id=' + allResults[i].student_id + '">' + allResults[i].given_name + ' ' + allResults[i].family_name + '</a></td> <td>' + allResults[i].tutorGroup + '</td><td>' + allResults[i].yearGroup + '</td> <td>' + allResults[i].upn + '</td> <td>' + allResults[i].destination + '</td><td>' + allResults[i].aspiration + '</td></tr> ');
+                    if (allResults[i].active == 1) {
+                        var billable = "yes"
+                    }
+                    else {
+                        var billable = "no"
+                    }
+                    $('#results').append('<tr class="item" search="search year' + allResults[i].yearGroup + ' ' + allResults[i].tutorGroup + 'group ' + allResults[i].given_name + ' ' + allResults[i].family_name + ' ' + allResults[i].upn + ' search"><td> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="https://source.unsplash.com/collection/791207/40x40/?' + i + '" style="min-width: 100%;height: 100%;"></div> </td> <td> <a  href="/portal/students/profile/?student_id=' + allResults[i].student_id + '">' + allResults[i].given_name + ' ' + allResults[i].family_name + '</a></td> <td>' + allResults[i].tutorGroup + '</td><td>' + allResults[i].yearGroup + '</td> <td>' + allResults[i].upn + '</td> <td>' + allResults[i].destination + '</td><td>' + allResults[i].aspiration + '</td><td>' + billable + '</td></tr> ');
                 }
             } else {
                 $('#results').html(document.getElementById('tableHeading').outerHTML);
                 for (var i = 0; i < /*allResults.length*/(resultsLimit * pageState); i++) {
-                    $('#results').append('<tr class="item" search="search year' + allResults[i].yearGroup + ' ' + allResults[i].tutorGroup + 'group ' + allResults[i].given_name + ' ' + allResults[i].family_name + ' ' + allResults[i].upn + ' search" style="font-weight: bold;"><td style="padding:5px;"> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="https://source.unsplash.com/collection/791207/40x40/?' + i + '" style="min-width: 100%;height: 100%;"></div> </td> <td> <a  href="/portal/students/profile/?student_id=' + allResults[i].student_id + '">' + allResults[i].given_name + ' ' + allResults[i].family_name + '</a></td> <td>' + allResults[i].tutorGroup + '</td><td>' + allResults[i].yearGroup + '</td> <td>' + allResults[i].upn + '</td> <td>' + allResults[i].destination + '</td><td>' + allResults[i].aspiration + '</td></tr> ');
+                    if (allResults[i].active == 1) {
+                        var billable = "yes"
+                    }
+                    else {
+                        var billable = "no"
+                    }
+                    $('#results').append('<tr class="item" search="search year' + allResults[i].yearGroup + ' ' + allResults[i].tutorGroup + 'group ' + allResults[i].given_name + ' ' + allResults[i].family_name + ' ' + allResults[i].upn + ' search"><td> <div class="border rounded-circle d-block m-auto" style="width: 40px;height: 40px;overflow: hidden;"><img src="https://source.unsplash.com/collection/791207/40x40/?' + i + '" style="min-width: 100%;height: 100%;"></div> </td> <td> <a  href="/portal/students/profile/?student_id=' + allResults[i].student_id + '">' + allResults[i].given_name + ' ' + allResults[i].family_name + '</a></td> <td>' + allResults[i].tutorGroup + '</td><td>' + allResults[i].yearGroup + '</td> <td>' + allResults[i].upn + '</td> <td>' + allResults[i].destination + '</td><td>' + allResults[i].aspiration + '</td><td>' + billable + '</td></tr> ');
                 }
                 $('#results').append("<tr ><td ></td> <td ><button style='background:none; border:0px; padding:0px;text-decoration:underline; color:#0078db;' onclick='loadMoreResults()'>Load more</button></td> <td ></td><td></td> <td ></td></tr>");
             }
