@@ -6,7 +6,7 @@
         "start": "node app.js"
     },
     "dependencies": {
-        "mysql": "2.2.0",
+        "mysql": "2.14.0",
         "bcryptjs": "*"
     }
 }
